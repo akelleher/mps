@@ -46,34 +46,69 @@ void main(void)
 
     SFRPAGE = UART0_PAGE;               // Direct output to UART0
 
+    printf("\033[33;44m");              // yellow text; blue background
     printf("\033[2J");                  // Erase screen & move cursor to home position
-    printf("Test of the printf() function.\n\n");
     
+
+    printf("\033[12;0H");               // Position cursor to print unprintables
+    printf("\033[s");
+
+
+    printf("\033[2;25H");               // Position cursor to print instructions
+
+    printf("Type <ESC> to end the program.\n\n\r");
+    
+    printf("\033[6;0H");                // Position cursor to print Keyboard character info
+
+    printf("The keyboard character is  .");
+
+    printf("\033[12;25r");              // Set scroll region
+
     while(1)
     {
-        printf("Hello World!\n\n\r");
-        printf("( greetings from Russell P. Kraft )\n\n\n\r");
-        printf("1=repeat, 2=clear, 0=quit.\n\n\r"); // Menu of choices
+        printf("\033[6;27H"); //position cursor where keyboard character is to be displayed
+        printf("\033[37m"); // white text
+
+        // printf("Hello World!\n\n\r");
+        // printf("( greetings from Russell P. Kraft )\n\n\n\r");
+        // printf("1=repeat, 2=clear, 0=quit.\n\n\r"); // Menu of choices
 
         choice = getchar();
-//      putchar(choice);
 
         // select which option to run    
         P1 |= 0x40;                     // Turn green LED on
-        if (choice == '0')
+        if (choice == '\033'){
             return;
-        else if(choice == '1')
-            printf("\n\nHere we go again.\n\n\r");
-        else if(choice == '2')          // clear the screen with <ESC>[2J
-            printf("\033[2J");
-        else
-        {
-            // inform the user how bright he is
-            P1 &= 0xBF;                 // Turn green LED off
-            printf("\n\rA \"");
-            putchar(choice);
-            printf("\" is not a valid choice.\n\n\r");
         }
+
+        if (!(choice >= '\040' && choice <= '\176')){ //If not a printable character
+            printf("\033[5;33;44m");          // yellow text; blue background
+            printf("\033[u");               // Position cursor to print Keyboard character info
+
+            printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
+            printf("\007");                 //sound bell
+
+            printf("\033[0m");          // yellow text; blue background
+            printf("\033[33;44m");          // yellow text; blue background
+
+            printf("\033[s");               // Position cursor to print Keyboard character info
+            printf("\033[6;27H ");          //overwrite unprintable charactar with space
+
+
+        }
+
+        // else if(choice == '1')
+        //     printf("\n\nHere we go again.\n\n\r");
+        // else if(choice == '2')          // clear the screen with <ESC>[2J
+        //     printf("\033[2J");
+        // else
+        // {
+        //     // inform the user how bright he is
+        //     P1 &= 0xBF;                 // Turn green LED off
+        //     printf("\n\rA \"");
+        //     putchar(choice);
+        //     printf("\" is not a valid choice.\n\n\r");
+        // }
 
     }
 }
