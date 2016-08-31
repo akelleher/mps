@@ -46,69 +46,68 @@ void main(void)
 
     SFRPAGE = UART0_PAGE;               // Direct output to UART0
 
-    printf("\033[33;44m");              // yellow text; blue background
+    // Reset screen
+    printf("\033[33;44m");              // Yellow text; blue background
     printf("\033[2J");                  // Erase screen & move cursor to home position
     
-
+    // Store location for unprintable notifaction
     printf("\033[12;0H");               // Position cursor to print unprintables
-    printf("\033[s");
+    printf("\033[s");                   // Store current location
 
-
+    // Print end instructions
     printf("\033[2;25H");               // Position cursor to print instructions
-
     printf("Type <ESC> to end the program.\n\n\r");
     
+    // Print printable character prompt (leave a space for the actual character)
     printf("\033[6;0H");                // Position cursor to print Keyboard character info
-
     printf("The keyboard character is  .");
 
-    printf("\033[12;25r");              // Set scroll region
+    printf("\033[12;25r");              // Set scrollable region
 
     while(1)
     {
-        printf("\033[6;27H"); //position cursor where keyboard character is to be displayed
-        printf("\033[37m"); // white text
-
-        // printf("Hello World!\n\n\r");
-        // printf("( greetings from Russell P. Kraft )\n\n\n\r");
-        // printf("1=repeat, 2=clear, 0=quit.\n\n\r"); // Menu of choices
+        // Setup cursor for printable character output
+        printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
+        printf("\033[37m");             // White text
 
         choice = getchar();
 
-        // select which option to run    
-        P1 |= 0x40;                     // Turn green LED on
+        P1 |= 0x40;                     // Turn green LED on (alert user program is on)
+
+        // If they pressed escape, end the program.
         if (choice == '\033'){
             return;
         }
 
-        if (!(choice >= '\040' && choice <= '\176')){ //If not a printable character
-            printf("\033[5;33;44m");          // yellow text; blue background
-            printf("\033[u");               // Position cursor to print Keyboard character info
+        // If not a printable characters
+        if (!(choice >= '\040' && choice <= '\176')){ 
+            printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
+            printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
 
+            // Print 'not printable' warning, some things to Note:
+            // $%02X prints captail hexadecimal with two digits 
+            // \033[4m underline 'not printable'
+            // \033[0;5;33;44m clear formatting and set to blinking text; yellow text; blue background
+            // \n\r move cursor to start of next line
             printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
-            printf("\007");                 //sound bell
 
-            printf("\033[0m");          // yellow text; blue background
-            printf("\033[33;44m");          // yellow text; blue background
+            printf("\007");                 // Sound bell
 
-            printf("\033[s");               // Position cursor to print Keyboard character info
-            printf("\033[6;27H ");          //overwrite unprintable charactar with space
+            // Note: must be done on separate lines (bug: would default to black background)
+            printf("\033[0m");              // Clear formatting
+            printf("\033[33;44m");          // Yellow text; blue background
 
+            // The new saved location is at the start of the next line in the scrollable section (from the \n\r)
+            printf("\033[s");               // Overwrite saved cursor info
+
+            // A space is printed in the printable character location when an unprintable character is pressed because
+            // some unprintable characters have built in graphical depictions which we do not wish to display
+            printf("\033[6;27H ");          // Move cursor and print space in the printable character location
 
         }
 
-        // else if(choice == '1')
-        //     printf("\n\nHere we go again.\n\n\r");
-        // else if(choice == '2')          // clear the screen with <ESC>[2J
-        //     printf("\033[2J");
-        // else
-        // {
-        //     // inform the user how bright he is
-        //     P1 &= 0xBF;                 // Turn green LED off
-        //     printf("\n\rA \"");
-        //     putchar(choice);
-        //     printf("\" is not a valid choice.\n\n\r");
-        // }
+        // IF a printable character was entered, no need to print as it is already echo'd upon typing,
+        // just have to ensure the cursor is in the right location and text is white (done at start of while)
 
     }
 }
