@@ -2,13 +2,29 @@
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.6.0 #9615 (MINGW32)
 ;--------------------------------------------------------
-	.module Hello
+	.module portIO
 	.optsdcc -mmcs51 --model-small
 	
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _printf
+	.globl _P2_7
+	.globl _P2_6
+	.globl _P2_5
+	.globl _P2_4
+	.globl _P2_3
+	.globl _P2_2
+	.globl _P2_1
+	.globl _P2_0
+	.globl _P1_7
+	.globl _P1_6
+	.globl _P1_5
+	.globl _P1_4
+	.globl _P1_3
+	.globl _P1_2
+	.globl _P1_1
+	.globl _P1_0
 	.globl _P7_7
 	.globl _P7_6
 	.globl _P7_5
@@ -134,14 +150,6 @@
 	.globl _EX1
 	.globl _ET0
 	.globl _EX0
-	.globl _P2_7
-	.globl _P2_6
-	.globl _P2_5
-	.globl _P2_4
-	.globl _P2_3
-	.globl _P2_2
-	.globl _P2_1
-	.globl _P2_0
 	.globl _S1MODE
 	.globl _MCE1
 	.globl _REN1
@@ -160,14 +168,6 @@
 	.globl _TI0
 	.globl _RI
 	.globl _RI0
-	.globl _P1_7
-	.globl _P1_6
-	.globl _P1_5
-	.globl _P1_4
-	.globl _P1_3
-	.globl _P1_2
-	.globl _P1_1
-	.globl _P1_0
 	.globl _FLHBUSY
 	.globl _CP1EN
 	.globl _CP1OUT
@@ -856,22 +856,6 @@ G$CP1EN$0$0 == 0x008f
 _CP1EN	=	0x008f
 G$FLHBUSY$0$0 == 0x0088
 _FLHBUSY	=	0x0088
-G$P1_0$0$0 == 0x0090
-_P1_0	=	0x0090
-G$P1_1$0$0 == 0x0091
-_P1_1	=	0x0091
-G$P1_2$0$0 == 0x0092
-_P1_2	=	0x0092
-G$P1_3$0$0 == 0x0093
-_P1_3	=	0x0093
-G$P1_4$0$0 == 0x0094
-_P1_4	=	0x0094
-G$P1_5$0$0 == 0x0095
-_P1_5	=	0x0095
-G$P1_6$0$0 == 0x0096
-_P1_6	=	0x0096
-G$P1_7$0$0 == 0x0097
-_P1_7	=	0x0097
 G$RI0$0$0 == 0x0098
 _RI0	=	0x0098
 G$RI$0$0 == 0x0098
@@ -908,22 +892,6 @@ G$MCE1$0$0 == 0x009d
 _MCE1	=	0x009d
 G$S1MODE$0$0 == 0x009f
 _S1MODE	=	0x009f
-G$P2_0$0$0 == 0x00a0
-_P2_0	=	0x00a0
-G$P2_1$0$0 == 0x00a1
-_P2_1	=	0x00a1
-G$P2_2$0$0 == 0x00a2
-_P2_2	=	0x00a2
-G$P2_3$0$0 == 0x00a3
-_P2_3	=	0x00a3
-G$P2_4$0$0 == 0x00a4
-_P2_4	=	0x00a4
-G$P2_5$0$0 == 0x00a5
-_P2_5	=	0x00a5
-G$P2_6$0$0 == 0x00a6
-_P2_6	=	0x00a6
-G$P2_7$0$0 == 0x00a7
-_P2_7	=	0x00a7
 G$EX0$0$0 == 0x00a8
 _EX0	=	0x00a8
 G$ET0$0$0 == 0x00a9
@@ -1174,6 +1142,38 @@ G$P7_6$0$0 == 0x00fe
 _P7_6	=	0x00fe
 G$P7_7$0$0 == 0x00ff
 _P7_7	=	0x00ff
+G$P1_0$0$0 == 0x0090
+_P1_0	=	0x0090
+G$P1_1$0$0 == 0x0091
+_P1_1	=	0x0091
+G$P1_2$0$0 == 0x0092
+_P1_2	=	0x0092
+G$P1_3$0$0 == 0x0093
+_P1_3	=	0x0093
+G$P1_4$0$0 == 0x0094
+_P1_4	=	0x0094
+G$P1_5$0$0 == 0x0095
+_P1_5	=	0x0095
+G$P1_6$0$0 == 0x0096
+_P1_6	=	0x0096
+G$P1_7$0$0 == 0x0097
+_P1_7	=	0x0097
+G$P2_0$0$0 == 0x00a0
+_P2_0	=	0x00a0
+G$P2_1$0$0 == 0x00a1
+_P2_1	=	0x00a1
+G$P2_2$0$0 == 0x00a2
+_P2_2	=	0x00a2
+G$P2_3$0$0 == 0x00a3
+_P2_3	=	0x00a3
+G$P2_4$0$0 == 0x00a4
+_P2_4	=	0x00a4
+G$P2_5$0$0 == 0x00a5
+_P2_5	=	0x00a5
+G$P2_6$0$0 == 0x00a6
+_P2_6	=	0x00a6
+G$P2_7$0$0 == 0x00a7
+_P2_7	=	0x00a7
 ;--------------------------------------------------------
 ; overlayable register banks
 ;--------------------------------------------------------
@@ -1183,6 +1183,48 @@ _P7_7	=	0x00ff
 ; internal ram data
 ;--------------------------------------------------------
 	.area DSEG    (DATA)
+LportIO.main$sloc0$1$0==.
+_main_sloc0_1_0:
+	.ds 2
+LportIO.main$sloc1$1$0==.
+_main_sloc1_1_0:
+	.ds 2
+LportIO.main$sloc2$1$0==.
+_main_sloc2_1_0:
+	.ds 2
+LportIO.main$sloc3$1$0==.
+_main_sloc3_1_0:
+	.ds 2
+LportIO.main$sloc4$1$0==.
+_main_sloc4_1_0:
+	.ds 2
+LportIO.main$sloc5$1$0==.
+_main_sloc5_1_0:
+	.ds 2
+LportIO.main$sloc6$1$0==.
+_main_sloc6_1_0:
+	.ds 2
+LportIO.main$sloc7$1$0==.
+_main_sloc7_1_0:
+	.ds 2
+LportIO.main$sloc8$1$0==.
+_main_sloc8_1_0:
+	.ds 2
+LportIO.main$sloc9$1$0==.
+_main_sloc9_1_0:
+	.ds 2
+LportIO.main$sloc10$1$0==.
+_main_sloc10_1_0:
+	.ds 2
+LportIO.main$sloc11$1$0==.
+_main_sloc11_1_0:
+	.ds 2
+LportIO.main$sloc12$1$0==.
+_main_sloc12_1_0:
+	.ds 2
+LportIO.main$sloc13$1$0==.
+_main_sloc13_1_0:
+	.ds 2
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -1339,35 +1381,49 @@ _getchar:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;choice                    Allocated to registers r7 
+;choice                    Allocated with name '_main_choice_1_23'
+;sloc0                     Allocated with name '_main_sloc0_1_0'
+;sloc1                     Allocated with name '_main_sloc1_1_0'
+;sloc2                     Allocated with name '_main_sloc2_1_0'
+;sloc3                     Allocated with name '_main_sloc3_1_0'
+;sloc4                     Allocated with name '_main_sloc4_1_0'
+;sloc5                     Allocated with name '_main_sloc5_1_0'
+;sloc6                     Allocated with name '_main_sloc6_1_0'
+;sloc7                     Allocated with name '_main_sloc7_1_0'
+;sloc8                     Allocated with name '_main_sloc8_1_0'
+;sloc9                     Allocated with name '_main_sloc9_1_0'
+;sloc10                    Allocated with name '_main_sloc10_1_0'
+;sloc11                    Allocated with name '_main_sloc11_1_0'
+;sloc12                    Allocated with name '_main_sloc12_1_0'
+;sloc13                    Allocated with name '_main_sloc13_1_0'
 ;------------------------------------------------------------
 	G$main$0$0 ==.
-	C$Hello.c$36$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:36: void main(void)
+	C$portIO.c$51$1$17 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:51: void main(void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-	C$Hello.c$40$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:40: WDTCN = 0xDE;                       // Disable the watchdog timer
+	C$portIO.c$55$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:55: WDTCN = 0xDE;                       // Disable the watchdog timer
 	mov	_WDTCN,#0xde
-	C$Hello.c$41$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:41: WDTCN = 0xAD;
+	C$portIO.c$56$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:56: WDTCN = 0xAD;
 	mov	_WDTCN,#0xad
-	C$Hello.c$43$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:43: PORT_INIT();                        // Initialize the Crossbar and GPIO
+	C$portIO.c$58$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:58: PORT_INIT();                        // Initialize the Crossbar and GPIO
 	lcall	_PORT_INIT
-	C$Hello.c$44$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:44: SYSCLK_INIT();                      // Initialize the oscillator
+	C$portIO.c$59$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:59: SYSCLK_INIT();                      // Initialize the oscillator
 	lcall	_SYSCLK_INIT
-	C$Hello.c$45$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:45: UART0_INIT();                       // Initialize UART0
+	C$portIO.c$60$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:60: UART0_INIT();                       // Initialize UART0
 	lcall	_UART0_INIT
-	C$Hello.c$47$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:47: SFRPAGE = UART0_PAGE;               // Direct output to UART0
+	C$portIO.c$62$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:62: SFRPAGE = UART0_PAGE;               // Direct output to UART0
 	mov	_SFRPAGE,#0x00
-	C$Hello.c$50$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:50: printf("\033[33;44m");              // Yellow text; blue background
+	C$portIO.c$65$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:65: printf("\033[33;44m");              // Yellow text; blue background
 	mov	a,#___str_0
 	push	acc
 	mov	a,#(___str_0 >> 8)
@@ -1378,8 +1434,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$51$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:51: printf("\033[2J");                  // Erase screen & move cursor to home position
+	C$portIO.c$66$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:66: printf("\033[2J");                  // Erase screen & move cursor to home position
 	mov	a,#___str_1
 	push	acc
 	mov	a,#(___str_1 >> 8)
@@ -1390,20 +1446,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$52$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:52: printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
-	mov	a,#___str_0
-	push	acc
-	mov	a,#(___str_0 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$55$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:55: printf("\033[12;0H");               // Position cursor to print unprintables
+	C$portIO.c$68$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:68: printf("Hello World!\n\r");
 	mov	a,#___str_2
 	push	acc
 	mov	a,#(___str_2 >> 8)
@@ -1414,230 +1458,146 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$56$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:56: printf("\033[s");                   // Store current location
+	C$portIO.c$70$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:70: while(1){
+00102$:
+	C$portIO.c$71$2$24 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:71: P2 = P1;  //Copy input to output
+	mov	_P2,_P1
+	C$portIO.c$72$2$24 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:72: printf("p1: %X\tp2: %X\tp1_b: %u%u%u%u %u%u%u%u\tp2_b: %u%u%u%u %u%u%u%u\n\r",P1,P2, P1_7, P1_6, P1_5, P1_4, P1_3, P1_2, P1_1, P1_0, P2_7, P2_6, P2_5, P2_4, P2_3, P2_2, P2_1, P2_0);
+	mov	c,_P2_0
+	clr	a
+	rlc	a
+	mov	r6,a
+	mov	r7,#0x00
+	mov	c,_P2_1
+	clr	a
+	rlc	a
+	mov	r4,a
+	mov	r5,#0x00
+	mov	c,_P2_2
+	clr	a
+	rlc	a
+	mov	r2,a
+	mov	r3,#0x00
+	mov	c,_P2_3
+	clr	a
+	rlc	a
+	mov	_main_sloc0_1_0,a
+	mov	(_main_sloc0_1_0 + 1),#0x00
+	mov	c,_P2_4
+	clr	a
+	rlc	a
+	mov	_main_sloc1_1_0,a
+	mov	(_main_sloc1_1_0 + 1),#0x00
+	mov	c,_P2_5
+	clr	a
+	rlc	a
+	mov	_main_sloc2_1_0,a
+	mov	(_main_sloc2_1_0 + 1),#0x00
+	mov	c,_P2_6
+	clr	a
+	rlc	a
+	mov	_main_sloc3_1_0,a
+	mov	(_main_sloc3_1_0 + 1),#0x00
+	mov	c,_P2_7
+	clr	a
+	rlc	a
+	mov	_main_sloc4_1_0,a
+	mov	(_main_sloc4_1_0 + 1),#0x00
+	mov	c,_P1_0
+	clr	a
+	rlc	a
+	mov	_main_sloc5_1_0,a
+	mov	(_main_sloc5_1_0 + 1),#0x00
+	mov	c,_P1_1
+	clr	a
+	rlc	a
+	mov	_main_sloc6_1_0,a
+	mov	(_main_sloc6_1_0 + 1),#0x00
+	mov	c,_P1_2
+	clr	a
+	rlc	a
+	mov	_main_sloc7_1_0,a
+	mov	(_main_sloc7_1_0 + 1),#0x00
+	mov	c,_P1_3
+	clr	a
+	rlc	a
+	mov	_main_sloc8_1_0,a
+	mov	(_main_sloc8_1_0 + 1),#0x00
+	mov	c,_P1_4
+	clr	a
+	rlc	a
+	mov	_main_sloc9_1_0,a
+	mov	(_main_sloc9_1_0 + 1),#0x00
+	mov	c,_P1_5
+	clr	a
+	rlc	a
+	mov	_main_sloc10_1_0,a
+	mov	(_main_sloc10_1_0 + 1),#0x00
+	mov	c,_P1_6
+	clr	a
+	rlc	a
+	mov	_main_sloc11_1_0,a
+	mov	(_main_sloc11_1_0 + 1),#0x00
+	mov	c,_P1_7
+	clr	a
+	rlc	a
+	mov	_main_sloc12_1_0,a
+	mov	(_main_sloc12_1_0 + 1),#0x00
+	mov	_main_sloc13_1_0,_P2
+	mov	(_main_sloc13_1_0 + 1),#0x00
+	mov	r0,_P1
+	mov	r1,#0x00
+	push	ar6
+	push	ar7
+	push	ar4
+	push	ar5
+	push	ar2
+	push	ar3
+	push	_main_sloc0_1_0
+	push	(_main_sloc0_1_0 + 1)
+	push	_main_sloc1_1_0
+	push	(_main_sloc1_1_0 + 1)
+	push	_main_sloc2_1_0
+	push	(_main_sloc2_1_0 + 1)
+	push	_main_sloc3_1_0
+	push	(_main_sloc3_1_0 + 1)
+	push	_main_sloc4_1_0
+	push	(_main_sloc4_1_0 + 1)
+	push	_main_sloc5_1_0
+	push	(_main_sloc5_1_0 + 1)
+	push	_main_sloc6_1_0
+	push	(_main_sloc6_1_0 + 1)
+	push	_main_sloc7_1_0
+	push	(_main_sloc7_1_0 + 1)
+	push	_main_sloc8_1_0
+	push	(_main_sloc8_1_0 + 1)
+	push	_main_sloc9_1_0
+	push	(_main_sloc9_1_0 + 1)
+	push	_main_sloc10_1_0
+	push	(_main_sloc10_1_0 + 1)
+	push	_main_sloc11_1_0
+	push	(_main_sloc11_1_0 + 1)
+	push	_main_sloc12_1_0
+	push	(_main_sloc12_1_0 + 1)
+	push	_main_sloc13_1_0
+	push	(_main_sloc13_1_0 + 1)
+	push	ar0
+	push	ar1
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$59$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:59: printf("\033[2;25H");               // Position cursor to print instructions
-	mov	a,#___str_4
-	push	acc
-	mov	a,#(___str_4 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$60$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:60: printf("Type <ESC> to end the program.\n\n\r");
-	mov	a,#___str_5
-	push	acc
-	mov	a,#(___str_5 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$63$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:63: printf("\033[6;0H");                // Position cursor to print Keyboard character info
-	mov	a,#___str_6
-	push	acc
-	mov	a,#(___str_6 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$64$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:64: printf("The keyboard character is  .");
-	mov	a,#___str_7
-	push	acc
-	mov	a,#(___str_7 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$66$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:66: printf("\033[12;25r");              // Set scrollable region
-	mov	a,#___str_8
-	push	acc
-	mov	a,#(___str_8 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$68$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:68: while(1)
-00107$:
-	C$Hello.c$71$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:71: printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
-	mov	a,#___str_9
-	push	acc
-	mov	a,#(___str_9 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$72$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:72: printf("\033[37m");             // White text
-	mov	a,#___str_10
-	push	acc
-	mov	a,#(___str_10 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$74$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:74: choice = getchar();
-	lcall	_getchar
-	mov	r7,dpl
-	C$Hello.c$76$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:76: P1 |= 0x40;                     // Turn green LED on (alert user program is on)
-	orl	_P1,#0x40
-	C$Hello.c$79$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:79: if (choice == '\033'){
-	cjne	r7,#0x1b,00102$
-	C$Hello.c$80$3$25 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:80: return;
-	ljmp	00109$
-00102$:
-	C$Hello.c$84$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:84: if (!(choice >= '\040' && choice <= '\176')){ 
-	cjne	r7,#0x20,00122$
-00122$:
-	jc	00103$
-	mov	a,r7
-	add	a,#0xff - 0x7e
-	jnc	00107$
-00103$:
-	C$Hello.c$85$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:85: printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
-	push	ar7
-	mov	a,#___str_11
-	push	acc
-	mov	a,#(___str_11 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$86$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:86: printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
-	mov	a,#___str_12
-	push	acc
-	mov	a,#(___str_12 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$93$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:93: printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
-	mov	r6,#0x00
-	push	ar6
-	mov	a,#___str_13
-	push	acc
-	mov	a,#(___str_13 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
 	mov	a,sp
-	add	a,#0xfb
+	add	a,#0xd9
 	mov	sp,a
-	C$Hello.c$95$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:95: printf("\007");                 // Sound bell
-	mov	a,#___str_14
-	push	acc
-	mov	a,#(___str_14 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$98$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:98: printf("\033[0m");              // Clear formatting
-	mov	a,#___str_15
-	push	acc
-	mov	a,#(___str_15 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$99$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:99: printf("\033[33;44m");          // Yellow text; blue background
-	mov	a,#___str_0
-	push	acc
-	mov	a,#(___str_0 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$102$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:102: printf("\033[s");               // Overwrite saved cursor info
-	mov	a,#___str_3
-	push	acc
-	mov	a,#(___str_3 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$106$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:106: printf("\033[6;27H ");          // Move cursor and print space in the printable character location
-	mov	a,#___str_16
-	push	acc
-	mov	a,#(___str_16 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	ljmp	00107$
-00109$:
-	C$Hello.c$114$1$23 ==.
+	ljmp	00102$
+	C$portIO.c$74$1$23 ==.
 	XG$main$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -1647,23 +1607,23 @@ _main:
 ;SFRPAGE_SAVE              Allocated to registers r7 
 ;------------------------------------------------------------
 	G$SYSCLK_INIT$0$0 ==.
-	C$Hello.c$122$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:122: void SYSCLK_INIT(void)
+	C$portIO.c$82$1$23 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:82: void SYSCLK_INIT(void)
 ;	-----------------------------------------
 ;	 function SYSCLK_INIT
 ;	-----------------------------------------
 _SYSCLK_INIT:
-	C$Hello.c$127$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:127: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+	C$portIO.c$87$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:87: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
 	mov	r7,_SFRPAGE
-	C$Hello.c$129$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:129: SFRPAGE = CONFIG_PAGE;
+	C$portIO.c$89$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:89: SFRPAGE = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
-	C$Hello.c$130$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:130: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
+	C$portIO.c$90$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:90: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
 	mov	_OSCXCN,#0x67
-	C$Hello.c$131$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:131: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
+	C$portIO.c$91$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:91: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
 	mov	r5,#0x00
 	mov	r6,#0x01
 00111$:
@@ -1674,46 +1634,46 @@ _SYSCLK_INIT:
 	mov	a,r5
 	orl	a,r6
 	jnz	00111$
-	C$Hello.c$132$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:132: while(!(OSCXCN & 0x80));
+	C$portIO.c$92$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:92: while(!(OSCXCN & 0x80));
 00102$:
 	mov	a,_OSCXCN
 	jnb	acc.7,00102$
-	C$Hello.c$133$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:133: CLKSEL  = 0x01;
+	C$portIO.c$93$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:93: CLKSEL  = 0x01;
 	mov	_CLKSEL,#0x01
-	C$Hello.c$134$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:134: OSCICN  = 0x00;
+	C$portIO.c$94$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:94: OSCICN  = 0x00;
 	mov	_OSCICN,#0x00
-	C$Hello.c$136$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:136: SFRPAGE = CONFIG_PAGE;
+	C$portIO.c$96$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:96: SFRPAGE = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
-	C$Hello.c$137$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:137: PLL0CN  = 0x04;
+	C$portIO.c$97$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:97: PLL0CN  = 0x04;
 	mov	_PLL0CN,#0x04
-	C$Hello.c$138$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:138: SFRPAGE = LEGACY_PAGE;
+	C$portIO.c$98$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:98: SFRPAGE = LEGACY_PAGE;
 	mov	_SFRPAGE,#0x00
-	C$Hello.c$139$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:139: FLSCL   = 0x10;
+	C$portIO.c$99$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:99: FLSCL   = 0x10;
 	mov	_FLSCL,#0x10
-	C$Hello.c$140$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:140: SFRPAGE = CONFIG_PAGE;
+	C$portIO.c$100$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:100: SFRPAGE = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
-	C$Hello.c$141$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:141: PLL0CN |= 0x01;
+	C$portIO.c$101$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:101: PLL0CN |= 0x01;
 	orl	_PLL0CN,#0x01
-	C$Hello.c$142$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:142: PLL0DIV = 0x04;
+	C$portIO.c$102$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:102: PLL0DIV = 0x04;
 	mov	_PLL0DIV,#0x04
-	C$Hello.c$143$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:143: PLL0FLT = 0x01;
+	C$portIO.c$103$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:103: PLL0FLT = 0x01;
 	mov	_PLL0FLT,#0x01
-	C$Hello.c$144$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:144: PLL0MUL = 0x09;
+	C$portIO.c$104$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:104: PLL0MUL = 0x09;
 	mov	_PLL0MUL,#0x09
-	C$Hello.c$145$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:145: for(i=0; i < 256; i++);
+	C$portIO.c$105$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:105: for(i=0; i < 256; i++);
 	mov	r5,#0x00
 	mov	r6,#0x01
 00114$:
@@ -1724,21 +1684,21 @@ _SYSCLK_INIT:
 	mov	a,r5
 	orl	a,r6
 	jnz	00114$
-	C$Hello.c$146$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:146: PLL0CN |= 0x02;
+	C$portIO.c$106$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:106: PLL0CN |= 0x02;
 	orl	_PLL0CN,#0x02
-	C$Hello.c$147$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:147: while(!(PLL0CN & 0x10));
+	C$portIO.c$107$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:107: while(!(PLL0CN & 0x10));
 00106$:
 	mov	a,_PLL0CN
 	jnb	acc.4,00106$
-	C$Hello.c$148$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:148: CLKSEL  = 0x02;
+	C$portIO.c$108$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:108: CLKSEL  = 0x02;
 	mov	_CLKSEL,#0x02
-	C$Hello.c$150$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:150: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+	C$portIO.c$110$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:110: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
 	mov	_SFRPAGE,r7
-	C$Hello.c$151$1$28 ==.
+	C$portIO.c$111$1$26 ==.
 	XG$SYSCLK_INIT$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -1747,37 +1707,44 @@ _SYSCLK_INIT:
 ;SFRPAGE_SAVE              Allocated to registers r7 
 ;------------------------------------------------------------
 	G$PORT_INIT$0$0 ==.
-	C$Hello.c$159$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:159: void PORT_INIT(void)
+	C$portIO.c$119$1$26 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:119: void PORT_INIT(void)
 ;	-----------------------------------------
 ;	 function PORT_INIT
 ;	-----------------------------------------
 _PORT_INIT:
-	C$Hello.c$163$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:163: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+	C$portIO.c$123$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:123: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
 	mov	r7,_SFRPAGE
-	C$Hello.c$165$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:165: SFRPAGE  = CONFIG_PAGE;
+	C$portIO.c$125$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:125: SFRPAGE  = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
-	C$Hello.c$166$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:166: XBR0     = 0x04;                    // Enable UART0
+	C$portIO.c$126$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:126: XBR0     = 0x04;                    // Enable UART0
 	mov	_XBR0,#0x04
-	C$Hello.c$167$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:167: XBR1     = 0x00;
+	C$portIO.c$127$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:127: XBR1     = 0x00;
 	mov	_XBR1,#0x00
-	C$Hello.c$168$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:168: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
+	C$portIO.c$128$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:128: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
 	mov	_XBR2,#0x40
-	C$Hello.c$169$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:169: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
+	C$portIO.c$129$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:129: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull    
 	orl	_P0MDOUT,#0x01
-	C$Hello.c$170$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:170: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
-	orl	_P1MDOUT,#0x40
-	C$Hello.c$172$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:172: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
+	C$portIO.c$133$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:133: P1MDOUT = 0x00;                     // Set all port 1 pins to open drain (input)
+	mov	_P1MDOUT,#0x00
+	C$portIO.c$134$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:134: P1 = 0xFF;							// Set port 1 pins for input
+	mov	_P1,#0xff
+	C$portIO.c$137$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:137: P2MDOUT |= 0xFF;                    // Set all port 2 pins to push-pull (output)
+	mov	a,_P2MDOUT
+	mov	_P2MDOUT,#0xff
+	C$portIO.c$140$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:140: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
 	mov	_SFRPAGE,r7
-	C$Hello.c$173$1$30 ==.
+	C$portIO.c$141$1$28 ==.
 	XG$PORT_INIT$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -1786,146 +1753,84 @@ _PORT_INIT:
 ;SFRPAGE_SAVE              Allocated to registers r7 
 ;------------------------------------------------------------
 	G$UART0_INIT$0$0 ==.
-	C$Hello.c$181$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:181: void UART0_INIT(void)
+	C$portIO.c$149$1$28 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:149: void UART0_INIT(void)
 ;	-----------------------------------------
 ;	 function UART0_INIT
 ;	-----------------------------------------
 _UART0_INIT:
-	C$Hello.c$185$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:185: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+	C$portIO.c$153$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:153: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
 	mov	r7,_SFRPAGE
-	C$Hello.c$187$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:187: SFRPAGE = TIMER01_PAGE;
+	C$portIO.c$155$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:155: SFRPAGE = TIMER01_PAGE;
 	mov	_SFRPAGE,#0x00
-	C$Hello.c$188$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:188: TMOD   &= ~0xF0;
+	C$portIO.c$156$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:156: TMOD   &= ~0xF0;
 	anl	_TMOD,#0x0f
-	C$Hello.c$189$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:189: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
+	C$portIO.c$157$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:157: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
 	orl	_TMOD,#0x20
-	C$Hello.c$190$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:190: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
+	C$portIO.c$158$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:158: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
 	mov	_TH1,#0xe5
-	C$Hello.c$191$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:191: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
+	C$portIO.c$159$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:159: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
 	orl	_CKCON,#0x10
-	C$Hello.c$192$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:192: TL1     = TH1;
+	C$portIO.c$160$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:160: TL1     = TH1;
 	mov	_TL1,_TH1
-	C$Hello.c$193$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:193: TR1     = 1;                        // Start Timer1
+	C$portIO.c$161$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:161: TR1     = 1;                        // Start Timer1
 	setb	_TR1
-	C$Hello.c$195$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:195: SFRPAGE = UART0_PAGE;
+	C$portIO.c$163$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:163: SFRPAGE = UART0_PAGE;
 	mov	_SFRPAGE,#0x00
-	C$Hello.c$196$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:196: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
+	C$portIO.c$164$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:164: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
 	mov	_SCON0,#0x50
-	C$Hello.c$197$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:197: SSTA0   = 0x10;                     // SMOD0 = 1
+	C$portIO.c$165$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:165: SSTA0   = 0x10;                     // SMOD0 = 1
 	mov	_SSTA0,#0x10
-	C$Hello.c$198$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:198: TI0     = 1;                        // Indicate TX0 ready
+	C$portIO.c$166$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:166: TI0     = 1;                        // Indicate TX0 ready
 	setb	_TI0
-	C$Hello.c$200$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:200: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+	C$portIO.c$168$1$30 ==.
+;	C:\Users\John\Documents\MPS\lab1\portIO.c:168: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
 	mov	_SFRPAGE,r7
-	C$Hello.c$201$1$32 ==.
+	C$portIO.c$169$1$30 ==.
 	XG$UART0_INIT$0$0 ==.
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-FHello$__str_0$0$0 == .
+FportIO$__str_0$0$0 == .
 ___str_0:
 	.db 0x1b
 	.ascii "[33;44m"
 	.db 0x00
-FHello$__str_1$0$0 == .
+FportIO$__str_1$0$0 == .
 ___str_1:
 	.db 0x1b
 	.ascii "[2J"
 	.db 0x00
-FHello$__str_2$0$0 == .
+FportIO$__str_2$0$0 == .
 ___str_2:
-	.db 0x1b
-	.ascii "[12;0H"
+	.ascii "Hello World!"
+	.db 0x0a
+	.db 0x0d
 	.db 0x00
-FHello$__str_3$0$0 == .
+FportIO$__str_3$0$0 == .
 ___str_3:
-	.db 0x1b
-	.ascii "[s"
-	.db 0x00
-FHello$__str_4$0$0 == .
-___str_4:
-	.db 0x1b
-	.ascii "[2;25H"
-	.db 0x00
-FHello$__str_5$0$0 == .
-___str_5:
-	.ascii "Type <ESC> to end the program."
-	.db 0x0a
+	.ascii "p1: %X"
+	.db 0x09
+	.ascii "p2: %X"
+	.db 0x09
+	.ascii "p1_b: %u%u%u%u %u%u%u%u"
+	.db 0x09
+	.ascii "p2_b: %u%u%u%u %u%u%u%"
+	.ascii "u"
 	.db 0x0a
 	.db 0x0d
-	.db 0x00
-FHello$__str_6$0$0 == .
-___str_6:
-	.db 0x1b
-	.ascii "[6;0H"
-	.db 0x00
-FHello$__str_7$0$0 == .
-___str_7:
-	.ascii "The keyboard character is  ."
-	.db 0x00
-FHello$__str_8$0$0 == .
-___str_8:
-	.db 0x1b
-	.ascii "[12;25r"
-	.db 0x00
-FHello$__str_9$0$0 == .
-___str_9:
-	.db 0x1b
-	.ascii "[6;27H"
-	.db 0x00
-FHello$__str_10$0$0 == .
-___str_10:
-	.db 0x1b
-	.ascii "[37m"
-	.db 0x00
-FHello$__str_11$0$0 == .
-___str_11:
-	.db 0x1b
-	.ascii "[5;33;44m"
-	.db 0x00
-FHello$__str_12$0$0 == .
-___str_12:
-	.db 0x1b
-	.ascii "[u"
-	.db 0x00
-FHello$__str_13$0$0 == .
-___str_13:
-	.ascii "The keyboard character $%02X is "
-	.db 0x1b
-	.ascii "[4m'not printable'"
-	.db 0x1b
-	.ascii "[0;5;33;"
-	.ascii "44m."
-	.db 0x0a
-	.db 0x0d
-	.db 0x00
-FHello$__str_14$0$0 == .
-___str_14:
-	.db 0x07
-	.db 0x00
-FHello$__str_15$0$0 == .
-___str_15:
-	.db 0x1b
-	.ascii "[0m"
-	.db 0x00
-FHello$__str_16$0$0 == .
-___str_16:
-	.db 0x1b
-	.ascii "[6;27H "
 	.db 0x00
 	.area XINIT   (CODE)
 	.area CABS    (ABS,CODE)

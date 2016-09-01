@@ -1,13 +1,7 @@
 //------------------------------------------------------------------------------------
-// Hello.c
+// portIO.c
 //------------------------------------------------------------------------------------
-//8051 Test program to demonstrate serial port I/O.  This program writes a message on
-//the console using the printf() function, and reads characters using the getchar()
-//function.  An ANSI escape sequence is used to clear the screen if a '2' is typed. 
-//A '1' repeats the message and the program responds to other input characters with
-//an appropriate message.
-//
-//Any valid keystroke turns on the green LED on the board; invalid entries turn it off
+
 //------------------------------------------------------------------------------------
 // Includes
 //------------------------------------------------------------------------------------
@@ -30,6 +24,27 @@ void SYSCLK_INIT(void);
 void PORT_INIT(void);
 void UART0_INIT(void);
 
+// Port 1
+__sbit __at 0x90 P1_0;      // Port 1 Pin 0
+__sbit __at 0x91 P1_1;      // Port 1 Pin 1
+__sbit __at 0x92 P1_2;      // Port 1 Pin 2
+__sbit __at 0x93 P1_3;      // Port 1 Pin 3
+__sbit __at 0x94 P1_4;      // Port 1 Pin 4
+__sbit __at 0x95 P1_5;      // Port 1 Pin 5
+__sbit __at 0x96 P1_6;      // Port 1 Pin 6
+__sbit __at 0x97 P1_7;      // Port 1 Pin 7
+
+//Port 2
+__sbit __at 0xA0 P2_0;   	// Port 2 Pin 0
+__sbit __at 0xA1 P2_1; 	    // Port 2 Pin 1
+__sbit __at 0xA2 P2_2;  	// Port 2 Pin 2
+__sbit __at 0xA3 P2_3;  	// Port 2 Pin 3
+__sbit __at 0xA4 P2_4;  	// Port 2 Pin 4
+__sbit __at 0xA5 P2_5;  	// Port 2 Pin 5
+__sbit __at 0xA6 P2_6; 		// Port 2 Pin 6
+__sbit __at 0xA7 P2_7;	    // Port 2 Pin 7
+
+
 //------------------------------------------------------------------------------------
 // MAIN Routine
 //------------------------------------------------------------------------------------
@@ -49,67 +64,12 @@ void main(void)
     // Reset screen
     printf("\033[33;44m");              // Yellow text; blue background
     printf("\033[2J");                  // Erase screen & move cursor to home position
-    printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
     
-    // Store location for unprintable notifaction
-    printf("\033[12;0H");               // Position cursor to print unprintables
-    printf("\033[s");                   // Store current location
+    printf("Hello World!\n\r");
 
-    // Print end instructions
-    printf("\033[2;25H");               // Position cursor to print instructions
-    printf("Type <ESC> to end the program.\n\n\r");
-    
-    // Print printable character prompt (leave a space for the actual character)
-    printf("\033[6;0H");                // Position cursor to print Keyboard character info
-    printf("The keyboard character is  .");
-
-    printf("\033[12;25r");              // Set scrollable region
-
-    while(1)
-    {
-        // Setup cursor for printable character output
-        printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
-        printf("\033[37m");             // White text
-
-        choice = getchar();
-
-        P1 |= 0x40;                     // Turn green LED on (alert user program is on)
-
-        // If they pressed escape, end the program.
-        if (choice == '\033'){
-            return;
-        }
-
-        // If not a printable characters
-        if (!(choice >= '\040' && choice <= '\176')){ 
-            printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
-            printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
-
-            // Print 'not printable' warning, some things to Note:
-            // $%02X prints captail hexadecimal with two digits 
-            // \033[4m underline 'not printable'
-            // \033[0;5;33;44m clear formatting and set to blinking text; yellow text; blue background
-            // \n\r move cursor to start of next line
-            printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
-
-            printf("\007");                 // Sound bell
-
-            // Note: must be done on separate lines (bug: would default to black background)
-            printf("\033[0m");              // Clear formatting
-            printf("\033[33;44m");          // Yellow text; blue background
-
-            // The new saved location is at the start of the next line in the scrollable section (from the \n\r)
-            printf("\033[s");               // Overwrite saved cursor info
-
-            // A space is printed in the printable character location when an unprintable character is pressed because
-            // some unprintable characters have built in graphical depictions which we do not wish to display
-            printf("\033[6;27H ");          // Move cursor and print space in the printable character location
-
-        }
-
-        // IF a printable character was entered, no need to print as it is already echo'd upon typing,
-        // just have to ensure the cursor is in the right location and text is white (done at start of while)
-
+    while(1){
+		P2 = P1;  //Copy input to output
+		printf("p1: %X\tp2: %X\tp1_b: %u%u%u%u %u%u%u%u\tp2_b: %u%u%u%u %u%u%u%u\n\r",P1,P2, P1_7, P1_6, P1_5, P1_4, P1_3, P1_2, P1_1, P1_0, P2_7, P2_6, P2_5, P2_4, P2_3, P2_2, P2_1, P2_0);
     }
 }
 
@@ -166,8 +126,16 @@ void PORT_INIT(void)
     XBR0     = 0x04;                    // Enable UART0
     XBR1     = 0x00;
     XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
-    P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
-    P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
+    P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull    
+
+    // Port 1
+    //P1MDIN = 0xFF;                    // Set all port 1 pins to digital input
+    P1MDOUT = 0x00;                     // Set all port 1 pins to open drain (input)
+	P1 = 0xFF;							// Set port 1 pins for input
+
+    // Port 2
+    P2MDOUT |= 0xFF;                    // Set all port 2 pins to push-pull (output)
+	
 
     SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
 }

@@ -49,7 +49,7 @@ void main(void)
     // Reset screen
     printf("\033[33;44m");              // Yellow text; blue background
     printf("\033[2J");                  // Erase screen & move cursor to home position
-    printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
+    printf("\033[33;44m");              // Yellow text; blue background
     
     // Store location for unprintable notifaction
     printf("\033[12;0H");               // Position cursor to print unprintables
