@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.6.0 #9615 (MINGW32)
+; Version 3.6.0 #9615 (MINGW64)
 ;--------------------------------------------------------
 	.module Hello
 	.optsdcc -mmcs51 --model-small
@@ -1276,7 +1276,7 @@ __sdcc_program_startup:
 ;------------------------------------------------------------
 	G$putchar$0$0 ==.
 	C$putget.h$20$0$0 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:20: void putchar(char c)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:20: void putchar(char c)
 ;	-----------------------------------------
 ;	 function putchar
 ;	-----------------------------------------
@@ -1291,15 +1291,15 @@ _putchar:
 	ar0 = 0x00
 	mov	r7,dpl
 	C$putget.h$22$1$15 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:22: while(!TI0); 
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:22: while(!TI0); 
 00101$:
 	C$putget.h$23$1$15 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:23: TI0=0;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:23: TI0=0;
 	jbc	_TI0,00112$
 	sjmp	00101$
 00112$:
 	C$putget.h$24$1$15 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:24: SBUF0 = c;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:24: SBUF0 = c;
 	mov	_SBUF0,r7
 	C$putget.h$25$1$15 ==.
 	XG$putchar$0$0 ==.
@@ -1311,27 +1311,27 @@ _putchar:
 ;------------------------------------------------------------
 	G$getchar$0$0 ==.
 	C$putget.h$30$1$15 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:30: char getchar(void)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:30: char getchar(void)
 ;	-----------------------------------------
 ;	 function getchar
 ;	-----------------------------------------
 _getchar:
 	C$putget.h$33$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:33: while(!RI0);
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:33: while(!RI0);
 00101$:
 	C$putget.h$34$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:34: RI0 =0;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:34: RI0 =0;
 	jbc	_RI0,00112$
 	sjmp	00101$
 00112$:
 	C$putget.h$35$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:35: c = SBUF0;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:35: c = SBUF0;
 	mov	dpl,_SBUF0
 	C$putget.h$37$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:37: putchar(c);    // echo to terminal
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:37: putchar(c);    // echo to terminal
 	lcall	_putchar
 	C$putget.h$38$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:38: return SBUF0;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:38: return SBUF0;
 	mov	dpl,_SBUF0
 	C$putget.h$39$1$17 ==.
 	XG$getchar$0$0 ==.
@@ -1343,31 +1343,31 @@ _getchar:
 ;------------------------------------------------------------
 	G$main$0$0 ==.
 	C$Hello.c$36$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:36: void main(void)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:36: void main(void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
 	C$Hello.c$40$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:40: WDTCN = 0xDE;                       // Disable the watchdog timer
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:40: WDTCN = 0xDE;                       // Disable the watchdog timer
 	mov	_WDTCN,#0xde
 	C$Hello.c$41$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:41: WDTCN = 0xAD;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:41: WDTCN = 0xAD;
 	mov	_WDTCN,#0xad
 	C$Hello.c$43$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:43: PORT_INIT();                        // Initialize the Crossbar and GPIO
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:43: PORT_INIT();                        // Initialize the Crossbar and GPIO
 	lcall	_PORT_INIT
 	C$Hello.c$44$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:44: SYSCLK_INIT();                      // Initialize the oscillator
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:44: SYSCLK_INIT();                      // Initialize the oscillator
 	lcall	_SYSCLK_INIT
 	C$Hello.c$45$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:45: UART0_INIT();                       // Initialize UART0
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:45: UART0_INIT();                       // Initialize UART0
 	lcall	_UART0_INIT
 	C$Hello.c$47$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:47: SFRPAGE = UART0_PAGE;               // Direct output to UART0
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:47: SFRPAGE = UART0_PAGE;               // Direct output to UART0
 	mov	_SFRPAGE,#0x00
 	C$Hello.c$50$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:50: printf("\033[33;44m");              // Yellow text; blue background
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:50: printf("\033[33;44m");              // Yellow text; blue background
 	mov	a,#___str_0
 	push	acc
 	mov	a,#(___str_0 >> 8)
@@ -1379,7 +1379,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$51$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:51: printf("\033[2J");                  // Erase screen & move cursor to home position
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:51: printf("\033[2J");                  // Erase screen & move cursor to home position
 	mov	a,#___str_1
 	push	acc
 	mov	a,#(___str_1 >> 8)
@@ -1391,7 +1391,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$52$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:52: printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:52: printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
 	mov	a,#___str_0
 	push	acc
 	mov	a,#(___str_0 >> 8)
@@ -1403,7 +1403,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$55$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:55: printf("\033[12;0H");               // Position cursor to print unprintables
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:55: printf("\033[12;0H");               // Position cursor to print unprintables
 	mov	a,#___str_2
 	push	acc
 	mov	a,#(___str_2 >> 8)
@@ -1415,7 +1415,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$56$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:56: printf("\033[s");                   // Store current location
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:56: printf("\033[s");                   // Store current location
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1427,7 +1427,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$59$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:59: printf("\033[2;25H");               // Position cursor to print instructions
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:59: printf("\033[2;25H");               // Position cursor to print instructions
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1439,7 +1439,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$60$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:60: printf("Type <ESC> to end the program.\n\n\r");
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:60: printf("Type <ESC> to end the program.\n\n\r");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -1451,7 +1451,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$63$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:63: printf("\033[6;0H");                // Position cursor to print Keyboard character info
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:63: printf("\033[6;0H");                // Position cursor to print Keyboard character info
 	mov	a,#___str_6
 	push	acc
 	mov	a,#(___str_6 >> 8)
@@ -1463,7 +1463,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$64$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:64: printf("The keyboard character is  .");
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:64: printf("The keyboard character is  .");
 	mov	a,#___str_7
 	push	acc
 	mov	a,#(___str_7 >> 8)
@@ -1475,7 +1475,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$66$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:66: printf("\033[12;25r");              // Set scrollable region
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:66: printf("\033[12;25r");              // Set scrollable region
 	mov	a,#___str_8
 	push	acc
 	mov	a,#(___str_8 >> 8)
@@ -1487,10 +1487,10 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$68$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:68: while(1)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:68: while(1)
 00107$:
 	C$Hello.c$71$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:71: printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:71: printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
 	mov	a,#___str_9
 	push	acc
 	mov	a,#(___str_9 >> 8)
@@ -1502,7 +1502,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$72$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:72: printf("\033[37m");             // White text
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:72: printf("\033[37m");             // White text
 	mov	a,#___str_10
 	push	acc
 	mov	a,#(___str_10 >> 8)
@@ -1514,21 +1514,21 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$74$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:74: choice = getchar();
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:74: choice = getchar();
 	lcall	_getchar
 	mov	r7,dpl
 	C$Hello.c$76$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:76: P1 |= 0x40;                     // Turn green LED on (alert user program is on)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:76: P1 |= 0x40;                     // Turn green LED on (alert user program is on)
 	orl	_P1,#0x40
 	C$Hello.c$79$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:79: if (choice == '\033'){
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:79: if (choice == '\033'){
 	cjne	r7,#0x1b,00102$
 	C$Hello.c$80$3$25 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:80: return;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:80: return;
 	ljmp	00109$
 00102$:
 	C$Hello.c$84$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:84: if (!(choice >= '\040' && choice <= '\176')){ 
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:84: if (!(choice >= '\040' && choice <= '\176')){ 
 	cjne	r7,#0x20,00122$
 00122$:
 	jc	00103$
@@ -1537,7 +1537,7 @@ _main:
 	jnc	00107$
 00103$:
 	C$Hello.c$85$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:85: printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:85: printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
 	push	ar7
 	mov	a,#___str_11
 	push	acc
@@ -1550,7 +1550,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$86$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:86: printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:86: printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
 	mov	a,#___str_12
 	push	acc
 	mov	a,#(___str_12 >> 8)
@@ -1562,7 +1562,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$93$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:93: printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:93: printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
 	mov	r6,#0x00
 	push	ar6
 	mov	a,#___str_13
@@ -1576,7 +1576,7 @@ _main:
 	add	a,#0xfb
 	mov	sp,a
 	C$Hello.c$95$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:95: printf("\007");                 // Sound bell
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:95: printf("\007");                 // Sound bell
 	mov	a,#___str_14
 	push	acc
 	mov	a,#(___str_14 >> 8)
@@ -1588,7 +1588,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$98$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:98: printf("\033[0m");              // Clear formatting
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:98: printf("\033[0m");              // Clear formatting
 	mov	a,#___str_15
 	push	acc
 	mov	a,#(___str_15 >> 8)
@@ -1600,7 +1600,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$99$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:99: printf("\033[33;44m");          // Yellow text; blue background
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:99: printf("\033[33;44m");          // Yellow text; blue background
 	mov	a,#___str_0
 	push	acc
 	mov	a,#(___str_0 >> 8)
@@ -1612,7 +1612,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$102$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:102: printf("\033[s");               // Overwrite saved cursor info
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:102: printf("\033[s");               // Overwrite saved cursor info
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1624,7 +1624,7 @@ _main:
 	dec	sp
 	dec	sp
 	C$Hello.c$106$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:106: printf("\033[6;27H ");          // Move cursor and print space in the printable character location
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:106: printf("\033[6;27H ");          // Move cursor and print space in the printable character location
 	mov	a,#___str_16
 	push	acc
 	mov	a,#(___str_16 >> 8)
@@ -1648,22 +1648,22 @@ _main:
 ;------------------------------------------------------------
 	G$SYSCLK_INIT$0$0 ==.
 	C$Hello.c$122$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:122: void SYSCLK_INIT(void)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:122: void SYSCLK_INIT(void)
 ;	-----------------------------------------
 ;	 function SYSCLK_INIT
 ;	-----------------------------------------
 _SYSCLK_INIT:
 	C$Hello.c$127$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:127: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:127: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
 	mov	r7,_SFRPAGE
 	C$Hello.c$129$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:129: SFRPAGE = CONFIG_PAGE;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:129: SFRPAGE = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
 	C$Hello.c$130$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:130: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:130: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
 	mov	_OSCXCN,#0x67
 	C$Hello.c$131$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:131: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:131: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
 	mov	r5,#0x00
 	mov	r6,#0x01
 00111$:
@@ -1675,45 +1675,45 @@ _SYSCLK_INIT:
 	orl	a,r6
 	jnz	00111$
 	C$Hello.c$132$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:132: while(!(OSCXCN & 0x80));
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:132: while(!(OSCXCN & 0x80));
 00102$:
 	mov	a,_OSCXCN
 	jnb	acc.7,00102$
 	C$Hello.c$133$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:133: CLKSEL  = 0x01;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:133: CLKSEL  = 0x01;
 	mov	_CLKSEL,#0x01
 	C$Hello.c$134$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:134: OSCICN  = 0x00;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:134: OSCICN  = 0x00;
 	mov	_OSCICN,#0x00
 	C$Hello.c$136$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:136: SFRPAGE = CONFIG_PAGE;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:136: SFRPAGE = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
 	C$Hello.c$137$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:137: PLL0CN  = 0x04;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:137: PLL0CN  = 0x04;
 	mov	_PLL0CN,#0x04
 	C$Hello.c$138$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:138: SFRPAGE = LEGACY_PAGE;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:138: SFRPAGE = LEGACY_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$Hello.c$139$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:139: FLSCL   = 0x10;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:139: FLSCL   = 0x10;
 	mov	_FLSCL,#0x10
 	C$Hello.c$140$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:140: SFRPAGE = CONFIG_PAGE;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:140: SFRPAGE = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
 	C$Hello.c$141$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:141: PLL0CN |= 0x01;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:141: PLL0CN |= 0x01;
 	orl	_PLL0CN,#0x01
 	C$Hello.c$142$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:142: PLL0DIV = 0x04;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:142: PLL0DIV = 0x04;
 	mov	_PLL0DIV,#0x04
 	C$Hello.c$143$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:143: PLL0FLT = 0x01;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:143: PLL0FLT = 0x01;
 	mov	_PLL0FLT,#0x01
 	C$Hello.c$144$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:144: PLL0MUL = 0x09;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:144: PLL0MUL = 0x09;
 	mov	_PLL0MUL,#0x09
 	C$Hello.c$145$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:145: for(i=0; i < 256; i++);
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:145: for(i=0; i < 256; i++);
 	mov	r5,#0x00
 	mov	r6,#0x01
 00114$:
@@ -1725,18 +1725,18 @@ _SYSCLK_INIT:
 	orl	a,r6
 	jnz	00114$
 	C$Hello.c$146$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:146: PLL0CN |= 0x02;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:146: PLL0CN |= 0x02;
 	orl	_PLL0CN,#0x02
 	C$Hello.c$147$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:147: while(!(PLL0CN & 0x10));
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:147: while(!(PLL0CN & 0x10));
 00106$:
 	mov	a,_PLL0CN
 	jnb	acc.4,00106$
 	C$Hello.c$148$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:148: CLKSEL  = 0x02;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:148: CLKSEL  = 0x02;
 	mov	_CLKSEL,#0x02
 	C$Hello.c$150$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:150: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:150: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
 	mov	_SFRPAGE,r7
 	C$Hello.c$151$1$28 ==.
 	XG$SYSCLK_INIT$0$0 ==.
@@ -1748,34 +1748,34 @@ _SYSCLK_INIT:
 ;------------------------------------------------------------
 	G$PORT_INIT$0$0 ==.
 	C$Hello.c$159$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:159: void PORT_INIT(void)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:159: void PORT_INIT(void)
 ;	-----------------------------------------
 ;	 function PORT_INIT
 ;	-----------------------------------------
 _PORT_INIT:
 	C$Hello.c$163$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:163: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:163: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
 	mov	r7,_SFRPAGE
 	C$Hello.c$165$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:165: SFRPAGE  = CONFIG_PAGE;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:165: SFRPAGE  = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
 	C$Hello.c$166$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:166: XBR0     = 0x04;                    // Enable UART0
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:166: XBR0     = 0x04;                    // Enable UART0
 	mov	_XBR0,#0x04
 	C$Hello.c$167$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:167: XBR1     = 0x00;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:167: XBR1     = 0x00;
 	mov	_XBR1,#0x00
 	C$Hello.c$168$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:168: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:168: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
 	mov	_XBR2,#0x40
 	C$Hello.c$169$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:169: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:169: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
 	orl	_P0MDOUT,#0x01
 	C$Hello.c$170$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:170: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:170: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
 	orl	_P1MDOUT,#0x40
 	C$Hello.c$172$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:172: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:172: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
 	mov	_SFRPAGE,r7
 	C$Hello.c$173$1$30 ==.
 	XG$PORT_INIT$0$0 ==.
@@ -1787,49 +1787,49 @@ _PORT_INIT:
 ;------------------------------------------------------------
 	G$UART0_INIT$0$0 ==.
 	C$Hello.c$181$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:181: void UART0_INIT(void)
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:181: void UART0_INIT(void)
 ;	-----------------------------------------
 ;	 function UART0_INIT
 ;	-----------------------------------------
 _UART0_INIT:
 	C$Hello.c$185$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:185: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:185: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
 	mov	r7,_SFRPAGE
 	C$Hello.c$187$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:187: SFRPAGE = TIMER01_PAGE;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:187: SFRPAGE = TIMER01_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$Hello.c$188$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:188: TMOD   &= ~0xF0;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:188: TMOD   &= ~0xF0;
 	anl	_TMOD,#0x0f
 	C$Hello.c$189$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:189: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:189: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
 	orl	_TMOD,#0x20
 	C$Hello.c$190$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:190: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:190: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
 	mov	_TH1,#0xe5
 	C$Hello.c$191$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:191: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:191: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
 	orl	_CKCON,#0x10
 	C$Hello.c$192$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:192: TL1     = TH1;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:192: TL1     = TH1;
 	mov	_TL1,_TH1
 	C$Hello.c$193$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:193: TR1     = 1;                        // Start Timer1
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:193: TR1     = 1;                        // Start Timer1
 	setb	_TR1
 	C$Hello.c$195$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:195: SFRPAGE = UART0_PAGE;
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:195: SFRPAGE = UART0_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$Hello.c$196$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:196: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:196: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
 	mov	_SCON0,#0x50
 	C$Hello.c$197$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:197: SSTA0   = 0x10;                     // SMOD0 = 1
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:197: SSTA0   = 0x10;                     // SMOD0 = 1
 	mov	_SSTA0,#0x10
 	C$Hello.c$198$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:198: TI0     = 1;                        // Indicate TX0 ready
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:198: TI0     = 1;                        // Indicate TX0 ready
 	setb	_TI0
 	C$Hello.c$200$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:200: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:200: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
 	mov	_SFRPAGE,r7
 	C$Hello.c$201$1$32 ==.
 	XG$UART0_INIT$0$0 ==.

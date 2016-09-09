@@ -1,5 +1,5 @@
 -muwx
--i C:\Users\John\Documents\MPS\lab1\Lab1.hex
+-i C:\Users\Alex\Documents\GitHub\mps\lab1\Lab1.hex
 -M
 -Y
 -y
@@ -8,12 +8,12 @@
 -b PSEG = 0x0001
 -b ISEG = 0x0000
 -b BSEG = 0x0000
--k C:\Program Files (x86)\SDCC\bin\..\lib\small
+-k C:\Program Files\SDCC\bin\..\lib\small
 -l mcs51
 -l libsdcc
 -l libint
 -l liblong
 -l libfloat
-C:\Users\John\Documents\MPS\lab1\portIO.rel
+C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.rel
 
 -e

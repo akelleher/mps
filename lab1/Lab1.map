@@ -71,18 +71,18 @@ C:   00000020  s__CODE
 C:   00000022  l_GSINIT3                       
 C:   0000002A  l_GSINIT4                       
 C:   00000035  s_GSINIT4                       
-C:   00000058  s_SSEG                          
+C:   0000003C  s_SSEG                          
 C:   0000005F  s_GSFINAL                       
 C:   0000005F  s_GSINIT                        
 C:   0000005F  s_GSINIT5                       
 C:   00000062  s_CSEG                          
-C:   00000068  l_CONST                         
 C:   00000076  l_DSEG                          
-C:   000000A8  l_SSEG                          
+C:   000000C4  l_SSEG                          
+C:   000000EC  l_CONST                         
 C:   00000100  l_IRAM                          
-C:   0000083A  l_CSEG                          
-C:   0000089C  s_CONST                         
-C:   00000904  s_XINIT                         
+C:   000008C1  l_CSEG                          
+C:   00000923  s_CONST                         
+C:   00000A0F  s_XINIT                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -94,55 +94,55 @@ Area                                    Addr        Size        Decimal Bytes (A
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00000000  .__.ABS.                           _bp
-     00000080  G$P0$0$0                           portIO
-     00000080  G$P0_0$0$0                         portIO
-     00000080  _P0                                portIO
-     00000080  _P0_0                              portIO
-     00000081  G$P0_1$0$0                         portIO
-     00000081  G$SP$0$0                           portIO
-     00000081  _P0_1                              portIO
-     00000081  _SP                                portIO
-     00000082  G$DPL$0$0                          portIO
-     00000082  G$P0_2$0$0                         portIO
-     00000082  _DPL                               portIO
-     00000082  _P0_2                              portIO
-     00000083  G$DPH$0$0                          portIO
-     00000083  G$P0_3$0$0                         portIO
-     00000083  _DPH                               portIO
-     00000083  _P0_3                              portIO
-     00000084  G$P0_4$0$0                         portIO
-     00000084  G$SFRPAGE$0$0                      portIO
-     00000084  _P0_4                              portIO
-     00000084  _SFRPAGE                           portIO
-     00000085  G$P0_5$0$0                         portIO
-     00000085  G$SFRNEXT$0$0                      portIO
-     00000085  _P0_5                              portIO
-     00000085  _SFRNEXT                           portIO
-     00000086  G$P0_6$0$0                         portIO
-     00000086  G$SFRLAST$0$0                      portIO
-     00000086  _P0_6                              portIO
-     00000086  _SFRLAST                           portIO
-     00000087  G$P0_7$0$0                         portIO
-     00000087  G$PCON$0$0                         portIO
-     00000087  _P0_7                              portIO
-     00000087  _PCON                              portIO
-     00000088  G$CP0HYN0$0$0                      portIO
-     00000088  G$CP1HYN0$0$0                      portIO
-     00000088  G$CPT0CN$0$0                       portIO
-     00000088  G$CPT1CN$0$0                       portIO
-     00000088  G$FLHBUSY$0$0                      portIO
-     00000088  G$FLSTAT$0$0                       portIO
-     00000088  G$IT0$0$0                          portIO
-     00000088  G$TCON$0$0                         portIO
-     00000088  _CP0HYN0                           portIO
-     00000088  _CP1HYN0                           portIO
-     00000088  _CPT0CN                            portIO
-     00000088  _CPT1CN                            portIO
-     00000088  _FLHBUSY                           portIO
-     00000088  _FLSTAT                            portIO
-     00000088  _IT0                               portIO
-     00000088  _TCON                              portIO
-     00000089  G$CP0HYN1$0$0                      portIO
+     00000080  G$P0$0$0                           Hello
+     00000080  G$P0_0$0$0                         Hello
+     00000080  _P0                                Hello
+     00000080  _P0_0                              Hello
+     00000081  G$P0_1$0$0                         Hello
+     00000081  G$SP$0$0                           Hello
+     00000081  _P0_1                              Hello
+     00000081  _SP                                Hello
+     00000082  G$DPL$0$0                          Hello
+     00000082  G$P0_2$0$0                         Hello
+     00000082  _DPL                               Hello
+     00000082  _P0_2                              Hello
+     00000083  G$DPH$0$0                          Hello
+     00000083  G$P0_3$0$0                         Hello
+     00000083  _DPH                               Hello
+     00000083  _P0_3                              Hello
+     00000084  G$P0_4$0$0                         Hello
+     00000084  G$SFRPAGE$0$0                      Hello
+     00000084  _P0_4                              Hello
+     00000084  _SFRPAGE                           Hello
+     00000085  G$P0_5$0$0                         Hello
+     00000085  G$SFRNEXT$0$0                      Hello
+     00000085  _P0_5                              Hello
+     00000085  _SFRNEXT                           Hello
+     00000086  G$P0_6$0$0                         Hello
+     00000086  G$SFRLAST$0$0                      Hello
+     00000086  _P0_6                              Hello
+     00000086  _SFRLAST                           Hello
+     00000087  G$P0_7$0$0                         Hello
+     00000087  G$PCON$0$0                         Hello
+     00000087  _P0_7                              Hello
+     00000087  _PCON                              Hello
+     00000088  G$CP0HYN0$0$0                      Hello
+     00000088  G$CP1HYN0$0$0                      Hello
+     00000088  G$CPT0CN$0$0                       Hello
+     00000088  G$CPT1CN$0$0                       Hello
+     00000088  G$FLHBUSY$0$0                      Hello
+     00000088  G$FLSTAT$0$0                       Hello
+     00000088  G$IT0$0$0                          Hello
+     00000088  G$TCON$0$0                         Hello
+     00000088  _CP0HYN0                           Hello
+     00000088  _CP1HYN0                           Hello
+     00000088  _CPT0CN                            Hello
+     00000088  _CPT1CN                            Hello
+     00000088  _FLHBUSY                           Hello
+     00000088  _FLSTAT                            Hello
+     00000088  _IT0                               Hello
+     00000088  _TCON                              Hello
+     00000089  G$CP0HYN1$0$0                      Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
@@ -152,57 +152,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000089  G$CP1HYN1$0$0                      portIO
-     00000089  G$CPT0MD$0$0                       portIO
-     00000089  G$CPT1MD$0$0                       portIO
-     00000089  G$IE0$0$0                          portIO
-     00000089  G$PLL0CN$0$0                       portIO
-     00000089  G$TMOD$0$0                         portIO
-     00000089  _CP0HYN1                           portIO
-     00000089  _CP1HYN1                           portIO
-     00000089  _CPT0MD                            portIO
-     00000089  _CPT1MD                            portIO
-     00000089  _IE0                               portIO
-     00000089  _PLL0CN                            portIO
-     00000089  _TMOD                              portIO
-     0000008A  G$CP0HYP0$0$0                      portIO
-     0000008A  G$CP1HYP0$0$0                      portIO
-     0000008A  G$IT1$0$0                          portIO
-     0000008A  G$OSCICN$0$0                       portIO
-     0000008A  G$TL0$0$0                          portIO
-     0000008A  _CP0HYP0                           portIO
-     0000008A  _CP1HYP0                           portIO
-     0000008A  _IT1                               portIO
-     0000008A  _OSCICN                            portIO
-     0000008A  _TL0                               portIO
-     0000008B  G$CP0HYP1$0$0                      portIO
-     0000008B  G$CP1HYP1$0$0                      portIO
-     0000008B  G$IE1$0$0                          portIO
-     0000008B  G$OSCICL$0$0                       portIO
-     0000008B  G$TL1$0$0                          portIO
-     0000008B  _CP0HYP1                           portIO
-     0000008B  _CP1HYP1                           portIO
-     0000008B  _IE1                               portIO
-     0000008B  _OSCICL                            portIO
-     0000008B  _TL1                               portIO
-     0000008C  G$CP0FIF$0$0                       portIO
-     0000008C  G$CP1FIF$0$0                       portIO
-     0000008C  G$OSCXCN$0$0                       portIO
-     0000008C  G$TH0$0$0                          portIO
-     0000008C  G$TR0$0$0                          portIO
-     0000008C  _CP0FIF                            portIO
-     0000008C  _CP1FIF                            portIO
-     0000008C  _OSCXCN                            portIO
-     0000008C  _TH0                               portIO
-     0000008C  _TR0                               portIO
-     0000008D  G$CP0RIF$0$0                       portIO
-     0000008D  G$CP1RIF$0$0                       portIO
-     0000008D  G$PLL0DIV$0$0                      portIO
-     0000008D  G$TF0$0$0                          portIO
-     0000008D  G$TH1$0$0                          portIO
-     0000008D  _CP0RIF                            portIO
-     0000008D  _CP1RIF                            portIO
-     0000008D  _PLL0DIV                           portIO
+     00000089  G$CP1HYN1$0$0                      Hello
+     00000089  G$CPT0MD$0$0                       Hello
+     00000089  G$CPT1MD$0$0                       Hello
+     00000089  G$IE0$0$0                          Hello
+     00000089  G$PLL0CN$0$0                       Hello
+     00000089  G$TMOD$0$0                         Hello
+     00000089  _CP0HYN1                           Hello
+     00000089  _CP1HYN1                           Hello
+     00000089  _CPT0MD                            Hello
+     00000089  _CPT1MD                            Hello
+     00000089  _IE0                               Hello
+     00000089  _PLL0CN                            Hello
+     00000089  _TMOD                              Hello
+     0000008A  G$CP0HYP0$0$0                      Hello
+     0000008A  G$CP1HYP0$0$0                      Hello
+     0000008A  G$IT1$0$0                          Hello
+     0000008A  G$OSCICN$0$0                       Hello
+     0000008A  G$TL0$0$0                          Hello
+     0000008A  _CP0HYP0                           Hello
+     0000008A  _CP1HYP0                           Hello
+     0000008A  _IT1                               Hello
+     0000008A  _OSCICN                            Hello
+     0000008A  _TL0                               Hello
+     0000008B  G$CP0HYP1$0$0                      Hello
+     0000008B  G$CP1HYP1$0$0                      Hello
+     0000008B  G$IE1$0$0                          Hello
+     0000008B  G$OSCICL$0$0                       Hello
+     0000008B  G$TL1$0$0                          Hello
+     0000008B  _CP0HYP1                           Hello
+     0000008B  _CP1HYP1                           Hello
+     0000008B  _IE1                               Hello
+     0000008B  _OSCICL                            Hello
+     0000008B  _TL1                               Hello
+     0000008C  G$CP0FIF$0$0                       Hello
+     0000008C  G$CP1FIF$0$0                       Hello
+     0000008C  G$OSCXCN$0$0                       Hello
+     0000008C  G$TH0$0$0                          Hello
+     0000008C  G$TR0$0$0                          Hello
+     0000008C  _CP0FIF                            Hello
+     0000008C  _CP1FIF                            Hello
+     0000008C  _OSCXCN                            Hello
+     0000008C  _TH0                               Hello
+     0000008C  _TR0                               Hello
+     0000008D  G$CP0RIF$0$0                       Hello
+     0000008D  G$CP1RIF$0$0                       Hello
+     0000008D  G$PLL0DIV$0$0                      Hello
+     0000008D  G$TF0$0$0                          Hello
+     0000008D  G$TH1$0$0                          Hello
+     0000008D  _CP0RIF                            Hello
+     0000008D  _CP1RIF                            Hello
+     0000008D  _PLL0DIV                           Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
@@ -212,57 +212,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000008D  _TF0                               portIO
-     0000008D  _TH1                               portIO
-     0000008E  G$CKCON$0$0                        portIO
-     0000008E  G$CP0OUT$0$0                       portIO
-     0000008E  G$CP1OUT$0$0                       portIO
-     0000008E  G$PLL0MUL$0$0                      portIO
-     0000008E  G$TR1$0$0                          portIO
-     0000008E  _CKCON                             portIO
-     0000008E  _CP0OUT                            portIO
-     0000008E  _CP1OUT                            portIO
-     0000008E  _PLL0MUL                           portIO
-     0000008E  _TR1                               portIO
-     0000008F  G$CP0EN$0$0                        portIO
-     0000008F  G$CP1EN$0$0                        portIO
-     0000008F  G$PLL0FLT$0$0                      portIO
-     0000008F  G$PSCTL$0$0                        portIO
-     0000008F  G$TF1$0$0                          portIO
-     0000008F  _CP0EN                             portIO
-     0000008F  _CP1EN                             portIO
-     0000008F  _PLL0FLT                           portIO
-     0000008F  _PSCTL                             portIO
-     0000008F  _TF1                               portIO
-     00000090  G$P1$0$0                           portIO
-     00000090  G$P1_0$0$0                         portIO
-     00000090  _P1                                portIO
-     00000090  _P1_0                              portIO
-     00000091  G$MAC0BL$0$0                       portIO
-     00000091  G$P1_1$0$0                         portIO
-     00000091  G$SSTA0$0$0                        portIO
-     00000091  _MAC0BL                            portIO
-     00000091  _P1_1                              portIO
-     00000091  _SSTA0                             portIO
-     00000092  G$MAC0BH$0$0                       portIO
-     00000092  G$P1_2$0$0                         portIO
-     00000092  _MAC0BH                            portIO
-     00000092  _P1_2                              portIO
-     00000093  G$MAC0ACC0$0$0                     portIO
-     00000093  G$P1_3$0$0                         portIO
-     00000093  _MAC0ACC0                          portIO
-     00000093  _P1_3                              portIO
-     00000094  G$MAC0ACC1$0$0                     portIO
-     00000094  G$P1_4$0$0                         portIO
-     00000094  _MAC0ACC1                          portIO
-     00000094  _P1_4                              portIO
-     00000095  G$MAC0ACC2$0$0                     portIO
-     00000095  G$P1_5$0$0                         portIO
-     00000095  _MAC0ACC2                          portIO
-     00000095  _P1_5                              portIO
-     00000096  G$MAC0ACC3$0$0                     portIO
-     00000096  G$P1_6$0$0                         portIO
-     00000096  G$SFRPGCN$0$0                      portIO
+     0000008D  _TF0                               Hello
+     0000008D  _TH1                               Hello
+     0000008E  G$CKCON$0$0                        Hello
+     0000008E  G$CP0OUT$0$0                       Hello
+     0000008E  G$CP1OUT$0$0                       Hello
+     0000008E  G$PLL0MUL$0$0                      Hello
+     0000008E  G$TR1$0$0                          Hello
+     0000008E  _CKCON                             Hello
+     0000008E  _CP0OUT                            Hello
+     0000008E  _CP1OUT                            Hello
+     0000008E  _PLL0MUL                           Hello
+     0000008E  _TR1                               Hello
+     0000008F  G$CP0EN$0$0                        Hello
+     0000008F  G$CP1EN$0$0                        Hello
+     0000008F  G$PLL0FLT$0$0                      Hello
+     0000008F  G$PSCTL$0$0                        Hello
+     0000008F  G$TF1$0$0                          Hello
+     0000008F  _CP0EN                             Hello
+     0000008F  _CP1EN                             Hello
+     0000008F  _PLL0FLT                           Hello
+     0000008F  _PSCTL                             Hello
+     0000008F  _TF1                               Hello
+     00000090  G$P1$0$0                           Hello
+     00000090  G$P1_0$0$0                         Hello
+     00000090  _P1                                Hello
+     00000090  _P1_0                              Hello
+     00000091  G$MAC0BL$0$0                       Hello
+     00000091  G$P1_1$0$0                         Hello
+     00000091  G$SSTA0$0$0                        Hello
+     00000091  _MAC0BL                            Hello
+     00000091  _P1_1                              Hello
+     00000091  _SSTA0                             Hello
+     00000092  G$MAC0BH$0$0                       Hello
+     00000092  G$P1_2$0$0                         Hello
+     00000092  _MAC0BH                            Hello
+     00000092  _P1_2                              Hello
+     00000093  G$MAC0ACC0$0$0                     Hello
+     00000093  G$P1_3$0$0                         Hello
+     00000093  _MAC0ACC0                          Hello
+     00000093  _P1_3                              Hello
+     00000094  G$MAC0ACC1$0$0                     Hello
+     00000094  G$P1_4$0$0                         Hello
+     00000094  _MAC0ACC1                          Hello
+     00000094  _P1_4                              Hello
+     00000095  G$MAC0ACC2$0$0                     Hello
+     00000095  G$P1_5$0$0                         Hello
+     00000095  _MAC0ACC2                          Hello
+     00000095  _P1_5                              Hello
+     00000096  G$MAC0ACC3$0$0                     Hello
+     00000096  G$P1_6$0$0                         Hello
+     00000096  G$SFRPGCN$0$0                      Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
 Hexadecimal  [32-Bits]
 
@@ -272,57 +272,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000096  _MAC0ACC3                          portIO
-     00000096  _P1_6                              portIO
-     00000096  _SFRPGCN                           portIO
-     00000097  G$CLKSEL$0$0                       portIO
-     00000097  G$MAC0OVR$0$0                      portIO
-     00000097  G$P1_7$0$0                         portIO
-     00000097  _CLKSEL                            portIO
-     00000097  _MAC0OVR                           portIO
-     00000097  _P1_7                              portIO
-     00000098  G$RI$0$0                           portIO
-     00000098  G$RI0$0$0                          portIO
-     00000098  G$RI1$0$0                          portIO
-     00000098  G$SCON$0$0                         portIO
-     00000098  G$SCON0$0$0                        portIO
-     00000098  G$SCON1$0$0                        portIO
-     00000098  _RI                                portIO
-     00000098  _RI0                               portIO
-     00000098  _RI1                               portIO
-     00000098  _SCON                              portIO
-     00000098  _SCON0                             portIO
-     00000098  _SCON1                             portIO
-     00000099  G$SBUF$0$0                         portIO
-     00000099  G$SBUF0$0$0                        portIO
-     00000099  G$SBUF1$0$0                        portIO
-     00000099  G$TI$0$0                           portIO
-     00000099  G$TI0$0$0                          portIO
-     00000099  G$TI1$0$0                          portIO
-     00000099  _SBUF                              portIO
-     00000099  _SBUF0                             portIO
-     00000099  _SBUF1                             portIO
-     00000099  _TI                                portIO
-     00000099  _TI0                               portIO
-     00000099  _TI1                               portIO
-     0000009A  G$CCH0MA$0$0                       portIO
-     0000009A  G$RB80$0$0                         portIO
-     0000009A  G$RB81$0$0                         portIO
-     0000009A  G$SPI0CFG$0$0                      portIO
-     0000009A  _CCH0MA                            portIO
-     0000009A  _RB80                              portIO
-     0000009A  _RB81                              portIO
-     0000009A  _SPI0CFG                           portIO
-     0000009B  G$SPI0DAT$0$0                      portIO
-     0000009B  G$TB80$0$0                         portIO
-     0000009B  G$TB81$0$0                         portIO
-     0000009B  _SPI0DAT                           portIO
-     0000009B  _TB80                              portIO
-     0000009B  _TB81                              portIO
-     0000009C  G$P4MDOUT$0$0                      portIO
-     0000009C  G$REN$0$0                          portIO
-     0000009C  G$REN0$0$0                         portIO
-     0000009C  G$REN1$0$0                         portIO
+     00000096  _MAC0ACC3                          Hello
+     00000096  _P1_6                              Hello
+     00000096  _SFRPGCN                           Hello
+     00000097  G$CLKSEL$0$0                       Hello
+     00000097  G$MAC0OVR$0$0                      Hello
+     00000097  G$P1_7$0$0                         Hello
+     00000097  _CLKSEL                            Hello
+     00000097  _MAC0OVR                           Hello
+     00000097  _P1_7                              Hello
+     00000098  G$RI$0$0                           Hello
+     00000098  G$RI0$0$0                          Hello
+     00000098  G$RI1$0$0                          Hello
+     00000098  G$SCON$0$0                         Hello
+     00000098  G$SCON0$0$0                        Hello
+     00000098  G$SCON1$0$0                        Hello
+     00000098  _RI                                Hello
+     00000098  _RI0                               Hello
+     00000098  _RI1                               Hello
+     00000098  _SCON                              Hello
+     00000098  _SCON0                             Hello
+     00000098  _SCON1                             Hello
+     00000099  G$SBUF$0$0                         Hello
+     00000099  G$SBUF0$0$0                        Hello
+     00000099  G$SBUF1$0$0                        Hello
+     00000099  G$TI$0$0                           Hello
+     00000099  G$TI0$0$0                          Hello
+     00000099  G$TI1$0$0                          Hello
+     00000099  _SBUF                              Hello
+     00000099  _SBUF0                             Hello
+     00000099  _SBUF1                             Hello
+     00000099  _TI                                Hello
+     00000099  _TI0                               Hello
+     00000099  _TI1                               Hello
+     0000009A  G$CCH0MA$0$0                       Hello
+     0000009A  G$RB80$0$0                         Hello
+     0000009A  G$RB81$0$0                         Hello
+     0000009A  G$SPI0CFG$0$0                      Hello
+     0000009A  _CCH0MA                            Hello
+     0000009A  _RB80                              Hello
+     0000009A  _RB81                              Hello
+     0000009A  _SPI0CFG                           Hello
+     0000009B  G$SPI0DAT$0$0                      Hello
+     0000009B  G$TB80$0$0                         Hello
+     0000009B  G$TB81$0$0                         Hello
+     0000009B  _SPI0DAT                           Hello
+     0000009B  _TB80                              Hello
+     0000009B  _TB81                              Hello
+     0000009C  G$P4MDOUT$0$0                      Hello
+     0000009C  G$REN$0$0                          Hello
+     0000009C  G$REN0$0$0                         Hello
+     0000009C  G$REN1$0$0                         Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
 Hexadecimal  [32-Bits]
 
@@ -332,57 +332,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000009C  _P4MDOUT                           portIO
-     0000009C  _REN                               portIO
-     0000009C  _REN0                              portIO
-     0000009C  _REN1                              portIO
-     0000009D  G$MCE1$0$0                         portIO
-     0000009D  G$P5MDOUT$0$0                      portIO
-     0000009D  G$SM20$0$0                         portIO
-     0000009D  G$SPI0CKR$0$0                      portIO
-     0000009D  _MCE1                              portIO
-     0000009D  _P5MDOUT                           portIO
-     0000009D  _SM20                              portIO
-     0000009D  _SPI0CKR                           portIO
-     0000009E  G$P6MDOUT$0$0                      portIO
-     0000009E  G$SM10$0$0                         portIO
-     0000009E  _P6MDOUT                           portIO
-     0000009E  _SM10                              portIO
-     0000009F  G$P7MDOUT$0$0                      portIO
-     0000009F  G$S1MODE$0$0                       portIO
-     0000009F  G$SM00$0$0                         portIO
-     0000009F  _P7MDOUT                           portIO
-     0000009F  _S1MODE                            portIO
-     0000009F  _SM00                              portIO
-     000000A0  G$P2$0$0                           portIO
-     000000A0  G$P2_0$0$0                         portIO
-     000000A0  _P2                                portIO
-     000000A0  _P2_0                              portIO
-     000000A1  G$CCH0CN$0$0                       portIO
-     000000A1  G$EMI0TC$0$0                       portIO
-     000000A1  G$P2_1$0$0                         portIO
-     000000A1  _CCH0CN                            portIO
-     000000A1  _EMI0TC                            portIO
-     000000A1  _P2_1                              portIO
-     000000A2  G$CCH0TN$0$0                       portIO
-     000000A2  G$EMI0CN$0$0                       portIO
-     000000A2  G$P2_2$0$0                         portIO
-     000000A2  G$_XPAGE$0$0                       portIO
-     000000A2  _CCH0TN                            portIO
-     000000A2  _EMI0CN                            portIO
-     000000A2  _P2_2                              portIO
-     000000A2  __XPAGE                            portIO
-     000000A3  G$CCH0LC$0$0                       portIO
-     000000A3  G$EMI0CF$0$0                       portIO
-     000000A3  G$P2_3$0$0                         portIO
-     000000A3  _CCH0LC                            portIO
-     000000A3  _EMI0CF                            portIO
-     000000A3  _P2_3                              portIO
-     000000A4  G$P0MDOUT$0$0                      portIO
-     000000A4  G$P2_4$0$0                         portIO
-     000000A4  _P0MDOUT                           portIO
-     000000A4  _P2_4                              portIO
-     000000A5  G$P1MDOUT$0$0                      portIO
+     0000009C  _P4MDOUT                           Hello
+     0000009C  _REN                               Hello
+     0000009C  _REN0                              Hello
+     0000009C  _REN1                              Hello
+     0000009D  G$MCE1$0$0                         Hello
+     0000009D  G$P5MDOUT$0$0                      Hello
+     0000009D  G$SM20$0$0                         Hello
+     0000009D  G$SPI0CKR$0$0                      Hello
+     0000009D  _MCE1                              Hello
+     0000009D  _P5MDOUT                           Hello
+     0000009D  _SM20                              Hello
+     0000009D  _SPI0CKR                           Hello
+     0000009E  G$P6MDOUT$0$0                      Hello
+     0000009E  G$SM10$0$0                         Hello
+     0000009E  _P6MDOUT                           Hello
+     0000009E  _SM10                              Hello
+     0000009F  G$P7MDOUT$0$0                      Hello
+     0000009F  G$S1MODE$0$0                       Hello
+     0000009F  G$SM00$0$0                         Hello
+     0000009F  _P7MDOUT                           Hello
+     0000009F  _S1MODE                            Hello
+     0000009F  _SM00                              Hello
+     000000A0  G$P2$0$0                           Hello
+     000000A0  G$P2_0$0$0                         Hello
+     000000A0  _P2                                Hello
+     000000A0  _P2_0                              Hello
+     000000A1  G$CCH0CN$0$0                       Hello
+     000000A1  G$EMI0TC$0$0                       Hello
+     000000A1  G$P2_1$0$0                         Hello
+     000000A1  _CCH0CN                            Hello
+     000000A1  _EMI0TC                            Hello
+     000000A1  _P2_1                              Hello
+     000000A2  G$CCH0TN$0$0                       Hello
+     000000A2  G$EMI0CN$0$0                       Hello
+     000000A2  G$P2_2$0$0                         Hello
+     000000A2  G$_XPAGE$0$0                       Hello
+     000000A2  _CCH0TN                            Hello
+     000000A2  _EMI0CN                            Hello
+     000000A2  _P2_2                              Hello
+     000000A2  __XPAGE                            Hello
+     000000A3  G$CCH0LC$0$0                       Hello
+     000000A3  G$EMI0CF$0$0                       Hello
+     000000A3  G$P2_3$0$0                         Hello
+     000000A3  _CCH0LC                            Hello
+     000000A3  _EMI0CF                            Hello
+     000000A3  _P2_3                              Hello
+     000000A4  G$P0MDOUT$0$0                      Hello
+     000000A4  G$P2_4$0$0                         Hello
+     000000A4  _P0MDOUT                           Hello
+     000000A4  _P2_4                              Hello
+     000000A5  G$P1MDOUT$0$0                      Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
 Hexadecimal  [32-Bits]
 
@@ -392,57 +392,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000A5  G$P2_5$0$0                         portIO
-     000000A5  _P1MDOUT                           portIO
-     000000A5  _P2_5                              portIO
-     000000A6  G$P2MDOUT$0$0                      portIO
-     000000A6  G$P2_6$0$0                         portIO
-     000000A6  _P2MDOUT                           portIO
-     000000A6  _P2_6                              portIO
-     000000A7  G$P2_7$0$0                         portIO
-     000000A7  G$P3MDOUT$0$0                      portIO
-     000000A7  _P2_7                              portIO
-     000000A7  _P3MDOUT                           portIO
-     000000A8  G$EX0$0$0                          portIO
-     000000A8  G$IE$0$0                           portIO
-     000000A8  _EX0                               portIO
-     000000A8  _IE                                portIO
-     000000A9  G$ET0$0$0                          portIO
-     000000A9  G$SADDR0$0$0                       portIO
-     000000A9  _ET0                               portIO
-     000000A9  _SADDR0                            portIO
-     000000AA  G$EX1$0$0                          portIO
-     000000AA  _EX1                               portIO
-     000000AB  G$ET1$0$0                          portIO
-     000000AB  _ET1                               portIO
-     000000AC  G$ES$0$0                           portIO
-     000000AC  G$ES0$0$0                          portIO
-     000000AC  _ES                                portIO
-     000000AC  _ES0                               portIO
-     000000AD  G$ET2$0$0                          portIO
-     000000AD  G$P1MDIN$0$0                       portIO
-     000000AD  _ET2                               portIO
-     000000AD  _P1MDIN                            portIO
-     000000AF  G$EA$0$0                           portIO
-     000000AF  _EA                                portIO
-     000000B0  G$P3$0$0                           portIO
-     000000B0  G$P3_0$0$0                         portIO
-     000000B0  _P3                                portIO
-     000000B0  _P3_0                              portIO
-     000000B1  G$P3_1$0$0                         portIO
-     000000B1  G$PSBANK$0$0                       portIO
-     000000B1  _P3_1                              portIO
-     000000B1  _PSBANK                            portIO
-     000000B2  G$P3_2$0$0                         portIO
-     000000B2  _P3_2                              portIO
-     000000B3  G$P3_3$0$0                         portIO
-     000000B3  _P3_3                              portIO
-     000000B4  G$P3_4$0$0                         portIO
-     000000B4  _P3_4                              portIO
-     000000B5  G$P3_5$0$0                         portIO
-     000000B5  _P3_5                              portIO
-     000000B6  G$P3_6$0$0                         portIO
-     000000B6  _P3_6                              portIO
+     000000A5  G$P2_5$0$0                         Hello
+     000000A5  _P1MDOUT                           Hello
+     000000A5  _P2_5                              Hello
+     000000A6  G$P2MDOUT$0$0                      Hello
+     000000A6  G$P2_6$0$0                         Hello
+     000000A6  _P2MDOUT                           Hello
+     000000A6  _P2_6                              Hello
+     000000A7  G$P2_7$0$0                         Hello
+     000000A7  G$P3MDOUT$0$0                      Hello
+     000000A7  _P2_7                              Hello
+     000000A7  _P3MDOUT                           Hello
+     000000A8  G$EX0$0$0                          Hello
+     000000A8  G$IE$0$0                           Hello
+     000000A8  _EX0                               Hello
+     000000A8  _IE                                Hello
+     000000A9  G$ET0$0$0                          Hello
+     000000A9  G$SADDR0$0$0                       Hello
+     000000A9  _ET0                               Hello
+     000000A9  _SADDR0                            Hello
+     000000AA  G$EX1$0$0                          Hello
+     000000AA  _EX1                               Hello
+     000000AB  G$ET1$0$0                          Hello
+     000000AB  _ET1                               Hello
+     000000AC  G$ES$0$0                           Hello
+     000000AC  G$ES0$0$0                          Hello
+     000000AC  _ES                                Hello
+     000000AC  _ES0                               Hello
+     000000AD  G$ET2$0$0                          Hello
+     000000AD  G$P1MDIN$0$0                       Hello
+     000000AD  _ET2                               Hello
+     000000AD  _P1MDIN                            Hello
+     000000AF  G$EA$0$0                           Hello
+     000000AF  _EA                                Hello
+     000000B0  G$P3$0$0                           Hello
+     000000B0  G$P3_0$0$0                         Hello
+     000000B0  _P3                                Hello
+     000000B0  _P3_0                              Hello
+     000000B1  G$P3_1$0$0                         Hello
+     000000B1  G$PSBANK$0$0                       Hello
+     000000B1  _P3_1                              Hello
+     000000B1  _PSBANK                            Hello
+     000000B2  G$P3_2$0$0                         Hello
+     000000B2  _P3_2                              Hello
+     000000B3  G$P3_3$0$0                         Hello
+     000000B3  _P3_3                              Hello
+     000000B4  G$P3_4$0$0                         Hello
+     000000B4  _P3_4                              Hello
+     000000B5  G$P3_5$0$0                         Hello
+     000000B5  _P3_5                              Hello
+     000000B6  G$P3_6$0$0                         Hello
+     000000B6  _P3_6                              Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
 Hexadecimal  [32-Bits]
 
@@ -452,57 +452,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000B7  G$FLACL$0$0                        portIO
-     000000B7  G$FLSCL$0$0                        portIO
-     000000B7  G$P3_7$0$0                         portIO
-     000000B7  _FLACL                             portIO
-     000000B7  _FLSCL                             portIO
-     000000B7  _P3_7                              portIO
-     000000B8  G$IP$0$0                           portIO
-     000000B8  G$PX0$0$0                          portIO
-     000000B8  _IP                                portIO
-     000000B8  _PX0                               portIO
-     000000B9  G$PT0$0$0                          portIO
-     000000B9  G$SADEN0$0$0                       portIO
-     000000B9  _PT0                               portIO
-     000000B9  _SADEN0                            portIO
-     000000BA  G$AMX0CF$0$0                       portIO
-     000000BA  G$AMX2CF$0$0                       portIO
-     000000BA  G$PX1$0$0                          portIO
-     000000BA  _AMX0CF                            portIO
-     000000BA  _AMX2CF                            portIO
-     000000BA  _PX1                               portIO
-     000000BB  G$AMX0SL$0$0                       portIO
-     000000BB  G$AMX2SL$0$0                       portIO
-     000000BB  G$PT1$0$0                          portIO
-     000000BB  _AMX0SL                            portIO
-     000000BB  _AMX2SL                            portIO
-     000000BB  _PT1                               portIO
-     000000BC  G$ADC0CF$0$0                       portIO
-     000000BC  G$ADC2CF$0$0                       portIO
-     000000BC  G$PS$0$0                           portIO
-     000000BC  G$PS0$0$0                          portIO
-     000000BC  _ADC0CF                            portIO
-     000000BC  _ADC2CF                            portIO
-     000000BC  _PS                                portIO
-     000000BC  _PS0                               portIO
-     000000BD  G$PT2$0$0                          portIO
-     000000BD  _PT2                               portIO
-     000000BE  G$ADC0L$0$0                        portIO
-     000000BE  G$ADC2$0$0                         portIO
-     000000BE  _ADC0L                             portIO
-     000000BE  _ADC2                              portIO
-     000000BF  G$ADC0H$0$0                        portIO
-     000000BF  _ADC0H                             portIO
-     000000C0  G$MAC0N$0$0                        portIO
-     000000C0  G$MAC0STA$0$0                      portIO
-     000000C0  G$SMB0CN$0$0                       portIO
-     000000C0  G$SMBTOE$0$0                       portIO
-     000000C0  _MAC0N                             portIO
-     000000C0  _MAC0STA                           portIO
-     000000C0  _SMB0CN                            portIO
-     000000C0  _SMBTOE                            portIO
-     000000C1  G$MAC0AL$0$0                       portIO
+     000000B7  G$FLACL$0$0                        Hello
+     000000B7  G$FLSCL$0$0                        Hello
+     000000B7  G$P3_7$0$0                         Hello
+     000000B7  _FLACL                             Hello
+     000000B7  _FLSCL                             Hello
+     000000B7  _P3_7                              Hello
+     000000B8  G$IP$0$0                           Hello
+     000000B8  G$PX0$0$0                          Hello
+     000000B8  _IP                                Hello
+     000000B8  _PX0                               Hello
+     000000B9  G$PT0$0$0                          Hello
+     000000B9  G$SADEN0$0$0                       Hello
+     000000B9  _PT0                               Hello
+     000000B9  _SADEN0                            Hello
+     000000BA  G$AMX0CF$0$0                       Hello
+     000000BA  G$AMX2CF$0$0                       Hello
+     000000BA  G$PX1$0$0                          Hello
+     000000BA  _AMX0CF                            Hello
+     000000BA  _AMX2CF                            Hello
+     000000BA  _PX1                               Hello
+     000000BB  G$AMX0SL$0$0                       Hello
+     000000BB  G$AMX2SL$0$0                       Hello
+     000000BB  G$PT1$0$0                          Hello
+     000000BB  _AMX0SL                            Hello
+     000000BB  _AMX2SL                            Hello
+     000000BB  _PT1                               Hello
+     000000BC  G$ADC0CF$0$0                       Hello
+     000000BC  G$ADC2CF$0$0                       Hello
+     000000BC  G$PS$0$0                           Hello
+     000000BC  G$PS0$0$0                          Hello
+     000000BC  _ADC0CF                            Hello
+     000000BC  _ADC2CF                            Hello
+     000000BC  _PS                                Hello
+     000000BC  _PS0                               Hello
+     000000BD  G$PT2$0$0                          Hello
+     000000BD  _PT2                               Hello
+     000000BE  G$ADC0L$0$0                        Hello
+     000000BE  G$ADC2$0$0                         Hello
+     000000BE  _ADC0L                             Hello
+     000000BE  _ADC2                              Hello
+     000000BF  G$ADC0H$0$0                        Hello
+     000000BF  _ADC0H                             Hello
+     000000C0  G$MAC0N$0$0                        Hello
+     000000C0  G$MAC0STA$0$0                      Hello
+     000000C0  G$SMB0CN$0$0                       Hello
+     000000C0  G$SMBTOE$0$0                       Hello
+     000000C0  _MAC0N                             Hello
+     000000C0  _MAC0STA                           Hello
+     000000C0  _SMB0CN                            Hello
+     000000C0  _SMBTOE                            Hello
+     000000C1  G$MAC0AL$0$0                       Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
 Hexadecimal  [32-Bits]
 
@@ -512,57 +512,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000C1  G$MAC0SO$0$0                       portIO
-     000000C1  G$SMB0STA$0$0                      portIO
-     000000C1  G$SMBFTE$0$0                       portIO
-     000000C1  _MAC0AL                            portIO
-     000000C1  _MAC0SO                            portIO
-     000000C1  _SMB0STA                           portIO
-     000000C1  _SMBFTE                            portIO
-     000000C2  G$AA$0$0                           portIO
-     000000C2  G$MAC0AH$0$0                       portIO
-     000000C2  G$MAC0Z$0$0                        portIO
-     000000C2  G$SMB0DAT$0$0                      portIO
-     000000C2  _AA                                portIO
-     000000C2  _MAC0AH                            portIO
-     000000C2  _MAC0Z                             portIO
-     000000C2  _SMB0DAT                           portIO
-     000000C3  G$MAC0CF$0$0                       portIO
-     000000C3  G$MAC0HO$0$0                       portIO
-     000000C3  G$SI$0$0                           portIO
-     000000C3  G$SMB0ADR$0$0                      portIO
-     000000C3  _MAC0CF                            portIO
-     000000C3  _MAC0HO                            portIO
-     000000C3  _SI                                portIO
-     000000C3  _SMB0ADR                           portIO
-     000000C4  G$ADC0GTL$0$0                      portIO
-     000000C4  G$ADC2GT$0$0                       portIO
-     000000C4  G$STO$0$0                          portIO
-     000000C4  _ADC0GTL                           portIO
-     000000C4  _ADC2GT                            portIO
-     000000C4  _STO                               portIO
-     000000C5  G$ADC0GTH$0$0                      portIO
-     000000C5  G$STA$0$0                          portIO
-     000000C5  _ADC0GTH                           portIO
-     000000C5  _STA                               portIO
-     000000C6  G$ADC0LTL$0$0                      portIO
-     000000C6  G$ADC2LT$0$0                       portIO
-     000000C6  G$ENSMB$0$0                        portIO
-     000000C6  _ADC0LTL                           portIO
-     000000C6  _ADC2LT                            portIO
-     000000C6  _ENSMB                             portIO
-     000000C7  G$ADC0LTH$0$0                      portIO
-     000000C7  G$BUSY$0$0                         portIO
-     000000C7  _ADC0LTH                           portIO
-     000000C7  _BUSY                              portIO
-     000000C8  G$CPRL2$0$0                        portIO
-     000000C8  G$CPRL3$0$0                        portIO
-     000000C8  G$CPRL4$0$0                        portIO
-     000000C8  G$P4$0$0                           portIO
-     000000C8  G$P4_0$0$0                         portIO
-     000000C8  G$TMR2CN$0$0                       portIO
-     000000C8  G$TMR3CN$0$0                       portIO
-     000000C8  G$TMR4CN$0$0                       portIO
+     000000C1  G$MAC0SO$0$0                       Hello
+     000000C1  G$SMB0STA$0$0                      Hello
+     000000C1  G$SMBFTE$0$0                       Hello
+     000000C1  _MAC0AL                            Hello
+     000000C1  _MAC0SO                            Hello
+     000000C1  _SMB0STA                           Hello
+     000000C1  _SMBFTE                            Hello
+     000000C2  G$AA$0$0                           Hello
+     000000C2  G$MAC0AH$0$0                       Hello
+     000000C2  G$MAC0Z$0$0                        Hello
+     000000C2  G$SMB0DAT$0$0                      Hello
+     000000C2  _AA                                Hello
+     000000C2  _MAC0AH                            Hello
+     000000C2  _MAC0Z                             Hello
+     000000C2  _SMB0DAT                           Hello
+     000000C3  G$MAC0CF$0$0                       Hello
+     000000C3  G$MAC0HO$0$0                       Hello
+     000000C3  G$SI$0$0                           Hello
+     000000C3  G$SMB0ADR$0$0                      Hello
+     000000C3  _MAC0CF                            Hello
+     000000C3  _MAC0HO                            Hello
+     000000C3  _SI                                Hello
+     000000C3  _SMB0ADR                           Hello
+     000000C4  G$ADC0GTL$0$0                      Hello
+     000000C4  G$ADC2GT$0$0                       Hello
+     000000C4  G$STO$0$0                          Hello
+     000000C4  _ADC0GTL                           Hello
+     000000C4  _ADC2GT                            Hello
+     000000C4  _STO                               Hello
+     000000C5  G$ADC0GTH$0$0                      Hello
+     000000C5  G$STA$0$0                          Hello
+     000000C5  _ADC0GTH                           Hello
+     000000C5  _STA                               Hello
+     000000C6  G$ADC0LTL$0$0                      Hello
+     000000C6  G$ADC2LT$0$0                       Hello
+     000000C6  G$ENSMB$0$0                        Hello
+     000000C6  _ADC0LTL                           Hello
+     000000C6  _ADC2LT                            Hello
+     000000C6  _ENSMB                             Hello
+     000000C7  G$ADC0LTH$0$0                      Hello
+     000000C7  G$BUSY$0$0                         Hello
+     000000C7  _ADC0LTH                           Hello
+     000000C7  _BUSY                              Hello
+     000000C8  G$CPRL2$0$0                        Hello
+     000000C8  G$CPRL3$0$0                        Hello
+     000000C8  G$CPRL4$0$0                        Hello
+     000000C8  G$P4$0$0                           Hello
+     000000C8  G$P4_0$0$0                         Hello
+     000000C8  G$TMR2CN$0$0                       Hello
+     000000C8  G$TMR3CN$0$0                       Hello
+     000000C8  G$TMR4CN$0$0                       Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
 Hexadecimal  [32-Bits]
 
@@ -572,57 +572,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000C8  _CPRL2                             portIO
-     000000C8  _CPRL3                             portIO
-     000000C8  _CPRL4                             portIO
-     000000C8  _P4                                portIO
-     000000C8  _P4_0                              portIO
-     000000C8  _TMR2CN                            portIO
-     000000C8  _TMR3CN                            portIO
-     000000C8  _TMR4CN                            portIO
-     000000C9  G$CT2$0$0                          portIO
-     000000C9  G$CT3$0$0                          portIO
-     000000C9  G$CT4$0$0                          portIO
-     000000C9  G$P4_1$0$0                         portIO
-     000000C9  G$TMR2CF$0$0                       portIO
-     000000C9  G$TMR3CF$0$0                       portIO
-     000000C9  G$TMR4CF$0$0                       portIO
-     000000C9  _CT2                               portIO
-     000000C9  _CT3                               portIO
-     000000C9  _CT4                               portIO
-     000000C9  _P4_1                              portIO
-     000000C9  _TMR2CF                            portIO
-     000000C9  _TMR3CF                            portIO
-     000000C9  _TMR4CF                            portIO
-     000000CA  G$P4_2$0$0                         portIO
-     000000CA  G$RCAP2L$0$0                       portIO
-     000000CA  G$RCAP3L$0$0                       portIO
-     000000CA  G$RCAP4L$0$0                       portIO
-     000000CA  G$TR2$0$0                          portIO
-     000000CA  G$TR3$0$0                          portIO
-     000000CA  G$TR4$0$0                          portIO
-     000000CA  _P4_2                              portIO
-     000000CA  _RCAP2L                            portIO
-     000000CA  _RCAP3L                            portIO
-     000000CA  _RCAP4L                            portIO
-     000000CA  _TR2                               portIO
-     000000CA  _TR3                               portIO
-     000000CA  _TR4                               portIO
-     000000CB  G$EXEN2$0$0                        portIO
-     000000CB  G$EXEN3$0$0                        portIO
-     000000CB  G$EXEN4$0$0                        portIO
-     000000CB  G$P4_3$0$0                         portIO
-     000000CB  G$RCAP2H$0$0                       portIO
-     000000CB  G$RCAP3H$0$0                       portIO
-     000000CB  G$RCAP4H$0$0                       portIO
-     000000CB  _EXEN2                             portIO
-     000000CB  _EXEN3                             portIO
-     000000CB  _EXEN4                             portIO
-     000000CB  _P4_3                              portIO
-     000000CB  _RCAP2H                            portIO
-     000000CB  _RCAP3H                            portIO
-     000000CB  _RCAP4H                            portIO
-     000000CC  G$P4_4$0$0                         portIO
+     000000C8  _CPRL2                             Hello
+     000000C8  _CPRL3                             Hello
+     000000C8  _CPRL4                             Hello
+     000000C8  _P4                                Hello
+     000000C8  _P4_0                              Hello
+     000000C8  _TMR2CN                            Hello
+     000000C8  _TMR3CN                            Hello
+     000000C8  _TMR4CN                            Hello
+     000000C9  G$CT2$0$0                          Hello
+     000000C9  G$CT3$0$0                          Hello
+     000000C9  G$CT4$0$0                          Hello
+     000000C9  G$P4_1$0$0                         Hello
+     000000C9  G$TMR2CF$0$0                       Hello
+     000000C9  G$TMR3CF$0$0                       Hello
+     000000C9  G$TMR4CF$0$0                       Hello
+     000000C9  _CT2                               Hello
+     000000C9  _CT3                               Hello
+     000000C9  _CT4                               Hello
+     000000C9  _P4_1                              Hello
+     000000C9  _TMR2CF                            Hello
+     000000C9  _TMR3CF                            Hello
+     000000C9  _TMR4CF                            Hello
+     000000CA  G$P4_2$0$0                         Hello
+     000000CA  G$RCAP2L$0$0                       Hello
+     000000CA  G$RCAP3L$0$0                       Hello
+     000000CA  G$RCAP4L$0$0                       Hello
+     000000CA  G$TR2$0$0                          Hello
+     000000CA  G$TR3$0$0                          Hello
+     000000CA  G$TR4$0$0                          Hello
+     000000CA  _P4_2                              Hello
+     000000CA  _RCAP2L                            Hello
+     000000CA  _RCAP3L                            Hello
+     000000CA  _RCAP4L                            Hello
+     000000CA  _TR2                               Hello
+     000000CA  _TR3                               Hello
+     000000CA  _TR4                               Hello
+     000000CB  G$EXEN2$0$0                        Hello
+     000000CB  G$EXEN3$0$0                        Hello
+     000000CB  G$EXEN4$0$0                        Hello
+     000000CB  G$P4_3$0$0                         Hello
+     000000CB  G$RCAP2H$0$0                       Hello
+     000000CB  G$RCAP3H$0$0                       Hello
+     000000CB  G$RCAP4H$0$0                       Hello
+     000000CB  _EXEN2                             Hello
+     000000CB  _EXEN3                             Hello
+     000000CB  _EXEN4                             Hello
+     000000CB  _P4_3                              Hello
+     000000CB  _RCAP2H                            Hello
+     000000CB  _RCAP3H                            Hello
+     000000CB  _RCAP4H                            Hello
+     000000CC  G$P4_4$0$0                         Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
 Hexadecimal  [32-Bits]
 
@@ -632,57 +632,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000CC  G$TL2$0$0                          portIO
-     000000CC  G$TMR2L$0$0                        portIO
-     000000CC  G$TMR3L$0$0                        portIO
-     000000CC  G$TMR4L$0$0                        portIO
-     000000CC  _P4_4                              portIO
-     000000CC  _TL2                               portIO
-     000000CC  _TMR2L                             portIO
-     000000CC  _TMR3L                             portIO
-     000000CC  _TMR4L                             portIO
-     000000CD  G$P4_5$0$0                         portIO
-     000000CD  G$TH2$0$0                          portIO
-     000000CD  G$TMR2H$0$0                        portIO
-     000000CD  G$TMR3H$0$0                        portIO
-     000000CD  G$TMR4H$0$0                        portIO
-     000000CD  _P4_5                              portIO
-     000000CD  _TH2                               portIO
-     000000CD  _TMR2H                             portIO
-     000000CD  _TMR3H                             portIO
-     000000CD  _TMR4H                             portIO
-     000000CE  G$EXF2$0$0                         portIO
-     000000CE  G$EXF3$0$0                         portIO
-     000000CE  G$EXF4$0$0                         portIO
-     000000CE  G$MAC0RNDL$0$0                     portIO
-     000000CE  G$P4_6$0$0                         portIO
-     000000CE  _EXF2                              portIO
-     000000CE  _EXF3                              portIO
-     000000CE  _EXF4                              portIO
-     000000CE  _MAC0RNDL                          portIO
-     000000CE  _P4_6                              portIO
-     000000CF  G$MAC0RNDH$0$0                     portIO
-     000000CF  G$P4_7$0$0                         portIO
-     000000CF  G$SMB0CR$0$0                       portIO
-     000000CF  G$TF2$0$0                          portIO
-     000000CF  G$TF3$0$0                          portIO
-     000000CF  G$TF4$0$0                          portIO
-     000000CF  _MAC0RNDH                          portIO
-     000000CF  _P4_7                              portIO
-     000000CF  _SMB0CR                            portIO
-     000000CF  _TF2                               portIO
-     000000CF  _TF3                               portIO
-     000000CF  _TF4                               portIO
-     000000D0  G$P$0$0                            portIO
-     000000D0  G$PSW$0$0                          portIO
-     000000D0  _P                                 portIO
-     000000D0  _PSW                               portIO
-     000000D1  G$F1$0$0                           portIO
-     000000D1  G$REF0CN$0$0                       portIO
-     000000D1  _F1                                portIO
-     000000D1  _REF0CN                            portIO
-     000000D2  G$DAC0L$0$0                        portIO
-     000000D2  G$DAC1L$0$0                        portIO
+     000000CC  G$TL2$0$0                          Hello
+     000000CC  G$TMR2L$0$0                        Hello
+     000000CC  G$TMR3L$0$0                        Hello
+     000000CC  G$TMR4L$0$0                        Hello
+     000000CC  _P4_4                              Hello
+     000000CC  _TL2                               Hello
+     000000CC  _TMR2L                             Hello
+     000000CC  _TMR3L                             Hello
+     000000CC  _TMR4L                             Hello
+     000000CD  G$P4_5$0$0                         Hello
+     000000CD  G$TH2$0$0                          Hello
+     000000CD  G$TMR2H$0$0                        Hello
+     000000CD  G$TMR3H$0$0                        Hello
+     000000CD  G$TMR4H$0$0                        Hello
+     000000CD  _P4_5                              Hello
+     000000CD  _TH2                               Hello
+     000000CD  _TMR2H                             Hello
+     000000CD  _TMR3H                             Hello
+     000000CD  _TMR4H                             Hello
+     000000CE  G$EXF2$0$0                         Hello
+     000000CE  G$EXF3$0$0                         Hello
+     000000CE  G$EXF4$0$0                         Hello
+     000000CE  G$MAC0RNDL$0$0                     Hello
+     000000CE  G$P4_6$0$0                         Hello
+     000000CE  _EXF2                              Hello
+     000000CE  _EXF3                              Hello
+     000000CE  _EXF4                              Hello
+     000000CE  _MAC0RNDL                          Hello
+     000000CE  _P4_6                              Hello
+     000000CF  G$MAC0RNDH$0$0                     Hello
+     000000CF  G$P4_7$0$0                         Hello
+     000000CF  G$SMB0CR$0$0                       Hello
+     000000CF  G$TF2$0$0                          Hello
+     000000CF  G$TF3$0$0                          Hello
+     000000CF  G$TF4$0$0                          Hello
+     000000CF  _MAC0RNDH                          Hello
+     000000CF  _P4_7                              Hello
+     000000CF  _SMB0CR                            Hello
+     000000CF  _TF2                               Hello
+     000000CF  _TF3                               Hello
+     000000CF  _TF4                               Hello
+     000000D0  G$P$0$0                            Hello
+     000000D0  G$PSW$0$0                          Hello
+     000000D0  _P                                 Hello
+     000000D0  _PSW                               Hello
+     000000D1  G$F1$0$0                           Hello
+     000000D1  G$REF0CN$0$0                       Hello
+     000000D1  _F1                                Hello
+     000000D1  _REF0CN                            Hello
+     000000D2  G$DAC0L$0$0                        Hello
+     000000D2  G$DAC1L$0$0                        Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
 Hexadecimal  [32-Bits]
 
@@ -692,57 +692,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000D2  G$OV$0$0                           portIO
-     000000D2  _DAC0L                             portIO
-     000000D2  _DAC1L                             portIO
-     000000D2  _OV                                portIO
-     000000D3  G$DAC0H$0$0                        portIO
-     000000D3  G$DAC1H$0$0                        portIO
-     000000D3  G$RS0$0$0                          portIO
-     000000D3  _DAC0H                             portIO
-     000000D3  _DAC1H                             portIO
-     000000D3  _RS0                               portIO
-     000000D4  G$DAC0CN$0$0                       portIO
-     000000D4  G$DAC1CN$0$0                       portIO
-     000000D4  G$RS1$0$0                          portIO
-     000000D4  _DAC0CN                            portIO
-     000000D4  _DAC1CN                            portIO
-     000000D4  _RS1                               portIO
-     000000D5  G$F0$0$0                           portIO
-     000000D5  _F0                                portIO
-     000000D6  G$AC$0$0                           portIO
-     000000D6  _AC                                portIO
-     000000D7  G$CY$0$0                           portIO
-     000000D7  _CY                                portIO
-     000000D8  G$CCF0$0$0                         portIO
-     000000D8  G$P5$0$0                           portIO
-     000000D8  G$P5_0$0$0                         portIO
-     000000D8  G$PCA0CN$0$0                       portIO
-     000000D8  _CCF0                              portIO
-     000000D8  _P5                                portIO
-     000000D8  _P5_0                              portIO
-     000000D8  _PCA0CN                            portIO
-     000000D9  G$CCF1$0$0                         portIO
-     000000D9  G$P5_1$0$0                         portIO
-     000000D9  G$PCA0MD$0$0                       portIO
-     000000D9  _CCF1                              portIO
-     000000D9  _P5_1                              portIO
-     000000D9  _PCA0MD                            portIO
-     000000DA  G$CCF2$0$0                         portIO
-     000000DA  G$P5_2$0$0                         portIO
-     000000DA  G$PCA0CPM0$0$0                     portIO
-     000000DA  _CCF2                              portIO
-     000000DA  _P5_2                              portIO
-     000000DA  _PCA0CPM0                          portIO
-     000000DB  G$CCF3$0$0                         portIO
-     000000DB  G$P5_3$0$0                         portIO
-     000000DB  G$PCA0CPM1$0$0                     portIO
-     000000DB  _CCF3                              portIO
-     000000DB  _P5_3                              portIO
-     000000DB  _PCA0CPM1                          portIO
-     000000DC  G$CCF4$0$0                         portIO
-     000000DC  G$P5_4$0$0                         portIO
-     000000DC  G$PCA0CPM2$0$0                     portIO
+     000000D2  G$OV$0$0                           Hello
+     000000D2  _DAC0L                             Hello
+     000000D2  _DAC1L                             Hello
+     000000D2  _OV                                Hello
+     000000D3  G$DAC0H$0$0                        Hello
+     000000D3  G$DAC1H$0$0                        Hello
+     000000D3  G$RS0$0$0                          Hello
+     000000D3  _DAC0H                             Hello
+     000000D3  _DAC1H                             Hello
+     000000D3  _RS0                               Hello
+     000000D4  G$DAC0CN$0$0                       Hello
+     000000D4  G$DAC1CN$0$0                       Hello
+     000000D4  G$RS1$0$0                          Hello
+     000000D4  _DAC0CN                            Hello
+     000000D4  _DAC1CN                            Hello
+     000000D4  _RS1                               Hello
+     000000D5  G$F0$0$0                           Hello
+     000000D5  _F0                                Hello
+     000000D6  G$AC$0$0                           Hello
+     000000D6  _AC                                Hello
+     000000D7  G$CY$0$0                           Hello
+     000000D7  _CY                                Hello
+     000000D8  G$CCF0$0$0                         Hello
+     000000D8  G$P5$0$0                           Hello
+     000000D8  G$P5_0$0$0                         Hello
+     000000D8  G$PCA0CN$0$0                       Hello
+     000000D8  _CCF0                              Hello
+     000000D8  _P5                                Hello
+     000000D8  _P5_0                              Hello
+     000000D8  _PCA0CN                            Hello
+     000000D9  G$CCF1$0$0                         Hello
+     000000D9  G$P5_1$0$0                         Hello
+     000000D9  G$PCA0MD$0$0                       Hello
+     000000D9  _CCF1                              Hello
+     000000D9  _P5_1                              Hello
+     000000D9  _PCA0MD                            Hello
+     000000DA  G$CCF2$0$0                         Hello
+     000000DA  G$P5_2$0$0                         Hello
+     000000DA  G$PCA0CPM0$0$0                     Hello
+     000000DA  _CCF2                              Hello
+     000000DA  _P5_2                              Hello
+     000000DA  _PCA0CPM0                          Hello
+     000000DB  G$CCF3$0$0                         Hello
+     000000DB  G$P5_3$0$0                         Hello
+     000000DB  G$PCA0CPM1$0$0                     Hello
+     000000DB  _CCF3                              Hello
+     000000DB  _P5_3                              Hello
+     000000DB  _PCA0CPM1                          Hello
+     000000DC  G$CCF4$0$0                         Hello
+     000000DC  G$P5_4$0$0                         Hello
+     000000DC  G$PCA0CPM2$0$0                     Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
 Hexadecimal  [32-Bits]
 
@@ -752,57 +752,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000DC  _CCF4                              portIO
-     000000DC  _P5_4                              portIO
-     000000DC  _PCA0CPM2                          portIO
-     000000DD  G$CCF5$0$0                         portIO
-     000000DD  G$P5_5$0$0                         portIO
-     000000DD  G$PCA0CPM3$0$0                     portIO
-     000000DD  _CCF5                              portIO
-     000000DD  _P5_5                              portIO
-     000000DD  _PCA0CPM3                          portIO
-     000000DE  G$CR$0$0                           portIO
-     000000DE  G$P5_6$0$0                         portIO
-     000000DE  G$PCA0CPM4$0$0                     portIO
-     000000DE  _CR                                portIO
-     000000DE  _P5_6                              portIO
-     000000DE  _PCA0CPM4                          portIO
-     000000DF  G$CF$0$0                           portIO
-     000000DF  G$P5_7$0$0                         portIO
-     000000DF  G$PCA0CPM5$0$0                     portIO
-     000000DF  _CF                                portIO
-     000000DF  _P5_7                              portIO
-     000000DF  _PCA0CPM5                          portIO
-     000000E0  G$ACC$0$0                          portIO
-     000000E0  _ACC                               portIO
-     000000E1  G$PCA0CPL5$0$0                     portIO
-     000000E1  G$XBR0$0$0                         portIO
-     000000E1  _PCA0CPL5                          portIO
-     000000E1  _XBR0                              portIO
-     000000E2  G$PCA0CPH5$0$0                     portIO
-     000000E2  G$XBR1$0$0                         portIO
-     000000E2  _PCA0CPH5                          portIO
-     000000E2  _XBR1                              portIO
-     000000E3  G$XBR2$0$0                         portIO
-     000000E3  _XBR2                              portIO
-     000000E6  G$EIE1$0$0                         portIO
-     000000E6  _EIE1                              portIO
-     000000E7  G$EIE2$0$0                         portIO
-     000000E7  _EIE2                              portIO
-     000000E8  G$AD0LJST$0$0                      portIO
-     000000E8  G$AD2WINT$0$0                      portIO
-     000000E8  G$ADC0CN$0$0                       portIO
-     000000E8  G$ADC2CN$0$0                       portIO
-     000000E8  G$P6$0$0                           portIO
-     000000E8  G$P6_0$0$0                         portIO
-     000000E8  _AD0LJST                           portIO
-     000000E8  _AD2WINT                           portIO
-     000000E8  _ADC0CN                            portIO
-     000000E8  _ADC2CN                            portIO
-     000000E8  _P6                                portIO
-     000000E8  _P6_0                              portIO
-     000000E9  G$AD0WINT$0$0                      portIO
-     000000E9  G$AD2CM0$0$0                       portIO
+     000000DC  _CCF4                              Hello
+     000000DC  _P5_4                              Hello
+     000000DC  _PCA0CPM2                          Hello
+     000000DD  G$CCF5$0$0                         Hello
+     000000DD  G$P5_5$0$0                         Hello
+     000000DD  G$PCA0CPM3$0$0                     Hello
+     000000DD  _CCF5                              Hello
+     000000DD  _P5_5                              Hello
+     000000DD  _PCA0CPM3                          Hello
+     000000DE  G$CR$0$0                           Hello
+     000000DE  G$P5_6$0$0                         Hello
+     000000DE  G$PCA0CPM4$0$0                     Hello
+     000000DE  _CR                                Hello
+     000000DE  _P5_6                              Hello
+     000000DE  _PCA0CPM4                          Hello
+     000000DF  G$CF$0$0                           Hello
+     000000DF  G$P5_7$0$0                         Hello
+     000000DF  G$PCA0CPM5$0$0                     Hello
+     000000DF  _CF                                Hello
+     000000DF  _P5_7                              Hello
+     000000DF  _PCA0CPM5                          Hello
+     000000E0  G$ACC$0$0                          Hello
+     000000E0  _ACC                               Hello
+     000000E1  G$PCA0CPL5$0$0                     Hello
+     000000E1  G$XBR0$0$0                         Hello
+     000000E1  _PCA0CPL5                          Hello
+     000000E1  _XBR0                              Hello
+     000000E2  G$PCA0CPH5$0$0                     Hello
+     000000E2  G$XBR1$0$0                         Hello
+     000000E2  _PCA0CPH5                          Hello
+     000000E2  _XBR1                              Hello
+     000000E3  G$XBR2$0$0                         Hello
+     000000E3  _XBR2                              Hello
+     000000E6  G$EIE1$0$0                         Hello
+     000000E6  _EIE1                              Hello
+     000000E7  G$EIE2$0$0                         Hello
+     000000E7  _EIE2                              Hello
+     000000E8  G$AD0LJST$0$0                      Hello
+     000000E8  G$AD2WINT$0$0                      Hello
+     000000E8  G$ADC0CN$0$0                       Hello
+     000000E8  G$ADC2CN$0$0                       Hello
+     000000E8  G$P6$0$0                           Hello
+     000000E8  G$P6_0$0$0                         Hello
+     000000E8  _AD0LJST                           Hello
+     000000E8  _AD2WINT                           Hello
+     000000E8  _ADC0CN                            Hello
+     000000E8  _ADC2CN                            Hello
+     000000E8  _P6                                Hello
+     000000E8  _P6_0                              Hello
+     000000E9  G$AD0WINT$0$0                      Hello
+     000000E9  G$AD2CM0$0$0                       Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
 Hexadecimal  [32-Bits]
 
@@ -812,57 +812,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000E9  G$P6_1$0$0                         portIO
-     000000E9  G$PCA0CPL2$0$0                     portIO
-     000000E9  _AD0WINT                           portIO
-     000000E9  _AD2CM0                            portIO
-     000000E9  _P6_1                              portIO
-     000000E9  _PCA0CPL2                          portIO
-     000000EA  G$AD0CM0$0$0                       portIO
-     000000EA  G$AD2CM1$0$0                       portIO
-     000000EA  G$P6_2$0$0                         portIO
-     000000EA  G$PCA0CPH2$0$0                     portIO
-     000000EA  _AD0CM0                            portIO
-     000000EA  _AD2CM1                            portIO
-     000000EA  _P6_2                              portIO
-     000000EA  _PCA0CPH2                          portIO
-     000000EB  G$AD0CM1$0$0                       portIO
-     000000EB  G$AD2CM2$0$0                       portIO
-     000000EB  G$P6_3$0$0                         portIO
-     000000EB  G$PCA0CPL3$0$0                     portIO
-     000000EB  _AD0CM1                            portIO
-     000000EB  _AD2CM2                            portIO
-     000000EB  _P6_3                              portIO
-     000000EB  _PCA0CPL3                          portIO
-     000000EC  G$AD0BUSY$0$0                      portIO
-     000000EC  G$AD2BUSY$0$0                      portIO
-     000000EC  G$P6_4$0$0                         portIO
-     000000EC  G$PCA0CPH3$0$0                     portIO
-     000000EC  _AD0BUSY                           portIO
-     000000EC  _AD2BUSY                           portIO
-     000000EC  _P6_4                              portIO
-     000000EC  _PCA0CPH3                          portIO
-     000000ED  G$AD0INT$0$0                       portIO
-     000000ED  G$AD2INT$0$0                       portIO
-     000000ED  G$P6_5$0$0                         portIO
-     000000ED  G$PCA0CPL4$0$0                     portIO
-     000000ED  _AD0INT                            portIO
-     000000ED  _AD2INT                            portIO
-     000000ED  _P6_5                              portIO
-     000000ED  _PCA0CPL4                          portIO
-     000000EE  G$AD0TM$0$0                        portIO
-     000000EE  G$AD2TM$0$0                        portIO
-     000000EE  G$P6_6$0$0                         portIO
-     000000EE  G$PCA0CPH4$0$0                     portIO
-     000000EE  _AD0TM                             portIO
-     000000EE  _AD2TM                             portIO
-     000000EE  _P6_6                              portIO
-     000000EE  _PCA0CPH4                          portIO
-     000000EF  G$AD0EN$0$0                        portIO
-     000000EF  G$AD2EN$0$0                        portIO
-     000000EF  G$P6_7$0$0                         portIO
-     000000EF  G$RSTSRC$0$0                       portIO
-     000000EF  _AD0EN                             portIO
+     000000E9  G$P6_1$0$0                         Hello
+     000000E9  G$PCA0CPL2$0$0                     Hello
+     000000E9  _AD0WINT                           Hello
+     000000E9  _AD2CM0                            Hello
+     000000E9  _P6_1                              Hello
+     000000E9  _PCA0CPL2                          Hello
+     000000EA  G$AD0CM0$0$0                       Hello
+     000000EA  G$AD2CM1$0$0                       Hello
+     000000EA  G$P6_2$0$0                         Hello
+     000000EA  G$PCA0CPH2$0$0                     Hello
+     000000EA  _AD0CM0                            Hello
+     000000EA  _AD2CM1                            Hello
+     000000EA  _P6_2                              Hello
+     000000EA  _PCA0CPH2                          Hello
+     000000EB  G$AD0CM1$0$0                       Hello
+     000000EB  G$AD2CM2$0$0                       Hello
+     000000EB  G$P6_3$0$0                         Hello
+     000000EB  G$PCA0CPL3$0$0                     Hello
+     000000EB  _AD0CM1                            Hello
+     000000EB  _AD2CM2                            Hello
+     000000EB  _P6_3                              Hello
+     000000EB  _PCA0CPL3                          Hello
+     000000EC  G$AD0BUSY$0$0                      Hello
+     000000EC  G$AD2BUSY$0$0                      Hello
+     000000EC  G$P6_4$0$0                         Hello
+     000000EC  G$PCA0CPH3$0$0                     Hello
+     000000EC  _AD0BUSY                           Hello
+     000000EC  _AD2BUSY                           Hello
+     000000EC  _P6_4                              Hello
+     000000EC  _PCA0CPH3                          Hello
+     000000ED  G$AD0INT$0$0                       Hello
+     000000ED  G$AD2INT$0$0                       Hello
+     000000ED  G$P6_5$0$0                         Hello
+     000000ED  G$PCA0CPL4$0$0                     Hello
+     000000ED  _AD0INT                            Hello
+     000000ED  _AD2INT                            Hello
+     000000ED  _P6_5                              Hello
+     000000ED  _PCA0CPL4                          Hello
+     000000EE  G$AD0TM$0$0                        Hello
+     000000EE  G$AD2TM$0$0                        Hello
+     000000EE  G$P6_6$0$0                         Hello
+     000000EE  G$PCA0CPH4$0$0                     Hello
+     000000EE  _AD0TM                             Hello
+     000000EE  _AD2TM                             Hello
+     000000EE  _P6_6                              Hello
+     000000EE  _PCA0CPH4                          Hello
+     000000EF  G$AD0EN$0$0                        Hello
+     000000EF  G$AD2EN$0$0                        Hello
+     000000EF  G$P6_7$0$0                         Hello
+     000000EF  G$RSTSRC$0$0                       Hello
+     000000EF  _AD0EN                             Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
 Hexadecimal  [32-Bits]
 
@@ -872,57 +872,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000EF  _AD2EN                             portIO
-     000000EF  _P6_7                              portIO
-     000000EF  _RSTSRC                            portIO
-     000000F0  G$B$0$0                            portIO
-     000000F0  _B                                 portIO
+     000000EF  _AD2EN                             Hello
+     000000EF  _P6_7                              Hello
+     000000EF  _RSTSRC                            Hello
+     000000F0  G$B$0$0                            Hello
+     000000F0  _B                                 Hello
      000000F5  _B_5                               _gptrget
-     000000F6  G$EIP1$0$0                         portIO
+     000000F6  G$EIP1$0$0                         Hello
      000000F6  _B_6                               _gptrget
-     000000F6  _EIP1                              portIO
-     000000F7  G$EIP2$0$0                         portIO
+     000000F6  _EIP1                              Hello
+     000000F7  G$EIP2$0$0                         Hello
      000000F7  _B_7                               _gptrget
-     000000F7  _EIP2                              portIO
-     000000F8  G$P7$0$0                           portIO
-     000000F8  G$P7_0$0$0                         portIO
-     000000F8  G$SPI0CN$0$0                       portIO
-     000000F8  G$SPIEN$0$0                        portIO
-     000000F8  _P7                                portIO
-     000000F8  _P7_0                              portIO
-     000000F8  _SPI0CN                            portIO
-     000000F8  _SPIEN                             portIO
-     000000F9  G$P7_1$0$0                         portIO
-     000000F9  G$PCA0L$0$0                        portIO
-     000000F9  G$TXBMT$0$0                        portIO
-     000000F9  _P7_1                              portIO
-     000000F9  _PCA0L                             portIO
-     000000F9  _TXBMT                             portIO
-     000000FA  G$NSSMD0$0$0                       portIO
-     000000FA  G$P7_2$0$0                         portIO
-     000000FA  G$PCA0H$0$0                        portIO
-     000000FA  _NSSMD0                            portIO
-     000000FA  _P7_2                              portIO
-     000000FA  _PCA0H                             portIO
-     000000FB  G$NSSMD1$0$0                       portIO
-     000000FB  G$P7_3$0$0                         portIO
-     000000FB  G$PCA0CPL0$0$0                     portIO
-     000000FB  _NSSMD1                            portIO
-     000000FB  _P7_3                              portIO
-     000000FB  _PCA0CPL0                          portIO
-     000000FC  G$P7_4$0$0                         portIO
-     000000FC  G$PCA0CPH0$0$0                     portIO
-     000000FC  G$RXOVRN$0$0                       portIO
-     000000FC  _P7_4                              portIO
-     000000FC  _PCA0CPH0                          portIO
-     000000FC  _RXOVRN                            portIO
-     000000FD  G$MODF$0$0                         portIO
-     000000FD  G$P7_5$0$0                         portIO
-     000000FD  G$PCA0CPL1$0$0                     portIO
-     000000FD  _MODF                              portIO
-     000000FD  _P7_5                              portIO
-     000000FD  _PCA0CPL1                          portIO
-     000000FE  G$P7_6$0$0                         portIO
+     000000F7  _EIP2                              Hello
+     000000F8  G$P7$0$0                           Hello
+     000000F8  G$P7_0$0$0                         Hello
+     000000F8  G$SPI0CN$0$0                       Hello
+     000000F8  G$SPIEN$0$0                        Hello
+     000000F8  _P7                                Hello
+     000000F8  _P7_0                              Hello
+     000000F8  _SPI0CN                            Hello
+     000000F8  _SPIEN                             Hello
+     000000F9  G$P7_1$0$0                         Hello
+     000000F9  G$PCA0L$0$0                        Hello
+     000000F9  G$TXBMT$0$0                        Hello
+     000000F9  _P7_1                              Hello
+     000000F9  _PCA0L                             Hello
+     000000F9  _TXBMT                             Hello
+     000000FA  G$NSSMD0$0$0                       Hello
+     000000FA  G$P7_2$0$0                         Hello
+     000000FA  G$PCA0H$0$0                        Hello
+     000000FA  _NSSMD0                            Hello
+     000000FA  _P7_2                              Hello
+     000000FA  _PCA0H                             Hello
+     000000FB  G$NSSMD1$0$0                       Hello
+     000000FB  G$P7_3$0$0                         Hello
+     000000FB  G$PCA0CPL0$0$0                     Hello
+     000000FB  _NSSMD1                            Hello
+     000000FB  _P7_3                              Hello
+     000000FB  _PCA0CPL0                          Hello
+     000000FC  G$P7_4$0$0                         Hello
+     000000FC  G$PCA0CPH0$0$0                     Hello
+     000000FC  G$RXOVRN$0$0                       Hello
+     000000FC  _P7_4                              Hello
+     000000FC  _PCA0CPH0                          Hello
+     000000FC  _RXOVRN                            Hello
+     000000FD  G$MODF$0$0                         Hello
+     000000FD  G$P7_5$0$0                         Hello
+     000000FD  G$PCA0CPL1$0$0                     Hello
+     000000FD  _MODF                              Hello
+     000000FD  _P7_5                              Hello
+     000000FD  _PCA0CPL1                          Hello
+     000000FE  G$P7_6$0$0                         Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
 Hexadecimal  [32-Bits]
 
@@ -932,57 +932,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000FE  G$PCA0CPH1$0$0                     portIO
-     000000FE  G$WCOL$0$0                         portIO
-     000000FE  _P7_6                              portIO
-     000000FE  _PCA0CPH1                          portIO
-     000000FE  _WCOL                              portIO
-     000000FF  G$P7_7$0$0                         portIO
-     000000FF  G$SPIF$0$0                         portIO
-     000000FF  G$WDTCN$0$0                        portIO
-     000000FF  _P7_7                              portIO
-     000000FF  _SPIF                              portIO
-     000000FF  _WDTCN                             portIO
-     00008C8A  G$TMR0$0$0                         portIO
-     00008C8A  _TMR0                              portIO
-     00008D8B  G$TMR1$0$0                         portIO
-     00008D8B  _TMR1                              portIO
-     0000BFBE  G$ADC0$0$0                         portIO
-     0000BFBE  _ADC0                              portIO
-     0000C2C1  G$MAC0A$0$0                        portIO
-     0000C2C1  _MAC0A                             portIO
-     0000C5C4  G$ADC0GT$0$0                       portIO
-     0000C5C4  _ADC0GT                            portIO
-     0000C7C6  G$ADC0LT$0$0                       portIO
-     0000C7C6  _ADC0LT                            portIO
-     0000CBCA  G$RCAP2$0$0                        portIO
-     0000CBCA  G$RCAP3$0$0                        portIO
-     0000CBCA  G$RCAP4$0$0                        portIO
-     0000CBCA  _RCAP2                             portIO
-     0000CBCA  _RCAP3                             portIO
-     0000CBCA  _RCAP4                             portIO
-     0000CDCC  G$TMR2$0$0                         portIO
-     0000CDCC  G$TMR3$0$0                         portIO
-     0000CDCC  G$TMR4$0$0                         portIO
-     0000CDCC  _TMR2                              portIO
-     0000CDCC  _TMR3                              portIO
-     0000CDCC  _TMR4                              portIO
-     0000CFCE  G$MAC0RND$0$0                      portIO
-     0000CFCE  _MAC0RND                           portIO
-     0000D3D2  G$DAC0$0$0                         portIO
-     0000D3D2  G$DAC1$0$0                         portIO
-     0000D3D2  _DAC0                              portIO
-     0000D3D2  _DAC1                              portIO
-     0000E2E1  G$PCA0CP5$0$0                      portIO
-     0000E2E1  _PCA0CP5                           portIO
-     0000EAE9  G$PCA0CP2$0$0                      portIO
-     0000EAE9  _PCA0CP2                           portIO
-     0000ECEB  G$PCA0CP3$0$0                      portIO
-     0000ECEB  _PCA0CP3                           portIO
-     0000EEED  G$PCA0CP4$0$0                      portIO
-     0000EEED  _PCA0CP4                           portIO
-     0000FAF9  G$PCA0$0$0                         portIO
-     0000FAF9  _PCA0                              portIO
+     000000FE  G$PCA0CPH1$0$0                     Hello
+     000000FE  G$WCOL$0$0                         Hello
+     000000FE  _P7_6                              Hello
+     000000FE  _PCA0CPH1                          Hello
+     000000FE  _WCOL                              Hello
+     000000FF  G$P7_7$0$0                         Hello
+     000000FF  G$SPIF$0$0                         Hello
+     000000FF  G$WDTCN$0$0                        Hello
+     000000FF  _P7_7                              Hello
+     000000FF  _SPIF                              Hello
+     000000FF  _WDTCN                             Hello
+     00008C8A  G$TMR0$0$0                         Hello
+     00008C8A  _TMR0                              Hello
+     00008D8B  G$TMR1$0$0                         Hello
+     00008D8B  _TMR1                              Hello
+     0000BFBE  G$ADC0$0$0                         Hello
+     0000BFBE  _ADC0                              Hello
+     0000C2C1  G$MAC0A$0$0                        Hello
+     0000C2C1  _MAC0A                             Hello
+     0000C5C4  G$ADC0GT$0$0                       Hello
+     0000C5C4  _ADC0GT                            Hello
+     0000C7C6  G$ADC0LT$0$0                       Hello
+     0000C7C6  _ADC0LT                            Hello
+     0000CBCA  G$RCAP2$0$0                        Hello
+     0000CBCA  G$RCAP3$0$0                        Hello
+     0000CBCA  G$RCAP4$0$0                        Hello
+     0000CBCA  _RCAP2                             Hello
+     0000CBCA  _RCAP3                             Hello
+     0000CBCA  _RCAP4                             Hello
+     0000CDCC  G$TMR2$0$0                         Hello
+     0000CDCC  G$TMR3$0$0                         Hello
+     0000CDCC  G$TMR4$0$0                         Hello
+     0000CDCC  _TMR2                              Hello
+     0000CDCC  _TMR3                              Hello
+     0000CDCC  _TMR4                              Hello
+     0000CFCE  G$MAC0RND$0$0                      Hello
+     0000CFCE  _MAC0RND                           Hello
+     0000D3D2  G$DAC0$0$0                         Hello
+     0000D3D2  G$DAC1$0$0                         Hello
+     0000D3D2  _DAC0                              Hello
+     0000D3D2  _DAC1                              Hello
+     0000E2E1  G$PCA0CP5$0$0                      Hello
+     0000E2E1  _PCA0CP5                           Hello
+     0000EAE9  G$PCA0CP2$0$0                      Hello
+     0000EAE9  _PCA0CP2                           Hello
+     0000ECEB  G$PCA0CP3$0$0                      Hello
+     0000ECEB  _PCA0CP3                           Hello
+     0000EEED  G$PCA0CP4$0$0                      Hello
+     0000EEED  _PCA0CP4                           Hello
+     0000FAF9  G$PCA0$0$0                         Hello
+     0000FAF9  _PCA0                              Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
 Hexadecimal  [32-Bits]
 
@@ -992,12 +992,12 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000FCFB  G$PCA0CP0$0$0                      portIO
-     0000FCFB  _PCA0CP0                           portIO
-     0000FEFD  G$PCA0CP1$0$0                      portIO
-     0000FEFD  _PCA0CP1                           portIO
-     00959493  G$MAC0ACC$0$0                      portIO
-     00959493  _MAC0ACC                           portIO
+     0000FCFB  G$PCA0CP0$0$0                      Hello
+     0000FCFB  _PCA0CP0                           Hello
+     0000FEFD  G$PCA0CP1$0$0                      Hello
+     0000FEFD  _PCA0CP1                           Hello
+     00959493  G$MAC0ACC$0$0                      Hello
+     00959493  _MAC0ACC                           Hello
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
 Hexadecimal  [32-Bits]
@@ -1028,23 +1028,9 @@ DSEG                                00000000    00000076 =         118. bytes (R
       -----  --------------------------------   ------------------------
      00000008  _vprintf_PARM_2                    vprintf
      00000009  _bp                                _bp
-     00000022  LportIO.main$sloc0$1$0             portIO
-     00000024  LportIO.main$sloc1$1$0             portIO
-     00000026  LportIO.main$sloc2$1$0             portIO
-     00000028  LportIO.main$sloc3$1$0             portIO
-     0000002A  LportIO.main$sloc4$1$0             portIO
-     0000002C  LportIO.main$sloc5$1$0             portIO
-     0000002E  LportIO.main$sloc6$1$0             portIO
-     00000030  LportIO.main$sloc7$1$0             portIO
-     00000032  LportIO.main$sloc8$1$0             portIO
-     00000034  LportIO.main$sloc9$1$0             portIO
-     00000036  LportIO.main$sloc10$1$0            portIO
-     00000038  LportIO.main$sloc11$1$0            portIO
-     0000003A  LportIO.main$sloc12$1$0            portIO
-     0000003C  LportIO.main$sloc13$1$0            portIO
-     0000004A  __print_format_PARM_2              printf_large
-     0000004D  __print_format_PARM_3              printf_large
-     00000050  __print_format_PARM_4              printf_large
+     0000002E  __print_format_PARM_2              printf_large
+     00000031  __print_format_PARM_3              printf_large
+     00000034  __print_format_PARM_4              printf_large
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
 Hexadecimal  [32-Bits]
@@ -1069,11 +1055,11 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-SSEG                                00000058    000000A8 =         168. bytes (REL,OVR)
+SSEG                                0000003C    000000C4 =         196. bytes (REL,OVR)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000058  __start__stack                     portIO
+     0000003C  __start__stack                     Hello
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
 Hexadecimal  [32-Bits]
@@ -1084,9 +1070,9 @@ HOME                                00000000    00000006 =           6. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000000  A$portIO$1286                      portIO
-C:   00000003  A$portIO$1308                      portIO
-C:   00000003  __sdcc_program_startup             portIO
+C:   00000000  A$Hello$1244                       Hello
+C:   00000003  A$Hello$1266                       Hello
+C:   00000003  __sdcc_program_startup             Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
 Hexadecimal  [32-Bits]
 
@@ -1139,462 +1125,559 @@ GSFINAL                             0000005F    00000003 =           3. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000005F  A$portIO$1301                      portIO
+C:   0000005F  A$Hello$1259                       Hello
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000062  A$portIO$1334                      portIO
-C:   00000062  C$putget.h$20$0$0                  portIO
-C:   00000062  G$putchar$0$0                      portIO
-C:   00000062  _putchar                           portIO
-C:   00000064  A$portIO$1340                      portIO
-C:   00000064  C$putget.h$22$1$15                 portIO
-C:   00000064  C$putget.h$23$1$15                 portIO
-C:   00000067  A$portIO$1341                      portIO
-C:   00000069  A$portIO$1345                      portIO
-C:   00000069  C$putget.h$24$1$15                 portIO
-C:   0000006B  A$portIO$1348                      portIO
-C:   0000006B  C$putget.h$25$1$15                 portIO
-C:   0000006B  XG$putchar$0$0                     portIO
-C:   0000006C  A$portIO$1366                      portIO
-C:   0000006C  C$putget.h$30$1$15                 portIO
-C:   0000006C  C$putget.h$33$1$17                 portIO
-C:   0000006C  C$putget.h$34$1$17                 portIO
-C:   0000006C  G$getchar$0$0                      portIO
-C:   0000006C  _getchar                           portIO
-C:   0000006F  A$portIO$1367                      portIO
-C:   00000071  A$portIO$1371                      portIO
-C:   00000071  C$putget.h$35$1$17                 portIO
-C:   00000074  A$portIO$1374                      portIO
-C:   00000074  C$putget.h$37$1$17                 portIO
-C:   00000077  A$portIO$1377                      portIO
-C:   00000077  C$putget.h$38$1$17                 portIO
-C:   0000007A  A$portIO$1380                      portIO
-C:   0000007A  C$putget.h$39$1$17                 portIO
-C:   0000007A  XG$getchar$0$0                     portIO
-C:   0000007B  A$portIO$1409                      portIO
-C:   0000007B  C$portIO.c$51$1$17                 portIO
-C:   0000007B  C$portIO.c$55$1$23                 portIO
-C:   0000007B  G$main$0$0                         portIO
-C:   0000007B  _main                              portIO
-C:   0000007E  A$portIO$1412                      portIO
-C:   0000007E  C$portIO.c$56$1$23                 portIO
-C:   00000081  A$portIO$1415                      portIO
-C:   00000081  C$portIO.c$58$1$23                 portIO
-C:   00000084  A$portIO$1418                      portIO
-C:   00000084  C$portIO.c$59$1$23                 portIO
-C:   00000087  A$portIO$1421                      portIO
-C:   00000087  C$portIO.c$60$1$23                 portIO
-C:   0000008A  A$portIO$1424                      portIO
-C:   0000008A  C$portIO.c$62$1$23                 portIO
-C:   0000008D  A$portIO$1427                      portIO
-C:   0000008D  C$portIO.c$65$1$23                 portIO
-C:   0000008F  A$portIO$1428                      portIO
-C:   00000091  A$portIO$1429                      portIO
-C:   00000093  A$portIO$1430                      portIO
-C:   00000095  A$portIO$1431                      portIO
+C:   00000062  A$Hello$1292                       Hello
+C:   00000062  C$putget.h$20$0$0                  Hello
+C:   00000062  G$putchar$0$0                      Hello
+C:   00000062  _putchar                           Hello
+C:   00000064  A$Hello$1298                       Hello
+C:   00000064  C$putget.h$22$1$15                 Hello
+C:   00000064  C$putget.h$23$1$15                 Hello
+C:   00000067  A$Hello$1299                       Hello
+C:   00000069  A$Hello$1303                       Hello
+C:   00000069  C$putget.h$24$1$15                 Hello
+C:   0000006B  A$Hello$1306                       Hello
+C:   0000006B  C$putget.h$25$1$15                 Hello
+C:   0000006B  XG$putchar$0$0                     Hello
+C:   0000006C  A$Hello$1324                       Hello
+C:   0000006C  C$putget.h$30$1$15                 Hello
+C:   0000006C  C$putget.h$33$1$17                 Hello
+C:   0000006C  C$putget.h$34$1$17                 Hello
+C:   0000006C  G$getchar$0$0                      Hello
+C:   0000006C  _getchar                           Hello
+C:   0000006F  A$Hello$1325                       Hello
+C:   00000071  A$Hello$1329                       Hello
+C:   00000071  C$putget.h$35$1$17                 Hello
+C:   00000074  A$Hello$1332                       Hello
+C:   00000074  C$putget.h$37$1$17                 Hello
+C:   00000077  A$Hello$1335                       Hello
+C:   00000077  C$putget.h$38$1$17                 Hello
+C:   0000007A  A$Hello$1338                       Hello
+C:   0000007A  C$putget.h$39$1$17                 Hello
+C:   0000007A  XG$getchar$0$0                     Hello
+C:   0000007B  A$Hello$1353                       Hello
+C:   0000007B  C$Hello.c$36$1$17                  Hello
+C:   0000007B  C$Hello.c$40$1$23                  Hello
+C:   0000007B  G$main$0$0                         Hello
+C:   0000007B  _main                              Hello
+C:   0000007E  A$Hello$1356                       Hello
+C:   0000007E  C$Hello.c$41$1$23                  Hello
+C:   00000081  A$Hello$1359                       Hello
+C:   00000081  C$Hello.c$43$1$23                  Hello
+C:   00000084  A$Hello$1362                       Hello
+C:   00000084  C$Hello.c$44$1$23                  Hello
+C:   00000087  A$Hello$1365                       Hello
+C:   00000087  C$Hello.c$45$1$23                  Hello
+C:   0000008A  A$Hello$1368                       Hello
+C:   0000008A  C$Hello.c$47$1$23                  Hello
+C:   0000008D  A$Hello$1371                       Hello
+C:   0000008D  C$Hello.c$50$1$23                  Hello
+C:   0000008F  A$Hello$1372                       Hello
+C:   00000091  A$Hello$1373                       Hello
+C:   00000093  A$Hello$1374                       Hello
+C:   00000095  A$Hello$1375                       Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 32.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000097  A$portIO$1432                      portIO
-C:   00000099  A$portIO$1433                      portIO
-C:   0000009C  A$portIO$1434                      portIO
-C:   0000009E  A$portIO$1435                      portIO
-C:   000000A0  A$portIO$1436                      portIO
-C:   000000A2  A$portIO$1439                      portIO
-C:   000000A2  C$portIO.c$66$1$23                 portIO
-C:   000000A4  A$portIO$1440                      portIO
-C:   000000A6  A$portIO$1441                      portIO
-C:   000000A8  A$portIO$1442                      portIO
-C:   000000AA  A$portIO$1443                      portIO
-C:   000000AC  A$portIO$1444                      portIO
-C:   000000AE  A$portIO$1445                      portIO
-C:   000000B1  A$portIO$1446                      portIO
-C:   000000B3  A$portIO$1447                      portIO
-C:   000000B5  A$portIO$1448                      portIO
-C:   000000B7  A$portIO$1451                      portIO
-C:   000000B7  C$portIO.c$68$1$23                 portIO
-C:   000000B9  A$portIO$1452                      portIO
-C:   000000BB  A$portIO$1453                      portIO
-C:   000000BD  A$portIO$1454                      portIO
-C:   000000BF  A$portIO$1455                      portIO
-C:   000000C1  A$portIO$1456                      portIO
-C:   000000C3  A$portIO$1457                      portIO
-C:   000000C6  A$portIO$1458                      portIO
-C:   000000C8  A$portIO$1459                      portIO
-C:   000000CA  A$portIO$1460                      portIO
-C:   000000CC  A$portIO$1466                      portIO
-C:   000000CC  C$portIO.c$70$1$23                 portIO
-C:   000000CC  C$portIO.c$71$2$24                 portIO
-C:   000000CF  A$portIO$1469                      portIO
-C:   000000CF  C$portIO.c$72$2$24                 portIO
-C:   000000D1  A$portIO$1470                      portIO
-C:   000000D2  A$portIO$1471                      portIO
-C:   000000D3  A$portIO$1472                      portIO
-C:   000000D4  A$portIO$1473                      portIO
-C:   000000D6  A$portIO$1474                      portIO
-C:   000000D8  A$portIO$1475                      portIO
-C:   000000D9  A$portIO$1476                      portIO
-C:   000000DA  A$portIO$1477                      portIO
-C:   000000DB  A$portIO$1478                      portIO
-C:   000000DD  A$portIO$1479                      portIO
-C:   000000DF  A$portIO$1480                      portIO
-C:   000000E0  A$portIO$1481                      portIO
-C:   000000E1  A$portIO$1482                      portIO
-C:   000000E2  A$portIO$1483                      portIO
-C:   000000E4  A$portIO$1484                      portIO
-C:   000000E6  A$portIO$1485                      portIO
-C:   000000E7  A$portIO$1486                      portIO
-C:   000000E8  A$portIO$1487                      portIO
-C:   000000EA  A$portIO$1488                      portIO
+C:   00000097  A$Hello$1376                       Hello
+C:   00000099  A$Hello$1377                       Hello
+C:   0000009C  A$Hello$1378                       Hello
+C:   0000009E  A$Hello$1379                       Hello
+C:   000000A0  A$Hello$1380                       Hello
+C:   000000A2  A$Hello$1383                       Hello
+C:   000000A2  C$Hello.c$51$1$23                  Hello
+C:   000000A4  A$Hello$1384                       Hello
+C:   000000A6  A$Hello$1385                       Hello
+C:   000000A8  A$Hello$1386                       Hello
+C:   000000AA  A$Hello$1387                       Hello
+C:   000000AC  A$Hello$1388                       Hello
+C:   000000AE  A$Hello$1389                       Hello
+C:   000000B1  A$Hello$1390                       Hello
+C:   000000B3  A$Hello$1391                       Hello
+C:   000000B5  A$Hello$1392                       Hello
+C:   000000B7  A$Hello$1395                       Hello
+C:   000000B7  C$Hello.c$52$1$23                  Hello
+C:   000000B9  A$Hello$1396                       Hello
+C:   000000BB  A$Hello$1397                       Hello
+C:   000000BD  A$Hello$1398                       Hello
+C:   000000BF  A$Hello$1399                       Hello
+C:   000000C1  A$Hello$1400                       Hello
+C:   000000C3  A$Hello$1401                       Hello
+C:   000000C6  A$Hello$1402                       Hello
+C:   000000C8  A$Hello$1403                       Hello
+C:   000000CA  A$Hello$1404                       Hello
+C:   000000CC  A$Hello$1407                       Hello
+C:   000000CC  C$Hello.c$55$1$23                  Hello
+C:   000000CE  A$Hello$1408                       Hello
+C:   000000D0  A$Hello$1409                       Hello
+C:   000000D2  A$Hello$1410                       Hello
+C:   000000D4  A$Hello$1411                       Hello
+C:   000000D6  A$Hello$1412                       Hello
+C:   000000D8  A$Hello$1413                       Hello
+C:   000000DB  A$Hello$1414                       Hello
+C:   000000DD  A$Hello$1415                       Hello
+C:   000000DF  A$Hello$1416                       Hello
+C:   000000E1  A$Hello$1419                       Hello
+C:   000000E1  C$Hello.c$56$1$23                  Hello
+C:   000000E3  A$Hello$1420                       Hello
+C:   000000E5  A$Hello$1421                       Hello
+C:   000000E7  A$Hello$1422                       Hello
+C:   000000E9  A$Hello$1423                       Hello
+C:   000000EB  A$Hello$1424                       Hello
+C:   000000ED  A$Hello$1425                       Hello
+C:   000000F0  A$Hello$1426                       Hello
+C:   000000F2  A$Hello$1427                       Hello
+C:   000000F4  A$Hello$1428                       Hello
+C:   000000F6  A$Hello$1431                       Hello
+C:   000000F6  C$Hello.c$59$1$23                  Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 33.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000000ED  A$portIO$1489                      portIO
-C:   000000EF  A$portIO$1490                      portIO
-C:   000000F0  A$portIO$1491                      portIO
-C:   000000F1  A$portIO$1492                      portIO
-C:   000000F3  A$portIO$1493                      portIO
-C:   000000F6  A$portIO$1494                      portIO
-C:   000000F8  A$portIO$1495                      portIO
-C:   000000F9  A$portIO$1496                      portIO
-C:   000000FA  A$portIO$1497                      portIO
-C:   000000FC  A$portIO$1498                      portIO
-C:   000000FF  A$portIO$1499                      portIO
-C:   00000101  A$portIO$1500                      portIO
-C:   00000102  A$portIO$1501                      portIO
-C:   00000103  A$portIO$1502                      portIO
-C:   00000105  A$portIO$1503                      portIO
-C:   00000108  A$portIO$1504                      portIO
-C:   0000010A  A$portIO$1505                      portIO
-C:   0000010B  A$portIO$1506                      portIO
-C:   0000010C  A$portIO$1507                      portIO
-C:   0000010E  A$portIO$1508                      portIO
-C:   00000111  A$portIO$1509                      portIO
-C:   00000113  A$portIO$1510                      portIO
-C:   00000114  A$portIO$1511                      portIO
-C:   00000115  A$portIO$1512                      portIO
-C:   00000117  A$portIO$1513                      portIO
-C:   0000011A  A$portIO$1514                      portIO
-C:   0000011C  A$portIO$1515                      portIO
-C:   0000011D  A$portIO$1516                      portIO
-C:   0000011E  A$portIO$1517                      portIO
-C:   00000120  A$portIO$1518                      portIO
-C:   00000123  A$portIO$1519                      portIO
-C:   00000125  A$portIO$1520                      portIO
-C:   00000126  A$portIO$1521                      portIO
-C:   00000127  A$portIO$1522                      portIO
-C:   00000129  A$portIO$1523                      portIO
-C:   0000012C  A$portIO$1524                      portIO
-C:   0000012E  A$portIO$1525                      portIO
-C:   0000012F  A$portIO$1526                      portIO
-C:   00000130  A$portIO$1527                      portIO
-C:   00000132  A$portIO$1528                      portIO
-C:   00000135  A$portIO$1529                      portIO
-C:   00000137  A$portIO$1530                      portIO
-C:   00000138  A$portIO$1531                      portIO
-C:   00000139  A$portIO$1532                      portIO
-C:   0000013B  A$portIO$1533                      portIO
-C:   0000013E  A$portIO$1534                      portIO
-C:   00000140  A$portIO$1535                      portIO
-C:   00000141  A$portIO$1536                      portIO
-C:   00000142  A$portIO$1537                      portIO
-C:   00000144  A$portIO$1538                      portIO
-C:   00000147  A$portIO$1539                      portIO
+C:   000000F8  A$Hello$1432                       Hello
+C:   000000FA  A$Hello$1433                       Hello
+C:   000000FC  A$Hello$1434                       Hello
+C:   000000FE  A$Hello$1435                       Hello
+C:   00000100  A$Hello$1436                       Hello
+C:   00000102  A$Hello$1437                       Hello
+C:   00000105  A$Hello$1438                       Hello
+C:   00000107  A$Hello$1439                       Hello
+C:   00000109  A$Hello$1440                       Hello
+C:   0000010B  A$Hello$1443                       Hello
+C:   0000010B  C$Hello.c$60$1$23                  Hello
+C:   0000010D  A$Hello$1444                       Hello
+C:   0000010F  A$Hello$1445                       Hello
+C:   00000111  A$Hello$1446                       Hello
+C:   00000113  A$Hello$1447                       Hello
+C:   00000115  A$Hello$1448                       Hello
+C:   00000117  A$Hello$1449                       Hello
+C:   0000011A  A$Hello$1450                       Hello
+C:   0000011C  A$Hello$1451                       Hello
+C:   0000011E  A$Hello$1452                       Hello
+C:   00000120  A$Hello$1455                       Hello
+C:   00000120  C$Hello.c$63$1$23                  Hello
+C:   00000122  A$Hello$1456                       Hello
+C:   00000124  A$Hello$1457                       Hello
+C:   00000126  A$Hello$1458                       Hello
+C:   00000128  A$Hello$1459                       Hello
+C:   0000012A  A$Hello$1460                       Hello
+C:   0000012C  A$Hello$1461                       Hello
+C:   0000012F  A$Hello$1462                       Hello
+C:   00000131  A$Hello$1463                       Hello
+C:   00000133  A$Hello$1464                       Hello
+C:   00000135  A$Hello$1467                       Hello
+C:   00000135  C$Hello.c$64$1$23                  Hello
+C:   00000137  A$Hello$1468                       Hello
+C:   00000139  A$Hello$1469                       Hello
+C:   0000013B  A$Hello$1470                       Hello
+C:   0000013D  A$Hello$1471                       Hello
+C:   0000013F  A$Hello$1472                       Hello
+C:   00000141  A$Hello$1473                       Hello
+C:   00000144  A$Hello$1474                       Hello
+C:   00000146  A$Hello$1475                       Hello
+C:   00000148  A$Hello$1476                       Hello
+C:   0000014A  A$Hello$1479                       Hello
+C:   0000014A  C$Hello.c$66$1$23                  Hello
+C:   0000014C  A$Hello$1480                       Hello
+C:   0000014E  A$Hello$1481                       Hello
+C:   00000150  A$Hello$1482                       Hello
+C:   00000152  A$Hello$1483                       Hello
+C:   00000154  A$Hello$1484                       Hello
+C:   00000156  A$Hello$1485                       Hello
+C:   00000159  A$Hello$1486                       Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 34.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000149  A$portIO$1540                      portIO
-C:   0000014A  A$portIO$1541                      portIO
-C:   0000014B  A$portIO$1542                      portIO
-C:   0000014D  A$portIO$1543                      portIO
-C:   00000150  A$portIO$1544                      portIO
-C:   00000152  A$portIO$1545                      portIO
-C:   00000153  A$portIO$1546                      portIO
-C:   00000154  A$portIO$1547                      portIO
-C:   00000156  A$portIO$1548                      portIO
-C:   00000159  A$portIO$1549                      portIO
-C:   0000015C  A$portIO$1550                      portIO
-C:   0000015F  A$portIO$1551                      portIO
-C:   00000161  A$portIO$1552                      portIO
-C:   00000163  A$portIO$1553                      portIO
-C:   00000165  A$portIO$1554                      portIO
-C:   00000167  A$portIO$1555                      portIO
-C:   00000169  A$portIO$1556                      portIO
-C:   0000016B  A$portIO$1557                      portIO
-C:   0000016D  A$portIO$1558                      portIO
-C:   0000016F  A$portIO$1559                      portIO
-C:   00000171  A$portIO$1560                      portIO
-C:   00000173  A$portIO$1561                      portIO
-C:   00000175  A$portIO$1562                      portIO
-C:   00000177  A$portIO$1563                      portIO
-C:   00000179  A$portIO$1564                      portIO
-C:   0000017B  A$portIO$1565                      portIO
-C:   0000017D  A$portIO$1566                      portIO
-C:   0000017F  A$portIO$1567                      portIO
-C:   00000181  A$portIO$1568                      portIO
-C:   00000183  A$portIO$1569                      portIO
-C:   00000185  A$portIO$1570                      portIO
-C:   00000187  A$portIO$1571                      portIO
-C:   00000189  A$portIO$1572                      portIO
-C:   0000018B  A$portIO$1573                      portIO
-C:   0000018D  A$portIO$1574                      portIO
-C:   0000018F  A$portIO$1575                      portIO
-C:   00000191  A$portIO$1576                      portIO
-C:   00000193  A$portIO$1577                      portIO
-C:   00000195  A$portIO$1578                      portIO
-C:   00000197  A$portIO$1579                      portIO
-C:   00000199  A$portIO$1580                      portIO
-C:   0000019B  A$portIO$1581                      portIO
-C:   0000019D  A$portIO$1582                      portIO
-C:   0000019F  A$portIO$1583                      portIO
-C:   000001A1  A$portIO$1584                      portIO
-C:   000001A3  A$portIO$1585                      portIO
-C:   000001A5  A$portIO$1586                      portIO
-C:   000001A7  A$portIO$1587                      portIO
-C:   000001A9  A$portIO$1588                      portIO
-C:   000001AB  A$portIO$1589                      portIO
-C:   000001AD  A$portIO$1590                      portIO
+C:   0000015B  A$Hello$1487                       Hello
+C:   0000015D  A$Hello$1488                       Hello
+C:   0000015F  A$Hello$1494                       Hello
+C:   0000015F  C$Hello.c$68$2$24                  Hello
+C:   0000015F  C$Hello.c$71$2$24                  Hello
+C:   00000161  A$Hello$1495                       Hello
+C:   00000163  A$Hello$1496                       Hello
+C:   00000165  A$Hello$1497                       Hello
+C:   00000167  A$Hello$1498                       Hello
+C:   00000169  A$Hello$1499                       Hello
+C:   0000016B  A$Hello$1500                       Hello
+C:   0000016E  A$Hello$1501                       Hello
+C:   00000170  A$Hello$1502                       Hello
+C:   00000172  A$Hello$1503                       Hello
+C:   00000174  A$Hello$1506                       Hello
+C:   00000174  C$Hello.c$72$2$24                  Hello
+C:   00000176  A$Hello$1507                       Hello
+C:   00000178  A$Hello$1508                       Hello
+C:   0000017A  A$Hello$1509                       Hello
+C:   0000017C  A$Hello$1510                       Hello
+C:   0000017E  A$Hello$1511                       Hello
+C:   00000180  A$Hello$1512                       Hello
+C:   00000183  A$Hello$1513                       Hello
+C:   00000185  A$Hello$1514                       Hello
+C:   00000187  A$Hello$1515                       Hello
+C:   00000189  A$Hello$1518                       Hello
+C:   00000189  C$Hello.c$74$2$24                  Hello
+C:   0000018C  A$Hello$1519                       Hello
+C:   0000018E  A$Hello$1522                       Hello
+C:   0000018E  C$Hello.c$76$2$24                  Hello
+C:   00000191  A$Hello$1525                       Hello
+C:   00000191  C$Hello.c$79$2$24                  Hello
+C:   00000194  A$Hello$1528                       Hello
+C:   00000194  C$Hello.c$80$3$25                  Hello
+C:   00000197  A$Hello$1532                       Hello
+C:   00000197  C$Hello.c$84$2$24                  Hello
+C:   0000019A  A$Hello$1534                       Hello
+C:   0000019C  A$Hello$1535                       Hello
+C:   0000019D  A$Hello$1536                       Hello
+C:   0000019F  A$Hello$1537                       Hello
+C:   000001A1  A$Hello$1541                       Hello
+C:   000001A1  C$Hello.c$85$3$26                  Hello
+C:   000001A3  A$Hello$1542                       Hello
+C:   000001A5  A$Hello$1543                       Hello
+C:   000001A7  A$Hello$1544                       Hello
+C:   000001A9  A$Hello$1545                       Hello
+C:   000001AB  A$Hello$1546                       Hello
+C:   000001AD  A$Hello$1547                       Hello
+C:   000001AF  A$Hello$1548                       Hello
+C:   000001B2  A$Hello$1549                       Hello
+C:   000001B4  A$Hello$1550                       Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 35.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000001AF  A$portIO$1591                      portIO
-C:   000001B1  A$portIO$1592                      portIO
-C:   000001B3  A$portIO$1593                      portIO
-C:   000001B5  A$portIO$1594                      portIO
-C:   000001B7  A$portIO$1595                      portIO
-C:   000001BA  A$portIO$1596                      portIO
-C:   000001BC  A$portIO$1597                      portIO
-C:   000001BE  A$portIO$1598                      portIO
-C:   000001C0  A$portIO$1599                      portIO
-C:   000001C3  A$portIO$1602                      portIO
-C:   000001C3  C$portIO.c$74$1$23                 portIO
-C:   000001C3  XG$main$0$0                        portIO
-C:   000001C4  A$portIO$1618                      portIO
-C:   000001C4  C$portIO.c$82$1$23                 portIO
-C:   000001C4  C$portIO.c$87$1$26                 portIO
-C:   000001C4  G$SYSCLK_INIT$0$0                  portIO
-C:   000001C4  _SYSCLK_INIT                       portIO
-C:   000001C6  A$portIO$1621                      portIO
-C:   000001C6  C$portIO.c$89$1$26                 portIO
-C:   000001C9  A$portIO$1624                      portIO
-C:   000001C9  C$portIO.c$90$1$26                 portIO
-C:   000001CC  A$portIO$1627                      portIO
-C:   000001CC  C$portIO.c$91$1$26                 portIO
-C:   000001CE  A$portIO$1628                      portIO
-C:   000001D0  A$portIO$1630                      portIO
-C:   000001D1  A$portIO$1631                      portIO
-C:   000001D4  A$portIO$1632                      portIO
-C:   000001D5  A$portIO$1634                      portIO
-C:   000001D6  A$portIO$1635                      portIO
-C:   000001D7  A$portIO$1636                      portIO
-C:   000001D9  A$portIO$1640                      portIO
-C:   000001D9  C$portIO.c$92$1$26                 portIO
-C:   000001DB  A$portIO$1641                      portIO
-C:   000001DE  A$portIO$1644                      portIO
-C:   000001DE  C$portIO.c$93$1$26                 portIO
-C:   000001E1  A$portIO$1647                      portIO
-C:   000001E1  C$portIO.c$94$1$26                 portIO
-C:   000001E4  A$portIO$1650                      portIO
-C:   000001E4  C$portIO.c$96$1$26                 portIO
-C:   000001E7  A$portIO$1653                      portIO
-C:   000001E7  C$portIO.c$97$1$26                 portIO
-C:   000001EA  A$portIO$1656                      portIO
-C:   000001EA  C$portIO.c$98$1$26                 portIO
-C:   000001ED  A$portIO$1659                      portIO
-C:   000001ED  C$portIO.c$99$1$26                 portIO
-C:   000001F0  A$portIO$1662                      portIO
-C:   000001F0  C$portIO.c$100$1$26                portIO
-C:   000001F3  A$portIO$1665                      portIO
-C:   000001F3  C$portIO.c$101$1$26                portIO
-C:   000001F6  A$portIO$1668                      portIO
-C:   000001F6  C$portIO.c$102$1$26                portIO
+C:   000001B6  A$Hello$1551                       Hello
+C:   000001B8  A$Hello$1554                       Hello
+C:   000001B8  C$Hello.c$86$3$26                  Hello
+C:   000001BA  A$Hello$1555                       Hello
+C:   000001BC  A$Hello$1556                       Hello
+C:   000001BE  A$Hello$1557                       Hello
+C:   000001C0  A$Hello$1558                       Hello
+C:   000001C2  A$Hello$1559                       Hello
+C:   000001C4  A$Hello$1560                       Hello
+C:   000001C7  A$Hello$1561                       Hello
+C:   000001C9  A$Hello$1562                       Hello
+C:   000001CB  A$Hello$1563                       Hello
+C:   000001CD  A$Hello$1566                       Hello
+C:   000001CD  C$Hello.c$93$3$26                  Hello
+C:   000001CF  A$Hello$1567                       Hello
+C:   000001D1  A$Hello$1568                       Hello
+C:   000001D3  A$Hello$1569                       Hello
+C:   000001D5  A$Hello$1570                       Hello
+C:   000001D7  A$Hello$1571                       Hello
+C:   000001D9  A$Hello$1572                       Hello
+C:   000001DB  A$Hello$1573                       Hello
+C:   000001DD  A$Hello$1574                       Hello
+C:   000001E0  A$Hello$1575                       Hello
+C:   000001E2  A$Hello$1576                       Hello
+C:   000001E4  A$Hello$1577                       Hello
+C:   000001E6  A$Hello$1580                       Hello
+C:   000001E6  C$Hello.c$95$3$26                  Hello
+C:   000001E8  A$Hello$1581                       Hello
+C:   000001EA  A$Hello$1582                       Hello
+C:   000001EC  A$Hello$1583                       Hello
+C:   000001EE  A$Hello$1584                       Hello
+C:   000001F0  A$Hello$1585                       Hello
+C:   000001F2  A$Hello$1586                       Hello
+C:   000001F5  A$Hello$1587                       Hello
+C:   000001F7  A$Hello$1588                       Hello
+C:   000001F9  A$Hello$1589                       Hello
+C:   000001FB  A$Hello$1592                       Hello
+C:   000001FB  C$Hello.c$98$3$26                  Hello
+C:   000001FD  A$Hello$1593                       Hello
+C:   000001FF  A$Hello$1594                       Hello
+C:   00000201  A$Hello$1595                       Hello
+C:   00000203  A$Hello$1596                       Hello
+C:   00000205  A$Hello$1597                       Hello
+C:   00000207  A$Hello$1598                       Hello
+C:   0000020A  A$Hello$1599                       Hello
+C:   0000020C  A$Hello$1600                       Hello
+C:   0000020E  A$Hello$1601                       Hello
+C:   00000210  A$Hello$1604                       Hello
+C:   00000210  C$Hello.c$99$3$26                  Hello
+C:   00000212  A$Hello$1605                       Hello
+C:   00000214  A$Hello$1606                       Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 36.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000001F9  A$portIO$1671                      portIO
-C:   000001F9  C$portIO.c$103$1$26                portIO
-C:   000001FC  A$portIO$1674                      portIO
-C:   000001FC  C$portIO.c$104$1$26                portIO
-C:   000001FF  A$portIO$1677                      portIO
-C:   000001FF  C$portIO.c$105$1$26                portIO
-C:   00000201  A$portIO$1678                      portIO
-C:   00000203  A$portIO$1680                      portIO
-C:   00000204  A$portIO$1681                      portIO
-C:   00000207  A$portIO$1682                      portIO
-C:   00000208  A$portIO$1684                      portIO
-C:   00000209  A$portIO$1685                      portIO
-C:   0000020A  A$portIO$1686                      portIO
-C:   0000020C  A$portIO$1689                      portIO
-C:   0000020C  C$portIO.c$106$1$26                portIO
-C:   0000020F  A$portIO$1693                      portIO
-C:   0000020F  C$portIO.c$107$1$26                portIO
-C:   00000211  A$portIO$1694                      portIO
-C:   00000214  A$portIO$1697                      portIO
-C:   00000214  C$portIO.c$108$1$26                portIO
-C:   00000217  A$portIO$1700                      portIO
-C:   00000217  C$portIO.c$110$1$26                portIO
-C:   00000219  A$portIO$1703                      portIO
-C:   00000219  C$portIO.c$111$1$26                portIO
-C:   00000219  XG$SYSCLK_INIT$0$0                 portIO
-C:   0000021A  A$portIO$1718                      portIO
-C:   0000021A  C$portIO.c$119$1$26                portIO
-C:   0000021A  C$portIO.c$123$1$28                portIO
-C:   0000021A  G$PORT_INIT$0$0                    portIO
-C:   0000021A  _PORT_INIT                         portIO
-C:   0000021C  A$portIO$1721                      portIO
-C:   0000021C  C$portIO.c$125$1$28                portIO
-C:   0000021F  A$portIO$1724                      portIO
-C:   0000021F  C$portIO.c$126$1$28                portIO
-C:   00000222  A$portIO$1727                      portIO
-C:   00000222  C$portIO.c$127$1$28                portIO
-C:   00000225  A$portIO$1730                      portIO
-C:   00000225  C$portIO.c$128$1$28                portIO
-C:   00000228  A$portIO$1733                      portIO
-C:   00000228  C$portIO.c$129$1$28                portIO
-C:   0000022B  A$portIO$1736                      portIO
-C:   0000022B  C$portIO.c$133$1$28                portIO
-C:   0000022E  A$portIO$1739                      portIO
-C:   0000022E  C$portIO.c$134$1$28                portIO
-C:   00000231  A$portIO$1742                      portIO
-C:   00000231  C$portIO.c$137$1$28                portIO
-C:   00000233  A$portIO$1743                      portIO
-C:   00000236  A$portIO$1746                      portIO
-C:   00000236  C$portIO.c$140$1$28                portIO
-C:   00000238  A$portIO$1749                      portIO
-C:   00000238  C$portIO.c$141$1$28                portIO
+C:   00000216  A$Hello$1607                       Hello
+C:   00000218  A$Hello$1608                       Hello
+C:   0000021A  A$Hello$1609                       Hello
+C:   0000021C  A$Hello$1610                       Hello
+C:   0000021F  A$Hello$1611                       Hello
+C:   00000221  A$Hello$1612                       Hello
+C:   00000223  A$Hello$1613                       Hello
+C:   00000225  A$Hello$1616                       Hello
+C:   00000225  C$Hello.c$102$3$26                 Hello
+C:   00000227  A$Hello$1617                       Hello
+C:   00000229  A$Hello$1618                       Hello
+C:   0000022B  A$Hello$1619                       Hello
+C:   0000022D  A$Hello$1620                       Hello
+C:   0000022F  A$Hello$1621                       Hello
+C:   00000231  A$Hello$1622                       Hello
+C:   00000234  A$Hello$1623                       Hello
+C:   00000236  A$Hello$1624                       Hello
+C:   00000238  A$Hello$1625                       Hello
+C:   0000023A  A$Hello$1628                       Hello
+C:   0000023A  C$Hello.c$106$3$26                 Hello
+C:   0000023C  A$Hello$1629                       Hello
+C:   0000023E  A$Hello$1630                       Hello
+C:   00000240  A$Hello$1631                       Hello
+C:   00000242  A$Hello$1632                       Hello
+C:   00000244  A$Hello$1633                       Hello
+C:   00000246  A$Hello$1634                       Hello
+C:   00000249  A$Hello$1635                       Hello
+C:   0000024B  A$Hello$1636                       Hello
+C:   0000024D  A$Hello$1637                       Hello
+C:   0000024F  A$Hello$1638                       Hello
+C:   00000252  A$Hello$1642                       Hello
+C:   00000252  C$Hello.c$114$1$23                 Hello
+C:   00000252  XG$main$0$0                        Hello
+C:   00000253  A$Hello$1658                       Hello
+C:   00000253  C$Hello.c$122$1$23                 Hello
+C:   00000253  C$Hello.c$127$1$28                 Hello
+C:   00000253  G$SYSCLK_INIT$0$0                  Hello
+C:   00000253  _SYSCLK_INIT                       Hello
+C:   00000255  A$Hello$1661                       Hello
+C:   00000255  C$Hello.c$129$1$28                 Hello
+C:   00000258  A$Hello$1664                       Hello
+C:   00000258  C$Hello.c$130$1$28                 Hello
+C:   0000025B  A$Hello$1667                       Hello
+C:   0000025B  C$Hello.c$131$1$28                 Hello
+C:   0000025D  A$Hello$1668                       Hello
+C:   0000025F  A$Hello$1670                       Hello
+C:   00000260  A$Hello$1671                       Hello
+C:   00000263  A$Hello$1672                       Hello
+C:   00000264  A$Hello$1674                       Hello
+C:   00000265  A$Hello$1675                       Hello
+C:   00000266  A$Hello$1676                       Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 37.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000238  XG$PORT_INIT$0$0                   portIO
-C:   00000239  A$portIO$1764                      portIO
-C:   00000239  C$portIO.c$149$1$28                portIO
-C:   00000239  C$portIO.c$153$1$30                portIO
-C:   00000239  G$UART0_INIT$0$0                   portIO
-C:   00000239  _UART0_INIT                        portIO
-C:   0000023B  A$portIO$1767                      portIO
-C:   0000023B  C$portIO.c$155$1$30                portIO
-C:   0000023E  A$portIO$1770                      portIO
-C:   0000023E  C$portIO.c$156$1$30                portIO
-C:   00000241  A$portIO$1773                      portIO
-C:   00000241  C$portIO.c$157$1$30                portIO
-C:   00000244  A$portIO$1776                      portIO
-C:   00000244  C$portIO.c$158$1$30                portIO
-C:   00000247  A$portIO$1779                      portIO
-C:   00000247  C$portIO.c$159$1$30                portIO
-C:   0000024A  A$portIO$1782                      portIO
-C:   0000024A  C$portIO.c$160$1$30                portIO
-C:   0000024D  A$portIO$1785                      portIO
-C:   0000024D  C$portIO.c$161$1$30                portIO
-C:   0000024F  A$portIO$1788                      portIO
-C:   0000024F  C$portIO.c$163$1$30                portIO
-C:   00000252  A$portIO$1791                      portIO
-C:   00000252  C$portIO.c$164$1$30                portIO
-C:   00000255  A$portIO$1794                      portIO
-C:   00000255  C$portIO.c$165$1$30                portIO
-C:   00000258  A$portIO$1797                      portIO
-C:   00000258  C$portIO.c$166$1$30                portIO
-C:   0000025A  A$portIO$1800                      portIO
-C:   0000025A  C$portIO.c$168$1$30                portIO
-C:   0000025C  A$portIO$1803                      portIO
-C:   0000025C  C$portIO.c$169$1$30                portIO
-C:   0000025C  XG$UART0_INIT$0$0                  portIO
-C:   00000268  _vprintf                           vprintf
-C:   00000281  _printf                            vprintf
-C:   00000358  __print_format                     printf_large
-C:   00000864  _strlen                            _strlen
-C:   0000087C  __gptrget                          _gptrget
-C:   00000898  __sdcc_external_startup            _startup
-
+C:   00000268  A$Hello$1680                       Hello
+C:   00000268  C$Hello.c$132$1$28                 Hello
+C:   0000026A  A$Hello$1681                       Hello
+C:   0000026D  A$Hello$1684                       Hello
+C:   0000026D  C$Hello.c$133$1$28                 Hello
+C:   00000270  A$Hello$1687                       Hello
+C:   00000270  C$Hello.c$134$1$28                 Hello
+C:   00000273  A$Hello$1690                       Hello
+C:   00000273  C$Hello.c$136$1$28                 Hello
+C:   00000276  A$Hello$1693                       Hello
+C:   00000276  C$Hello.c$137$1$28                 Hello
+C:   00000279  A$Hello$1696                       Hello
+C:   00000279  C$Hello.c$138$1$28                 Hello
+C:   0000027C  A$Hello$1699                       Hello
+C:   0000027C  C$Hello.c$139$1$28                 Hello
+C:   0000027F  A$Hello$1702                       Hello
+C:   0000027F  C$Hello.c$140$1$28                 Hello
+C:   00000282  A$Hello$1705                       Hello
+C:   00000282  C$Hello.c$141$1$28                 Hello
+C:   00000285  A$Hello$1708                       Hello
+C:   00000285  C$Hello.c$142$1$28                 Hello
+C:   00000288  A$Hello$1711                       Hello
+C:   00000288  C$Hello.c$143$1$28                 Hello
+C:   0000028B  A$Hello$1714                       Hello
+C:   0000028B  C$Hello.c$144$1$28                 Hello
+C:   0000028E  A$Hello$1717                       Hello
+C:   0000028E  C$Hello.c$145$1$28                 Hello
+C:   00000290  A$Hello$1718                       Hello
+C:   00000292  A$Hello$1720                       Hello
+C:   00000293  A$Hello$1721                       Hello
+C:   00000296  A$Hello$1722                       Hello
+C:   00000297  A$Hello$1724                       Hello
+C:   00000298  A$Hello$1725                       Hello
+C:   00000299  A$Hello$1726                       Hello
+C:   0000029B  A$Hello$1729                       Hello
+C:   0000029B  C$Hello.c$146$1$28                 Hello
+C:   0000029E  A$Hello$1733                       Hello
+C:   0000029E  C$Hello.c$147$1$28                 Hello
+C:   000002A0  A$Hello$1734                       Hello
+C:   000002A3  A$Hello$1737                       Hello
+C:   000002A3  C$Hello.c$148$1$28                 Hello
+C:   000002A6  A$Hello$1740                       Hello
+C:   000002A6  C$Hello.c$150$1$28                 Hello
+C:   000002A8  A$Hello$1743                       Hello
+C:   000002A8  C$Hello.c$151$1$28                 Hello
+C:   000002A8  XG$SYSCLK_INIT$0$0                 Hello
+C:   000002A9  A$Hello$1758                       Hello
+C:   000002A9  C$Hello.c$159$1$28                 Hello
+C:   000002A9  C$Hello.c$163$1$30                 Hello
+C:   000002A9  G$PORT_INIT$0$0                    Hello
+C:   000002A9  _PORT_INIT                         Hello
 ASxxxx Linker V03.00 + NoICE + sdld,  page 38.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               0000089C    00000068 =         104. bytes (REL,CON,CODE)
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000089C  FportIO$__str_0$0$0                portIO
-C:   000008A5  FportIO$__str_1$0$0                portIO
-C:   000008AA  FportIO$__str_2$0$0                portIO
-C:   000008B9  FportIO$__str_3$0$0                portIO
-
+C:   000002AB  A$Hello$1761                       Hello
+C:   000002AB  C$Hello.c$165$1$30                 Hello
+C:   000002AE  A$Hello$1764                       Hello
+C:   000002AE  C$Hello.c$166$1$30                 Hello
+C:   000002B1  A$Hello$1767                       Hello
+C:   000002B1  C$Hello.c$167$1$30                 Hello
+C:   000002B4  A$Hello$1770                       Hello
+C:   000002B4  C$Hello.c$168$1$30                 Hello
+C:   000002B7  A$Hello$1773                       Hello
+C:   000002B7  C$Hello.c$169$1$30                 Hello
+C:   000002BA  A$Hello$1776                       Hello
+C:   000002BA  C$Hello.c$170$1$30                 Hello
+C:   000002BD  A$Hello$1779                       Hello
+C:   000002BD  C$Hello.c$172$1$30                 Hello
+C:   000002BF  A$Hello$1782                       Hello
+C:   000002BF  C$Hello.c$173$1$30                 Hello
+C:   000002BF  XG$PORT_INIT$0$0                   Hello
+C:   000002C0  A$Hello$1797                       Hello
+C:   000002C0  C$Hello.c$181$1$30                 Hello
+C:   000002C0  C$Hello.c$185$1$32                 Hello
+C:   000002C0  G$UART0_INIT$0$0                   Hello
+C:   000002C0  _UART0_INIT                        Hello
+C:   000002C2  A$Hello$1800                       Hello
+C:   000002C2  C$Hello.c$187$1$32                 Hello
+C:   000002C5  A$Hello$1803                       Hello
+C:   000002C5  C$Hello.c$188$1$32                 Hello
+C:   000002C8  A$Hello$1806                       Hello
+C:   000002C8  C$Hello.c$189$1$32                 Hello
+C:   000002CB  A$Hello$1809                       Hello
+C:   000002CB  C$Hello.c$190$1$32                 Hello
+C:   000002CE  A$Hello$1812                       Hello
+C:   000002CE  C$Hello.c$191$1$32                 Hello
+C:   000002D1  A$Hello$1815                       Hello
+C:   000002D1  C$Hello.c$192$1$32                 Hello
+C:   000002D4  A$Hello$1818                       Hello
+C:   000002D4  C$Hello.c$193$1$32                 Hello
+C:   000002D6  A$Hello$1821                       Hello
+C:   000002D6  C$Hello.c$195$1$32                 Hello
+C:   000002D9  A$Hello$1824                       Hello
+C:   000002D9  C$Hello.c$196$1$32                 Hello
+C:   000002DC  A$Hello$1827                       Hello
+C:   000002DC  C$Hello.c$197$1$32                 Hello
+C:   000002DF  A$Hello$1830                       Hello
+C:   000002DF  C$Hello.c$198$1$32                 Hello
+C:   000002E1  A$Hello$1833                       Hello
+C:   000002E1  C$Hello.c$200$1$32                 Hello
+C:   000002E3  A$Hello$1836                       Hello
+C:   000002E3  C$Hello.c$201$1$32                 Hello
+C:   000002E3  XG$UART0_INIT$0$0                  Hello
+C:   000002EF  _vprintf                           vprintf
+C:   00000308  _printf                            vprintf
 ASxxxx Linker V03.00 + NoICE + sdld,  page 39.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000062    000008C1 =        2241. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000003DF  __print_format                     printf_large
+C:   000008EB  _strlen                            _strlen
+C:   00000903  __gptrget                          _gptrget
+C:   0000091F  __sdcc_external_startup            _startup
+ASxxxx Linker V03.00 + NoICE + sdld,  page 40.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CONST                               00000923    000000EC =         236. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000923  FHello$__str_0$0$0                 Hello
+C:   0000092C  FHello$__str_1$0$0                 Hello
+C:   00000931  FHello$__str_2$0$0                 Hello
+C:   00000939  FHello$__str_3$0$0                 Hello
+C:   0000093D  FHello$__str_4$0$0                 Hello
+C:   00000945  FHello$__str_5$0$0                 Hello
+C:   00000967  FHello$__str_6$0$0                 Hello
+C:   0000096E  FHello$__str_7$0$0                 Hello
+C:   0000098B  FHello$__str_8$0$0                 Hello
+C:   00000994  FHello$__str_9$0$0                 Hello
+C:   0000099C  FHello$__str_10$0$0                Hello
+C:   000009A2  FHello$__str_11$0$0                Hello
+C:   000009AD  FHello$__str_12$0$0                Hello
+C:   000009B1  FHello$__str_13$0$0                Hello
+C:   000009F4  FHello$__str_14$0$0                Hello
+C:   000009F6  FHello$__str_15$0$0                Hello
+C:   000009FB  FHello$__str_16$0$0                Hello
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 41.
 
 Files Linked                              [ module(s) ]
 
-C:\Users\John\Documents\MPS\lab1\portIO.rel
+C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.rel
                                           [  ]
 
 
 Libraries Linked                          [ object file ]
 
-C:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtclear.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtxinit.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtxclear.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ vprintf.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ printf_large.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ _strlen.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtstart.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ _gptrget.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ _startup.rel ]
-C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ _bp.rel ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 40.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 42.
 
 User Base Address Definitions
 

@@ -32,6 +32,7 @@
 //#define BAUDRATE  19200       // UART baud rate in bps
 
 __bit SW2press = 0;
+__bit timer0_triggered = 0;
 //-------------------------------------------------------------------------------------------
 // Function PROTOTYPES
 //-------------------------------------------------------------------------------------------
@@ -51,6 +52,8 @@ void main (void)
 //    unsigned int delay1, delay2 = 0;
 //    unsigned int randnum = 0;
 //    unsigned int ones, tenths = 0;
+	char SFRPAGE_SAVE;
+	int tenths_count = 0;
 
     SFRPAGE = CONFIG_PAGE;
 
@@ -64,21 +67,25 @@ void main (void)
 //  SFRPAGE = UART0_PAGE;       // Direct the output to UART0
                                 // printf() must set its own SFRPAGE to UART0_PAGE
     printf("\033[2J");          // Erase screen and move cursor to the home position.
-    printf("MPS Interrupt Switch Test\n\n\r");
-    printf("Ground /INT0 on P0.2 to generate an interrupt.\n\n\r");
-	
-	printf("Before sfr\n\r");
-    SFRPAGE = CONFIG_PAGE;
-	printf("After sfr\n\r");
-    EX0     = 1;                // Enable Ext Int 0 only after everything is settled.
+    printf("MPS Fuzzy Timer Test\n\n\r");
 
-	printf("Before the loop\n\r");
-    while (1)                   
+    SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+
+    SFRPAGE = CONFIG_PAGE;
+    EX0     = 1;                // Enable Ext Int 0 only after everything is settled.
+	SFRPAGE = SFRPAGE_SAVE; 	//Restore SFR Page
+
+	while (1)                   
     {	
-		printf("In this loop\n\r");
     	if(SW2press){
-    		printf("/INT0 has been grounded!\n\n\r");
+    		printf("Fuzzy time elapsed since last press: %d", tenths_count);
+    		tenths_count = 0;
     		SW2press = 0;
+    	}
+
+    	if(timer0_triggered){
+    		tenths_count++;
+    		timer0_triggered = 0;
     	}
     }
 }
@@ -95,9 +102,13 @@ void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address
 // Priority Order number in Table 11.4 in the 8051 reference manual.
 {
     SW2press = 1;
-	printf("/INT0 has been grounded here!\n\n\r");
+	//printf("/INT0 has been grounded here!\n\n\r");
 }
 
+void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s has elapsed
+{
+	timer0_triggered = 1;
+}
 //-------------------------------------------------------------------------------------------
 // PORT_Init
 //-------------------------------------------------------------------------------------------

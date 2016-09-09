@@ -1,6 +1,6 @@
                                       1 ;--------------------------------------------------------
                                       2 ; File Created by SDCC : free open source ANSI-C Compiler
-                                      3 ; Version 3.6.0 #9615 (MINGW32)
+                                      3 ; Version 3.6.0 #9615 (MINGW64)
                                       4 ;--------------------------------------------------------
                                       5 	.module Hello
                                       6 	.optsdcc -mmcs51 --model-small
@@ -1276,7 +1276,7 @@
                                    1276 ;------------------------------------------------------------
                            000000  1277 	G$putchar$0$0 ==.
                            000000  1278 	C$putget.h$20$0$0 ==.
-                                   1279 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:20: void putchar(char c)
+                                   1279 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:20: void putchar(char c)
                                    1280 ;	-----------------------------------------
                                    1281 ;	 function putchar
                                    1282 ;	-----------------------------------------
@@ -1291,15 +1291,15 @@
                            000000  1291 	ar0 = 0x00
       000000 AF 82            [24] 1292 	mov	r7,dpl
                            000002  1293 	C$putget.h$22$1$15 ==.
-                                   1294 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:22: while(!TI0); 
+                                   1294 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:22: while(!TI0); 
       000002                       1295 00101$:
                            000002  1296 	C$putget.h$23$1$15 ==.
-                                   1297 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:23: TI0=0;
+                                   1297 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:23: TI0=0;
       000002 10 99 02         [24] 1298 	jbc	_TI0,00112$
       000005 80 FB            [24] 1299 	sjmp	00101$
       000007                       1300 00112$:
                            000007  1301 	C$putget.h$24$1$15 ==.
-                                   1302 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:24: SBUF0 = c;
+                                   1302 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:24: SBUF0 = c;
       000007 8F 99            [24] 1303 	mov	_SBUF0,r7
                            000009  1304 	C$putget.h$25$1$15 ==.
                            000009  1305 	XG$putchar$0$0 ==.
@@ -1311,27 +1311,27 @@
                                    1311 ;------------------------------------------------------------
                            00000A  1312 	G$getchar$0$0 ==.
                            00000A  1313 	C$putget.h$30$1$15 ==.
-                                   1314 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:30: char getchar(void)
+                                   1314 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:30: char getchar(void)
                                    1315 ;	-----------------------------------------
                                    1316 ;	 function getchar
                                    1317 ;	-----------------------------------------
       00000A                       1318 _getchar:
                            00000A  1319 	C$putget.h$33$1$17 ==.
-                                   1320 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:33: while(!RI0);
+                                   1320 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:33: while(!RI0);
       00000A                       1321 00101$:
                            00000A  1322 	C$putget.h$34$1$17 ==.
-                                   1323 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:34: RI0 =0;
+                                   1323 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:34: RI0 =0;
       00000A 10 98 02         [24] 1324 	jbc	_RI0,00112$
       00000D 80 FB            [24] 1325 	sjmp	00101$
       00000F                       1326 00112$:
                            00000F  1327 	C$putget.h$35$1$17 ==.
-                                   1328 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:35: c = SBUF0;
+                                   1328 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:35: c = SBUF0;
       00000F 85 99 82         [24] 1329 	mov	dpl,_SBUF0
                            000012  1330 	C$putget.h$37$1$17 ==.
-                                   1331 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:37: putchar(c);    // echo to terminal
+                                   1331 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:37: putchar(c);    // echo to terminal
       000012 12r00r00         [24] 1332 	lcall	_putchar
                            000015  1333 	C$putget.h$38$1$17 ==.
-                                   1334 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:38: return SBUF0;
+                                   1334 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\/putget.h:38: return SBUF0;
       000015 85 99 82         [24] 1335 	mov	dpl,_SBUF0
                            000018  1336 	C$putget.h$39$1$17 ==.
                            000018  1337 	XG$getchar$0$0 ==.
@@ -1343,31 +1343,31 @@
                                    1343 ;------------------------------------------------------------
                            000019  1344 	G$main$0$0 ==.
                            000019  1345 	C$Hello.c$36$1$17 ==.
-                                   1346 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:36: void main(void)
+                                   1346 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:36: void main(void)
                                    1347 ;	-----------------------------------------
                                    1348 ;	 function main
                                    1349 ;	-----------------------------------------
       000019                       1350 _main:
                            000019  1351 	C$Hello.c$40$1$23 ==.
-                                   1352 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:40: WDTCN = 0xDE;                       // Disable the watchdog timer
+                                   1352 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:40: WDTCN = 0xDE;                       // Disable the watchdog timer
       000019 75 FF DE         [24] 1353 	mov	_WDTCN,#0xde
                            00001C  1354 	C$Hello.c$41$1$23 ==.
-                                   1355 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:41: WDTCN = 0xAD;
+                                   1355 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:41: WDTCN = 0xAD;
       00001C 75 FF AD         [24] 1356 	mov	_WDTCN,#0xad
                            00001F  1357 	C$Hello.c$43$1$23 ==.
-                                   1358 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:43: PORT_INIT();                        // Initialize the Crossbar and GPIO
+                                   1358 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:43: PORT_INIT();                        // Initialize the Crossbar and GPIO
       00001F 12r02r47         [24] 1359 	lcall	_PORT_INIT
                            000022  1360 	C$Hello.c$44$1$23 ==.
-                                   1361 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:44: SYSCLK_INIT();                      // Initialize the oscillator
+                                   1361 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:44: SYSCLK_INIT();                      // Initialize the oscillator
       000022 12r01rF1         [24] 1362 	lcall	_SYSCLK_INIT
                            000025  1363 	C$Hello.c$45$1$23 ==.
-                                   1364 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:45: UART0_INIT();                       // Initialize UART0
+                                   1364 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:45: UART0_INIT();                       // Initialize UART0
       000025 12r02r5E         [24] 1365 	lcall	_UART0_INIT
                            000028  1366 	C$Hello.c$47$1$23 ==.
-                                   1367 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:47: SFRPAGE = UART0_PAGE;               // Direct output to UART0
+                                   1367 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:47: SFRPAGE = UART0_PAGE;               // Direct output to UART0
       000028 75 84 00         [24] 1368 	mov	_SFRPAGE,#0x00
                            00002B  1369 	C$Hello.c$50$1$23 ==.
-                                   1370 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:50: printf("\033[33;44m");              // Yellow text; blue background
+                                   1370 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:50: printf("\033[33;44m");              // Yellow text; blue background
       00002B 74r00            [12] 1371 	mov	a,#___str_0
       00002D C0 E0            [24] 1372 	push	acc
       00002F 74s00            [12] 1373 	mov	a,#(___str_0 >> 8)
@@ -1379,7 +1379,7 @@
       00003C 15 81            [12] 1379 	dec	sp
       00003E 15 81            [12] 1380 	dec	sp
                            000040  1381 	C$Hello.c$51$1$23 ==.
-                                   1382 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:51: printf("\033[2J");                  // Erase screen & move cursor to home position
+                                   1382 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:51: printf("\033[2J");                  // Erase screen & move cursor to home position
       000040 74r09            [12] 1383 	mov	a,#___str_1
       000042 C0 E0            [24] 1384 	push	acc
       000044 74s00            [12] 1385 	mov	a,#(___str_1 >> 8)
@@ -1391,7 +1391,7 @@
       000051 15 81            [12] 1391 	dec	sp
       000053 15 81            [12] 1392 	dec	sp
                            000055  1393 	C$Hello.c$52$1$23 ==.
-                                   1394 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:52: printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
+                                   1394 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:52: printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
       000055 74r00            [12] 1395 	mov	a,#___str_0
       000057 C0 E0            [24] 1396 	push	acc
       000059 74s00            [12] 1397 	mov	a,#(___str_0 >> 8)
@@ -1403,7 +1403,7 @@
       000066 15 81            [12] 1403 	dec	sp
       000068 15 81            [12] 1404 	dec	sp
                            00006A  1405 	C$Hello.c$55$1$23 ==.
-                                   1406 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:55: printf("\033[12;0H");               // Position cursor to print unprintables
+                                   1406 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:55: printf("\033[12;0H");               // Position cursor to print unprintables
       00006A 74r0E            [12] 1407 	mov	a,#___str_2
       00006C C0 E0            [24] 1408 	push	acc
       00006E 74s00            [12] 1409 	mov	a,#(___str_2 >> 8)
@@ -1415,7 +1415,7 @@
       00007B 15 81            [12] 1415 	dec	sp
       00007D 15 81            [12] 1416 	dec	sp
                            00007F  1417 	C$Hello.c$56$1$23 ==.
-                                   1418 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:56: printf("\033[s");                   // Store current location
+                                   1418 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:56: printf("\033[s");                   // Store current location
       00007F 74r16            [12] 1419 	mov	a,#___str_3
       000081 C0 E0            [24] 1420 	push	acc
       000083 74s00            [12] 1421 	mov	a,#(___str_3 >> 8)
@@ -1427,7 +1427,7 @@
       000090 15 81            [12] 1427 	dec	sp
       000092 15 81            [12] 1428 	dec	sp
                            000094  1429 	C$Hello.c$59$1$23 ==.
-                                   1430 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:59: printf("\033[2;25H");               // Position cursor to print instructions
+                                   1430 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:59: printf("\033[2;25H");               // Position cursor to print instructions
       000094 74r1A            [12] 1431 	mov	a,#___str_4
       000096 C0 E0            [24] 1432 	push	acc
       000098 74s00            [12] 1433 	mov	a,#(___str_4 >> 8)
@@ -1439,7 +1439,7 @@
       0000A5 15 81            [12] 1439 	dec	sp
       0000A7 15 81            [12] 1440 	dec	sp
                            0000A9  1441 	C$Hello.c$60$1$23 ==.
-                                   1442 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:60: printf("Type <ESC> to end the program.\n\n\r");
+                                   1442 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:60: printf("Type <ESC> to end the program.\n\n\r");
       0000A9 74r22            [12] 1443 	mov	a,#___str_5
       0000AB C0 E0            [24] 1444 	push	acc
       0000AD 74s00            [12] 1445 	mov	a,#(___str_5 >> 8)
@@ -1451,7 +1451,7 @@
       0000BA 15 81            [12] 1451 	dec	sp
       0000BC 15 81            [12] 1452 	dec	sp
                            0000BE  1453 	C$Hello.c$63$1$23 ==.
-                                   1454 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:63: printf("\033[6;0H");                // Position cursor to print Keyboard character info
+                                   1454 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:63: printf("\033[6;0H");                // Position cursor to print Keyboard character info
       0000BE 74r44            [12] 1455 	mov	a,#___str_6
       0000C0 C0 E0            [24] 1456 	push	acc
       0000C2 74s00            [12] 1457 	mov	a,#(___str_6 >> 8)
@@ -1463,7 +1463,7 @@
       0000CF 15 81            [12] 1463 	dec	sp
       0000D1 15 81            [12] 1464 	dec	sp
                            0000D3  1465 	C$Hello.c$64$1$23 ==.
-                                   1466 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:64: printf("The keyboard character is  .");
+                                   1466 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:64: printf("The keyboard character is  .");
       0000D3 74r4B            [12] 1467 	mov	a,#___str_7
       0000D5 C0 E0            [24] 1468 	push	acc
       0000D7 74s00            [12] 1469 	mov	a,#(___str_7 >> 8)
@@ -1475,7 +1475,7 @@
       0000E4 15 81            [12] 1475 	dec	sp
       0000E6 15 81            [12] 1476 	dec	sp
                            0000E8  1477 	C$Hello.c$66$1$23 ==.
-                                   1478 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:66: printf("\033[12;25r");              // Set scrollable region
+                                   1478 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:66: printf("\033[12;25r");              // Set scrollable region
       0000E8 74r68            [12] 1479 	mov	a,#___str_8
       0000EA C0 E0            [24] 1480 	push	acc
       0000EC 74s00            [12] 1481 	mov	a,#(___str_8 >> 8)
@@ -1487,10 +1487,10 @@
       0000F9 15 81            [12] 1487 	dec	sp
       0000FB 15 81            [12] 1488 	dec	sp
                            0000FD  1489 	C$Hello.c$68$2$24 ==.
-                                   1490 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:68: while(1)
+                                   1490 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:68: while(1)
       0000FD                       1491 00107$:
                            0000FD  1492 	C$Hello.c$71$2$24 ==.
-                                   1493 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:71: printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
+                                   1493 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:71: printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
       0000FD 74r71            [12] 1494 	mov	a,#___str_9
       0000FF C0 E0            [24] 1495 	push	acc
       000101 74s00            [12] 1496 	mov	a,#(___str_9 >> 8)
@@ -1502,7 +1502,7 @@
       00010E 15 81            [12] 1502 	dec	sp
       000110 15 81            [12] 1503 	dec	sp
                            000112  1504 	C$Hello.c$72$2$24 ==.
-                                   1505 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:72: printf("\033[37m");             // White text
+                                   1505 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:72: printf("\033[37m");             // White text
       000112 74r79            [12] 1506 	mov	a,#___str_10
       000114 C0 E0            [24] 1507 	push	acc
       000116 74s00            [12] 1508 	mov	a,#(___str_10 >> 8)
@@ -1514,21 +1514,21 @@
       000123 15 81            [12] 1514 	dec	sp
       000125 15 81            [12] 1515 	dec	sp
                            000127  1516 	C$Hello.c$74$2$24 ==.
-                                   1517 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:74: choice = getchar();
+                                   1517 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:74: choice = getchar();
       000127 12r00r0A         [24] 1518 	lcall	_getchar
       00012A AF 82            [24] 1519 	mov	r7,dpl
                            00012C  1520 	C$Hello.c$76$2$24 ==.
-                                   1521 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:76: P1 |= 0x40;                     // Turn green LED on (alert user program is on)
+                                   1521 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:76: P1 |= 0x40;                     // Turn green LED on (alert user program is on)
       00012C 43 90 40         [24] 1522 	orl	_P1,#0x40
                            00012F  1523 	C$Hello.c$79$2$24 ==.
-                                   1524 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:79: if (choice == '\033'){
+                                   1524 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:79: if (choice == '\033'){
       00012F BF 1B 03         [24] 1525 	cjne	r7,#0x1b,00102$
                            000132  1526 	C$Hello.c$80$3$25 ==.
-                                   1527 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:80: return;
+                                   1527 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:80: return;
       000132 02r01rF0         [24] 1528 	ljmp	00109$
       000135                       1529 00102$:
                            000135  1530 	C$Hello.c$84$2$24 ==.
-                                   1531 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:84: if (!(choice >= '\040' && choice <= '\176')){ 
+                                   1531 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:84: if (!(choice >= '\040' && choice <= '\176')){ 
       000135 BF 20 00         [24] 1532 	cjne	r7,#0x20,00122$
       000138                       1533 00122$:
       000138 40 05            [24] 1534 	jc	00103$
@@ -1537,7 +1537,7 @@
       00013D 50 BE            [24] 1537 	jnc	00107$
       00013F                       1538 00103$:
                            00013F  1539 	C$Hello.c$85$3$26 ==.
-                                   1540 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:85: printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
+                                   1540 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:85: printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
       00013F C0 07            [24] 1541 	push	ar7
       000141 74r7F            [12] 1542 	mov	a,#___str_11
       000143 C0 E0            [24] 1543 	push	acc
@@ -1550,7 +1550,7 @@
       000152 15 81            [12] 1550 	dec	sp
       000154 15 81            [12] 1551 	dec	sp
                            000156  1552 	C$Hello.c$86$3$26 ==.
-                                   1553 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:86: printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
+                                   1553 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:86: printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
       000156 74r8A            [12] 1554 	mov	a,#___str_12
       000158 C0 E0            [24] 1555 	push	acc
       00015A 74s00            [12] 1556 	mov	a,#(___str_12 >> 8)
@@ -1562,7 +1562,7 @@
       000167 15 81            [12] 1562 	dec	sp
       000169 15 81            [12] 1563 	dec	sp
                            00016B  1564 	C$Hello.c$93$3$26 ==.
-                                   1565 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:93: printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
+                                   1565 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:93: printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
       00016B 7E 00            [12] 1566 	mov	r6,#0x00
       00016D C0 06            [24] 1567 	push	ar6
       00016F 74r8E            [12] 1568 	mov	a,#___str_13
@@ -1576,7 +1576,7 @@
       000180 24 FB            [12] 1576 	add	a,#0xfb
       000182 F5 81            [12] 1577 	mov	sp,a
                            000184  1578 	C$Hello.c$95$3$26 ==.
-                                   1579 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:95: printf("\007");                 // Sound bell
+                                   1579 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:95: printf("\007");                 // Sound bell
       000184 74rD1            [12] 1580 	mov	a,#___str_14
       000186 C0 E0            [24] 1581 	push	acc
       000188 74s00            [12] 1582 	mov	a,#(___str_14 >> 8)
@@ -1588,7 +1588,7 @@
       000195 15 81            [12] 1588 	dec	sp
       000197 15 81            [12] 1589 	dec	sp
                            000199  1590 	C$Hello.c$98$3$26 ==.
-                                   1591 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:98: printf("\033[0m");              // Clear formatting
+                                   1591 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:98: printf("\033[0m");              // Clear formatting
       000199 74rD3            [12] 1592 	mov	a,#___str_15
       00019B C0 E0            [24] 1593 	push	acc
       00019D 74s00            [12] 1594 	mov	a,#(___str_15 >> 8)
@@ -1600,7 +1600,7 @@
       0001AA 15 81            [12] 1600 	dec	sp
       0001AC 15 81            [12] 1601 	dec	sp
                            0001AE  1602 	C$Hello.c$99$3$26 ==.
-                                   1603 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:99: printf("\033[33;44m");          // Yellow text; blue background
+                                   1603 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:99: printf("\033[33;44m");          // Yellow text; blue background
       0001AE 74r00            [12] 1604 	mov	a,#___str_0
       0001B0 C0 E0            [24] 1605 	push	acc
       0001B2 74s00            [12] 1606 	mov	a,#(___str_0 >> 8)
@@ -1612,7 +1612,7 @@
       0001BF 15 81            [12] 1612 	dec	sp
       0001C1 15 81            [12] 1613 	dec	sp
                            0001C3  1614 	C$Hello.c$102$3$26 ==.
-                                   1615 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:102: printf("\033[s");               // Overwrite saved cursor info
+                                   1615 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:102: printf("\033[s");               // Overwrite saved cursor info
       0001C3 74r16            [12] 1616 	mov	a,#___str_3
       0001C5 C0 E0            [24] 1617 	push	acc
       0001C7 74s00            [12] 1618 	mov	a,#(___str_3 >> 8)
@@ -1624,7 +1624,7 @@
       0001D4 15 81            [12] 1624 	dec	sp
       0001D6 15 81            [12] 1625 	dec	sp
                            0001D8  1626 	C$Hello.c$106$3$26 ==.
-                                   1627 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:106: printf("\033[6;27H ");          // Move cursor and print space in the printable character location
+                                   1627 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:106: printf("\033[6;27H ");          // Move cursor and print space in the printable character location
       0001D8 74rD8            [12] 1628 	mov	a,#___str_16
       0001DA C0 E0            [24] 1629 	push	acc
       0001DC 74s00            [12] 1630 	mov	a,#(___str_16 >> 8)
@@ -1648,22 +1648,22 @@
                                    1648 ;------------------------------------------------------------
                            0001F1  1649 	G$SYSCLK_INIT$0$0 ==.
                            0001F1  1650 	C$Hello.c$122$1$23 ==.
-                                   1651 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:122: void SYSCLK_INIT(void)
+                                   1651 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:122: void SYSCLK_INIT(void)
                                    1652 ;	-----------------------------------------
                                    1653 ;	 function SYSCLK_INIT
                                    1654 ;	-----------------------------------------
       0001F1                       1655 _SYSCLK_INIT:
                            0001F1  1656 	C$Hello.c$127$1$28 ==.
-                                   1657 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:127: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+                                   1657 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:127: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
       0001F1 AF 84            [24] 1658 	mov	r7,_SFRPAGE
                            0001F3  1659 	C$Hello.c$129$1$28 ==.
-                                   1660 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:129: SFRPAGE = CONFIG_PAGE;
+                                   1660 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:129: SFRPAGE = CONFIG_PAGE;
       0001F3 75 84 0F         [24] 1661 	mov	_SFRPAGE,#0x0f
                            0001F6  1662 	C$Hello.c$130$1$28 ==.
-                                   1663 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:130: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
+                                   1663 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:130: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
       0001F6 75 8C 67         [24] 1664 	mov	_OSCXCN,#0x67
                            0001F9  1665 	C$Hello.c$131$1$28 ==.
-                                   1666 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:131: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
+                                   1666 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:131: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
       0001F9 7D 00            [12] 1667 	mov	r5,#0x00
       0001FB 7E 01            [12] 1668 	mov	r6,#0x01
       0001FD                       1669 00111$:
@@ -1675,45 +1675,45 @@
       000203 4E               [12] 1675 	orl	a,r6
       000204 70 F7            [24] 1676 	jnz	00111$
                            000206  1677 	C$Hello.c$132$1$28 ==.
-                                   1678 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:132: while(!(OSCXCN & 0x80));
+                                   1678 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:132: while(!(OSCXCN & 0x80));
       000206                       1679 00102$:
       000206 E5 8C            [12] 1680 	mov	a,_OSCXCN
       000208 30 E7 FB         [24] 1681 	jnb	acc.7,00102$
                            00020B  1682 	C$Hello.c$133$1$28 ==.
-                                   1683 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:133: CLKSEL  = 0x01;
+                                   1683 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:133: CLKSEL  = 0x01;
       00020B 75 97 01         [24] 1684 	mov	_CLKSEL,#0x01
                            00020E  1685 	C$Hello.c$134$1$28 ==.
-                                   1686 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:134: OSCICN  = 0x00;
+                                   1686 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:134: OSCICN  = 0x00;
       00020E 75 8A 00         [24] 1687 	mov	_OSCICN,#0x00
                            000211  1688 	C$Hello.c$136$1$28 ==.
-                                   1689 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:136: SFRPAGE = CONFIG_PAGE;
+                                   1689 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:136: SFRPAGE = CONFIG_PAGE;
       000211 75 84 0F         [24] 1690 	mov	_SFRPAGE,#0x0f
                            000214  1691 	C$Hello.c$137$1$28 ==.
-                                   1692 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:137: PLL0CN  = 0x04;
+                                   1692 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:137: PLL0CN  = 0x04;
       000214 75 89 04         [24] 1693 	mov	_PLL0CN,#0x04
                            000217  1694 	C$Hello.c$138$1$28 ==.
-                                   1695 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:138: SFRPAGE = LEGACY_PAGE;
+                                   1695 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:138: SFRPAGE = LEGACY_PAGE;
       000217 75 84 00         [24] 1696 	mov	_SFRPAGE,#0x00
                            00021A  1697 	C$Hello.c$139$1$28 ==.
-                                   1698 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:139: FLSCL   = 0x10;
+                                   1698 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:139: FLSCL   = 0x10;
       00021A 75 B7 10         [24] 1699 	mov	_FLSCL,#0x10
                            00021D  1700 	C$Hello.c$140$1$28 ==.
-                                   1701 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:140: SFRPAGE = CONFIG_PAGE;
+                                   1701 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:140: SFRPAGE = CONFIG_PAGE;
       00021D 75 84 0F         [24] 1702 	mov	_SFRPAGE,#0x0f
                            000220  1703 	C$Hello.c$141$1$28 ==.
-                                   1704 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:141: PLL0CN |= 0x01;
+                                   1704 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:141: PLL0CN |= 0x01;
       000220 43 89 01         [24] 1705 	orl	_PLL0CN,#0x01
                            000223  1706 	C$Hello.c$142$1$28 ==.
-                                   1707 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:142: PLL0DIV = 0x04;
+                                   1707 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:142: PLL0DIV = 0x04;
       000223 75 8D 04         [24] 1708 	mov	_PLL0DIV,#0x04
                            000226  1709 	C$Hello.c$143$1$28 ==.
-                                   1710 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:143: PLL0FLT = 0x01;
+                                   1710 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:143: PLL0FLT = 0x01;
       000226 75 8F 01         [24] 1711 	mov	_PLL0FLT,#0x01
                            000229  1712 	C$Hello.c$144$1$28 ==.
-                                   1713 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:144: PLL0MUL = 0x09;
+                                   1713 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:144: PLL0MUL = 0x09;
       000229 75 8E 09         [24] 1714 	mov	_PLL0MUL,#0x09
                            00022C  1715 	C$Hello.c$145$1$28 ==.
-                                   1716 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:145: for(i=0; i < 256; i++);
+                                   1716 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:145: for(i=0; i < 256; i++);
       00022C 7D 00            [12] 1717 	mov	r5,#0x00
       00022E 7E 01            [12] 1718 	mov	r6,#0x01
       000230                       1719 00114$:
@@ -1725,18 +1725,18 @@
       000236 4E               [12] 1725 	orl	a,r6
       000237 70 F7            [24] 1726 	jnz	00114$
                            000239  1727 	C$Hello.c$146$1$28 ==.
-                                   1728 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:146: PLL0CN |= 0x02;
+                                   1728 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:146: PLL0CN |= 0x02;
       000239 43 89 02         [24] 1729 	orl	_PLL0CN,#0x02
                            00023C  1730 	C$Hello.c$147$1$28 ==.
-                                   1731 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:147: while(!(PLL0CN & 0x10));
+                                   1731 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:147: while(!(PLL0CN & 0x10));
       00023C                       1732 00106$:
       00023C E5 89            [12] 1733 	mov	a,_PLL0CN
       00023E 30 E4 FB         [24] 1734 	jnb	acc.4,00106$
                            000241  1735 	C$Hello.c$148$1$28 ==.
-                                   1736 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:148: CLKSEL  = 0x02;
+                                   1736 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:148: CLKSEL  = 0x02;
       000241 75 97 02         [24] 1737 	mov	_CLKSEL,#0x02
                            000244  1738 	C$Hello.c$150$1$28 ==.
-                                   1739 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:150: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+                                   1739 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:150: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
       000244 8F 84            [24] 1740 	mov	_SFRPAGE,r7
                            000246  1741 	C$Hello.c$151$1$28 ==.
                            000246  1742 	XG$SYSCLK_INIT$0$0 ==.
@@ -1748,34 +1748,34 @@
                                    1748 ;------------------------------------------------------------
                            000247  1749 	G$PORT_INIT$0$0 ==.
                            000247  1750 	C$Hello.c$159$1$28 ==.
-                                   1751 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:159: void PORT_INIT(void)
+                                   1751 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:159: void PORT_INIT(void)
                                    1752 ;	-----------------------------------------
                                    1753 ;	 function PORT_INIT
                                    1754 ;	-----------------------------------------
       000247                       1755 _PORT_INIT:
                            000247  1756 	C$Hello.c$163$1$30 ==.
-                                   1757 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:163: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+                                   1757 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:163: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
       000247 AF 84            [24] 1758 	mov	r7,_SFRPAGE
                            000249  1759 	C$Hello.c$165$1$30 ==.
-                                   1760 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:165: SFRPAGE  = CONFIG_PAGE;
+                                   1760 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:165: SFRPAGE  = CONFIG_PAGE;
       000249 75 84 0F         [24] 1761 	mov	_SFRPAGE,#0x0f
                            00024C  1762 	C$Hello.c$166$1$30 ==.
-                                   1763 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:166: XBR0     = 0x04;                    // Enable UART0
+                                   1763 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:166: XBR0     = 0x04;                    // Enable UART0
       00024C 75 E1 04         [24] 1764 	mov	_XBR0,#0x04
                            00024F  1765 	C$Hello.c$167$1$30 ==.
-                                   1766 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:167: XBR1     = 0x00;
+                                   1766 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:167: XBR1     = 0x00;
       00024F 75 E2 00         [24] 1767 	mov	_XBR1,#0x00
                            000252  1768 	C$Hello.c$168$1$30 ==.
-                                   1769 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:168: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
+                                   1769 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:168: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
       000252 75 E3 40         [24] 1770 	mov	_XBR2,#0x40
                            000255  1771 	C$Hello.c$169$1$30 ==.
-                                   1772 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:169: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
+                                   1772 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:169: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
       000255 43 A4 01         [24] 1773 	orl	_P0MDOUT,#0x01
                            000258  1774 	C$Hello.c$170$1$30 ==.
-                                   1775 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:170: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
+                                   1775 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:170: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
       000258 43 A5 40         [24] 1776 	orl	_P1MDOUT,#0x40
                            00025B  1777 	C$Hello.c$172$1$30 ==.
-                                   1778 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:172: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
+                                   1778 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:172: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
       00025B 8F 84            [24] 1779 	mov	_SFRPAGE,r7
                            00025D  1780 	C$Hello.c$173$1$30 ==.
                            00025D  1781 	XG$PORT_INIT$0$0 ==.
@@ -1787,49 +1787,49 @@
                                    1787 ;------------------------------------------------------------
                            00025E  1788 	G$UART0_INIT$0$0 ==.
                            00025E  1789 	C$Hello.c$181$1$30 ==.
-                                   1790 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:181: void UART0_INIT(void)
+                                   1790 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:181: void UART0_INIT(void)
                                    1791 ;	-----------------------------------------
                                    1792 ;	 function UART0_INIT
                                    1793 ;	-----------------------------------------
       00025E                       1794 _UART0_INIT:
                            00025E  1795 	C$Hello.c$185$1$32 ==.
-                                   1796 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:185: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+                                   1796 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:185: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
       00025E AF 84            [24] 1797 	mov	r7,_SFRPAGE
                            000260  1798 	C$Hello.c$187$1$32 ==.
-                                   1799 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:187: SFRPAGE = TIMER01_PAGE;
+                                   1799 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:187: SFRPAGE = TIMER01_PAGE;
       000260 75 84 00         [24] 1800 	mov	_SFRPAGE,#0x00
                            000263  1801 	C$Hello.c$188$1$32 ==.
-                                   1802 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:188: TMOD   &= ~0xF0;
+                                   1802 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:188: TMOD   &= ~0xF0;
       000263 53 89 0F         [24] 1803 	anl	_TMOD,#0x0f
                            000266  1804 	C$Hello.c$189$1$32 ==.
-                                   1805 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:189: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
+                                   1805 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:189: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
       000266 43 89 20         [24] 1806 	orl	_TMOD,#0x20
                            000269  1807 	C$Hello.c$190$1$32 ==.
-                                   1808 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:190: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
+                                   1808 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:190: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
       000269 75 8D E5         [24] 1809 	mov	_TH1,#0xe5
                            00026C  1810 	C$Hello.c$191$1$32 ==.
-                                   1811 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:191: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
+                                   1811 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:191: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
       00026C 43 8E 10         [24] 1812 	orl	_CKCON,#0x10
                            00026F  1813 	C$Hello.c$192$1$32 ==.
-                                   1814 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:192: TL1     = TH1;
+                                   1814 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:192: TL1     = TH1;
       00026F 85 8D 8B         [24] 1815 	mov	_TL1,_TH1
                            000272  1816 	C$Hello.c$193$1$32 ==.
-                                   1817 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:193: TR1     = 1;                        // Start Timer1
+                                   1817 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:193: TR1     = 1;                        // Start Timer1
       000272 D2 8E            [12] 1818 	setb	_TR1
                            000274  1819 	C$Hello.c$195$1$32 ==.
-                                   1820 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:195: SFRPAGE = UART0_PAGE;
+                                   1820 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:195: SFRPAGE = UART0_PAGE;
       000274 75 84 00         [24] 1821 	mov	_SFRPAGE,#0x00
                            000277  1822 	C$Hello.c$196$1$32 ==.
-                                   1823 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:196: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
+                                   1823 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:196: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
       000277 75 98 50         [24] 1824 	mov	_SCON0,#0x50
                            00027A  1825 	C$Hello.c$197$1$32 ==.
-                                   1826 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:197: SSTA0   = 0x10;                     // SMOD0 = 1
+                                   1826 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:197: SSTA0   = 0x10;                     // SMOD0 = 1
       00027A 75 91 10         [24] 1827 	mov	_SSTA0,#0x10
                            00027D  1828 	C$Hello.c$198$1$32 ==.
-                                   1829 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:198: TI0     = 1;                        // Indicate TX0 ready
+                                   1829 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:198: TI0     = 1;                        // Indicate TX0 ready
       00027D D2 99            [12] 1830 	setb	_TI0
                            00027F  1831 	C$Hello.c$200$1$32 ==.
-                                   1832 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:200: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+                                   1832 ;	C:\Users\Alex\Documents\GitHub\mps\lab1\Hello.c:200: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
       00027F 8F 84            [24] 1833 	mov	_SFRPAGE,r7
                            000281  1834 	C$Hello.c$201$1$32 ==.
                            000281  1835 	XG$UART0_INIT$0$0 ==.
