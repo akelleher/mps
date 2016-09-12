@@ -37,6 +37,7 @@ void main(void)
 {
     char choice;
 
+
     WDTCN = 0xDE;                       // Disable the watchdog timer
     WDTCN = 0xAD;
 
@@ -49,7 +50,7 @@ void main(void)
     // Reset screen
     printf("\033[33;44m");              // Yellow text; blue background
     printf("\033[2J");                  // Erase screen & move cursor to home position
-    printf("\033[33;44m");              // Yellow text; blue background
+    printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
     
     // Store location for unprintable notifaction
     printf("\033[12;0H");               // Position cursor to print unprintables
@@ -62,6 +63,7 @@ void main(void)
     // Print printable character prompt (leave a space for the actual character)
     printf("\033[6;0H");                // Position cursor to print Keyboard character info
     printf("The keyboard character is  .");
+
 
     printf("\033[12;25r");              // Set scrollable region
 

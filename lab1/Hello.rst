@@ -1340,607 +1340,661 @@
                                    1340 ;Allocation info for local variables in function 'main'
                                    1341 ;------------------------------------------------------------
                                    1342 ;choice                    Allocated to registers r7 
-                                   1343 ;------------------------------------------------------------
-                           000019  1344 	G$main$0$0 ==.
-                           000019  1345 	C$Hello.c$36$1$17 ==.
-                                   1346 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:36: void main(void)
-                                   1347 ;	-----------------------------------------
-                                   1348 ;	 function main
-                                   1349 ;	-----------------------------------------
-      00007B                       1350 _main:
-                           000019  1351 	C$Hello.c$40$1$23 ==.
-                                   1352 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:40: WDTCN = 0xDE;                       // Disable the watchdog timer
-      00007B 75 FF DE         [24] 1353 	mov	_WDTCN,#0xde
-                           00001C  1354 	C$Hello.c$41$1$23 ==.
-                                   1355 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:41: WDTCN = 0xAD;
-      00007E 75 FF AD         [24] 1356 	mov	_WDTCN,#0xad
-                           00001F  1357 	C$Hello.c$43$1$23 ==.
-                                   1358 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:43: PORT_INIT();                        // Initialize the Crossbar and GPIO
-      000081 12 02 A9         [24] 1359 	lcall	_PORT_INIT
-                           000022  1360 	C$Hello.c$44$1$23 ==.
-                                   1361 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:44: SYSCLK_INIT();                      // Initialize the oscillator
-      000084 12 02 53         [24] 1362 	lcall	_SYSCLK_INIT
-                           000025  1363 	C$Hello.c$45$1$23 ==.
-                                   1364 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:45: UART0_INIT();                       // Initialize UART0
-      000087 12 02 C0         [24] 1365 	lcall	_UART0_INIT
-                           000028  1366 	C$Hello.c$47$1$23 ==.
-                                   1367 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:47: SFRPAGE = UART0_PAGE;               // Direct output to UART0
-      00008A 75 84 00         [24] 1368 	mov	_SFRPAGE,#0x00
-                           00002B  1369 	C$Hello.c$50$1$23 ==.
-                                   1370 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:50: printf("\033[33;44m");              // Yellow text; blue background
-      00008D 74 23            [12] 1371 	mov	a,#___str_0
-      00008F C0 E0            [24] 1372 	push	acc
-      000091 74 09            [12] 1373 	mov	a,#(___str_0 >> 8)
-      000093 C0 E0            [24] 1374 	push	acc
-      000095 74 80            [12] 1375 	mov	a,#0x80
-      000097 C0 E0            [24] 1376 	push	acc
-      000099 12 03 08         [24] 1377 	lcall	_printf
-      00009C 15 81            [12] 1378 	dec	sp
-      00009E 15 81            [12] 1379 	dec	sp
-      0000A0 15 81            [12] 1380 	dec	sp
-                           000040  1381 	C$Hello.c$51$1$23 ==.
-                                   1382 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:51: printf("\033[2J");                  // Erase screen & move cursor to home position
-      0000A2 74 2C            [12] 1383 	mov	a,#___str_1
-      0000A4 C0 E0            [24] 1384 	push	acc
-      0000A6 74 09            [12] 1385 	mov	a,#(___str_1 >> 8)
-      0000A8 C0 E0            [24] 1386 	push	acc
-      0000AA 74 80            [12] 1387 	mov	a,#0x80
-      0000AC C0 E0            [24] 1388 	push	acc
-      0000AE 12 03 08         [24] 1389 	lcall	_printf
-      0000B1 15 81            [12] 1390 	dec	sp
-      0000B3 15 81            [12] 1391 	dec	sp
-      0000B5 15 81            [12] 1392 	dec	sp
-                           000055  1393 	C$Hello.c$52$1$23 ==.
-                                   1394 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:52: printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
-      0000B7 74 23            [12] 1395 	mov	a,#___str_0
-      0000B9 C0 E0            [24] 1396 	push	acc
-      0000BB 74 09            [12] 1397 	mov	a,#(___str_0 >> 8)
-      0000BD C0 E0            [24] 1398 	push	acc
-      0000BF 74 80            [12] 1399 	mov	a,#0x80
-      0000C1 C0 E0            [24] 1400 	push	acc
-      0000C3 12 03 08         [24] 1401 	lcall	_printf
-      0000C6 15 81            [12] 1402 	dec	sp
-      0000C8 15 81            [12] 1403 	dec	sp
-      0000CA 15 81            [12] 1404 	dec	sp
-                           00006A  1405 	C$Hello.c$55$1$23 ==.
-                                   1406 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:55: printf("\033[12;0H");               // Position cursor to print unprintables
-      0000CC 74 31            [12] 1407 	mov	a,#___str_2
-      0000CE C0 E0            [24] 1408 	push	acc
-      0000D0 74 09            [12] 1409 	mov	a,#(___str_2 >> 8)
-      0000D2 C0 E0            [24] 1410 	push	acc
-      0000D4 74 80            [12] 1411 	mov	a,#0x80
-      0000D6 C0 E0            [24] 1412 	push	acc
-      0000D8 12 03 08         [24] 1413 	lcall	_printf
-      0000DB 15 81            [12] 1414 	dec	sp
-      0000DD 15 81            [12] 1415 	dec	sp
-      0000DF 15 81            [12] 1416 	dec	sp
-                           00007F  1417 	C$Hello.c$56$1$23 ==.
-                                   1418 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:56: printf("\033[s");                   // Store current location
-      0000E1 74 39            [12] 1419 	mov	a,#___str_3
-      0000E3 C0 E0            [24] 1420 	push	acc
-      0000E5 74 09            [12] 1421 	mov	a,#(___str_3 >> 8)
-      0000E7 C0 E0            [24] 1422 	push	acc
-      0000E9 74 80            [12] 1423 	mov	a,#0x80
-      0000EB C0 E0            [24] 1424 	push	acc
-      0000ED 12 03 08         [24] 1425 	lcall	_printf
-      0000F0 15 81            [12] 1426 	dec	sp
-      0000F2 15 81            [12] 1427 	dec	sp
-      0000F4 15 81            [12] 1428 	dec	sp
-                           000094  1429 	C$Hello.c$59$1$23 ==.
-                                   1430 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:59: printf("\033[2;25H");               // Position cursor to print instructions
-      0000F6 74 3D            [12] 1431 	mov	a,#___str_4
-      0000F8 C0 E0            [24] 1432 	push	acc
-      0000FA 74 09            [12] 1433 	mov	a,#(___str_4 >> 8)
-      0000FC C0 E0            [24] 1434 	push	acc
-      0000FE 74 80            [12] 1435 	mov	a,#0x80
-      000100 C0 E0            [24] 1436 	push	acc
-      000102 12 03 08         [24] 1437 	lcall	_printf
-      000105 15 81            [12] 1438 	dec	sp
-      000107 15 81            [12] 1439 	dec	sp
-      000109 15 81            [12] 1440 	dec	sp
-                           0000A9  1441 	C$Hello.c$60$1$23 ==.
-                                   1442 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:60: printf("Type <ESC> to end the program.\n\n\r");
-      00010B 74 45            [12] 1443 	mov	a,#___str_5
-      00010D C0 E0            [24] 1444 	push	acc
-      00010F 74 09            [12] 1445 	mov	a,#(___str_5 >> 8)
-      000111 C0 E0            [24] 1446 	push	acc
-      000113 74 80            [12] 1447 	mov	a,#0x80
-      000115 C0 E0            [24] 1448 	push	acc
-      000117 12 03 08         [24] 1449 	lcall	_printf
-      00011A 15 81            [12] 1450 	dec	sp
-      00011C 15 81            [12] 1451 	dec	sp
-      00011E 15 81            [12] 1452 	dec	sp
-                           0000BE  1453 	C$Hello.c$63$1$23 ==.
-                                   1454 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:63: printf("\033[6;0H");                // Position cursor to print Keyboard character info
-      000120 74 67            [12] 1455 	mov	a,#___str_6
-      000122 C0 E0            [24] 1456 	push	acc
-      000124 74 09            [12] 1457 	mov	a,#(___str_6 >> 8)
-      000126 C0 E0            [24] 1458 	push	acc
-      000128 74 80            [12] 1459 	mov	a,#0x80
-      00012A C0 E0            [24] 1460 	push	acc
-      00012C 12 03 08         [24] 1461 	lcall	_printf
-      00012F 15 81            [12] 1462 	dec	sp
-      000131 15 81            [12] 1463 	dec	sp
-      000133 15 81            [12] 1464 	dec	sp
-                           0000D3  1465 	C$Hello.c$64$1$23 ==.
-                                   1466 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:64: printf("The keyboard character is  .");
-      000135 74 6E            [12] 1467 	mov	a,#___str_7
-      000137 C0 E0            [24] 1468 	push	acc
-      000139 74 09            [12] 1469 	mov	a,#(___str_7 >> 8)
-      00013B C0 E0            [24] 1470 	push	acc
-      00013D 74 80            [12] 1471 	mov	a,#0x80
-      00013F C0 E0            [24] 1472 	push	acc
-      000141 12 03 08         [24] 1473 	lcall	_printf
-      000144 15 81            [12] 1474 	dec	sp
-      000146 15 81            [12] 1475 	dec	sp
-      000148 15 81            [12] 1476 	dec	sp
-                           0000E8  1477 	C$Hello.c$66$1$23 ==.
-                                   1478 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:66: printf("\033[12;25r");              // Set scrollable region
-      00014A 74 8B            [12] 1479 	mov	a,#___str_8
-      00014C C0 E0            [24] 1480 	push	acc
-      00014E 74 09            [12] 1481 	mov	a,#(___str_8 >> 8)
-      000150 C0 E0            [24] 1482 	push	acc
-      000152 74 80            [12] 1483 	mov	a,#0x80
-      000154 C0 E0            [24] 1484 	push	acc
-      000156 12 03 08         [24] 1485 	lcall	_printf
-      000159 15 81            [12] 1486 	dec	sp
-      00015B 15 81            [12] 1487 	dec	sp
-      00015D 15 81            [12] 1488 	dec	sp
-                           0000FD  1489 	C$Hello.c$68$2$24 ==.
-                                   1490 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:68: while(1)
-      00015F                       1491 00107$:
-                           0000FD  1492 	C$Hello.c$71$2$24 ==.
-                                   1493 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:71: printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
-      00015F 74 94            [12] 1494 	mov	a,#___str_9
-      000161 C0 E0            [24] 1495 	push	acc
-      000163 74 09            [12] 1496 	mov	a,#(___str_9 >> 8)
-      000165 C0 E0            [24] 1497 	push	acc
-      000167 74 80            [12] 1498 	mov	a,#0x80
-      000169 C0 E0            [24] 1499 	push	acc
-      00016B 12 03 08         [24] 1500 	lcall	_printf
-      00016E 15 81            [12] 1501 	dec	sp
-      000170 15 81            [12] 1502 	dec	sp
-      000172 15 81            [12] 1503 	dec	sp
-                           000112  1504 	C$Hello.c$72$2$24 ==.
-                                   1505 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:72: printf("\033[37m");             // White text
-      000174 74 9C            [12] 1506 	mov	a,#___str_10
-      000176 C0 E0            [24] 1507 	push	acc
-      000178 74 09            [12] 1508 	mov	a,#(___str_10 >> 8)
-      00017A C0 E0            [24] 1509 	push	acc
-      00017C 74 80            [12] 1510 	mov	a,#0x80
-      00017E C0 E0            [24] 1511 	push	acc
-      000180 12 03 08         [24] 1512 	lcall	_printf
-      000183 15 81            [12] 1513 	dec	sp
-      000185 15 81            [12] 1514 	dec	sp
-      000187 15 81            [12] 1515 	dec	sp
-                           000127  1516 	C$Hello.c$74$2$24 ==.
-                                   1517 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:74: choice = getchar();
-      000189 12 00 6C         [24] 1518 	lcall	_getchar
-      00018C AF 82            [24] 1519 	mov	r7,dpl
-                           00012C  1520 	C$Hello.c$76$2$24 ==.
-                                   1521 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:76: P1 |= 0x40;                     // Turn green LED on (alert user program is on)
-      00018E 43 90 40         [24] 1522 	orl	_P1,#0x40
-                           00012F  1523 	C$Hello.c$79$2$24 ==.
-                                   1524 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:79: if (choice == '\033'){
-      000191 BF 1B 03         [24] 1525 	cjne	r7,#0x1b,00102$
-                           000132  1526 	C$Hello.c$80$3$25 ==.
-                                   1527 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:80: return;
-      000194 02 02 52         [24] 1528 	ljmp	00109$
-      000197                       1529 00102$:
-                           000135  1530 	C$Hello.c$84$2$24 ==.
-                                   1531 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:84: if (!(choice >= '\040' && choice <= '\176')){ 
-      000197 BF 20 00         [24] 1532 	cjne	r7,#0x20,00122$
-      00019A                       1533 00122$:
-      00019A 40 05            [24] 1534 	jc	00103$
-      00019C EF               [12] 1535 	mov	a,r7
-      00019D 24 81            [12] 1536 	add	a,#0xff - 0x7e
-      00019F 50 BE            [24] 1537 	jnc	00107$
-      0001A1                       1538 00103$:
-                           00013F  1539 	C$Hello.c$85$3$26 ==.
-                                   1540 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:85: printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
-      0001A1 C0 07            [24] 1541 	push	ar7
-      0001A3 74 A2            [12] 1542 	mov	a,#___str_11
-      0001A5 C0 E0            [24] 1543 	push	acc
-      0001A7 74 09            [12] 1544 	mov	a,#(___str_11 >> 8)
-      0001A9 C0 E0            [24] 1545 	push	acc
-      0001AB 74 80            [12] 1546 	mov	a,#0x80
-      0001AD C0 E0            [24] 1547 	push	acc
-      0001AF 12 03 08         [24] 1548 	lcall	_printf
-      0001B2 15 81            [12] 1549 	dec	sp
-      0001B4 15 81            [12] 1550 	dec	sp
-      0001B6 15 81            [12] 1551 	dec	sp
-                           000156  1552 	C$Hello.c$86$3$26 ==.
-                                   1553 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:86: printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
-      0001B8 74 AD            [12] 1554 	mov	a,#___str_12
-      0001BA C0 E0            [24] 1555 	push	acc
-      0001BC 74 09            [12] 1556 	mov	a,#(___str_12 >> 8)
-      0001BE C0 E0            [24] 1557 	push	acc
-      0001C0 74 80            [12] 1558 	mov	a,#0x80
-      0001C2 C0 E0            [24] 1559 	push	acc
-      0001C4 12 03 08         [24] 1560 	lcall	_printf
-      0001C7 15 81            [12] 1561 	dec	sp
-      0001C9 15 81            [12] 1562 	dec	sp
-      0001CB 15 81            [12] 1563 	dec	sp
-                           00016B  1564 	C$Hello.c$93$3$26 ==.
-                                   1565 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:93: printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
-      0001CD 7E 00            [12] 1566 	mov	r6,#0x00
-      0001CF C0 06            [24] 1567 	push	ar6
-      0001D1 74 B1            [12] 1568 	mov	a,#___str_13
-      0001D3 C0 E0            [24] 1569 	push	acc
-      0001D5 74 09            [12] 1570 	mov	a,#(___str_13 >> 8)
-      0001D7 C0 E0            [24] 1571 	push	acc
-      0001D9 74 80            [12] 1572 	mov	a,#0x80
-      0001DB C0 E0            [24] 1573 	push	acc
-      0001DD 12 03 08         [24] 1574 	lcall	_printf
-      0001E0 E5 81            [12] 1575 	mov	a,sp
-      0001E2 24 FB            [12] 1576 	add	a,#0xfb
-      0001E4 F5 81            [12] 1577 	mov	sp,a
-                           000184  1578 	C$Hello.c$95$3$26 ==.
-                                   1579 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:95: printf("\007");                 // Sound bell
-      0001E6 74 F4            [12] 1580 	mov	a,#___str_14
-      0001E8 C0 E0            [24] 1581 	push	acc
-      0001EA 74 09            [12] 1582 	mov	a,#(___str_14 >> 8)
-      0001EC C0 E0            [24] 1583 	push	acc
-      0001EE 74 80            [12] 1584 	mov	a,#0x80
-      0001F0 C0 E0            [24] 1585 	push	acc
-      0001F2 12 03 08         [24] 1586 	lcall	_printf
-      0001F5 15 81            [12] 1587 	dec	sp
-      0001F7 15 81            [12] 1588 	dec	sp
-      0001F9 15 81            [12] 1589 	dec	sp
-                           000199  1590 	C$Hello.c$98$3$26 ==.
-                                   1591 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:98: printf("\033[0m");              // Clear formatting
-      0001FB 74 F6            [12] 1592 	mov	a,#___str_15
-      0001FD C0 E0            [24] 1593 	push	acc
-      0001FF 74 09            [12] 1594 	mov	a,#(___str_15 >> 8)
-      000201 C0 E0            [24] 1595 	push	acc
-      000203 74 80            [12] 1596 	mov	a,#0x80
-      000205 C0 E0            [24] 1597 	push	acc
-      000207 12 03 08         [24] 1598 	lcall	_printf
-      00020A 15 81            [12] 1599 	dec	sp
-      00020C 15 81            [12] 1600 	dec	sp
-      00020E 15 81            [12] 1601 	dec	sp
-                           0001AE  1602 	C$Hello.c$99$3$26 ==.
-                                   1603 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:99: printf("\033[33;44m");          // Yellow text; blue background
-      000210 74 23            [12] 1604 	mov	a,#___str_0
-      000212 C0 E0            [24] 1605 	push	acc
-      000214 74 09            [12] 1606 	mov	a,#(___str_0 >> 8)
-      000216 C0 E0            [24] 1607 	push	acc
-      000218 74 80            [12] 1608 	mov	a,#0x80
-      00021A C0 E0            [24] 1609 	push	acc
-      00021C 12 03 08         [24] 1610 	lcall	_printf
-      00021F 15 81            [12] 1611 	dec	sp
-      000221 15 81            [12] 1612 	dec	sp
-      000223 15 81            [12] 1613 	dec	sp
-                           0001C3  1614 	C$Hello.c$102$3$26 ==.
-                                   1615 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:102: printf("\033[s");               // Overwrite saved cursor info
-      000225 74 39            [12] 1616 	mov	a,#___str_3
-      000227 C0 E0            [24] 1617 	push	acc
-      000229 74 09            [12] 1618 	mov	a,#(___str_3 >> 8)
-      00022B C0 E0            [24] 1619 	push	acc
-      00022D 74 80            [12] 1620 	mov	a,#0x80
-      00022F C0 E0            [24] 1621 	push	acc
-      000231 12 03 08         [24] 1622 	lcall	_printf
-      000234 15 81            [12] 1623 	dec	sp
-      000236 15 81            [12] 1624 	dec	sp
-      000238 15 81            [12] 1625 	dec	sp
-                           0001D8  1626 	C$Hello.c$106$3$26 ==.
-                                   1627 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:106: printf("\033[6;27H ");          // Move cursor and print space in the printable character location
-      00023A 74 FB            [12] 1628 	mov	a,#___str_16
-      00023C C0 E0            [24] 1629 	push	acc
-      00023E 74 09            [12] 1630 	mov	a,#(___str_16 >> 8)
-      000240 C0 E0            [24] 1631 	push	acc
-      000242 74 80            [12] 1632 	mov	a,#0x80
-      000244 C0 E0            [24] 1633 	push	acc
-      000246 12 03 08         [24] 1634 	lcall	_printf
-      000249 15 81            [12] 1635 	dec	sp
-      00024B 15 81            [12] 1636 	dec	sp
-      00024D 15 81            [12] 1637 	dec	sp
-      00024F 02 01 5F         [24] 1638 	ljmp	00107$
-      000252                       1639 00109$:
-                           0001F0  1640 	C$Hello.c$114$1$23 ==.
-                           0001F0  1641 	XG$main$0$0 ==.
-      000252 22               [24] 1642 	ret
-                                   1643 ;------------------------------------------------------------
-                                   1644 ;Allocation info for local variables in function 'SYSCLK_INIT'
-                                   1645 ;------------------------------------------------------------
-                                   1646 ;i                         Allocated to registers r5 r6 
-                                   1647 ;SFRPAGE_SAVE              Allocated to registers r7 
-                                   1648 ;------------------------------------------------------------
-                           0001F1  1649 	G$SYSCLK_INIT$0$0 ==.
-                           0001F1  1650 	C$Hello.c$122$1$23 ==.
-                                   1651 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:122: void SYSCLK_INIT(void)
-                                   1652 ;	-----------------------------------------
-                                   1653 ;	 function SYSCLK_INIT
-                                   1654 ;	-----------------------------------------
-      000253                       1655 _SYSCLK_INIT:
-                           0001F1  1656 	C$Hello.c$127$1$28 ==.
-                                   1657 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:127: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
-      000253 AF 84            [24] 1658 	mov	r7,_SFRPAGE
-                           0001F3  1659 	C$Hello.c$129$1$28 ==.
-                                   1660 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:129: SFRPAGE = CONFIG_PAGE;
-      000255 75 84 0F         [24] 1661 	mov	_SFRPAGE,#0x0f
-                           0001F6  1662 	C$Hello.c$130$1$28 ==.
-                                   1663 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:130: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
-      000258 75 8C 67         [24] 1664 	mov	_OSCXCN,#0x67
-                           0001F9  1665 	C$Hello.c$131$1$28 ==.
-                                   1666 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:131: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
-      00025B 7D 00            [12] 1667 	mov	r5,#0x00
-      00025D 7E 01            [12] 1668 	mov	r6,#0x01
-      00025F                       1669 00111$:
-      00025F 1D               [12] 1670 	dec	r5
-      000260 BD FF 01         [24] 1671 	cjne	r5,#0xff,00141$
-      000263 1E               [12] 1672 	dec	r6
-      000264                       1673 00141$:
-      000264 ED               [12] 1674 	mov	a,r5
-      000265 4E               [12] 1675 	orl	a,r6
-      000266 70 F7            [24] 1676 	jnz	00111$
-                           000206  1677 	C$Hello.c$132$1$28 ==.
-                                   1678 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:132: while(!(OSCXCN & 0x80));
-      000268                       1679 00102$:
-      000268 E5 8C            [12] 1680 	mov	a,_OSCXCN
-      00026A 30 E7 FB         [24] 1681 	jnb	acc.7,00102$
-                           00020B  1682 	C$Hello.c$133$1$28 ==.
-                                   1683 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:133: CLKSEL  = 0x01;
-      00026D 75 97 01         [24] 1684 	mov	_CLKSEL,#0x01
-                           00020E  1685 	C$Hello.c$134$1$28 ==.
-                                   1686 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:134: OSCICN  = 0x00;
-      000270 75 8A 00         [24] 1687 	mov	_OSCICN,#0x00
-                           000211  1688 	C$Hello.c$136$1$28 ==.
-                                   1689 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:136: SFRPAGE = CONFIG_PAGE;
-      000273 75 84 0F         [24] 1690 	mov	_SFRPAGE,#0x0f
-                           000214  1691 	C$Hello.c$137$1$28 ==.
-                                   1692 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:137: PLL0CN  = 0x04;
-      000276 75 89 04         [24] 1693 	mov	_PLL0CN,#0x04
-                           000217  1694 	C$Hello.c$138$1$28 ==.
-                                   1695 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:138: SFRPAGE = LEGACY_PAGE;
-      000279 75 84 00         [24] 1696 	mov	_SFRPAGE,#0x00
-                           00021A  1697 	C$Hello.c$139$1$28 ==.
-                                   1698 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:139: FLSCL   = 0x10;
-      00027C 75 B7 10         [24] 1699 	mov	_FLSCL,#0x10
-                           00021D  1700 	C$Hello.c$140$1$28 ==.
-                                   1701 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:140: SFRPAGE = CONFIG_PAGE;
-      00027F 75 84 0F         [24] 1702 	mov	_SFRPAGE,#0x0f
-                           000220  1703 	C$Hello.c$141$1$28 ==.
-                                   1704 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:141: PLL0CN |= 0x01;
-      000282 43 89 01         [24] 1705 	orl	_PLL0CN,#0x01
-                           000223  1706 	C$Hello.c$142$1$28 ==.
-                                   1707 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:142: PLL0DIV = 0x04;
-      000285 75 8D 04         [24] 1708 	mov	_PLL0DIV,#0x04
-                           000226  1709 	C$Hello.c$143$1$28 ==.
-                                   1710 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:143: PLL0FLT = 0x01;
-      000288 75 8F 01         [24] 1711 	mov	_PLL0FLT,#0x01
-                           000229  1712 	C$Hello.c$144$1$28 ==.
-                                   1713 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:144: PLL0MUL = 0x09;
-      00028B 75 8E 09         [24] 1714 	mov	_PLL0MUL,#0x09
-                           00022C  1715 	C$Hello.c$145$1$28 ==.
-                                   1716 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:145: for(i=0; i < 256; i++);
-      00028E 7D 00            [12] 1717 	mov	r5,#0x00
-      000290 7E 01            [12] 1718 	mov	r6,#0x01
-      000292                       1719 00114$:
-      000292 1D               [12] 1720 	dec	r5
-      000293 BD FF 01         [24] 1721 	cjne	r5,#0xff,00144$
-      000296 1E               [12] 1722 	dec	r6
-      000297                       1723 00144$:
-      000297 ED               [12] 1724 	mov	a,r5
-      000298 4E               [12] 1725 	orl	a,r6
-      000299 70 F7            [24] 1726 	jnz	00114$
-                           000239  1727 	C$Hello.c$146$1$28 ==.
-                                   1728 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:146: PLL0CN |= 0x02;
-      00029B 43 89 02         [24] 1729 	orl	_PLL0CN,#0x02
-                           00023C  1730 	C$Hello.c$147$1$28 ==.
-                                   1731 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:147: while(!(PLL0CN & 0x10));
-      00029E                       1732 00106$:
-      00029E E5 89            [12] 1733 	mov	a,_PLL0CN
-      0002A0 30 E4 FB         [24] 1734 	jnb	acc.4,00106$
-                           000241  1735 	C$Hello.c$148$1$28 ==.
-                                   1736 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:148: CLKSEL  = 0x02;
-      0002A3 75 97 02         [24] 1737 	mov	_CLKSEL,#0x02
-                           000244  1738 	C$Hello.c$150$1$28 ==.
-                                   1739 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:150: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
-      0002A6 8F 84            [24] 1740 	mov	_SFRPAGE,r7
-                           000246  1741 	C$Hello.c$151$1$28 ==.
-                           000246  1742 	XG$SYSCLK_INIT$0$0 ==.
-      0002A8 22               [24] 1743 	ret
-                                   1744 ;------------------------------------------------------------
-                                   1745 ;Allocation info for local variables in function 'PORT_INIT'
-                                   1746 ;------------------------------------------------------------
-                                   1747 ;SFRPAGE_SAVE              Allocated to registers r7 
-                                   1748 ;------------------------------------------------------------
-                           000247  1749 	G$PORT_INIT$0$0 ==.
-                           000247  1750 	C$Hello.c$159$1$28 ==.
-                                   1751 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:159: void PORT_INIT(void)
-                                   1752 ;	-----------------------------------------
-                                   1753 ;	 function PORT_INIT
-                                   1754 ;	-----------------------------------------
-      0002A9                       1755 _PORT_INIT:
-                           000247  1756 	C$Hello.c$163$1$30 ==.
-                                   1757 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:163: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
-      0002A9 AF 84            [24] 1758 	mov	r7,_SFRPAGE
-                           000249  1759 	C$Hello.c$165$1$30 ==.
-                                   1760 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:165: SFRPAGE  = CONFIG_PAGE;
-      0002AB 75 84 0F         [24] 1761 	mov	_SFRPAGE,#0x0f
-                           00024C  1762 	C$Hello.c$166$1$30 ==.
-                                   1763 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:166: XBR0     = 0x04;                    // Enable UART0
-      0002AE 75 E1 04         [24] 1764 	mov	_XBR0,#0x04
-                           00024F  1765 	C$Hello.c$167$1$30 ==.
-                                   1766 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:167: XBR1     = 0x00;
-      0002B1 75 E2 00         [24] 1767 	mov	_XBR1,#0x00
-                           000252  1768 	C$Hello.c$168$1$30 ==.
-                                   1769 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:168: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
-      0002B4 75 E3 40         [24] 1770 	mov	_XBR2,#0x40
-                           000255  1771 	C$Hello.c$169$1$30 ==.
-                                   1772 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:169: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
-      0002B7 43 A4 01         [24] 1773 	orl	_P0MDOUT,#0x01
-                           000258  1774 	C$Hello.c$170$1$30 ==.
-                                   1775 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:170: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
-      0002BA 43 A5 40         [24] 1776 	orl	_P1MDOUT,#0x40
-                           00025B  1777 	C$Hello.c$172$1$30 ==.
-                                   1778 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:172: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
-      0002BD 8F 84            [24] 1779 	mov	_SFRPAGE,r7
-                           00025D  1780 	C$Hello.c$173$1$30 ==.
-                           00025D  1781 	XG$PORT_INIT$0$0 ==.
-      0002BF 22               [24] 1782 	ret
-                                   1783 ;------------------------------------------------------------
-                                   1784 ;Allocation info for local variables in function 'UART0_INIT'
+                                   1343 ;octal                     Allocated to registers 
+                                   1344 ;------------------------------------------------------------
+                           000019  1345 	G$main$0$0 ==.
+                           000019  1346 	C$Hello.c$36$1$17 ==.
+                                   1347 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:36: void main(void)
+                                   1348 ;	-----------------------------------------
+                                   1349 ;	 function main
+                                   1350 ;	-----------------------------------------
+      00007B                       1351 _main:
+                           000019  1352 	C$Hello.c$42$1$23 ==.
+                                   1353 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:42: WDTCN = 0xDE;                       // Disable the watchdog timer
+      00007B 75 FF DE         [24] 1354 	mov	_WDTCN,#0xde
+                           00001C  1355 	C$Hello.c$43$1$23 ==.
+                                   1356 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:43: WDTCN = 0xAD;
+      00007E 75 FF AD         [24] 1357 	mov	_WDTCN,#0xad
+                           00001F  1358 	C$Hello.c$45$1$23 ==.
+                                   1359 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:45: PORT_INIT();                        // Initialize the Crossbar and GPIO
+      000081 12 02 EF         [24] 1360 	lcall	_PORT_INIT
+                           000022  1361 	C$Hello.c$46$1$23 ==.
+                                   1362 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:46: SYSCLK_INIT();                      // Initialize the oscillator
+      000084 12 02 99         [24] 1363 	lcall	_SYSCLK_INIT
+                           000025  1364 	C$Hello.c$47$1$23 ==.
+                                   1365 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:47: UART0_INIT();                       // Initialize UART0
+      000087 12 03 06         [24] 1366 	lcall	_UART0_INIT
+                           000028  1367 	C$Hello.c$49$1$23 ==.
+                                   1368 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:49: SFRPAGE = UART0_PAGE;               // Direct output to UART0
+      00008A 75 84 00         [24] 1369 	mov	_SFRPAGE,#0x00
+                           00002B  1370 	C$Hello.c$52$1$23 ==.
+                                   1371 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:52: printf("\033[33;44m");              // Yellow text; blue background
+      00008D 74 69            [12] 1372 	mov	a,#___str_0
+      00008F C0 E0            [24] 1373 	push	acc
+      000091 74 09            [12] 1374 	mov	a,#(___str_0 >> 8)
+      000093 C0 E0            [24] 1375 	push	acc
+      000095 74 80            [12] 1376 	mov	a,#0x80
+      000097 C0 E0            [24] 1377 	push	acc
+      000099 12 03 4E         [24] 1378 	lcall	_printf
+      00009C 15 81            [12] 1379 	dec	sp
+      00009E 15 81            [12] 1380 	dec	sp
+      0000A0 15 81            [12] 1381 	dec	sp
+                           000040  1382 	C$Hello.c$53$1$23 ==.
+                                   1383 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:53: printf("\033[2J");                  // Erase screen & move cursor to home position
+      0000A2 74 72            [12] 1384 	mov	a,#___str_1
+      0000A4 C0 E0            [24] 1385 	push	acc
+      0000A6 74 09            [12] 1386 	mov	a,#(___str_1 >> 8)
+      0000A8 C0 E0            [24] 1387 	push	acc
+      0000AA 74 80            [12] 1388 	mov	a,#0x80
+      0000AC C0 E0            [24] 1389 	push	acc
+      0000AE 12 03 4E         [24] 1390 	lcall	_printf
+      0000B1 15 81            [12] 1391 	dec	sp
+      0000B3 15 81            [12] 1392 	dec	sp
+      0000B5 15 81            [12] 1393 	dec	sp
+                           000055  1394 	C$Hello.c$54$1$23 ==.
+                                   1395 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:54: printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
+      0000B7 74 69            [12] 1396 	mov	a,#___str_0
+      0000B9 C0 E0            [24] 1397 	push	acc
+      0000BB 74 09            [12] 1398 	mov	a,#(___str_0 >> 8)
+      0000BD C0 E0            [24] 1399 	push	acc
+      0000BF 74 80            [12] 1400 	mov	a,#0x80
+      0000C1 C0 E0            [24] 1401 	push	acc
+      0000C3 12 03 4E         [24] 1402 	lcall	_printf
+      0000C6 15 81            [12] 1403 	dec	sp
+      0000C8 15 81            [12] 1404 	dec	sp
+      0000CA 15 81            [12] 1405 	dec	sp
+                           00006A  1406 	C$Hello.c$57$1$23 ==.
+                                   1407 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:57: printf("\033[12;0H");               // Position cursor to print unprintables
+      0000CC 74 77            [12] 1408 	mov	a,#___str_2
+      0000CE C0 E0            [24] 1409 	push	acc
+      0000D0 74 09            [12] 1410 	mov	a,#(___str_2 >> 8)
+      0000D2 C0 E0            [24] 1411 	push	acc
+      0000D4 74 80            [12] 1412 	mov	a,#0x80
+      0000D6 C0 E0            [24] 1413 	push	acc
+      0000D8 12 03 4E         [24] 1414 	lcall	_printf
+      0000DB 15 81            [12] 1415 	dec	sp
+      0000DD 15 81            [12] 1416 	dec	sp
+      0000DF 15 81            [12] 1417 	dec	sp
+                           00007F  1418 	C$Hello.c$58$1$23 ==.
+                                   1419 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:58: printf("\033[s");                   // Store current location
+      0000E1 74 7F            [12] 1420 	mov	a,#___str_3
+      0000E3 C0 E0            [24] 1421 	push	acc
+      0000E5 74 09            [12] 1422 	mov	a,#(___str_3 >> 8)
+      0000E7 C0 E0            [24] 1423 	push	acc
+      0000E9 74 80            [12] 1424 	mov	a,#0x80
+      0000EB C0 E0            [24] 1425 	push	acc
+      0000ED 12 03 4E         [24] 1426 	lcall	_printf
+      0000F0 15 81            [12] 1427 	dec	sp
+      0000F2 15 81            [12] 1428 	dec	sp
+      0000F4 15 81            [12] 1429 	dec	sp
+                           000094  1430 	C$Hello.c$61$1$23 ==.
+                                   1431 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:61: printf("\033[2;25H");               // Position cursor to print instructions
+      0000F6 74 83            [12] 1432 	mov	a,#___str_4
+      0000F8 C0 E0            [24] 1433 	push	acc
+      0000FA 74 09            [12] 1434 	mov	a,#(___str_4 >> 8)
+      0000FC C0 E0            [24] 1435 	push	acc
+      0000FE 74 80            [12] 1436 	mov	a,#0x80
+      000100 C0 E0            [24] 1437 	push	acc
+      000102 12 03 4E         [24] 1438 	lcall	_printf
+      000105 15 81            [12] 1439 	dec	sp
+      000107 15 81            [12] 1440 	dec	sp
+      000109 15 81            [12] 1441 	dec	sp
+                           0000A9  1442 	C$Hello.c$62$1$23 ==.
+                                   1443 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:62: printf("Type <ESC> to end the program.\n\n\r");
+      00010B 74 8B            [12] 1444 	mov	a,#___str_5
+      00010D C0 E0            [24] 1445 	push	acc
+      00010F 74 09            [12] 1446 	mov	a,#(___str_5 >> 8)
+      000111 C0 E0            [24] 1447 	push	acc
+      000113 74 80            [12] 1448 	mov	a,#0x80
+      000115 C0 E0            [24] 1449 	push	acc
+      000117 12 03 4E         [24] 1450 	lcall	_printf
+      00011A 15 81            [12] 1451 	dec	sp
+      00011C 15 81            [12] 1452 	dec	sp
+      00011E 15 81            [12] 1453 	dec	sp
+                           0000BE  1454 	C$Hello.c$65$1$23 ==.
+                                   1455 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:65: printf("\033[6;0H");                // Position cursor to print Keyboard character info
+      000120 74 AD            [12] 1456 	mov	a,#___str_6
+      000122 C0 E0            [24] 1457 	push	acc
+      000124 74 09            [12] 1458 	mov	a,#(___str_6 >> 8)
+      000126 C0 E0            [24] 1459 	push	acc
+      000128 74 80            [12] 1460 	mov	a,#0x80
+      00012A C0 E0            [24] 1461 	push	acc
+      00012C 12 03 4E         [24] 1462 	lcall	_printf
+      00012F 15 81            [12] 1463 	dec	sp
+      000131 15 81            [12] 1464 	dec	sp
+      000133 15 81            [12] 1465 	dec	sp
+                           0000D3  1466 	C$Hello.c$66$1$23 ==.
+                                   1467 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:66: printf("The keyboard character is  .");
+      000135 74 B4            [12] 1468 	mov	a,#___str_7
+      000137 C0 E0            [24] 1469 	push	acc
+      000139 74 09            [12] 1470 	mov	a,#(___str_7 >> 8)
+      00013B C0 E0            [24] 1471 	push	acc
+      00013D 74 80            [12] 1472 	mov	a,#0x80
+      00013F C0 E0            [24] 1473 	push	acc
+      000141 12 03 4E         [24] 1474 	lcall	_printf
+      000144 15 81            [12] 1475 	dec	sp
+      000146 15 81            [12] 1476 	dec	sp
+      000148 15 81            [12] 1477 	dec	sp
+                           0000E8  1478 	C$Hello.c$68$1$23 ==.
+                                   1479 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:68: printf("%c%c\n\r",octal,octal);
+      00014A 74 DB            [12] 1480 	mov	a,#0xdb
+      00014C C0 E0            [24] 1481 	push	acc
+      00014E E4               [12] 1482 	clr	a
+      00014F C0 E0            [24] 1483 	push	acc
+      000151 74 DB            [12] 1484 	mov	a,#0xdb
+      000153 C0 E0            [24] 1485 	push	acc
+      000155 E4               [12] 1486 	clr	a
+      000156 C0 E0            [24] 1487 	push	acc
+      000158 74 D1            [12] 1488 	mov	a,#___str_8
+      00015A C0 E0            [24] 1489 	push	acc
+      00015C 74 09            [12] 1490 	mov	a,#(___str_8 >> 8)
+      00015E C0 E0            [24] 1491 	push	acc
+      000160 74 80            [12] 1492 	mov	a,#0x80
+      000162 C0 E0            [24] 1493 	push	acc
+      000164 12 03 4E         [24] 1494 	lcall	_printf
+      000167 E5 81            [12] 1495 	mov	a,sp
+      000169 24 F9            [12] 1496 	add	a,#0xf9
+      00016B F5 81            [12] 1497 	mov	sp,a
+                           00010B  1498 	C$Hello.c$70$1$23 ==.
+                                   1499 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:70: printf("%c\n\r%c",octal,octal);
+      00016D 74 DB            [12] 1500 	mov	a,#0xdb
+      00016F C0 E0            [24] 1501 	push	acc
+      000171 E4               [12] 1502 	clr	a
+      000172 C0 E0            [24] 1503 	push	acc
+      000174 74 DB            [12] 1504 	mov	a,#0xdb
+      000176 C0 E0            [24] 1505 	push	acc
+      000178 E4               [12] 1506 	clr	a
+      000179 C0 E0            [24] 1507 	push	acc
+      00017B 74 D8            [12] 1508 	mov	a,#___str_9
+      00017D C0 E0            [24] 1509 	push	acc
+      00017F 74 09            [12] 1510 	mov	a,#(___str_9 >> 8)
+      000181 C0 E0            [24] 1511 	push	acc
+      000183 74 80            [12] 1512 	mov	a,#0x80
+      000185 C0 E0            [24] 1513 	push	acc
+      000187 12 03 4E         [24] 1514 	lcall	_printf
+      00018A E5 81            [12] 1515 	mov	a,sp
+      00018C 24 F9            [12] 1516 	add	a,#0xf9
+      00018E F5 81            [12] 1517 	mov	sp,a
+                           00012E  1518 	C$Hello.c$73$1$23 ==.
+                                   1519 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:73: printf("\033[12;25r");              // Set scrollable region
+      000190 74 DF            [12] 1520 	mov	a,#___str_10
+      000192 C0 E0            [24] 1521 	push	acc
+      000194 74 09            [12] 1522 	mov	a,#(___str_10 >> 8)
+      000196 C0 E0            [24] 1523 	push	acc
+      000198 74 80            [12] 1524 	mov	a,#0x80
+      00019A C0 E0            [24] 1525 	push	acc
+      00019C 12 03 4E         [24] 1526 	lcall	_printf
+      00019F 15 81            [12] 1527 	dec	sp
+      0001A1 15 81            [12] 1528 	dec	sp
+      0001A3 15 81            [12] 1529 	dec	sp
+                           000143  1530 	C$Hello.c$75$2$24 ==.
+                                   1531 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:75: while(1)
+      0001A5                       1532 00107$:
+                           000143  1533 	C$Hello.c$78$2$24 ==.
+                                   1534 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:78: printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
+      0001A5 74 E8            [12] 1535 	mov	a,#___str_11
+      0001A7 C0 E0            [24] 1536 	push	acc
+      0001A9 74 09            [12] 1537 	mov	a,#(___str_11 >> 8)
+      0001AB C0 E0            [24] 1538 	push	acc
+      0001AD 74 80            [12] 1539 	mov	a,#0x80
+      0001AF C0 E0            [24] 1540 	push	acc
+      0001B1 12 03 4E         [24] 1541 	lcall	_printf
+      0001B4 15 81            [12] 1542 	dec	sp
+      0001B6 15 81            [12] 1543 	dec	sp
+      0001B8 15 81            [12] 1544 	dec	sp
+                           000158  1545 	C$Hello.c$79$2$24 ==.
+                                   1546 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:79: printf("\033[37m");             // White text
+      0001BA 74 F0            [12] 1547 	mov	a,#___str_12
+      0001BC C0 E0            [24] 1548 	push	acc
+      0001BE 74 09            [12] 1549 	mov	a,#(___str_12 >> 8)
+      0001C0 C0 E0            [24] 1550 	push	acc
+      0001C2 74 80            [12] 1551 	mov	a,#0x80
+      0001C4 C0 E0            [24] 1552 	push	acc
+      0001C6 12 03 4E         [24] 1553 	lcall	_printf
+      0001C9 15 81            [12] 1554 	dec	sp
+      0001CB 15 81            [12] 1555 	dec	sp
+      0001CD 15 81            [12] 1556 	dec	sp
+                           00016D  1557 	C$Hello.c$81$2$24 ==.
+                                   1558 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:81: choice = getchar();
+      0001CF 12 00 6C         [24] 1559 	lcall	_getchar
+      0001D2 AF 82            [24] 1560 	mov	r7,dpl
+                           000172  1561 	C$Hello.c$83$2$24 ==.
+                                   1562 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:83: P1 |= 0x40;                     // Turn green LED on (alert user program is on)
+      0001D4 43 90 40         [24] 1563 	orl	_P1,#0x40
+                           000175  1564 	C$Hello.c$86$2$24 ==.
+                                   1565 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:86: if (choice == '\033'){
+      0001D7 BF 1B 03         [24] 1566 	cjne	r7,#0x1b,00102$
+                           000178  1567 	C$Hello.c$87$3$25 ==.
+                                   1568 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:87: return;
+      0001DA 02 02 98         [24] 1569 	ljmp	00109$
+      0001DD                       1570 00102$:
+                           00017B  1571 	C$Hello.c$91$2$24 ==.
+                                   1572 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:91: if (!(choice >= '\040' && choice <= '\176')){ 
+      0001DD BF 20 00         [24] 1573 	cjne	r7,#0x20,00122$
+      0001E0                       1574 00122$:
+      0001E0 40 05            [24] 1575 	jc	00103$
+      0001E2 EF               [12] 1576 	mov	a,r7
+      0001E3 24 81            [12] 1577 	add	a,#0xff - 0x7e
+      0001E5 50 BE            [24] 1578 	jnc	00107$
+      0001E7                       1579 00103$:
+                           000185  1580 	C$Hello.c$92$3$26 ==.
+                                   1581 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:92: printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
+      0001E7 C0 07            [24] 1582 	push	ar7
+      0001E9 74 F6            [12] 1583 	mov	a,#___str_13
+      0001EB C0 E0            [24] 1584 	push	acc
+      0001ED 74 09            [12] 1585 	mov	a,#(___str_13 >> 8)
+      0001EF C0 E0            [24] 1586 	push	acc
+      0001F1 74 80            [12] 1587 	mov	a,#0x80
+      0001F3 C0 E0            [24] 1588 	push	acc
+      0001F5 12 03 4E         [24] 1589 	lcall	_printf
+      0001F8 15 81            [12] 1590 	dec	sp
+      0001FA 15 81            [12] 1591 	dec	sp
+      0001FC 15 81            [12] 1592 	dec	sp
+                           00019C  1593 	C$Hello.c$93$3$26 ==.
+                                   1594 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:93: printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
+      0001FE 74 01            [12] 1595 	mov	a,#___str_14
+      000200 C0 E0            [24] 1596 	push	acc
+      000202 74 0A            [12] 1597 	mov	a,#(___str_14 >> 8)
+      000204 C0 E0            [24] 1598 	push	acc
+      000206 74 80            [12] 1599 	mov	a,#0x80
+      000208 C0 E0            [24] 1600 	push	acc
+      00020A 12 03 4E         [24] 1601 	lcall	_printf
+      00020D 15 81            [12] 1602 	dec	sp
+      00020F 15 81            [12] 1603 	dec	sp
+      000211 15 81            [12] 1604 	dec	sp
+                           0001B1  1605 	C$Hello.c$100$3$26 ==.
+                                   1606 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:100: printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
+      000213 7E 00            [12] 1607 	mov	r6,#0x00
+      000215 C0 06            [24] 1608 	push	ar6
+      000217 74 05            [12] 1609 	mov	a,#___str_15
+      000219 C0 E0            [24] 1610 	push	acc
+      00021B 74 0A            [12] 1611 	mov	a,#(___str_15 >> 8)
+      00021D C0 E0            [24] 1612 	push	acc
+      00021F 74 80            [12] 1613 	mov	a,#0x80
+      000221 C0 E0            [24] 1614 	push	acc
+      000223 12 03 4E         [24] 1615 	lcall	_printf
+      000226 E5 81            [12] 1616 	mov	a,sp
+      000228 24 FB            [12] 1617 	add	a,#0xfb
+      00022A F5 81            [12] 1618 	mov	sp,a
+                           0001CA  1619 	C$Hello.c$102$3$26 ==.
+                                   1620 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:102: printf("\007");                 // Sound bell
+      00022C 74 48            [12] 1621 	mov	a,#___str_16
+      00022E C0 E0            [24] 1622 	push	acc
+      000230 74 0A            [12] 1623 	mov	a,#(___str_16 >> 8)
+      000232 C0 E0            [24] 1624 	push	acc
+      000234 74 80            [12] 1625 	mov	a,#0x80
+      000236 C0 E0            [24] 1626 	push	acc
+      000238 12 03 4E         [24] 1627 	lcall	_printf
+      00023B 15 81            [12] 1628 	dec	sp
+      00023D 15 81            [12] 1629 	dec	sp
+      00023F 15 81            [12] 1630 	dec	sp
+                           0001DF  1631 	C$Hello.c$105$3$26 ==.
+                                   1632 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:105: printf("\033[0m");              // Clear formatting
+      000241 74 4A            [12] 1633 	mov	a,#___str_17
+      000243 C0 E0            [24] 1634 	push	acc
+      000245 74 0A            [12] 1635 	mov	a,#(___str_17 >> 8)
+      000247 C0 E0            [24] 1636 	push	acc
+      000249 74 80            [12] 1637 	mov	a,#0x80
+      00024B C0 E0            [24] 1638 	push	acc
+      00024D 12 03 4E         [24] 1639 	lcall	_printf
+      000250 15 81            [12] 1640 	dec	sp
+      000252 15 81            [12] 1641 	dec	sp
+      000254 15 81            [12] 1642 	dec	sp
+                           0001F4  1643 	C$Hello.c$106$3$26 ==.
+                                   1644 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:106: printf("\033[33;44m");          // Yellow text; blue background
+      000256 74 69            [12] 1645 	mov	a,#___str_0
+      000258 C0 E0            [24] 1646 	push	acc
+      00025A 74 09            [12] 1647 	mov	a,#(___str_0 >> 8)
+      00025C C0 E0            [24] 1648 	push	acc
+      00025E 74 80            [12] 1649 	mov	a,#0x80
+      000260 C0 E0            [24] 1650 	push	acc
+      000262 12 03 4E         [24] 1651 	lcall	_printf
+      000265 15 81            [12] 1652 	dec	sp
+      000267 15 81            [12] 1653 	dec	sp
+      000269 15 81            [12] 1654 	dec	sp
+                           000209  1655 	C$Hello.c$109$3$26 ==.
+                                   1656 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:109: printf("\033[s");               // Overwrite saved cursor info
+      00026B 74 7F            [12] 1657 	mov	a,#___str_3
+      00026D C0 E0            [24] 1658 	push	acc
+      00026F 74 09            [12] 1659 	mov	a,#(___str_3 >> 8)
+      000271 C0 E0            [24] 1660 	push	acc
+      000273 74 80            [12] 1661 	mov	a,#0x80
+      000275 C0 E0            [24] 1662 	push	acc
+      000277 12 03 4E         [24] 1663 	lcall	_printf
+      00027A 15 81            [12] 1664 	dec	sp
+      00027C 15 81            [12] 1665 	dec	sp
+      00027E 15 81            [12] 1666 	dec	sp
+                           00021E  1667 	C$Hello.c$113$3$26 ==.
+                                   1668 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:113: printf("\033[6;27H ");          // Move cursor and print space in the printable character location
+      000280 74 4F            [12] 1669 	mov	a,#___str_18
+      000282 C0 E0            [24] 1670 	push	acc
+      000284 74 0A            [12] 1671 	mov	a,#(___str_18 >> 8)
+      000286 C0 E0            [24] 1672 	push	acc
+      000288 74 80            [12] 1673 	mov	a,#0x80
+      00028A C0 E0            [24] 1674 	push	acc
+      00028C 12 03 4E         [24] 1675 	lcall	_printf
+      00028F 15 81            [12] 1676 	dec	sp
+      000291 15 81            [12] 1677 	dec	sp
+      000293 15 81            [12] 1678 	dec	sp
+      000295 02 01 A5         [24] 1679 	ljmp	00107$
+      000298                       1680 00109$:
+                           000236  1681 	C$Hello.c$121$1$23 ==.
+                           000236  1682 	XG$main$0$0 ==.
+      000298 22               [24] 1683 	ret
+                                   1684 ;------------------------------------------------------------
+                                   1685 ;Allocation info for local variables in function 'SYSCLK_INIT'
+                                   1686 ;------------------------------------------------------------
+                                   1687 ;i                         Allocated to registers r5 r6 
+                                   1688 ;SFRPAGE_SAVE              Allocated to registers r7 
+                                   1689 ;------------------------------------------------------------
+                           000237  1690 	G$SYSCLK_INIT$0$0 ==.
+                           000237  1691 	C$Hello.c$129$1$23 ==.
+                                   1692 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:129: void SYSCLK_INIT(void)
+                                   1693 ;	-----------------------------------------
+                                   1694 ;	 function SYSCLK_INIT
+                                   1695 ;	-----------------------------------------
+      000299                       1696 _SYSCLK_INIT:
+                           000237  1697 	C$Hello.c$134$1$28 ==.
+                                   1698 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:134: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+      000299 AF 84            [24] 1699 	mov	r7,_SFRPAGE
+                           000239  1700 	C$Hello.c$136$1$28 ==.
+                                   1701 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:136: SFRPAGE = CONFIG_PAGE;
+      00029B 75 84 0F         [24] 1702 	mov	_SFRPAGE,#0x0f
+                           00023C  1703 	C$Hello.c$137$1$28 ==.
+                                   1704 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:137: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
+      00029E 75 8C 67         [24] 1705 	mov	_OSCXCN,#0x67
+                           00023F  1706 	C$Hello.c$138$1$28 ==.
+                                   1707 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:138: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
+      0002A1 7D 00            [12] 1708 	mov	r5,#0x00
+      0002A3 7E 01            [12] 1709 	mov	r6,#0x01
+      0002A5                       1710 00111$:
+      0002A5 1D               [12] 1711 	dec	r5
+      0002A6 BD FF 01         [24] 1712 	cjne	r5,#0xff,00141$
+      0002A9 1E               [12] 1713 	dec	r6
+      0002AA                       1714 00141$:
+      0002AA ED               [12] 1715 	mov	a,r5
+      0002AB 4E               [12] 1716 	orl	a,r6
+      0002AC 70 F7            [24] 1717 	jnz	00111$
+                           00024C  1718 	C$Hello.c$139$1$28 ==.
+                                   1719 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:139: while(!(OSCXCN & 0x80));
+      0002AE                       1720 00102$:
+      0002AE E5 8C            [12] 1721 	mov	a,_OSCXCN
+      0002B0 30 E7 FB         [24] 1722 	jnb	acc.7,00102$
+                           000251  1723 	C$Hello.c$140$1$28 ==.
+                                   1724 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:140: CLKSEL  = 0x01;
+      0002B3 75 97 01         [24] 1725 	mov	_CLKSEL,#0x01
+                           000254  1726 	C$Hello.c$141$1$28 ==.
+                                   1727 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:141: OSCICN  = 0x00;
+      0002B6 75 8A 00         [24] 1728 	mov	_OSCICN,#0x00
+                           000257  1729 	C$Hello.c$143$1$28 ==.
+                                   1730 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:143: SFRPAGE = CONFIG_PAGE;
+      0002B9 75 84 0F         [24] 1731 	mov	_SFRPAGE,#0x0f
+                           00025A  1732 	C$Hello.c$144$1$28 ==.
+                                   1733 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:144: PLL0CN  = 0x04;
+      0002BC 75 89 04         [24] 1734 	mov	_PLL0CN,#0x04
+                           00025D  1735 	C$Hello.c$145$1$28 ==.
+                                   1736 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:145: SFRPAGE = LEGACY_PAGE;
+      0002BF 75 84 00         [24] 1737 	mov	_SFRPAGE,#0x00
+                           000260  1738 	C$Hello.c$146$1$28 ==.
+                                   1739 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:146: FLSCL   = 0x10;
+      0002C2 75 B7 10         [24] 1740 	mov	_FLSCL,#0x10
+                           000263  1741 	C$Hello.c$147$1$28 ==.
+                                   1742 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:147: SFRPAGE = CONFIG_PAGE;
+      0002C5 75 84 0F         [24] 1743 	mov	_SFRPAGE,#0x0f
+                           000266  1744 	C$Hello.c$148$1$28 ==.
+                                   1745 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:148: PLL0CN |= 0x01;
+      0002C8 43 89 01         [24] 1746 	orl	_PLL0CN,#0x01
+                           000269  1747 	C$Hello.c$149$1$28 ==.
+                                   1748 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:149: PLL0DIV = 0x04;
+      0002CB 75 8D 04         [24] 1749 	mov	_PLL0DIV,#0x04
+                           00026C  1750 	C$Hello.c$150$1$28 ==.
+                                   1751 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:150: PLL0FLT = 0x01;
+      0002CE 75 8F 01         [24] 1752 	mov	_PLL0FLT,#0x01
+                           00026F  1753 	C$Hello.c$151$1$28 ==.
+                                   1754 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:151: PLL0MUL = 0x09;
+      0002D1 75 8E 09         [24] 1755 	mov	_PLL0MUL,#0x09
+                           000272  1756 	C$Hello.c$152$1$28 ==.
+                                   1757 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:152: for(i=0; i < 256; i++);
+      0002D4 7D 00            [12] 1758 	mov	r5,#0x00
+      0002D6 7E 01            [12] 1759 	mov	r6,#0x01
+      0002D8                       1760 00114$:
+      0002D8 1D               [12] 1761 	dec	r5
+      0002D9 BD FF 01         [24] 1762 	cjne	r5,#0xff,00144$
+      0002DC 1E               [12] 1763 	dec	r6
+      0002DD                       1764 00144$:
+      0002DD ED               [12] 1765 	mov	a,r5
+      0002DE 4E               [12] 1766 	orl	a,r6
+      0002DF 70 F7            [24] 1767 	jnz	00114$
+                           00027F  1768 	C$Hello.c$153$1$28 ==.
+                                   1769 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:153: PLL0CN |= 0x02;
+      0002E1 43 89 02         [24] 1770 	orl	_PLL0CN,#0x02
+                           000282  1771 	C$Hello.c$154$1$28 ==.
+                                   1772 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:154: while(!(PLL0CN & 0x10));
+      0002E4                       1773 00106$:
+      0002E4 E5 89            [12] 1774 	mov	a,_PLL0CN
+      0002E6 30 E4 FB         [24] 1775 	jnb	acc.4,00106$
+                           000287  1776 	C$Hello.c$155$1$28 ==.
+                                   1777 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:155: CLKSEL  = 0x02;
+      0002E9 75 97 02         [24] 1778 	mov	_CLKSEL,#0x02
+                           00028A  1779 	C$Hello.c$157$1$28 ==.
+                                   1780 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:157: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+      0002EC 8F 84            [24] 1781 	mov	_SFRPAGE,r7
+                           00028C  1782 	C$Hello.c$158$1$28 ==.
+                           00028C  1783 	XG$SYSCLK_INIT$0$0 ==.
+      0002EE 22               [24] 1784 	ret
                                    1785 ;------------------------------------------------------------
-                                   1786 ;SFRPAGE_SAVE              Allocated to registers r7 
+                                   1786 ;Allocation info for local variables in function 'PORT_INIT'
                                    1787 ;------------------------------------------------------------
-                           00025E  1788 	G$UART0_INIT$0$0 ==.
-                           00025E  1789 	C$Hello.c$181$1$30 ==.
-                                   1790 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:181: void UART0_INIT(void)
-                                   1791 ;	-----------------------------------------
-                                   1792 ;	 function UART0_INIT
+                                   1788 ;SFRPAGE_SAVE              Allocated to registers r7 
+                                   1789 ;------------------------------------------------------------
+                           00028D  1790 	G$PORT_INIT$0$0 ==.
+                           00028D  1791 	C$Hello.c$166$1$28 ==.
+                                   1792 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:166: void PORT_INIT(void)
                                    1793 ;	-----------------------------------------
-      0002C0                       1794 _UART0_INIT:
-                           00025E  1795 	C$Hello.c$185$1$32 ==.
-                                   1796 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:185: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
-      0002C0 AF 84            [24] 1797 	mov	r7,_SFRPAGE
-                           000260  1798 	C$Hello.c$187$1$32 ==.
-                                   1799 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:187: SFRPAGE = TIMER01_PAGE;
-      0002C2 75 84 00         [24] 1800 	mov	_SFRPAGE,#0x00
-                           000263  1801 	C$Hello.c$188$1$32 ==.
-                                   1802 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:188: TMOD   &= ~0xF0;
-      0002C5 53 89 0F         [24] 1803 	anl	_TMOD,#0x0f
-                           000266  1804 	C$Hello.c$189$1$32 ==.
-                                   1805 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:189: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
-      0002C8 43 89 20         [24] 1806 	orl	_TMOD,#0x20
-                           000269  1807 	C$Hello.c$190$1$32 ==.
-                                   1808 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:190: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
-      0002CB 75 8D E5         [24] 1809 	mov	_TH1,#0xe5
-                           00026C  1810 	C$Hello.c$191$1$32 ==.
-                                   1811 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:191: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
-      0002CE 43 8E 10         [24] 1812 	orl	_CKCON,#0x10
-                           00026F  1813 	C$Hello.c$192$1$32 ==.
-                                   1814 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:192: TL1     = TH1;
-      0002D1 85 8D 8B         [24] 1815 	mov	_TL1,_TH1
-                           000272  1816 	C$Hello.c$193$1$32 ==.
-                                   1817 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:193: TR1     = 1;                        // Start Timer1
-      0002D4 D2 8E            [12] 1818 	setb	_TR1
-                           000274  1819 	C$Hello.c$195$1$32 ==.
-                                   1820 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:195: SFRPAGE = UART0_PAGE;
-      0002D6 75 84 00         [24] 1821 	mov	_SFRPAGE,#0x00
-                           000277  1822 	C$Hello.c$196$1$32 ==.
-                                   1823 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:196: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
-      0002D9 75 98 50         [24] 1824 	mov	_SCON0,#0x50
-                           00027A  1825 	C$Hello.c$197$1$32 ==.
-                                   1826 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:197: SSTA0   = 0x10;                     // SMOD0 = 1
-      0002DC 75 91 10         [24] 1827 	mov	_SSTA0,#0x10
-                           00027D  1828 	C$Hello.c$198$1$32 ==.
-                                   1829 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:198: TI0     = 1;                        // Indicate TX0 ready
-      0002DF D2 99            [12] 1830 	setb	_TI0
-                           00027F  1831 	C$Hello.c$200$1$32 ==.
-                                   1832 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:200: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
-      0002E1 8F 84            [24] 1833 	mov	_SFRPAGE,r7
-                           000281  1834 	C$Hello.c$201$1$32 ==.
-                           000281  1835 	XG$UART0_INIT$0$0 ==.
-      0002E3 22               [24] 1836 	ret
-                                   1837 	.area CSEG    (CODE)
-                                   1838 	.area CONST   (CODE)
-                           000000  1839 FHello$__str_0$0$0 == .
-      000923                       1840 ___str_0:
-      000923 1B                    1841 	.db 0x1b
-      000924 5B 33 33 3B 34 34 6D  1842 	.ascii "[33;44m"
-      00092B 00                    1843 	.db 0x00
-                           000009  1844 FHello$__str_1$0$0 == .
-      00092C                       1845 ___str_1:
-      00092C 1B                    1846 	.db 0x1b
-      00092D 5B 32 4A              1847 	.ascii "[2J"
-      000930 00                    1848 	.db 0x00
-                           00000E  1849 FHello$__str_2$0$0 == .
-      000931                       1850 ___str_2:
-      000931 1B                    1851 	.db 0x1b
-      000932 5B 31 32 3B 30 48     1852 	.ascii "[12;0H"
-      000938 00                    1853 	.db 0x00
-                           000016  1854 FHello$__str_3$0$0 == .
-      000939                       1855 ___str_3:
-      000939 1B                    1856 	.db 0x1b
-      00093A 5B 73                 1857 	.ascii "[s"
-      00093C 00                    1858 	.db 0x00
-                           00001A  1859 FHello$__str_4$0$0 == .
-      00093D                       1860 ___str_4:
-      00093D 1B                    1861 	.db 0x1b
-      00093E 5B 32 3B 32 35 48     1862 	.ascii "[2;25H"
-      000944 00                    1863 	.db 0x00
-                           000022  1864 FHello$__str_5$0$0 == .
-      000945                       1865 ___str_5:
-      000945 54 79 70 65 20 3C 45  1866 	.ascii "Type <ESC> to end the program."
+                                   1794 ;	 function PORT_INIT
+                                   1795 ;	-----------------------------------------
+      0002EF                       1796 _PORT_INIT:
+                           00028D  1797 	C$Hello.c$170$1$30 ==.
+                                   1798 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:170: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+      0002EF AF 84            [24] 1799 	mov	r7,_SFRPAGE
+                           00028F  1800 	C$Hello.c$172$1$30 ==.
+                                   1801 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:172: SFRPAGE  = CONFIG_PAGE;
+      0002F1 75 84 0F         [24] 1802 	mov	_SFRPAGE,#0x0f
+                           000292  1803 	C$Hello.c$173$1$30 ==.
+                                   1804 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:173: XBR0     = 0x04;                    // Enable UART0
+      0002F4 75 E1 04         [24] 1805 	mov	_XBR0,#0x04
+                           000295  1806 	C$Hello.c$174$1$30 ==.
+                                   1807 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:174: XBR1     = 0x00;
+      0002F7 75 E2 00         [24] 1808 	mov	_XBR1,#0x00
+                           000298  1809 	C$Hello.c$175$1$30 ==.
+                                   1810 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:175: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
+      0002FA 75 E3 40         [24] 1811 	mov	_XBR2,#0x40
+                           00029B  1812 	C$Hello.c$176$1$30 ==.
+                                   1813 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:176: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
+      0002FD 43 A4 01         [24] 1814 	orl	_P0MDOUT,#0x01
+                           00029E  1815 	C$Hello.c$177$1$30 ==.
+                                   1816 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:177: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
+      000300 43 A5 40         [24] 1817 	orl	_P1MDOUT,#0x40
+                           0002A1  1818 	C$Hello.c$179$1$30 ==.
+                                   1819 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:179: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
+      000303 8F 84            [24] 1820 	mov	_SFRPAGE,r7
+                           0002A3  1821 	C$Hello.c$180$1$30 ==.
+                           0002A3  1822 	XG$PORT_INIT$0$0 ==.
+      000305 22               [24] 1823 	ret
+                                   1824 ;------------------------------------------------------------
+                                   1825 ;Allocation info for local variables in function 'UART0_INIT'
+                                   1826 ;------------------------------------------------------------
+                                   1827 ;SFRPAGE_SAVE              Allocated to registers r7 
+                                   1828 ;------------------------------------------------------------
+                           0002A4  1829 	G$UART0_INIT$0$0 ==.
+                           0002A4  1830 	C$Hello.c$188$1$30 ==.
+                                   1831 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:188: void UART0_INIT(void)
+                                   1832 ;	-----------------------------------------
+                                   1833 ;	 function UART0_INIT
+                                   1834 ;	-----------------------------------------
+      000306                       1835 _UART0_INIT:
+                           0002A4  1836 	C$Hello.c$192$1$32 ==.
+                                   1837 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:192: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+      000306 AF 84            [24] 1838 	mov	r7,_SFRPAGE
+                           0002A6  1839 	C$Hello.c$194$1$32 ==.
+                                   1840 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:194: SFRPAGE = TIMER01_PAGE;
+      000308 75 84 00         [24] 1841 	mov	_SFRPAGE,#0x00
+                           0002A9  1842 	C$Hello.c$195$1$32 ==.
+                                   1843 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:195: TMOD   &= ~0xF0;
+      00030B 53 89 0F         [24] 1844 	anl	_TMOD,#0x0f
+                           0002AC  1845 	C$Hello.c$196$1$32 ==.
+                                   1846 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:196: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
+      00030E 43 89 20         [24] 1847 	orl	_TMOD,#0x20
+                           0002AF  1848 	C$Hello.c$197$1$32 ==.
+                                   1849 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:197: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
+      000311 75 8D E5         [24] 1850 	mov	_TH1,#0xe5
+                           0002B2  1851 	C$Hello.c$198$1$32 ==.
+                                   1852 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:198: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
+      000314 43 8E 10         [24] 1853 	orl	_CKCON,#0x10
+                           0002B5  1854 	C$Hello.c$199$1$32 ==.
+                                   1855 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:199: TL1     = TH1;
+      000317 85 8D 8B         [24] 1856 	mov	_TL1,_TH1
+                           0002B8  1857 	C$Hello.c$200$1$32 ==.
+                                   1858 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:200: TR1     = 1;                        // Start Timer1
+      00031A D2 8E            [12] 1859 	setb	_TR1
+                           0002BA  1860 	C$Hello.c$202$1$32 ==.
+                                   1861 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:202: SFRPAGE = UART0_PAGE;
+      00031C 75 84 00         [24] 1862 	mov	_SFRPAGE,#0x00
+                           0002BD  1863 	C$Hello.c$203$1$32 ==.
+                                   1864 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:203: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
+      00031F 75 98 50         [24] 1865 	mov	_SCON0,#0x50
+                           0002C0  1866 	C$Hello.c$204$1$32 ==.
+                                   1867 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:204: SSTA0   = 0x10;                     // SMOD0 = 1
+      000322 75 91 10         [24] 1868 	mov	_SSTA0,#0x10
+                           0002C3  1869 	C$Hello.c$205$1$32 ==.
+                                   1870 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:205: TI0     = 1;                        // Indicate TX0 ready
+      000325 D2 99            [12] 1871 	setb	_TI0
+                           0002C5  1872 	C$Hello.c$207$1$32 ==.
+                                   1873 ;	C:\Users\John\Documents\MPS\lab1\Hello.c:207: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+      000327 8F 84            [24] 1874 	mov	_SFRPAGE,r7
+                           0002C7  1875 	C$Hello.c$208$1$32 ==.
+                           0002C7  1876 	XG$UART0_INIT$0$0 ==.
+      000329 22               [24] 1877 	ret
+                                   1878 	.area CSEG    (CODE)
+                                   1879 	.area CONST   (CODE)
+                           000000  1880 FHello$__str_0$0$0 == .
+      000969                       1881 ___str_0:
+      000969 1B                    1882 	.db 0x1b
+      00096A 5B 33 33 3B 34 34 6D  1883 	.ascii "[33;44m"
+      000971 00                    1884 	.db 0x00
+                           000009  1885 FHello$__str_1$0$0 == .
+      000972                       1886 ___str_1:
+      000972 1B                    1887 	.db 0x1b
+      000973 5B 32 4A              1888 	.ascii "[2J"
+      000976 00                    1889 	.db 0x00
+                           00000E  1890 FHello$__str_2$0$0 == .
+      000977                       1891 ___str_2:
+      000977 1B                    1892 	.db 0x1b
+      000978 5B 31 32 3B 30 48     1893 	.ascii "[12;0H"
+      00097E 00                    1894 	.db 0x00
+                           000016  1895 FHello$__str_3$0$0 == .
+      00097F                       1896 ___str_3:
+      00097F 1B                    1897 	.db 0x1b
+      000980 5B 73                 1898 	.ascii "[s"
+      000982 00                    1899 	.db 0x00
+                           00001A  1900 FHello$__str_4$0$0 == .
+      000983                       1901 ___str_4:
+      000983 1B                    1902 	.db 0x1b
+      000984 5B 32 3B 32 35 48     1903 	.ascii "[2;25H"
+      00098A 00                    1904 	.db 0x00
+                           000022  1905 FHello$__str_5$0$0 == .
+      00098B                       1906 ___str_5:
+      00098B 54 79 70 65 20 3C 45  1907 	.ascii "Type <ESC> to end the program."
              53 43 3E 20 74 6F 20
              65 6E 64 20 74 68 65
              20 70 72 6F 67 72 61
              6D 2E
-      000963 0A                    1867 	.db 0x0a
-      000964 0A                    1868 	.db 0x0a
-      000965 0D                    1869 	.db 0x0d
-      000966 00                    1870 	.db 0x00
-                           000044  1871 FHello$__str_6$0$0 == .
-      000967                       1872 ___str_6:
-      000967 1B                    1873 	.db 0x1b
-      000968 5B 36 3B 30 48        1874 	.ascii "[6;0H"
-      00096D 00                    1875 	.db 0x00
-                           00004B  1876 FHello$__str_7$0$0 == .
-      00096E                       1877 ___str_7:
-      00096E 54 68 65 20 6B 65 79  1878 	.ascii "The keyboard character is  ."
+      0009A9 0A                    1908 	.db 0x0a
+      0009AA 0A                    1909 	.db 0x0a
+      0009AB 0D                    1910 	.db 0x0d
+      0009AC 00                    1911 	.db 0x00
+                           000044  1912 FHello$__str_6$0$0 == .
+      0009AD                       1913 ___str_6:
+      0009AD 1B                    1914 	.db 0x1b
+      0009AE 5B 36 3B 30 48        1915 	.ascii "[6;0H"
+      0009B3 00                    1916 	.db 0x00
+                           00004B  1917 FHello$__str_7$0$0 == .
+      0009B4                       1918 ___str_7:
+      0009B4 54 68 65 20 6B 65 79  1919 	.ascii "The keyboard character is  ."
              62 6F 61 72 64 20 63
              68 61 72 61 63 74 65
              72 20 69 73 20 20 2E
-      00098A 00                    1879 	.db 0x00
-                           000068  1880 FHello$__str_8$0$0 == .
-      00098B                       1881 ___str_8:
-      00098B 1B                    1882 	.db 0x1b
-      00098C 5B 31 32 3B 32 35 72  1883 	.ascii "[12;25r"
-      000993 00                    1884 	.db 0x00
-                           000071  1885 FHello$__str_9$0$0 == .
-      000994                       1886 ___str_9:
-      000994 1B                    1887 	.db 0x1b
-      000995 5B 36 3B 32 37 48     1888 	.ascii "[6;27H"
-      00099B 00                    1889 	.db 0x00
-                           000079  1890 FHello$__str_10$0$0 == .
-      00099C                       1891 ___str_10:
-      00099C 1B                    1892 	.db 0x1b
-      00099D 5B 33 37 6D           1893 	.ascii "[37m"
-      0009A1 00                    1894 	.db 0x00
-                           00007F  1895 FHello$__str_11$0$0 == .
-      0009A2                       1896 ___str_11:
-      0009A2 1B                    1897 	.db 0x1b
-      0009A3 5B 35 3B 33 33 3B 34  1898 	.ascii "[5;33;44m"
+      0009D0 00                    1920 	.db 0x00
+                           000068  1921 FHello$__str_8$0$0 == .
+      0009D1                       1922 ___str_8:
+      0009D1 25 63 25 63           1923 	.ascii "%c%c"
+      0009D5 0A                    1924 	.db 0x0a
+      0009D6 0D                    1925 	.db 0x0d
+      0009D7 00                    1926 	.db 0x00
+                           00006F  1927 FHello$__str_9$0$0 == .
+      0009D8                       1928 ___str_9:
+      0009D8 25 63                 1929 	.ascii "%c"
+      0009DA 0A                    1930 	.db 0x0a
+      0009DB 0D                    1931 	.db 0x0d
+      0009DC 25 63                 1932 	.ascii "%c"
+      0009DE 00                    1933 	.db 0x00
+                           000076  1934 FHello$__str_10$0$0 == .
+      0009DF                       1935 ___str_10:
+      0009DF 1B                    1936 	.db 0x1b
+      0009E0 5B 31 32 3B 32 35 72  1937 	.ascii "[12;25r"
+      0009E7 00                    1938 	.db 0x00
+                           00007F  1939 FHello$__str_11$0$0 == .
+      0009E8                       1940 ___str_11:
+      0009E8 1B                    1941 	.db 0x1b
+      0009E9 5B 36 3B 32 37 48     1942 	.ascii "[6;27H"
+      0009EF 00                    1943 	.db 0x00
+                           000087  1944 FHello$__str_12$0$0 == .
+      0009F0                       1945 ___str_12:
+      0009F0 1B                    1946 	.db 0x1b
+      0009F1 5B 33 37 6D           1947 	.ascii "[37m"
+      0009F5 00                    1948 	.db 0x00
+                           00008D  1949 FHello$__str_13$0$0 == .
+      0009F6                       1950 ___str_13:
+      0009F6 1B                    1951 	.db 0x1b
+      0009F7 5B 35 3B 33 33 3B 34  1952 	.ascii "[5;33;44m"
              34 6D
-      0009AC 00                    1899 	.db 0x00
-                           00008A  1900 FHello$__str_12$0$0 == .
-      0009AD                       1901 ___str_12:
-      0009AD 1B                    1902 	.db 0x1b
-      0009AE 5B 75                 1903 	.ascii "[u"
-      0009B0 00                    1904 	.db 0x00
-                           00008E  1905 FHello$__str_13$0$0 == .
-      0009B1                       1906 ___str_13:
-      0009B1 54 68 65 20 6B 65 79  1907 	.ascii "The keyboard character $%02X is "
+      000A00 00                    1953 	.db 0x00
+                           000098  1954 FHello$__str_14$0$0 == .
+      000A01                       1955 ___str_14:
+      000A01 1B                    1956 	.db 0x1b
+      000A02 5B 75                 1957 	.ascii "[u"
+      000A04 00                    1958 	.db 0x00
+                           00009C  1959 FHello$__str_15$0$0 == .
+      000A05                       1960 ___str_15:
+      000A05 54 68 65 20 6B 65 79  1961 	.ascii "The keyboard character $%02X is "
              62 6F 61 72 64 20 63
              68 61 72 61 63 74 65
              72 20 24 25 30 32 58
              20 69 73 20
-      0009D1 1B                    1908 	.db 0x1b
-      0009D2 5B 34 6D 27 6E 6F 74  1909 	.ascii "[4m'not printable'"
+      000A25 1B                    1962 	.db 0x1b
+      000A26 5B 34 6D 27 6E 6F 74  1963 	.ascii "[4m'not printable'"
              20 70 72 69 6E 74 61
              62 6C 65 27
-      0009E4 1B                    1910 	.db 0x1b
-      0009E5 5B 30 3B 35 3B 33 33  1911 	.ascii "[0;5;33;"
+      000A38 1B                    1964 	.db 0x1b
+      000A39 5B 30 3B 35 3B 33 33  1965 	.ascii "[0;5;33;"
              3B
-      0009ED 34 34 6D 2E           1912 	.ascii "44m."
-      0009F1 0A                    1913 	.db 0x0a
-      0009F2 0D                    1914 	.db 0x0d
-      0009F3 00                    1915 	.db 0x00
-                           0000D1  1916 FHello$__str_14$0$0 == .
-      0009F4                       1917 ___str_14:
-      0009F4 07                    1918 	.db 0x07
-      0009F5 00                    1919 	.db 0x00
-                           0000D3  1920 FHello$__str_15$0$0 == .
-      0009F6                       1921 ___str_15:
-      0009F6 1B                    1922 	.db 0x1b
-      0009F7 5B 30 6D              1923 	.ascii "[0m"
-      0009FA 00                    1924 	.db 0x00
-                           0000D8  1925 FHello$__str_16$0$0 == .
-      0009FB                       1926 ___str_16:
-      0009FB 1B                    1927 	.db 0x1b
-      0009FC 5B 36 3B 32 37 48 20  1928 	.ascii "[6;27H "
-      000A03 00                    1929 	.db 0x00
-                                   1930 	.area XINIT   (CODE)
-                                   1931 	.area CABS    (ABS,CODE)
+      000A41 34 34 6D 2E           1966 	.ascii "44m."
+      000A45 0A                    1967 	.db 0x0a
+      000A46 0D                    1968 	.db 0x0d
+      000A47 00                    1969 	.db 0x00
+                           0000DF  1970 FHello$__str_16$0$0 == .
+      000A48                       1971 ___str_16:
+      000A48 07                    1972 	.db 0x07
+      000A49 00                    1973 	.db 0x00
+                           0000E1  1974 FHello$__str_17$0$0 == .
+      000A4A                       1975 ___str_17:
+      000A4A 1B                    1976 	.db 0x1b
+      000A4B 5B 30 6D              1977 	.ascii "[0m"
+      000A4E 00                    1978 	.db 0x00
+                           0000E6  1979 FHello$__str_18$0$0 == .
+      000A4F                       1980 ___str_18:
+      000A4F 1B                    1981 	.db 0x1b
+      000A50 5B 36 3B 32 37 48 20  1982 	.ascii "[6;27H "
+      000A57 00                    1983 	.db 0x00
+                                   1984 	.area XINIT   (CODE)
+                                   1985 	.area CABS    (ABS,CODE)

@@ -9,7 +9,6 @@ CABS                                00000000    00000000 =           0. bytes (A
       -----  --------------------------------   ------------------------
 C:   00000000  l_BIT_BANK                      
 C:   00000000  l_CABS                          
-C:   00000000  l_GSINIT                        
 C:   00000000  l_GSINIT1                       
 C:   00000000  l_GSINIT5                       
 C:   00000000  l_IABS                          
@@ -57,6 +56,7 @@ C:   00000010  s_REG_BANK_2
 C:   00000013  s_GSINIT3                       
 C:   00000018  s_BIT_BANK                      
 C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BSEG_BYTES                    
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
@@ -66,23 +66,23 @@ CABS                                00000000    00000000 =           0. bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000020  s_BSEG_BYTES                    
 C:   00000020  s__CODE                         
+C:   00000021  l_GSINIT                        
 C:   00000022  l_GSINIT3                       
 C:   0000002A  l_GSINIT4                       
 C:   00000035  s_GSINIT4                       
-C:   00000058  s_SSEG                          
-C:   0000005F  s_GSFINAL                       
+C:   0000005B  s_SSEG                          
 C:   0000005F  s_GSINIT                        
 C:   0000005F  s_GSINIT5                       
-C:   00000062  s_CSEG                          
-C:   00000068  l_CONST                         
+C:   00000075  l_CONST                         
 C:   00000076  l_DSEG                          
-C:   000000A8  l_SSEG                          
+C:   00000080  s_GSFINAL                       
+C:   00000083  s_CSEG                          
+C:   000000A5  l_SSEG                          
 C:   00000100  l_IRAM                          
-C:   0000083A  l_CSEG                          
-C:   0000089C  s_CONST                         
-C:   00000904  s_XINIT                         
+C:   00000ADA  l_CSEG                          
+C:   00000B5D  s_CONST                         
+C:   00000BD2  s_XINIT                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -94,55 +94,55 @@ Area                                    Addr        Size        Decimal Bytes (A
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00000000  .__.ABS.                           _bp
-     00000080  G$P0$0$0                           portIO
-     00000080  G$P0_0$0$0                         portIO
-     00000080  _P0                                portIO
-     00000080  _P0_0                              portIO
-     00000081  G$P0_1$0$0                         portIO
-     00000081  G$SP$0$0                           portIO
-     00000081  _P0_1                              portIO
-     00000081  _SP                                portIO
-     00000082  G$DPL$0$0                          portIO
-     00000082  G$P0_2$0$0                         portIO
-     00000082  _DPL                               portIO
-     00000082  _P0_2                              portIO
-     00000083  G$DPH$0$0                          portIO
-     00000083  G$P0_3$0$0                         portIO
-     00000083  _DPH                               portIO
-     00000083  _P0_3                              portIO
-     00000084  G$P0_4$0$0                         portIO
-     00000084  G$SFRPAGE$0$0                      portIO
-     00000084  _P0_4                              portIO
-     00000084  _SFRPAGE                           portIO
-     00000085  G$P0_5$0$0                         portIO
-     00000085  G$SFRNEXT$0$0                      portIO
-     00000085  _P0_5                              portIO
-     00000085  _SFRNEXT                           portIO
-     00000086  G$P0_6$0$0                         portIO
-     00000086  G$SFRLAST$0$0                      portIO
-     00000086  _P0_6                              portIO
-     00000086  _SFRLAST                           portIO
-     00000087  G$P0_7$0$0                         portIO
-     00000087  G$PCON$0$0                         portIO
-     00000087  _P0_7                              portIO
-     00000087  _PCON                              portIO
-     00000088  G$CP0HYN0$0$0                      portIO
-     00000088  G$CP1HYN0$0$0                      portIO
-     00000088  G$CPT0CN$0$0                       portIO
-     00000088  G$CPT1CN$0$0                       portIO
-     00000088  G$FLHBUSY$0$0                      portIO
-     00000088  G$FLSTAT$0$0                       portIO
-     00000088  G$IT0$0$0                          portIO
-     00000088  G$TCON$0$0                         portIO
-     00000088  _CP0HYN0                           portIO
-     00000088  _CP1HYN0                           portIO
-     00000088  _CPT0CN                            portIO
-     00000088  _CPT1CN                            portIO
-     00000088  _FLHBUSY                           portIO
-     00000088  _FLSTAT                            portIO
-     00000088  _IT0                               portIO
-     00000088  _TCON                              portIO
-     00000089  G$CP0HYN1$0$0                      portIO
+     00000080  G$P0$0$0                           pong
+     00000080  G$P0_0$0$0                         pong
+     00000080  _P0                                pong
+     00000080  _P0_0                              pong
+     00000081  G$P0_1$0$0                         pong
+     00000081  G$SP$0$0                           pong
+     00000081  _P0_1                              pong
+     00000081  _SP                                pong
+     00000082  G$DPL$0$0                          pong
+     00000082  G$P0_2$0$0                         pong
+     00000082  _DPL                               pong
+     00000082  _P0_2                              pong
+     00000083  G$DPH$0$0                          pong
+     00000083  G$P0_3$0$0                         pong
+     00000083  _DPH                               pong
+     00000083  _P0_3                              pong
+     00000084  G$P0_4$0$0                         pong
+     00000084  G$SFRPAGE$0$0                      pong
+     00000084  _P0_4                              pong
+     00000084  _SFRPAGE                           pong
+     00000085  G$P0_5$0$0                         pong
+     00000085  G$SFRNEXT$0$0                      pong
+     00000085  _P0_5                              pong
+     00000085  _SFRNEXT                           pong
+     00000086  G$P0_6$0$0                         pong
+     00000086  G$SFRLAST$0$0                      pong
+     00000086  _P0_6                              pong
+     00000086  _SFRLAST                           pong
+     00000087  G$P0_7$0$0                         pong
+     00000087  G$PCON$0$0                         pong
+     00000087  _P0_7                              pong
+     00000087  _PCON                              pong
+     00000088  G$CP0HYN0$0$0                      pong
+     00000088  G$CP1HYN0$0$0                      pong
+     00000088  G$CPT0CN$0$0                       pong
+     00000088  G$CPT1CN$0$0                       pong
+     00000088  G$FLHBUSY$0$0                      pong
+     00000088  G$FLSTAT$0$0                       pong
+     00000088  G$IT0$0$0                          pong
+     00000088  G$TCON$0$0                         pong
+     00000088  _CP0HYN0                           pong
+     00000088  _CP1HYN0                           pong
+     00000088  _CPT0CN                            pong
+     00000088  _CPT1CN                            pong
+     00000088  _FLHBUSY                           pong
+     00000088  _FLSTAT                            pong
+     00000088  _IT0                               pong
+     00000088  _TCON                              pong
+     00000089  G$CP0HYN1$0$0                      pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
@@ -152,57 +152,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000089  G$CP1HYN1$0$0                      portIO
-     00000089  G$CPT0MD$0$0                       portIO
-     00000089  G$CPT1MD$0$0                       portIO
-     00000089  G$IE0$0$0                          portIO
-     00000089  G$PLL0CN$0$0                       portIO
-     00000089  G$TMOD$0$0                         portIO
-     00000089  _CP0HYN1                           portIO
-     00000089  _CP1HYN1                           portIO
-     00000089  _CPT0MD                            portIO
-     00000089  _CPT1MD                            portIO
-     00000089  _IE0                               portIO
-     00000089  _PLL0CN                            portIO
-     00000089  _TMOD                              portIO
-     0000008A  G$CP0HYP0$0$0                      portIO
-     0000008A  G$CP1HYP0$0$0                      portIO
-     0000008A  G$IT1$0$0                          portIO
-     0000008A  G$OSCICN$0$0                       portIO
-     0000008A  G$TL0$0$0                          portIO
-     0000008A  _CP0HYP0                           portIO
-     0000008A  _CP1HYP0                           portIO
-     0000008A  _IT1                               portIO
-     0000008A  _OSCICN                            portIO
-     0000008A  _TL0                               portIO
-     0000008B  G$CP0HYP1$0$0                      portIO
-     0000008B  G$CP1HYP1$0$0                      portIO
-     0000008B  G$IE1$0$0                          portIO
-     0000008B  G$OSCICL$0$0                       portIO
-     0000008B  G$TL1$0$0                          portIO
-     0000008B  _CP0HYP1                           portIO
-     0000008B  _CP1HYP1                           portIO
-     0000008B  _IE1                               portIO
-     0000008B  _OSCICL                            portIO
-     0000008B  _TL1                               portIO
-     0000008C  G$CP0FIF$0$0                       portIO
-     0000008C  G$CP1FIF$0$0                       portIO
-     0000008C  G$OSCXCN$0$0                       portIO
-     0000008C  G$TH0$0$0                          portIO
-     0000008C  G$TR0$0$0                          portIO
-     0000008C  _CP0FIF                            portIO
-     0000008C  _CP1FIF                            portIO
-     0000008C  _OSCXCN                            portIO
-     0000008C  _TH0                               portIO
-     0000008C  _TR0                               portIO
-     0000008D  G$CP0RIF$0$0                       portIO
-     0000008D  G$CP1RIF$0$0                       portIO
-     0000008D  G$PLL0DIV$0$0                      portIO
-     0000008D  G$TF0$0$0                          portIO
-     0000008D  G$TH1$0$0                          portIO
-     0000008D  _CP0RIF                            portIO
-     0000008D  _CP1RIF                            portIO
-     0000008D  _PLL0DIV                           portIO
+     00000089  G$CP1HYN1$0$0                      pong
+     00000089  G$CPT0MD$0$0                       pong
+     00000089  G$CPT1MD$0$0                       pong
+     00000089  G$IE0$0$0                          pong
+     00000089  G$PLL0CN$0$0                       pong
+     00000089  G$TMOD$0$0                         pong
+     00000089  _CP0HYN1                           pong
+     00000089  _CP1HYN1                           pong
+     00000089  _CPT0MD                            pong
+     00000089  _CPT1MD                            pong
+     00000089  _IE0                               pong
+     00000089  _PLL0CN                            pong
+     00000089  _TMOD                              pong
+     0000008A  G$CP0HYP0$0$0                      pong
+     0000008A  G$CP1HYP0$0$0                      pong
+     0000008A  G$IT1$0$0                          pong
+     0000008A  G$OSCICN$0$0                       pong
+     0000008A  G$TL0$0$0                          pong
+     0000008A  _CP0HYP0                           pong
+     0000008A  _CP1HYP0                           pong
+     0000008A  _IT1                               pong
+     0000008A  _OSCICN                            pong
+     0000008A  _TL0                               pong
+     0000008B  G$CP0HYP1$0$0                      pong
+     0000008B  G$CP1HYP1$0$0                      pong
+     0000008B  G$IE1$0$0                          pong
+     0000008B  G$OSCICL$0$0                       pong
+     0000008B  G$TL1$0$0                          pong
+     0000008B  _CP0HYP1                           pong
+     0000008B  _CP1HYP1                           pong
+     0000008B  _IE1                               pong
+     0000008B  _OSCICL                            pong
+     0000008B  _TL1                               pong
+     0000008C  G$CP0FIF$0$0                       pong
+     0000008C  G$CP1FIF$0$0                       pong
+     0000008C  G$OSCXCN$0$0                       pong
+     0000008C  G$TH0$0$0                          pong
+     0000008C  G$TR0$0$0                          pong
+     0000008C  _CP0FIF                            pong
+     0000008C  _CP1FIF                            pong
+     0000008C  _OSCXCN                            pong
+     0000008C  _TH0                               pong
+     0000008C  _TR0                               pong
+     0000008D  G$CP0RIF$0$0                       pong
+     0000008D  G$CP1RIF$0$0                       pong
+     0000008D  G$PLL0DIV$0$0                      pong
+     0000008D  G$TF0$0$0                          pong
+     0000008D  G$TH1$0$0                          pong
+     0000008D  _CP0RIF                            pong
+     0000008D  _CP1RIF                            pong
+     0000008D  _PLL0DIV                           pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
@@ -212,57 +212,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000008D  _TF0                               portIO
-     0000008D  _TH1                               portIO
-     0000008E  G$CKCON$0$0                        portIO
-     0000008E  G$CP0OUT$0$0                       portIO
-     0000008E  G$CP1OUT$0$0                       portIO
-     0000008E  G$PLL0MUL$0$0                      portIO
-     0000008E  G$TR1$0$0                          portIO
-     0000008E  _CKCON                             portIO
-     0000008E  _CP0OUT                            portIO
-     0000008E  _CP1OUT                            portIO
-     0000008E  _PLL0MUL                           portIO
-     0000008E  _TR1                               portIO
-     0000008F  G$CP0EN$0$0                        portIO
-     0000008F  G$CP1EN$0$0                        portIO
-     0000008F  G$PLL0FLT$0$0                      portIO
-     0000008F  G$PSCTL$0$0                        portIO
-     0000008F  G$TF1$0$0                          portIO
-     0000008F  _CP0EN                             portIO
-     0000008F  _CP1EN                             portIO
-     0000008F  _PLL0FLT                           portIO
-     0000008F  _PSCTL                             portIO
-     0000008F  _TF1                               portIO
-     00000090  G$P1$0$0                           portIO
-     00000090  G$P1_0$0$0                         portIO
-     00000090  _P1                                portIO
-     00000090  _P1_0                              portIO
-     00000091  G$MAC0BL$0$0                       portIO
-     00000091  G$P1_1$0$0                         portIO
-     00000091  G$SSTA0$0$0                        portIO
-     00000091  _MAC0BL                            portIO
-     00000091  _P1_1                              portIO
-     00000091  _SSTA0                             portIO
-     00000092  G$MAC0BH$0$0                       portIO
-     00000092  G$P1_2$0$0                         portIO
-     00000092  _MAC0BH                            portIO
-     00000092  _P1_2                              portIO
-     00000093  G$MAC0ACC0$0$0                     portIO
-     00000093  G$P1_3$0$0                         portIO
-     00000093  _MAC0ACC0                          portIO
-     00000093  _P1_3                              portIO
-     00000094  G$MAC0ACC1$0$0                     portIO
-     00000094  G$P1_4$0$0                         portIO
-     00000094  _MAC0ACC1                          portIO
-     00000094  _P1_4                              portIO
-     00000095  G$MAC0ACC2$0$0                     portIO
-     00000095  G$P1_5$0$0                         portIO
-     00000095  _MAC0ACC2                          portIO
-     00000095  _P1_5                              portIO
-     00000096  G$MAC0ACC3$0$0                     portIO
-     00000096  G$P1_6$0$0                         portIO
-     00000096  G$SFRPGCN$0$0                      portIO
+     0000008D  _TF0                               pong
+     0000008D  _TH1                               pong
+     0000008E  G$CKCON$0$0                        pong
+     0000008E  G$CP0OUT$0$0                       pong
+     0000008E  G$CP1OUT$0$0                       pong
+     0000008E  G$PLL0MUL$0$0                      pong
+     0000008E  G$TR1$0$0                          pong
+     0000008E  _CKCON                             pong
+     0000008E  _CP0OUT                            pong
+     0000008E  _CP1OUT                            pong
+     0000008E  _PLL0MUL                           pong
+     0000008E  _TR1                               pong
+     0000008F  G$CP0EN$0$0                        pong
+     0000008F  G$CP1EN$0$0                        pong
+     0000008F  G$PLL0FLT$0$0                      pong
+     0000008F  G$PSCTL$0$0                        pong
+     0000008F  G$TF1$0$0                          pong
+     0000008F  _CP0EN                             pong
+     0000008F  _CP1EN                             pong
+     0000008F  _PLL0FLT                           pong
+     0000008F  _PSCTL                             pong
+     0000008F  _TF1                               pong
+     00000090  G$P1$0$0                           pong
+     00000090  G$P1_0$0$0                         pong
+     00000090  _P1                                pong
+     00000090  _P1_0                              pong
+     00000091  G$MAC0BL$0$0                       pong
+     00000091  G$P1_1$0$0                         pong
+     00000091  G$SSTA0$0$0                        pong
+     00000091  _MAC0BL                            pong
+     00000091  _P1_1                              pong
+     00000091  _SSTA0                             pong
+     00000092  G$MAC0BH$0$0                       pong
+     00000092  G$P1_2$0$0                         pong
+     00000092  _MAC0BH                            pong
+     00000092  _P1_2                              pong
+     00000093  G$MAC0ACC0$0$0                     pong
+     00000093  G$P1_3$0$0                         pong
+     00000093  _MAC0ACC0                          pong
+     00000093  _P1_3                              pong
+     00000094  G$MAC0ACC1$0$0                     pong
+     00000094  G$P1_4$0$0                         pong
+     00000094  _MAC0ACC1                          pong
+     00000094  _P1_4                              pong
+     00000095  G$MAC0ACC2$0$0                     pong
+     00000095  G$P1_5$0$0                         pong
+     00000095  _MAC0ACC2                          pong
+     00000095  _P1_5                              pong
+     00000096  G$MAC0ACC3$0$0                     pong
+     00000096  G$P1_6$0$0                         pong
+     00000096  G$SFRPGCN$0$0                      pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
 Hexadecimal  [32-Bits]
 
@@ -272,57 +272,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000096  _MAC0ACC3                          portIO
-     00000096  _P1_6                              portIO
-     00000096  _SFRPGCN                           portIO
-     00000097  G$CLKSEL$0$0                       portIO
-     00000097  G$MAC0OVR$0$0                      portIO
-     00000097  G$P1_7$0$0                         portIO
-     00000097  _CLKSEL                            portIO
-     00000097  _MAC0OVR                           portIO
-     00000097  _P1_7                              portIO
-     00000098  G$RI$0$0                           portIO
-     00000098  G$RI0$0$0                          portIO
-     00000098  G$RI1$0$0                          portIO
-     00000098  G$SCON$0$0                         portIO
-     00000098  G$SCON0$0$0                        portIO
-     00000098  G$SCON1$0$0                        portIO
-     00000098  _RI                                portIO
-     00000098  _RI0                               portIO
-     00000098  _RI1                               portIO
-     00000098  _SCON                              portIO
-     00000098  _SCON0                             portIO
-     00000098  _SCON1                             portIO
-     00000099  G$SBUF$0$0                         portIO
-     00000099  G$SBUF0$0$0                        portIO
-     00000099  G$SBUF1$0$0                        portIO
-     00000099  G$TI$0$0                           portIO
-     00000099  G$TI0$0$0                          portIO
-     00000099  G$TI1$0$0                          portIO
-     00000099  _SBUF                              portIO
-     00000099  _SBUF0                             portIO
-     00000099  _SBUF1                             portIO
-     00000099  _TI                                portIO
-     00000099  _TI0                               portIO
-     00000099  _TI1                               portIO
-     0000009A  G$CCH0MA$0$0                       portIO
-     0000009A  G$RB80$0$0                         portIO
-     0000009A  G$RB81$0$0                         portIO
-     0000009A  G$SPI0CFG$0$0                      portIO
-     0000009A  _CCH0MA                            portIO
-     0000009A  _RB80                              portIO
-     0000009A  _RB81                              portIO
-     0000009A  _SPI0CFG                           portIO
-     0000009B  G$SPI0DAT$0$0                      portIO
-     0000009B  G$TB80$0$0                         portIO
-     0000009B  G$TB81$0$0                         portIO
-     0000009B  _SPI0DAT                           portIO
-     0000009B  _TB80                              portIO
-     0000009B  _TB81                              portIO
-     0000009C  G$P4MDOUT$0$0                      portIO
-     0000009C  G$REN$0$0                          portIO
-     0000009C  G$REN0$0$0                         portIO
-     0000009C  G$REN1$0$0                         portIO
+     00000096  _MAC0ACC3                          pong
+     00000096  _P1_6                              pong
+     00000096  _SFRPGCN                           pong
+     00000097  G$CLKSEL$0$0                       pong
+     00000097  G$MAC0OVR$0$0                      pong
+     00000097  G$P1_7$0$0                         pong
+     00000097  _CLKSEL                            pong
+     00000097  _MAC0OVR                           pong
+     00000097  _P1_7                              pong
+     00000098  G$RI$0$0                           pong
+     00000098  G$RI0$0$0                          pong
+     00000098  G$RI1$0$0                          pong
+     00000098  G$SCON$0$0                         pong
+     00000098  G$SCON0$0$0                        pong
+     00000098  G$SCON1$0$0                        pong
+     00000098  _RI                                pong
+     00000098  _RI0                               pong
+     00000098  _RI1                               pong
+     00000098  _SCON                              pong
+     00000098  _SCON0                             pong
+     00000098  _SCON1                             pong
+     00000099  G$SBUF$0$0                         pong
+     00000099  G$SBUF0$0$0                        pong
+     00000099  G$SBUF1$0$0                        pong
+     00000099  G$TI$0$0                           pong
+     00000099  G$TI0$0$0                          pong
+     00000099  G$TI1$0$0                          pong
+     00000099  _SBUF                              pong
+     00000099  _SBUF0                             pong
+     00000099  _SBUF1                             pong
+     00000099  _TI                                pong
+     00000099  _TI0                               pong
+     00000099  _TI1                               pong
+     0000009A  G$CCH0MA$0$0                       pong
+     0000009A  G$RB80$0$0                         pong
+     0000009A  G$RB81$0$0                         pong
+     0000009A  G$SPI0CFG$0$0                      pong
+     0000009A  _CCH0MA                            pong
+     0000009A  _RB80                              pong
+     0000009A  _RB81                              pong
+     0000009A  _SPI0CFG                           pong
+     0000009B  G$SPI0DAT$0$0                      pong
+     0000009B  G$TB80$0$0                         pong
+     0000009B  G$TB81$0$0                         pong
+     0000009B  _SPI0DAT                           pong
+     0000009B  _TB80                              pong
+     0000009B  _TB81                              pong
+     0000009C  G$P4MDOUT$0$0                      pong
+     0000009C  G$REN$0$0                          pong
+     0000009C  G$REN0$0$0                         pong
+     0000009C  G$REN1$0$0                         pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
 Hexadecimal  [32-Bits]
 
@@ -332,57 +332,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000009C  _P4MDOUT                           portIO
-     0000009C  _REN                               portIO
-     0000009C  _REN0                              portIO
-     0000009C  _REN1                              portIO
-     0000009D  G$MCE1$0$0                         portIO
-     0000009D  G$P5MDOUT$0$0                      portIO
-     0000009D  G$SM20$0$0                         portIO
-     0000009D  G$SPI0CKR$0$0                      portIO
-     0000009D  _MCE1                              portIO
-     0000009D  _P5MDOUT                           portIO
-     0000009D  _SM20                              portIO
-     0000009D  _SPI0CKR                           portIO
-     0000009E  G$P6MDOUT$0$0                      portIO
-     0000009E  G$SM10$0$0                         portIO
-     0000009E  _P6MDOUT                           portIO
-     0000009E  _SM10                              portIO
-     0000009F  G$P7MDOUT$0$0                      portIO
-     0000009F  G$S1MODE$0$0                       portIO
-     0000009F  G$SM00$0$0                         portIO
-     0000009F  _P7MDOUT                           portIO
-     0000009F  _S1MODE                            portIO
-     0000009F  _SM00                              portIO
-     000000A0  G$P2$0$0                           portIO
-     000000A0  G$P2_0$0$0                         portIO
-     000000A0  _P2                                portIO
-     000000A0  _P2_0                              portIO
-     000000A1  G$CCH0CN$0$0                       portIO
-     000000A1  G$EMI0TC$0$0                       portIO
-     000000A1  G$P2_1$0$0                         portIO
-     000000A1  _CCH0CN                            portIO
-     000000A1  _EMI0TC                            portIO
-     000000A1  _P2_1                              portIO
-     000000A2  G$CCH0TN$0$0                       portIO
-     000000A2  G$EMI0CN$0$0                       portIO
-     000000A2  G$P2_2$0$0                         portIO
-     000000A2  G$_XPAGE$0$0                       portIO
-     000000A2  _CCH0TN                            portIO
-     000000A2  _EMI0CN                            portIO
-     000000A2  _P2_2                              portIO
-     000000A2  __XPAGE                            portIO
-     000000A3  G$CCH0LC$0$0                       portIO
-     000000A3  G$EMI0CF$0$0                       portIO
-     000000A3  G$P2_3$0$0                         portIO
-     000000A3  _CCH0LC                            portIO
-     000000A3  _EMI0CF                            portIO
-     000000A3  _P2_3                              portIO
-     000000A4  G$P0MDOUT$0$0                      portIO
-     000000A4  G$P2_4$0$0                         portIO
-     000000A4  _P0MDOUT                           portIO
-     000000A4  _P2_4                              portIO
-     000000A5  G$P1MDOUT$0$0                      portIO
+     0000009C  _P4MDOUT                           pong
+     0000009C  _REN                               pong
+     0000009C  _REN0                              pong
+     0000009C  _REN1                              pong
+     0000009D  G$MCE1$0$0                         pong
+     0000009D  G$P5MDOUT$0$0                      pong
+     0000009D  G$SM20$0$0                         pong
+     0000009D  G$SPI0CKR$0$0                      pong
+     0000009D  _MCE1                              pong
+     0000009D  _P5MDOUT                           pong
+     0000009D  _SM20                              pong
+     0000009D  _SPI0CKR                           pong
+     0000009E  G$P6MDOUT$0$0                      pong
+     0000009E  G$SM10$0$0                         pong
+     0000009E  _P6MDOUT                           pong
+     0000009E  _SM10                              pong
+     0000009F  G$P7MDOUT$0$0                      pong
+     0000009F  G$S1MODE$0$0                       pong
+     0000009F  G$SM00$0$0                         pong
+     0000009F  _P7MDOUT                           pong
+     0000009F  _S1MODE                            pong
+     0000009F  _SM00                              pong
+     000000A0  G$P2$0$0                           pong
+     000000A0  G$P2_0$0$0                         pong
+     000000A0  _P2                                pong
+     000000A0  _P2_0                              pong
+     000000A1  G$CCH0CN$0$0                       pong
+     000000A1  G$EMI0TC$0$0                       pong
+     000000A1  G$P2_1$0$0                         pong
+     000000A1  _CCH0CN                            pong
+     000000A1  _EMI0TC                            pong
+     000000A1  _P2_1                              pong
+     000000A2  G$CCH0TN$0$0                       pong
+     000000A2  G$EMI0CN$0$0                       pong
+     000000A2  G$P2_2$0$0                         pong
+     000000A2  G$_XPAGE$0$0                       pong
+     000000A2  _CCH0TN                            pong
+     000000A2  _EMI0CN                            pong
+     000000A2  _P2_2                              pong
+     000000A2  __XPAGE                            pong
+     000000A3  G$CCH0LC$0$0                       pong
+     000000A3  G$EMI0CF$0$0                       pong
+     000000A3  G$P2_3$0$0                         pong
+     000000A3  _CCH0LC                            pong
+     000000A3  _EMI0CF                            pong
+     000000A3  _P2_3                              pong
+     000000A4  G$P0MDOUT$0$0                      pong
+     000000A4  G$P2_4$0$0                         pong
+     000000A4  _P0MDOUT                           pong
+     000000A4  _P2_4                              pong
+     000000A5  G$P1MDOUT$0$0                      pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
 Hexadecimal  [32-Bits]
 
@@ -392,57 +392,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000A5  G$P2_5$0$0                         portIO
-     000000A5  _P1MDOUT                           portIO
-     000000A5  _P2_5                              portIO
-     000000A6  G$P2MDOUT$0$0                      portIO
-     000000A6  G$P2_6$0$0                         portIO
-     000000A6  _P2MDOUT                           portIO
-     000000A6  _P2_6                              portIO
-     000000A7  G$P2_7$0$0                         portIO
-     000000A7  G$P3MDOUT$0$0                      portIO
-     000000A7  _P2_7                              portIO
-     000000A7  _P3MDOUT                           portIO
-     000000A8  G$EX0$0$0                          portIO
-     000000A8  G$IE$0$0                           portIO
-     000000A8  _EX0                               portIO
-     000000A8  _IE                                portIO
-     000000A9  G$ET0$0$0                          portIO
-     000000A9  G$SADDR0$0$0                       portIO
-     000000A9  _ET0                               portIO
-     000000A9  _SADDR0                            portIO
-     000000AA  G$EX1$0$0                          portIO
-     000000AA  _EX1                               portIO
-     000000AB  G$ET1$0$0                          portIO
-     000000AB  _ET1                               portIO
-     000000AC  G$ES$0$0                           portIO
-     000000AC  G$ES0$0$0                          portIO
-     000000AC  _ES                                portIO
-     000000AC  _ES0                               portIO
-     000000AD  G$ET2$0$0                          portIO
-     000000AD  G$P1MDIN$0$0                       portIO
-     000000AD  _ET2                               portIO
-     000000AD  _P1MDIN                            portIO
-     000000AF  G$EA$0$0                           portIO
-     000000AF  _EA                                portIO
-     000000B0  G$P3$0$0                           portIO
-     000000B0  G$P3_0$0$0                         portIO
-     000000B0  _P3                                portIO
-     000000B0  _P3_0                              portIO
-     000000B1  G$P3_1$0$0                         portIO
-     000000B1  G$PSBANK$0$0                       portIO
-     000000B1  _P3_1                              portIO
-     000000B1  _PSBANK                            portIO
-     000000B2  G$P3_2$0$0                         portIO
-     000000B2  _P3_2                              portIO
-     000000B3  G$P3_3$0$0                         portIO
-     000000B3  _P3_3                              portIO
-     000000B4  G$P3_4$0$0                         portIO
-     000000B4  _P3_4                              portIO
-     000000B5  G$P3_5$0$0                         portIO
-     000000B5  _P3_5                              portIO
-     000000B6  G$P3_6$0$0                         portIO
-     000000B6  _P3_6                              portIO
+     000000A5  G$P2_5$0$0                         pong
+     000000A5  _P1MDOUT                           pong
+     000000A5  _P2_5                              pong
+     000000A6  G$P2MDOUT$0$0                      pong
+     000000A6  G$P2_6$0$0                         pong
+     000000A6  _P2MDOUT                           pong
+     000000A6  _P2_6                              pong
+     000000A7  G$P2_7$0$0                         pong
+     000000A7  G$P3MDOUT$0$0                      pong
+     000000A7  _P2_7                              pong
+     000000A7  _P3MDOUT                           pong
+     000000A8  G$EX0$0$0                          pong
+     000000A8  G$IE$0$0                           pong
+     000000A8  _EX0                               pong
+     000000A8  _IE                                pong
+     000000A9  G$ET0$0$0                          pong
+     000000A9  G$SADDR0$0$0                       pong
+     000000A9  _ET0                               pong
+     000000A9  _SADDR0                            pong
+     000000AA  G$EX1$0$0                          pong
+     000000AA  _EX1                               pong
+     000000AB  G$ET1$0$0                          pong
+     000000AB  _ET1                               pong
+     000000AC  G$ES$0$0                           pong
+     000000AC  G$ES0$0$0                          pong
+     000000AC  _ES                                pong
+     000000AC  _ES0                               pong
+     000000AD  G$ET2$0$0                          pong
+     000000AD  G$P1MDIN$0$0                       pong
+     000000AD  _ET2                               pong
+     000000AD  _P1MDIN                            pong
+     000000AF  G$EA$0$0                           pong
+     000000AF  _EA                                pong
+     000000B0  G$P3$0$0                           pong
+     000000B0  G$P3_0$0$0                         pong
+     000000B0  _P3                                pong
+     000000B0  _P3_0                              pong
+     000000B1  G$P3_1$0$0                         pong
+     000000B1  G$PSBANK$0$0                       pong
+     000000B1  _P3_1                              pong
+     000000B1  _PSBANK                            pong
+     000000B2  G$P3_2$0$0                         pong
+     000000B2  _P3_2                              pong
+     000000B3  G$P3_3$0$0                         pong
+     000000B3  _P3_3                              pong
+     000000B4  G$P3_4$0$0                         pong
+     000000B4  _P3_4                              pong
+     000000B5  G$P3_5$0$0                         pong
+     000000B5  _P3_5                              pong
+     000000B6  G$P3_6$0$0                         pong
+     000000B6  _P3_6                              pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
 Hexadecimal  [32-Bits]
 
@@ -452,57 +452,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000B7  G$FLACL$0$0                        portIO
-     000000B7  G$FLSCL$0$0                        portIO
-     000000B7  G$P3_7$0$0                         portIO
-     000000B7  _FLACL                             portIO
-     000000B7  _FLSCL                             portIO
-     000000B7  _P3_7                              portIO
-     000000B8  G$IP$0$0                           portIO
-     000000B8  G$PX0$0$0                          portIO
-     000000B8  _IP                                portIO
-     000000B8  _PX0                               portIO
-     000000B9  G$PT0$0$0                          portIO
-     000000B9  G$SADEN0$0$0                       portIO
-     000000B9  _PT0                               portIO
-     000000B9  _SADEN0                            portIO
-     000000BA  G$AMX0CF$0$0                       portIO
-     000000BA  G$AMX2CF$0$0                       portIO
-     000000BA  G$PX1$0$0                          portIO
-     000000BA  _AMX0CF                            portIO
-     000000BA  _AMX2CF                            portIO
-     000000BA  _PX1                               portIO
-     000000BB  G$AMX0SL$0$0                       portIO
-     000000BB  G$AMX2SL$0$0                       portIO
-     000000BB  G$PT1$0$0                          portIO
-     000000BB  _AMX0SL                            portIO
-     000000BB  _AMX2SL                            portIO
-     000000BB  _PT1                               portIO
-     000000BC  G$ADC0CF$0$0                       portIO
-     000000BC  G$ADC2CF$0$0                       portIO
-     000000BC  G$PS$0$0                           portIO
-     000000BC  G$PS0$0$0                          portIO
-     000000BC  _ADC0CF                            portIO
-     000000BC  _ADC2CF                            portIO
-     000000BC  _PS                                portIO
-     000000BC  _PS0                               portIO
-     000000BD  G$PT2$0$0                          portIO
-     000000BD  _PT2                               portIO
-     000000BE  G$ADC0L$0$0                        portIO
-     000000BE  G$ADC2$0$0                         portIO
-     000000BE  _ADC0L                             portIO
-     000000BE  _ADC2                              portIO
-     000000BF  G$ADC0H$0$0                        portIO
-     000000BF  _ADC0H                             portIO
-     000000C0  G$MAC0N$0$0                        portIO
-     000000C0  G$MAC0STA$0$0                      portIO
-     000000C0  G$SMB0CN$0$0                       portIO
-     000000C0  G$SMBTOE$0$0                       portIO
-     000000C0  _MAC0N                             portIO
-     000000C0  _MAC0STA                           portIO
-     000000C0  _SMB0CN                            portIO
-     000000C0  _SMBTOE                            portIO
-     000000C1  G$MAC0AL$0$0                       portIO
+     000000B7  G$FLACL$0$0                        pong
+     000000B7  G$FLSCL$0$0                        pong
+     000000B7  G$P3_7$0$0                         pong
+     000000B7  _FLACL                             pong
+     000000B7  _FLSCL                             pong
+     000000B7  _P3_7                              pong
+     000000B8  G$IP$0$0                           pong
+     000000B8  G$PX0$0$0                          pong
+     000000B8  _IP                                pong
+     000000B8  _PX0                               pong
+     000000B9  G$PT0$0$0                          pong
+     000000B9  G$SADEN0$0$0                       pong
+     000000B9  _PT0                               pong
+     000000B9  _SADEN0                            pong
+     000000BA  G$AMX0CF$0$0                       pong
+     000000BA  G$AMX2CF$0$0                       pong
+     000000BA  G$PX1$0$0                          pong
+     000000BA  _AMX0CF                            pong
+     000000BA  _AMX2CF                            pong
+     000000BA  _PX1                               pong
+     000000BB  G$AMX0SL$0$0                       pong
+     000000BB  G$AMX2SL$0$0                       pong
+     000000BB  G$PT1$0$0                          pong
+     000000BB  _AMX0SL                            pong
+     000000BB  _AMX2SL                            pong
+     000000BB  _PT1                               pong
+     000000BC  G$ADC0CF$0$0                       pong
+     000000BC  G$ADC2CF$0$0                       pong
+     000000BC  G$PS$0$0                           pong
+     000000BC  G$PS0$0$0                          pong
+     000000BC  _ADC0CF                            pong
+     000000BC  _ADC2CF                            pong
+     000000BC  _PS                                pong
+     000000BC  _PS0                               pong
+     000000BD  G$PT2$0$0                          pong
+     000000BD  _PT2                               pong
+     000000BE  G$ADC0L$0$0                        pong
+     000000BE  G$ADC2$0$0                         pong
+     000000BE  _ADC0L                             pong
+     000000BE  _ADC2                              pong
+     000000BF  G$ADC0H$0$0                        pong
+     000000BF  _ADC0H                             pong
+     000000C0  G$MAC0N$0$0                        pong
+     000000C0  G$MAC0STA$0$0                      pong
+     000000C0  G$SMB0CN$0$0                       pong
+     000000C0  G$SMBTOE$0$0                       pong
+     000000C0  _MAC0N                             pong
+     000000C0  _MAC0STA                           pong
+     000000C0  _SMB0CN                            pong
+     000000C0  _SMBTOE                            pong
+     000000C1  G$MAC0AL$0$0                       pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
 Hexadecimal  [32-Bits]
 
@@ -512,57 +512,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000C1  G$MAC0SO$0$0                       portIO
-     000000C1  G$SMB0STA$0$0                      portIO
-     000000C1  G$SMBFTE$0$0                       portIO
-     000000C1  _MAC0AL                            portIO
-     000000C1  _MAC0SO                            portIO
-     000000C1  _SMB0STA                           portIO
-     000000C1  _SMBFTE                            portIO
-     000000C2  G$AA$0$0                           portIO
-     000000C2  G$MAC0AH$0$0                       portIO
-     000000C2  G$MAC0Z$0$0                        portIO
-     000000C2  G$SMB0DAT$0$0                      portIO
-     000000C2  _AA                                portIO
-     000000C2  _MAC0AH                            portIO
-     000000C2  _MAC0Z                             portIO
-     000000C2  _SMB0DAT                           portIO
-     000000C3  G$MAC0CF$0$0                       portIO
-     000000C3  G$MAC0HO$0$0                       portIO
-     000000C3  G$SI$0$0                           portIO
-     000000C3  G$SMB0ADR$0$0                      portIO
-     000000C3  _MAC0CF                            portIO
-     000000C3  _MAC0HO                            portIO
-     000000C3  _SI                                portIO
-     000000C3  _SMB0ADR                           portIO
-     000000C4  G$ADC0GTL$0$0                      portIO
-     000000C4  G$ADC2GT$0$0                       portIO
-     000000C4  G$STO$0$0                          portIO
-     000000C4  _ADC0GTL                           portIO
-     000000C4  _ADC2GT                            portIO
-     000000C4  _STO                               portIO
-     000000C5  G$ADC0GTH$0$0                      portIO
-     000000C5  G$STA$0$0                          portIO
-     000000C5  _ADC0GTH                           portIO
-     000000C5  _STA                               portIO
-     000000C6  G$ADC0LTL$0$0                      portIO
-     000000C6  G$ADC2LT$0$0                       portIO
-     000000C6  G$ENSMB$0$0                        portIO
-     000000C6  _ADC0LTL                           portIO
-     000000C6  _ADC2LT                            portIO
-     000000C6  _ENSMB                             portIO
-     000000C7  G$ADC0LTH$0$0                      portIO
-     000000C7  G$BUSY$0$0                         portIO
-     000000C7  _ADC0LTH                           portIO
-     000000C7  _BUSY                              portIO
-     000000C8  G$CPRL2$0$0                        portIO
-     000000C8  G$CPRL3$0$0                        portIO
-     000000C8  G$CPRL4$0$0                        portIO
-     000000C8  G$P4$0$0                           portIO
-     000000C8  G$P4_0$0$0                         portIO
-     000000C8  G$TMR2CN$0$0                       portIO
-     000000C8  G$TMR3CN$0$0                       portIO
-     000000C8  G$TMR4CN$0$0                       portIO
+     000000C1  G$MAC0SO$0$0                       pong
+     000000C1  G$SMB0STA$0$0                      pong
+     000000C1  G$SMBFTE$0$0                       pong
+     000000C1  _MAC0AL                            pong
+     000000C1  _MAC0SO                            pong
+     000000C1  _SMB0STA                           pong
+     000000C1  _SMBFTE                            pong
+     000000C2  G$AA$0$0                           pong
+     000000C2  G$MAC0AH$0$0                       pong
+     000000C2  G$MAC0Z$0$0                        pong
+     000000C2  G$SMB0DAT$0$0                      pong
+     000000C2  _AA                                pong
+     000000C2  _MAC0AH                            pong
+     000000C2  _MAC0Z                             pong
+     000000C2  _SMB0DAT                           pong
+     000000C3  G$MAC0CF$0$0                       pong
+     000000C3  G$MAC0HO$0$0                       pong
+     000000C3  G$SI$0$0                           pong
+     000000C3  G$SMB0ADR$0$0                      pong
+     000000C3  _MAC0CF                            pong
+     000000C3  _MAC0HO                            pong
+     000000C3  _SI                                pong
+     000000C3  _SMB0ADR                           pong
+     000000C4  G$ADC0GTL$0$0                      pong
+     000000C4  G$ADC2GT$0$0                       pong
+     000000C4  G$STO$0$0                          pong
+     000000C4  _ADC0GTL                           pong
+     000000C4  _ADC2GT                            pong
+     000000C4  _STO                               pong
+     000000C5  G$ADC0GTH$0$0                      pong
+     000000C5  G$STA$0$0                          pong
+     000000C5  _ADC0GTH                           pong
+     000000C5  _STA                               pong
+     000000C6  G$ADC0LTL$0$0                      pong
+     000000C6  G$ADC2LT$0$0                       pong
+     000000C6  G$ENSMB$0$0                        pong
+     000000C6  _ADC0LTL                           pong
+     000000C6  _ADC2LT                            pong
+     000000C6  _ENSMB                             pong
+     000000C7  G$ADC0LTH$0$0                      pong
+     000000C7  G$BUSY$0$0                         pong
+     000000C7  _ADC0LTH                           pong
+     000000C7  _BUSY                              pong
+     000000C8  G$CPRL2$0$0                        pong
+     000000C8  G$CPRL3$0$0                        pong
+     000000C8  G$CPRL4$0$0                        pong
+     000000C8  G$P4$0$0                           pong
+     000000C8  G$P4_0$0$0                         pong
+     000000C8  G$TMR2CN$0$0                       pong
+     000000C8  G$TMR3CN$0$0                       pong
+     000000C8  G$TMR4CN$0$0                       pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
 Hexadecimal  [32-Bits]
 
@@ -572,57 +572,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000C8  _CPRL2                             portIO
-     000000C8  _CPRL3                             portIO
-     000000C8  _CPRL4                             portIO
-     000000C8  _P4                                portIO
-     000000C8  _P4_0                              portIO
-     000000C8  _TMR2CN                            portIO
-     000000C8  _TMR3CN                            portIO
-     000000C8  _TMR4CN                            portIO
-     000000C9  G$CT2$0$0                          portIO
-     000000C9  G$CT3$0$0                          portIO
-     000000C9  G$CT4$0$0                          portIO
-     000000C9  G$P4_1$0$0                         portIO
-     000000C9  G$TMR2CF$0$0                       portIO
-     000000C9  G$TMR3CF$0$0                       portIO
-     000000C9  G$TMR4CF$0$0                       portIO
-     000000C9  _CT2                               portIO
-     000000C9  _CT3                               portIO
-     000000C9  _CT4                               portIO
-     000000C9  _P4_1                              portIO
-     000000C9  _TMR2CF                            portIO
-     000000C9  _TMR3CF                            portIO
-     000000C9  _TMR4CF                            portIO
-     000000CA  G$P4_2$0$0                         portIO
-     000000CA  G$RCAP2L$0$0                       portIO
-     000000CA  G$RCAP3L$0$0                       portIO
-     000000CA  G$RCAP4L$0$0                       portIO
-     000000CA  G$TR2$0$0                          portIO
-     000000CA  G$TR3$0$0                          portIO
-     000000CA  G$TR4$0$0                          portIO
-     000000CA  _P4_2                              portIO
-     000000CA  _RCAP2L                            portIO
-     000000CA  _RCAP3L                            portIO
-     000000CA  _RCAP4L                            portIO
-     000000CA  _TR2                               portIO
-     000000CA  _TR3                               portIO
-     000000CA  _TR4                               portIO
-     000000CB  G$EXEN2$0$0                        portIO
-     000000CB  G$EXEN3$0$0                        portIO
-     000000CB  G$EXEN4$0$0                        portIO
-     000000CB  G$P4_3$0$0                         portIO
-     000000CB  G$RCAP2H$0$0                       portIO
-     000000CB  G$RCAP3H$0$0                       portIO
-     000000CB  G$RCAP4H$0$0                       portIO
-     000000CB  _EXEN2                             portIO
-     000000CB  _EXEN3                             portIO
-     000000CB  _EXEN4                             portIO
-     000000CB  _P4_3                              portIO
-     000000CB  _RCAP2H                            portIO
-     000000CB  _RCAP3H                            portIO
-     000000CB  _RCAP4H                            portIO
-     000000CC  G$P4_4$0$0                         portIO
+     000000C8  _CPRL2                             pong
+     000000C8  _CPRL3                             pong
+     000000C8  _CPRL4                             pong
+     000000C8  _P4                                pong
+     000000C8  _P4_0                              pong
+     000000C8  _TMR2CN                            pong
+     000000C8  _TMR3CN                            pong
+     000000C8  _TMR4CN                            pong
+     000000C9  G$CT2$0$0                          pong
+     000000C9  G$CT3$0$0                          pong
+     000000C9  G$CT4$0$0                          pong
+     000000C9  G$P4_1$0$0                         pong
+     000000C9  G$TMR2CF$0$0                       pong
+     000000C9  G$TMR3CF$0$0                       pong
+     000000C9  G$TMR4CF$0$0                       pong
+     000000C9  _CT2                               pong
+     000000C9  _CT3                               pong
+     000000C9  _CT4                               pong
+     000000C9  _P4_1                              pong
+     000000C9  _TMR2CF                            pong
+     000000C9  _TMR3CF                            pong
+     000000C9  _TMR4CF                            pong
+     000000CA  G$P4_2$0$0                         pong
+     000000CA  G$RCAP2L$0$0                       pong
+     000000CA  G$RCAP3L$0$0                       pong
+     000000CA  G$RCAP4L$0$0                       pong
+     000000CA  G$TR2$0$0                          pong
+     000000CA  G$TR3$0$0                          pong
+     000000CA  G$TR4$0$0                          pong
+     000000CA  _P4_2                              pong
+     000000CA  _RCAP2L                            pong
+     000000CA  _RCAP3L                            pong
+     000000CA  _RCAP4L                            pong
+     000000CA  _TR2                               pong
+     000000CA  _TR3                               pong
+     000000CA  _TR4                               pong
+     000000CB  G$EXEN2$0$0                        pong
+     000000CB  G$EXEN3$0$0                        pong
+     000000CB  G$EXEN4$0$0                        pong
+     000000CB  G$P4_3$0$0                         pong
+     000000CB  G$RCAP2H$0$0                       pong
+     000000CB  G$RCAP3H$0$0                       pong
+     000000CB  G$RCAP4H$0$0                       pong
+     000000CB  _EXEN2                             pong
+     000000CB  _EXEN3                             pong
+     000000CB  _EXEN4                             pong
+     000000CB  _P4_3                              pong
+     000000CB  _RCAP2H                            pong
+     000000CB  _RCAP3H                            pong
+     000000CB  _RCAP4H                            pong
+     000000CC  G$P4_4$0$0                         pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
 Hexadecimal  [32-Bits]
 
@@ -632,57 +632,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000CC  G$TL2$0$0                          portIO
-     000000CC  G$TMR2L$0$0                        portIO
-     000000CC  G$TMR3L$0$0                        portIO
-     000000CC  G$TMR4L$0$0                        portIO
-     000000CC  _P4_4                              portIO
-     000000CC  _TL2                               portIO
-     000000CC  _TMR2L                             portIO
-     000000CC  _TMR3L                             portIO
-     000000CC  _TMR4L                             portIO
-     000000CD  G$P4_5$0$0                         portIO
-     000000CD  G$TH2$0$0                          portIO
-     000000CD  G$TMR2H$0$0                        portIO
-     000000CD  G$TMR3H$0$0                        portIO
-     000000CD  G$TMR4H$0$0                        portIO
-     000000CD  _P4_5                              portIO
-     000000CD  _TH2                               portIO
-     000000CD  _TMR2H                             portIO
-     000000CD  _TMR3H                             portIO
-     000000CD  _TMR4H                             portIO
-     000000CE  G$EXF2$0$0                         portIO
-     000000CE  G$EXF3$0$0                         portIO
-     000000CE  G$EXF4$0$0                         portIO
-     000000CE  G$MAC0RNDL$0$0                     portIO
-     000000CE  G$P4_6$0$0                         portIO
-     000000CE  _EXF2                              portIO
-     000000CE  _EXF3                              portIO
-     000000CE  _EXF4                              portIO
-     000000CE  _MAC0RNDL                          portIO
-     000000CE  _P4_6                              portIO
-     000000CF  G$MAC0RNDH$0$0                     portIO
-     000000CF  G$P4_7$0$0                         portIO
-     000000CF  G$SMB0CR$0$0                       portIO
-     000000CF  G$TF2$0$0                          portIO
-     000000CF  G$TF3$0$0                          portIO
-     000000CF  G$TF4$0$0                          portIO
-     000000CF  _MAC0RNDH                          portIO
-     000000CF  _P4_7                              portIO
-     000000CF  _SMB0CR                            portIO
-     000000CF  _TF2                               portIO
-     000000CF  _TF3                               portIO
-     000000CF  _TF4                               portIO
-     000000D0  G$P$0$0                            portIO
-     000000D0  G$PSW$0$0                          portIO
-     000000D0  _P                                 portIO
-     000000D0  _PSW                               portIO
-     000000D1  G$F1$0$0                           portIO
-     000000D1  G$REF0CN$0$0                       portIO
-     000000D1  _F1                                portIO
-     000000D1  _REF0CN                            portIO
-     000000D2  G$DAC0L$0$0                        portIO
-     000000D2  G$DAC1L$0$0                        portIO
+     000000CC  G$TL2$0$0                          pong
+     000000CC  G$TMR2L$0$0                        pong
+     000000CC  G$TMR3L$0$0                        pong
+     000000CC  G$TMR4L$0$0                        pong
+     000000CC  _P4_4                              pong
+     000000CC  _TL2                               pong
+     000000CC  _TMR2L                             pong
+     000000CC  _TMR3L                             pong
+     000000CC  _TMR4L                             pong
+     000000CD  G$P4_5$0$0                         pong
+     000000CD  G$TH2$0$0                          pong
+     000000CD  G$TMR2H$0$0                        pong
+     000000CD  G$TMR3H$0$0                        pong
+     000000CD  G$TMR4H$0$0                        pong
+     000000CD  _P4_5                              pong
+     000000CD  _TH2                               pong
+     000000CD  _TMR2H                             pong
+     000000CD  _TMR3H                             pong
+     000000CD  _TMR4H                             pong
+     000000CE  G$EXF2$0$0                         pong
+     000000CE  G$EXF3$0$0                         pong
+     000000CE  G$EXF4$0$0                         pong
+     000000CE  G$MAC0RNDL$0$0                     pong
+     000000CE  G$P4_6$0$0                         pong
+     000000CE  _EXF2                              pong
+     000000CE  _EXF3                              pong
+     000000CE  _EXF4                              pong
+     000000CE  _MAC0RNDL                          pong
+     000000CE  _P4_6                              pong
+     000000CF  G$MAC0RNDH$0$0                     pong
+     000000CF  G$P4_7$0$0                         pong
+     000000CF  G$SMB0CR$0$0                       pong
+     000000CF  G$TF2$0$0                          pong
+     000000CF  G$TF3$0$0                          pong
+     000000CF  G$TF4$0$0                          pong
+     000000CF  _MAC0RNDH                          pong
+     000000CF  _P4_7                              pong
+     000000CF  _SMB0CR                            pong
+     000000CF  _TF2                               pong
+     000000CF  _TF3                               pong
+     000000CF  _TF4                               pong
+     000000D0  G$P$0$0                            pong
+     000000D0  G$PSW$0$0                          pong
+     000000D0  _P                                 pong
+     000000D0  _PSW                               pong
+     000000D1  G$F1$0$0                           pong
+     000000D1  G$REF0CN$0$0                       pong
+     000000D1  _F1                                pong
+     000000D1  _REF0CN                            pong
+     000000D2  G$DAC0L$0$0                        pong
+     000000D2  G$DAC1L$0$0                        pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
 Hexadecimal  [32-Bits]
 
@@ -692,57 +692,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000D2  G$OV$0$0                           portIO
-     000000D2  _DAC0L                             portIO
-     000000D2  _DAC1L                             portIO
-     000000D2  _OV                                portIO
-     000000D3  G$DAC0H$0$0                        portIO
-     000000D3  G$DAC1H$0$0                        portIO
-     000000D3  G$RS0$0$0                          portIO
-     000000D3  _DAC0H                             portIO
-     000000D3  _DAC1H                             portIO
-     000000D3  _RS0                               portIO
-     000000D4  G$DAC0CN$0$0                       portIO
-     000000D4  G$DAC1CN$0$0                       portIO
-     000000D4  G$RS1$0$0                          portIO
-     000000D4  _DAC0CN                            portIO
-     000000D4  _DAC1CN                            portIO
-     000000D4  _RS1                               portIO
-     000000D5  G$F0$0$0                           portIO
-     000000D5  _F0                                portIO
-     000000D6  G$AC$0$0                           portIO
-     000000D6  _AC                                portIO
-     000000D7  G$CY$0$0                           portIO
-     000000D7  _CY                                portIO
-     000000D8  G$CCF0$0$0                         portIO
-     000000D8  G$P5$0$0                           portIO
-     000000D8  G$P5_0$0$0                         portIO
-     000000D8  G$PCA0CN$0$0                       portIO
-     000000D8  _CCF0                              portIO
-     000000D8  _P5                                portIO
-     000000D8  _P5_0                              portIO
-     000000D8  _PCA0CN                            portIO
-     000000D9  G$CCF1$0$0                         portIO
-     000000D9  G$P5_1$0$0                         portIO
-     000000D9  G$PCA0MD$0$0                       portIO
-     000000D9  _CCF1                              portIO
-     000000D9  _P5_1                              portIO
-     000000D9  _PCA0MD                            portIO
-     000000DA  G$CCF2$0$0                         portIO
-     000000DA  G$P5_2$0$0                         portIO
-     000000DA  G$PCA0CPM0$0$0                     portIO
-     000000DA  _CCF2                              portIO
-     000000DA  _P5_2                              portIO
-     000000DA  _PCA0CPM0                          portIO
-     000000DB  G$CCF3$0$0                         portIO
-     000000DB  G$P5_3$0$0                         portIO
-     000000DB  G$PCA0CPM1$0$0                     portIO
-     000000DB  _CCF3                              portIO
-     000000DB  _P5_3                              portIO
-     000000DB  _PCA0CPM1                          portIO
-     000000DC  G$CCF4$0$0                         portIO
-     000000DC  G$P5_4$0$0                         portIO
-     000000DC  G$PCA0CPM2$0$0                     portIO
+     000000D2  G$OV$0$0                           pong
+     000000D2  _DAC0L                             pong
+     000000D2  _DAC1L                             pong
+     000000D2  _OV                                pong
+     000000D3  G$DAC0H$0$0                        pong
+     000000D3  G$DAC1H$0$0                        pong
+     000000D3  G$RS0$0$0                          pong
+     000000D3  _DAC0H                             pong
+     000000D3  _DAC1H                             pong
+     000000D3  _RS0                               pong
+     000000D4  G$DAC0CN$0$0                       pong
+     000000D4  G$DAC1CN$0$0                       pong
+     000000D4  G$RS1$0$0                          pong
+     000000D4  _DAC0CN                            pong
+     000000D4  _DAC1CN                            pong
+     000000D4  _RS1                               pong
+     000000D5  G$F0$0$0                           pong
+     000000D5  _F0                                pong
+     000000D6  G$AC$0$0                           pong
+     000000D6  _AC                                pong
+     000000D7  G$CY$0$0                           pong
+     000000D7  _CY                                pong
+     000000D8  G$CCF0$0$0                         pong
+     000000D8  G$P5$0$0                           pong
+     000000D8  G$P5_0$0$0                         pong
+     000000D8  G$PCA0CN$0$0                       pong
+     000000D8  _CCF0                              pong
+     000000D8  _P5                                pong
+     000000D8  _P5_0                              pong
+     000000D8  _PCA0CN                            pong
+     000000D9  G$CCF1$0$0                         pong
+     000000D9  G$P5_1$0$0                         pong
+     000000D9  G$PCA0MD$0$0                       pong
+     000000D9  _CCF1                              pong
+     000000D9  _P5_1                              pong
+     000000D9  _PCA0MD                            pong
+     000000DA  G$CCF2$0$0                         pong
+     000000DA  G$P5_2$0$0                         pong
+     000000DA  G$PCA0CPM0$0$0                     pong
+     000000DA  _CCF2                              pong
+     000000DA  _P5_2                              pong
+     000000DA  _PCA0CPM0                          pong
+     000000DB  G$CCF3$0$0                         pong
+     000000DB  G$P5_3$0$0                         pong
+     000000DB  G$PCA0CPM1$0$0                     pong
+     000000DB  _CCF3                              pong
+     000000DB  _P5_3                              pong
+     000000DB  _PCA0CPM1                          pong
+     000000DC  G$CCF4$0$0                         pong
+     000000DC  G$P5_4$0$0                         pong
+     000000DC  G$PCA0CPM2$0$0                     pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
 Hexadecimal  [32-Bits]
 
@@ -752,57 +752,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000DC  _CCF4                              portIO
-     000000DC  _P5_4                              portIO
-     000000DC  _PCA0CPM2                          portIO
-     000000DD  G$CCF5$0$0                         portIO
-     000000DD  G$P5_5$0$0                         portIO
-     000000DD  G$PCA0CPM3$0$0                     portIO
-     000000DD  _CCF5                              portIO
-     000000DD  _P5_5                              portIO
-     000000DD  _PCA0CPM3                          portIO
-     000000DE  G$CR$0$0                           portIO
-     000000DE  G$P5_6$0$0                         portIO
-     000000DE  G$PCA0CPM4$0$0                     portIO
-     000000DE  _CR                                portIO
-     000000DE  _P5_6                              portIO
-     000000DE  _PCA0CPM4                          portIO
-     000000DF  G$CF$0$0                           portIO
-     000000DF  G$P5_7$0$0                         portIO
-     000000DF  G$PCA0CPM5$0$0                     portIO
-     000000DF  _CF                                portIO
-     000000DF  _P5_7                              portIO
-     000000DF  _PCA0CPM5                          portIO
-     000000E0  G$ACC$0$0                          portIO
-     000000E0  _ACC                               portIO
-     000000E1  G$PCA0CPL5$0$0                     portIO
-     000000E1  G$XBR0$0$0                         portIO
-     000000E1  _PCA0CPL5                          portIO
-     000000E1  _XBR0                              portIO
-     000000E2  G$PCA0CPH5$0$0                     portIO
-     000000E2  G$XBR1$0$0                         portIO
-     000000E2  _PCA0CPH5                          portIO
-     000000E2  _XBR1                              portIO
-     000000E3  G$XBR2$0$0                         portIO
-     000000E3  _XBR2                              portIO
-     000000E6  G$EIE1$0$0                         portIO
-     000000E6  _EIE1                              portIO
-     000000E7  G$EIE2$0$0                         portIO
-     000000E7  _EIE2                              portIO
-     000000E8  G$AD0LJST$0$0                      portIO
-     000000E8  G$AD2WINT$0$0                      portIO
-     000000E8  G$ADC0CN$0$0                       portIO
-     000000E8  G$ADC2CN$0$0                       portIO
-     000000E8  G$P6$0$0                           portIO
-     000000E8  G$P6_0$0$0                         portIO
-     000000E8  _AD0LJST                           portIO
-     000000E8  _AD2WINT                           portIO
-     000000E8  _ADC0CN                            portIO
-     000000E8  _ADC2CN                            portIO
-     000000E8  _P6                                portIO
-     000000E8  _P6_0                              portIO
-     000000E9  G$AD0WINT$0$0                      portIO
-     000000E9  G$AD2CM0$0$0                       portIO
+     000000DC  _CCF4                              pong
+     000000DC  _P5_4                              pong
+     000000DC  _PCA0CPM2                          pong
+     000000DD  G$CCF5$0$0                         pong
+     000000DD  G$P5_5$0$0                         pong
+     000000DD  G$PCA0CPM3$0$0                     pong
+     000000DD  _CCF5                              pong
+     000000DD  _P5_5                              pong
+     000000DD  _PCA0CPM3                          pong
+     000000DE  G$CR$0$0                           pong
+     000000DE  G$P5_6$0$0                         pong
+     000000DE  G$PCA0CPM4$0$0                     pong
+     000000DE  _CR                                pong
+     000000DE  _P5_6                              pong
+     000000DE  _PCA0CPM4                          pong
+     000000DF  G$CF$0$0                           pong
+     000000DF  G$P5_7$0$0                         pong
+     000000DF  G$PCA0CPM5$0$0                     pong
+     000000DF  _CF                                pong
+     000000DF  _P5_7                              pong
+     000000DF  _PCA0CPM5                          pong
+     000000E0  G$ACC$0$0                          pong
+     000000E0  _ACC                               pong
+     000000E1  G$PCA0CPL5$0$0                     pong
+     000000E1  G$XBR0$0$0                         pong
+     000000E1  _PCA0CPL5                          pong
+     000000E1  _XBR0                              pong
+     000000E2  G$PCA0CPH5$0$0                     pong
+     000000E2  G$XBR1$0$0                         pong
+     000000E2  _PCA0CPH5                          pong
+     000000E2  _XBR1                              pong
+     000000E3  G$XBR2$0$0                         pong
+     000000E3  _XBR2                              pong
+     000000E6  G$EIE1$0$0                         pong
+     000000E6  _EIE1                              pong
+     000000E7  G$EIE2$0$0                         pong
+     000000E7  _EIE2                              pong
+     000000E8  G$AD0LJST$0$0                      pong
+     000000E8  G$AD2WINT$0$0                      pong
+     000000E8  G$ADC0CN$0$0                       pong
+     000000E8  G$ADC2CN$0$0                       pong
+     000000E8  G$P6$0$0                           pong
+     000000E8  G$P6_0$0$0                         pong
+     000000E8  _AD0LJST                           pong
+     000000E8  _AD2WINT                           pong
+     000000E8  _ADC0CN                            pong
+     000000E8  _ADC2CN                            pong
+     000000E8  _P6                                pong
+     000000E8  _P6_0                              pong
+     000000E9  G$AD0WINT$0$0                      pong
+     000000E9  G$AD2CM0$0$0                       pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
 Hexadecimal  [32-Bits]
 
@@ -812,57 +812,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000E9  G$P6_1$0$0                         portIO
-     000000E9  G$PCA0CPL2$0$0                     portIO
-     000000E9  _AD0WINT                           portIO
-     000000E9  _AD2CM0                            portIO
-     000000E9  _P6_1                              portIO
-     000000E9  _PCA0CPL2                          portIO
-     000000EA  G$AD0CM0$0$0                       portIO
-     000000EA  G$AD2CM1$0$0                       portIO
-     000000EA  G$P6_2$0$0                         portIO
-     000000EA  G$PCA0CPH2$0$0                     portIO
-     000000EA  _AD0CM0                            portIO
-     000000EA  _AD2CM1                            portIO
-     000000EA  _P6_2                              portIO
-     000000EA  _PCA0CPH2                          portIO
-     000000EB  G$AD0CM1$0$0                       portIO
-     000000EB  G$AD2CM2$0$0                       portIO
-     000000EB  G$P6_3$0$0                         portIO
-     000000EB  G$PCA0CPL3$0$0                     portIO
-     000000EB  _AD0CM1                            portIO
-     000000EB  _AD2CM2                            portIO
-     000000EB  _P6_3                              portIO
-     000000EB  _PCA0CPL3                          portIO
-     000000EC  G$AD0BUSY$0$0                      portIO
-     000000EC  G$AD2BUSY$0$0                      portIO
-     000000EC  G$P6_4$0$0                         portIO
-     000000EC  G$PCA0CPH3$0$0                     portIO
-     000000EC  _AD0BUSY                           portIO
-     000000EC  _AD2BUSY                           portIO
-     000000EC  _P6_4                              portIO
-     000000EC  _PCA0CPH3                          portIO
-     000000ED  G$AD0INT$0$0                       portIO
-     000000ED  G$AD2INT$0$0                       portIO
-     000000ED  G$P6_5$0$0                         portIO
-     000000ED  G$PCA0CPL4$0$0                     portIO
-     000000ED  _AD0INT                            portIO
-     000000ED  _AD2INT                            portIO
-     000000ED  _P6_5                              portIO
-     000000ED  _PCA0CPL4                          portIO
-     000000EE  G$AD0TM$0$0                        portIO
-     000000EE  G$AD2TM$0$0                        portIO
-     000000EE  G$P6_6$0$0                         portIO
-     000000EE  G$PCA0CPH4$0$0                     portIO
-     000000EE  _AD0TM                             portIO
-     000000EE  _AD2TM                             portIO
-     000000EE  _P6_6                              portIO
-     000000EE  _PCA0CPH4                          portIO
-     000000EF  G$AD0EN$0$0                        portIO
-     000000EF  G$AD2EN$0$0                        portIO
-     000000EF  G$P6_7$0$0                         portIO
-     000000EF  G$RSTSRC$0$0                       portIO
-     000000EF  _AD0EN                             portIO
+     000000E9  G$P6_1$0$0                         pong
+     000000E9  G$PCA0CPL2$0$0                     pong
+     000000E9  _AD0WINT                           pong
+     000000E9  _AD2CM0                            pong
+     000000E9  _P6_1                              pong
+     000000E9  _PCA0CPL2                          pong
+     000000EA  G$AD0CM0$0$0                       pong
+     000000EA  G$AD2CM1$0$0                       pong
+     000000EA  G$P6_2$0$0                         pong
+     000000EA  G$PCA0CPH2$0$0                     pong
+     000000EA  _AD0CM0                            pong
+     000000EA  _AD2CM1                            pong
+     000000EA  _P6_2                              pong
+     000000EA  _PCA0CPH2                          pong
+     000000EB  G$AD0CM1$0$0                       pong
+     000000EB  G$AD2CM2$0$0                       pong
+     000000EB  G$P6_3$0$0                         pong
+     000000EB  G$PCA0CPL3$0$0                     pong
+     000000EB  _AD0CM1                            pong
+     000000EB  _AD2CM2                            pong
+     000000EB  _P6_3                              pong
+     000000EB  _PCA0CPL3                          pong
+     000000EC  G$AD0BUSY$0$0                      pong
+     000000EC  G$AD2BUSY$0$0                      pong
+     000000EC  G$P6_4$0$0                         pong
+     000000EC  G$PCA0CPH3$0$0                     pong
+     000000EC  _AD0BUSY                           pong
+     000000EC  _AD2BUSY                           pong
+     000000EC  _P6_4                              pong
+     000000EC  _PCA0CPH3                          pong
+     000000ED  G$AD0INT$0$0                       pong
+     000000ED  G$AD2INT$0$0                       pong
+     000000ED  G$P6_5$0$0                         pong
+     000000ED  G$PCA0CPL4$0$0                     pong
+     000000ED  _AD0INT                            pong
+     000000ED  _AD2INT                            pong
+     000000ED  _P6_5                              pong
+     000000ED  _PCA0CPL4                          pong
+     000000EE  G$AD0TM$0$0                        pong
+     000000EE  G$AD2TM$0$0                        pong
+     000000EE  G$P6_6$0$0                         pong
+     000000EE  G$PCA0CPH4$0$0                     pong
+     000000EE  _AD0TM                             pong
+     000000EE  _AD2TM                             pong
+     000000EE  _P6_6                              pong
+     000000EE  _PCA0CPH4                          pong
+     000000EF  G$AD0EN$0$0                        pong
+     000000EF  G$AD2EN$0$0                        pong
+     000000EF  G$P6_7$0$0                         pong
+     000000EF  G$RSTSRC$0$0                       pong
+     000000EF  _AD0EN                             pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
 Hexadecimal  [32-Bits]
 
@@ -872,57 +872,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000EF  _AD2EN                             portIO
-     000000EF  _P6_7                              portIO
-     000000EF  _RSTSRC                            portIO
-     000000F0  G$B$0$0                            portIO
-     000000F0  _B                                 portIO
+     000000EF  _AD2EN                             pong
+     000000EF  _P6_7                              pong
+     000000EF  _RSTSRC                            pong
+     000000F0  G$B$0$0                            pong
+     000000F0  _B                                 pong
      000000F5  _B_5                               _gptrget
-     000000F6  G$EIP1$0$0                         portIO
+     000000F6  G$EIP1$0$0                         pong
      000000F6  _B_6                               _gptrget
-     000000F6  _EIP1                              portIO
-     000000F7  G$EIP2$0$0                         portIO
+     000000F6  _EIP1                              pong
+     000000F7  G$EIP2$0$0                         pong
      000000F7  _B_7                               _gptrget
-     000000F7  _EIP2                              portIO
-     000000F8  G$P7$0$0                           portIO
-     000000F8  G$P7_0$0$0                         portIO
-     000000F8  G$SPI0CN$0$0                       portIO
-     000000F8  G$SPIEN$0$0                        portIO
-     000000F8  _P7                                portIO
-     000000F8  _P7_0                              portIO
-     000000F8  _SPI0CN                            portIO
-     000000F8  _SPIEN                             portIO
-     000000F9  G$P7_1$0$0                         portIO
-     000000F9  G$PCA0L$0$0                        portIO
-     000000F9  G$TXBMT$0$0                        portIO
-     000000F9  _P7_1                              portIO
-     000000F9  _PCA0L                             portIO
-     000000F9  _TXBMT                             portIO
-     000000FA  G$NSSMD0$0$0                       portIO
-     000000FA  G$P7_2$0$0                         portIO
-     000000FA  G$PCA0H$0$0                        portIO
-     000000FA  _NSSMD0                            portIO
-     000000FA  _P7_2                              portIO
-     000000FA  _PCA0H                             portIO
-     000000FB  G$NSSMD1$0$0                       portIO
-     000000FB  G$P7_3$0$0                         portIO
-     000000FB  G$PCA0CPL0$0$0                     portIO
-     000000FB  _NSSMD1                            portIO
-     000000FB  _P7_3                              portIO
-     000000FB  _PCA0CPL0                          portIO
-     000000FC  G$P7_4$0$0                         portIO
-     000000FC  G$PCA0CPH0$0$0                     portIO
-     000000FC  G$RXOVRN$0$0                       portIO
-     000000FC  _P7_4                              portIO
-     000000FC  _PCA0CPH0                          portIO
-     000000FC  _RXOVRN                            portIO
-     000000FD  G$MODF$0$0                         portIO
-     000000FD  G$P7_5$0$0                         portIO
-     000000FD  G$PCA0CPL1$0$0                     portIO
-     000000FD  _MODF                              portIO
-     000000FD  _P7_5                              portIO
-     000000FD  _PCA0CPL1                          portIO
-     000000FE  G$P7_6$0$0                         portIO
+     000000F7  _EIP2                              pong
+     000000F8  G$P7$0$0                           pong
+     000000F8  G$P7_0$0$0                         pong
+     000000F8  G$SPI0CN$0$0                       pong
+     000000F8  G$SPIEN$0$0                        pong
+     000000F8  _P7                                pong
+     000000F8  _P7_0                              pong
+     000000F8  _SPI0CN                            pong
+     000000F8  _SPIEN                             pong
+     000000F9  G$P7_1$0$0                         pong
+     000000F9  G$PCA0L$0$0                        pong
+     000000F9  G$TXBMT$0$0                        pong
+     000000F9  _P7_1                              pong
+     000000F9  _PCA0L                             pong
+     000000F9  _TXBMT                             pong
+     000000FA  G$NSSMD0$0$0                       pong
+     000000FA  G$P7_2$0$0                         pong
+     000000FA  G$PCA0H$0$0                        pong
+     000000FA  _NSSMD0                            pong
+     000000FA  _P7_2                              pong
+     000000FA  _PCA0H                             pong
+     000000FB  G$NSSMD1$0$0                       pong
+     000000FB  G$P7_3$0$0                         pong
+     000000FB  G$PCA0CPL0$0$0                     pong
+     000000FB  _NSSMD1                            pong
+     000000FB  _P7_3                              pong
+     000000FB  _PCA0CPL0                          pong
+     000000FC  G$P7_4$0$0                         pong
+     000000FC  G$PCA0CPH0$0$0                     pong
+     000000FC  G$RXOVRN$0$0                       pong
+     000000FC  _P7_4                              pong
+     000000FC  _PCA0CPH0                          pong
+     000000FC  _RXOVRN                            pong
+     000000FD  G$MODF$0$0                         pong
+     000000FD  G$P7_5$0$0                         pong
+     000000FD  G$PCA0CPL1$0$0                     pong
+     000000FD  _MODF                              pong
+     000000FD  _P7_5                              pong
+     000000FD  _PCA0CPL1                          pong
+     000000FE  G$P7_6$0$0                         pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
 Hexadecimal  [32-Bits]
 
@@ -932,57 +932,57 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000000FE  G$PCA0CPH1$0$0                     portIO
-     000000FE  G$WCOL$0$0                         portIO
-     000000FE  _P7_6                              portIO
-     000000FE  _PCA0CPH1                          portIO
-     000000FE  _WCOL                              portIO
-     000000FF  G$P7_7$0$0                         portIO
-     000000FF  G$SPIF$0$0                         portIO
-     000000FF  G$WDTCN$0$0                        portIO
-     000000FF  _P7_7                              portIO
-     000000FF  _SPIF                              portIO
-     000000FF  _WDTCN                             portIO
-     00008C8A  G$TMR0$0$0                         portIO
-     00008C8A  _TMR0                              portIO
-     00008D8B  G$TMR1$0$0                         portIO
-     00008D8B  _TMR1                              portIO
-     0000BFBE  G$ADC0$0$0                         portIO
-     0000BFBE  _ADC0                              portIO
-     0000C2C1  G$MAC0A$0$0                        portIO
-     0000C2C1  _MAC0A                             portIO
-     0000C5C4  G$ADC0GT$0$0                       portIO
-     0000C5C4  _ADC0GT                            portIO
-     0000C7C6  G$ADC0LT$0$0                       portIO
-     0000C7C6  _ADC0LT                            portIO
-     0000CBCA  G$RCAP2$0$0                        portIO
-     0000CBCA  G$RCAP3$0$0                        portIO
-     0000CBCA  G$RCAP4$0$0                        portIO
-     0000CBCA  _RCAP2                             portIO
-     0000CBCA  _RCAP3                             portIO
-     0000CBCA  _RCAP4                             portIO
-     0000CDCC  G$TMR2$0$0                         portIO
-     0000CDCC  G$TMR3$0$0                         portIO
-     0000CDCC  G$TMR4$0$0                         portIO
-     0000CDCC  _TMR2                              portIO
-     0000CDCC  _TMR3                              portIO
-     0000CDCC  _TMR4                              portIO
-     0000CFCE  G$MAC0RND$0$0                      portIO
-     0000CFCE  _MAC0RND                           portIO
-     0000D3D2  G$DAC0$0$0                         portIO
-     0000D3D2  G$DAC1$0$0                         portIO
-     0000D3D2  _DAC0                              portIO
-     0000D3D2  _DAC1                              portIO
-     0000E2E1  G$PCA0CP5$0$0                      portIO
-     0000E2E1  _PCA0CP5                           portIO
-     0000EAE9  G$PCA0CP2$0$0                      portIO
-     0000EAE9  _PCA0CP2                           portIO
-     0000ECEB  G$PCA0CP3$0$0                      portIO
-     0000ECEB  _PCA0CP3                           portIO
-     0000EEED  G$PCA0CP4$0$0                      portIO
-     0000EEED  _PCA0CP4                           portIO
-     0000FAF9  G$PCA0$0$0                         portIO
-     0000FAF9  _PCA0                              portIO
+     000000FE  G$PCA0CPH1$0$0                     pong
+     000000FE  G$WCOL$0$0                         pong
+     000000FE  _P7_6                              pong
+     000000FE  _PCA0CPH1                          pong
+     000000FE  _WCOL                              pong
+     000000FF  G$P7_7$0$0                         pong
+     000000FF  G$SPIF$0$0                         pong
+     000000FF  G$WDTCN$0$0                        pong
+     000000FF  _P7_7                              pong
+     000000FF  _SPIF                              pong
+     000000FF  _WDTCN                             pong
+     00008C8A  G$TMR0$0$0                         pong
+     00008C8A  _TMR0                              pong
+     00008D8B  G$TMR1$0$0                         pong
+     00008D8B  _TMR1                              pong
+     0000BFBE  G$ADC0$0$0                         pong
+     0000BFBE  _ADC0                              pong
+     0000C2C1  G$MAC0A$0$0                        pong
+     0000C2C1  _MAC0A                             pong
+     0000C5C4  G$ADC0GT$0$0                       pong
+     0000C5C4  _ADC0GT                            pong
+     0000C7C6  G$ADC0LT$0$0                       pong
+     0000C7C6  _ADC0LT                            pong
+     0000CBCA  G$RCAP2$0$0                        pong
+     0000CBCA  G$RCAP3$0$0                        pong
+     0000CBCA  G$RCAP4$0$0                        pong
+     0000CBCA  _RCAP2                             pong
+     0000CBCA  _RCAP3                             pong
+     0000CBCA  _RCAP4                             pong
+     0000CDCC  G$TMR2$0$0                         pong
+     0000CDCC  G$TMR3$0$0                         pong
+     0000CDCC  G$TMR4$0$0                         pong
+     0000CDCC  _TMR2                              pong
+     0000CDCC  _TMR3                              pong
+     0000CDCC  _TMR4                              pong
+     0000CFCE  G$MAC0RND$0$0                      pong
+     0000CFCE  _MAC0RND                           pong
+     0000D3D2  G$DAC0$0$0                         pong
+     0000D3D2  G$DAC1$0$0                         pong
+     0000D3D2  _DAC0                              pong
+     0000D3D2  _DAC1                              pong
+     0000E2E1  G$PCA0CP5$0$0                      pong
+     0000E2E1  _PCA0CP5                           pong
+     0000EAE9  G$PCA0CP2$0$0                      pong
+     0000EAE9  _PCA0CP2                           pong
+     0000ECEB  G$PCA0CP3$0$0                      pong
+     0000ECEB  _PCA0CP3                           pong
+     0000EEED  G$PCA0CP4$0$0                      pong
+     0000EEED  _PCA0CP4                           pong
+     0000FAF9  G$PCA0$0$0                         pong
+     0000FAF9  _PCA0                              pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
 Hexadecimal  [32-Bits]
 
@@ -992,12 +992,12 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000FCFB  G$PCA0CP0$0$0                      portIO
-     0000FCFB  _PCA0CP0                           portIO
-     0000FEFD  G$PCA0CP1$0$0                      portIO
-     0000FEFD  _PCA0CP1                           portIO
-     00959493  G$MAC0ACC$0$0                      portIO
-     00959493  _MAC0ACC                           portIO
+     0000FCFB  G$PCA0CP0$0$0                      pong
+     0000FCFB  _PCA0CP0                           pong
+     0000FEFD  G$PCA0CP1$0$0                      pong
+     0000FEFD  _PCA0CP1                           pong
+     00959493  G$MAC0ACC$0$0                      pong
+     00959493  _MAC0ACC                           pong
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
 Hexadecimal  [32-Bits]
@@ -1028,23 +1028,32 @@ DSEG                                00000000    00000076 =         118. bytes (R
       -----  --------------------------------   ------------------------
      00000008  _vprintf_PARM_2                    vprintf
      00000009  _bp                                _bp
-     00000022  LportIO.main$sloc0$1$0             portIO
-     00000024  LportIO.main$sloc1$1$0             portIO
-     00000026  LportIO.main$sloc2$1$0             portIO
-     00000028  LportIO.main$sloc3$1$0             portIO
-     0000002A  LportIO.main$sloc4$1$0             portIO
-     0000002C  LportIO.main$sloc5$1$0             portIO
-     0000002E  LportIO.main$sloc6$1$0             portIO
-     00000030  LportIO.main$sloc7$1$0             portIO
-     00000032  LportIO.main$sloc8$1$0             portIO
-     00000034  LportIO.main$sloc9$1$0             portIO
-     00000036  LportIO.main$sloc10$1$0            portIO
-     00000038  LportIO.main$sloc11$1$0            portIO
-     0000003A  LportIO.main$sloc12$1$0            portIO
-     0000003C  LportIO.main$sloc13$1$0            portIO
-     0000004A  __print_format_PARM_2              printf_large
-     0000004D  __print_format_PARM_3              printf_large
-     00000050  __print_format_PARM_4              printf_large
+     00000022  G$pixel$0$0                        pong
+     00000022  _pixel                             pong
+     00000023  G$screenWidth$0$0                  pong
+     00000023  _screenWidth                       pong
+     00000024  G$screenHeight$0$0                 pong
+     00000024  _screenHeight                      pong
+     00000025  G$score1$0$0                       pong
+     00000025  _score1                            pong
+     00000026  G$score2$0$0                       pong
+     00000026  _score2                            pong
+     00000027  G$player1Pos$0$0                   pong
+     00000027  _player1Pos                        pong
+     00000028  G$player2Pos$0$0                   pong
+     00000028  _player2Pos                        pong
+     00000029  G$ballX$0$0                        pong
+     00000029  _ballX                             pong
+     0000002A  G$ballY$0$0                        pong
+     0000002A  _ballY                             pong
+     0000002B  G$velX$0$0                         pong
+     0000002B  _velX                              pong
+     0000002C  G$velY$0$0                         pong
+     0000002C  _velY                              pong
+     0000002D  Lpong.updateBall$str$1$56          pong
+     0000004D  __print_format_PARM_2              printf_large
+     00000050  __print_format_PARM_3              printf_large
+     00000053  __print_format_PARM_4              printf_large
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
 Hexadecimal  [32-Bits]
@@ -1055,6 +1064,9 @@ OSEG                                0000000A    00000006 =           6. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
+     0000000A  __gptrput_PARM_2                   _gptrput
+     0000000A  _strcpy_PARM_2                     _strcpy
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
 Hexadecimal  [32-Bits]
 
@@ -1069,11 +1081,11 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-SSEG                                00000058    000000A8 =         168. bytes (REL,OVR)
+SSEG                                0000005B    000000A5 =         165. bytes (REL,OVR)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000058  __start__stack                     portIO
+     0000005B  __start__stack                     pong
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
 Hexadecimal  [32-Bits]
@@ -1084,9 +1096,9 @@ HOME                                00000000    00000006 =           6. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000000  A$portIO$1286                      portIO
-C:   00000003  A$portIO$1308                      portIO
-C:   00000003  __sdcc_program_startup             portIO
+C:   00000000  A$pong$1299                        pong
+C:   00000003  A$pong$1354                        pong
+C:   00000003  __sdcc_program_startup             pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
 Hexadecimal  [32-Bits]
 
@@ -1135,448 +1147,930 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-GSFINAL                             0000005F    00000003 =           3. bytes (REL,CON,CODE)
+GSINIT                              0000005F    00000021 =          33. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000005F  A$portIO$1301                      portIO
+C:   0000005F  A$pong$1315                        pong
+C:   0000005F  C$pong.c$39$1$78                   pong
+C:   00000062  A$pong$1318                        pong
+C:   00000062  C$pong.c$41$1$78                   pong
+C:   00000065  A$pong$1321                        pong
+C:   00000065  C$pong.c$42$1$78                   pong
+C:   00000068  A$pong$1324                        pong
+C:   00000068  C$pong.c$44$1$78                   pong
+C:   0000006B  A$pong$1327                        pong
+C:   0000006B  C$pong.c$45$1$78                   pong
+C:   0000006E  A$pong$1330                        pong
+C:   0000006E  C$pong.c$47$1$78                   pong
+C:   00000071  A$pong$1333                        pong
+C:   00000071  C$pong.c$49$1$78                   pong
+C:   00000074  A$pong$1336                        pong
+C:   00000074  C$pong.c$51$1$78                   pong
+C:   00000077  A$pong$1339                        pong
+C:   00000077  C$pong.c$52$1$78                   pong
+C:   0000007A  A$pong$1342                        pong
+C:   0000007A  C$pong.c$54$1$78                   pong
+C:   0000007D  A$pong$1345                        pong
+C:   0000007D  C$pong.c$55$1$78                   pong
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+GSFINAL                             00000080    00000003 =           3. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000062  A$portIO$1334                      portIO
-C:   00000062  C$putget.h$20$0$0                  portIO
-C:   00000062  G$putchar$0$0                      portIO
-C:   00000062  _putchar                           portIO
-C:   00000064  A$portIO$1340                      portIO
-C:   00000064  C$putget.h$22$1$15                 portIO
-C:   00000064  C$putget.h$23$1$15                 portIO
-C:   00000067  A$portIO$1341                      portIO
-C:   00000069  A$portIO$1345                      portIO
-C:   00000069  C$putget.h$24$1$15                 portIO
-C:   0000006B  A$portIO$1348                      portIO
-C:   0000006B  C$putget.h$25$1$15                 portIO
-C:   0000006B  XG$putchar$0$0                     portIO
-C:   0000006C  A$portIO$1366                      portIO
-C:   0000006C  C$putget.h$30$1$15                 portIO
-C:   0000006C  C$putget.h$33$1$17                 portIO
-C:   0000006C  C$putget.h$34$1$17                 portIO
-C:   0000006C  G$getchar$0$0                      portIO
-C:   0000006C  _getchar                           portIO
-C:   0000006F  A$portIO$1367                      portIO
-C:   00000071  A$portIO$1371                      portIO
-C:   00000071  C$putget.h$35$1$17                 portIO
-C:   00000074  A$portIO$1374                      portIO
-C:   00000074  C$putget.h$37$1$17                 portIO
-C:   00000077  A$portIO$1377                      portIO
-C:   00000077  C$putget.h$38$1$17                 portIO
-C:   0000007A  A$portIO$1380                      portIO
-C:   0000007A  C$putget.h$39$1$17                 portIO
-C:   0000007A  XG$getchar$0$0                     portIO
-C:   0000007B  A$portIO$1409                      portIO
-C:   0000007B  C$portIO.c$51$1$17                 portIO
-C:   0000007B  C$portIO.c$55$1$23                 portIO
-C:   0000007B  G$main$0$0                         portIO
-C:   0000007B  _main                              portIO
-C:   0000007E  A$portIO$1412                      portIO
-C:   0000007E  C$portIO.c$56$1$23                 portIO
-C:   00000081  A$portIO$1415                      portIO
-C:   00000081  C$portIO.c$58$1$23                 portIO
-C:   00000084  A$portIO$1418                      portIO
-C:   00000084  C$portIO.c$59$1$23                 portIO
-C:   00000087  A$portIO$1421                      portIO
-C:   00000087  C$portIO.c$60$1$23                 portIO
-C:   0000008A  A$portIO$1424                      portIO
-C:   0000008A  C$portIO.c$62$1$23                 portIO
-C:   0000008D  A$portIO$1427                      portIO
-C:   0000008D  C$portIO.c$65$1$23                 portIO
-C:   0000008F  A$portIO$1428                      portIO
-C:   00000091  A$portIO$1429                      portIO
-C:   00000093  A$portIO$1430                      portIO
-C:   00000095  A$portIO$1431                      portIO
+C:   00000080  A$pong$1347                        pong
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 32.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000097  A$portIO$1432                      portIO
-C:   00000099  A$portIO$1433                      portIO
-C:   0000009C  A$portIO$1434                      portIO
-C:   0000009E  A$portIO$1435                      portIO
-C:   000000A0  A$portIO$1436                      portIO
-C:   000000A2  A$portIO$1439                      portIO
-C:   000000A2  C$portIO.c$66$1$23                 portIO
-C:   000000A4  A$portIO$1440                      portIO
-C:   000000A6  A$portIO$1441                      portIO
-C:   000000A8  A$portIO$1442                      portIO
-C:   000000AA  A$portIO$1443                      portIO
-C:   000000AC  A$portIO$1444                      portIO
-C:   000000AE  A$portIO$1445                      portIO
-C:   000000B1  A$portIO$1446                      portIO
-C:   000000B3  A$portIO$1447                      portIO
-C:   000000B5  A$portIO$1448                      portIO
-C:   000000B7  A$portIO$1451                      portIO
-C:   000000B7  C$portIO.c$68$1$23                 portIO
-C:   000000B9  A$portIO$1452                      portIO
-C:   000000BB  A$portIO$1453                      portIO
-C:   000000BD  A$portIO$1454                      portIO
-C:   000000BF  A$portIO$1455                      portIO
-C:   000000C1  A$portIO$1456                      portIO
-C:   000000C3  A$portIO$1457                      portIO
-C:   000000C6  A$portIO$1458                      portIO
-C:   000000C8  A$portIO$1459                      portIO
-C:   000000CA  A$portIO$1460                      portIO
-C:   000000CC  A$portIO$1466                      portIO
-C:   000000CC  C$portIO.c$70$1$23                 portIO
-C:   000000CC  C$portIO.c$71$2$24                 portIO
-C:   000000CF  A$portIO$1469                      portIO
-C:   000000CF  C$portIO.c$72$2$24                 portIO
-C:   000000D1  A$portIO$1470                      portIO
-C:   000000D2  A$portIO$1471                      portIO
-C:   000000D3  A$portIO$1472                      portIO
-C:   000000D4  A$portIO$1473                      portIO
-C:   000000D6  A$portIO$1474                      portIO
-C:   000000D8  A$portIO$1475                      portIO
-C:   000000D9  A$portIO$1476                      portIO
-C:   000000DA  A$portIO$1477                      portIO
-C:   000000DB  A$portIO$1478                      portIO
-C:   000000DD  A$portIO$1479                      portIO
-C:   000000DF  A$portIO$1480                      portIO
-C:   000000E0  A$portIO$1481                      portIO
-C:   000000E1  A$portIO$1482                      portIO
-C:   000000E2  A$portIO$1483                      portIO
-C:   000000E4  A$portIO$1484                      portIO
-C:   000000E6  A$portIO$1485                      portIO
-C:   000000E7  A$portIO$1486                      portIO
-C:   000000E8  A$portIO$1487                      portIO
-C:   000000EA  A$portIO$1488                      portIO
+C:   00000083  A$pong$1380                        pong
+C:   00000083  C$putget.h$20$0$0                  pong
+C:   00000083  G$putchar$0$0                      pong
+C:   00000083  _putchar                           pong
+C:   00000085  A$pong$1386                        pong
+C:   00000085  C$putget.h$22$1$15                 pong
+C:   00000085  C$putget.h$23$1$15                 pong
+C:   00000088  A$pong$1387                        pong
+C:   0000008A  A$pong$1391                        pong
+C:   0000008A  C$putget.h$24$1$15                 pong
+C:   0000008C  A$pong$1394                        pong
+C:   0000008C  C$putget.h$25$1$15                 pong
+C:   0000008C  XG$putchar$0$0                     pong
+C:   0000008D  A$pong$1412                        pong
+C:   0000008D  C$putget.h$30$1$15                 pong
+C:   0000008D  C$putget.h$33$1$17                 pong
+C:   0000008D  C$putget.h$34$1$17                 pong
+C:   0000008D  G$getchar$0$0                      pong
+C:   0000008D  _getchar                           pong
+C:   00000090  A$pong$1413                        pong
+C:   00000092  A$pong$1417                        pong
+C:   00000092  C$putget.h$35$1$17                 pong
+C:   00000094  A$pong$1420                        pong
+C:   00000094  C$putget.h$38$1$17                 pong
+C:   00000097  A$pong$1423                        pong
+C:   00000097  C$putget.h$39$1$17                 pong
+C:   00000097  XG$getchar$0$0                     pong
+C:   00000098  A$pong$1439                        pong
+C:   00000098  C$pong.c$60$1$17                   pong
+C:   00000098  C$pong.c$66$1$48                   pong
+C:   00000098  G$main$0$0                         pong
+C:   00000098  _main                              pong
+C:   0000009B  A$pong$1442                        pong
+C:   0000009B  C$pong.c$67$1$48                   pong
+C:   0000009E  A$pong$1445                        pong
+C:   0000009E  C$pong.c$69$1$48                   pong
+C:   000000A1  A$pong$1448                        pong
+C:   000000A1  C$pong.c$70$1$48                   pong
+C:   000000A4  A$pong$1451                        pong
+C:   000000A4  C$pong.c$71$1$48                   pong
+C:   000000A7  A$pong$1454                        pong
+C:   000000A7  C$pong.c$73$1$48                   pong
+C:   000000AA  A$pong$1457                        pong
+C:   000000AA  C$pong.c$75$1$48                   pong
+C:   000000AD  A$pong$1460                        pong
+C:   000000AD  C$pong.c$76$1$48                   pong
+C:   000000B0  A$pong$1466                        pong
+C:   000000B0  C$pong.c$78$1$48                   pong
+C:   000000B0  C$pong.c$80$2$49                   pong
+C:   000000B3  A$pong$1469                        pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 33.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000000ED  A$portIO$1489                      portIO
-C:   000000EF  A$portIO$1490                      portIO
-C:   000000F0  A$portIO$1491                      portIO
-C:   000000F1  A$portIO$1492                      portIO
-C:   000000F3  A$portIO$1493                      portIO
-C:   000000F6  A$portIO$1494                      portIO
-C:   000000F8  A$portIO$1495                      portIO
-C:   000000F9  A$portIO$1496                      portIO
-C:   000000FA  A$portIO$1497                      portIO
-C:   000000FC  A$portIO$1498                      portIO
-C:   000000FF  A$portIO$1499                      portIO
-C:   00000101  A$portIO$1500                      portIO
-C:   00000102  A$portIO$1501                      portIO
-C:   00000103  A$portIO$1502                      portIO
-C:   00000105  A$portIO$1503                      portIO
-C:   00000108  A$portIO$1504                      portIO
-C:   0000010A  A$portIO$1505                      portIO
-C:   0000010B  A$portIO$1506                      portIO
-C:   0000010C  A$portIO$1507                      portIO
-C:   0000010E  A$portIO$1508                      portIO
-C:   00000111  A$portIO$1509                      portIO
-C:   00000113  A$portIO$1510                      portIO
-C:   00000114  A$portIO$1511                      portIO
-C:   00000115  A$portIO$1512                      portIO
-C:   00000117  A$portIO$1513                      portIO
-C:   0000011A  A$portIO$1514                      portIO
-C:   0000011C  A$portIO$1515                      portIO
-C:   0000011D  A$portIO$1516                      portIO
-C:   0000011E  A$portIO$1517                      portIO
-C:   00000120  A$portIO$1518                      portIO
-C:   00000123  A$portIO$1519                      portIO
-C:   00000125  A$portIO$1520                      portIO
-C:   00000126  A$portIO$1521                      portIO
-C:   00000127  A$portIO$1522                      portIO
-C:   00000129  A$portIO$1523                      portIO
-C:   0000012C  A$portIO$1524                      portIO
-C:   0000012E  A$portIO$1525                      portIO
-C:   0000012F  A$portIO$1526                      portIO
-C:   00000130  A$portIO$1527                      portIO
-C:   00000132  A$portIO$1528                      portIO
-C:   00000135  A$portIO$1529                      portIO
-C:   00000137  A$portIO$1530                      portIO
-C:   00000138  A$portIO$1531                      portIO
-C:   00000139  A$portIO$1532                      portIO
-C:   0000013B  A$portIO$1533                      portIO
-C:   0000013E  A$portIO$1534                      portIO
-C:   00000140  A$portIO$1535                      portIO
-C:   00000141  A$portIO$1536                      portIO
-C:   00000142  A$portIO$1537                      portIO
-C:   00000144  A$portIO$1538                      portIO
-C:   00000147  A$portIO$1539                      portIO
+C:   000000B3  C$pong.c$81$2$49                   pong
+C:   000000B6  A$pong$1472                        pong
+C:   000000B6  C$pong.c$82$2$49                   pong
+C:   000000B9  A$pong$1473                        pong
+C:   000000BB  A$pong$1476                        pong
+C:   000000BB  C$pong.c$84$1$48                   pong
+C:   000000BB  XG$main$0$0                        pong
+C:   000000BC  A$pong$1492                        pong
+C:   000000BC  C$pong.c$92$1$48                   pong
+C:   000000BC  C$pong.c$97$1$51                   pong
+C:   000000BC  G$SYSCLK_INIT$0$0                  pong
+C:   000000BC  _SYSCLK_INIT                       pong
+C:   000000BE  A$pong$1495                        pong
+C:   000000BE  C$pong.c$99$1$51                   pong
+C:   000000C1  A$pong$1498                        pong
+C:   000000C1  C$pong.c$100$1$51                  pong
+C:   000000C4  A$pong$1501                        pong
+C:   000000C4  C$pong.c$101$1$51                  pong
+C:   000000C6  A$pong$1502                        pong
+C:   000000C8  A$pong$1504                        pong
+C:   000000C9  A$pong$1505                        pong
+C:   000000CC  A$pong$1506                        pong
+C:   000000CD  A$pong$1508                        pong
+C:   000000CE  A$pong$1509                        pong
+C:   000000CF  A$pong$1510                        pong
+C:   000000D1  A$pong$1514                        pong
+C:   000000D1  C$pong.c$102$1$51                  pong
+C:   000000D3  A$pong$1515                        pong
+C:   000000D6  A$pong$1518                        pong
+C:   000000D6  C$pong.c$103$1$51                  pong
+C:   000000D9  A$pong$1521                        pong
+C:   000000D9  C$pong.c$104$1$51                  pong
+C:   000000DC  A$pong$1524                        pong
+C:   000000DC  C$pong.c$106$1$51                  pong
+C:   000000DF  A$pong$1527                        pong
+C:   000000DF  C$pong.c$107$1$51                  pong
+C:   000000E2  A$pong$1530                        pong
+C:   000000E2  C$pong.c$108$1$51                  pong
+C:   000000E5  A$pong$1533                        pong
+C:   000000E5  C$pong.c$109$1$51                  pong
+C:   000000E8  A$pong$1536                        pong
+C:   000000E8  C$pong.c$110$1$51                  pong
+C:   000000EB  A$pong$1539                        pong
+C:   000000EB  C$pong.c$111$1$51                  pong
+C:   000000EE  A$pong$1542                        pong
+C:   000000EE  C$pong.c$112$1$51                  pong
+C:   000000F1  A$pong$1545                        pong
+C:   000000F1  C$pong.c$113$1$51                  pong
+C:   000000F4  A$pong$1548                        pong
+C:   000000F4  C$pong.c$114$1$51                  pong
+C:   000000F7  A$pong$1551                        pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 34.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000149  A$portIO$1540                      portIO
-C:   0000014A  A$portIO$1541                      portIO
-C:   0000014B  A$portIO$1542                      portIO
-C:   0000014D  A$portIO$1543                      portIO
-C:   00000150  A$portIO$1544                      portIO
-C:   00000152  A$portIO$1545                      portIO
-C:   00000153  A$portIO$1546                      portIO
-C:   00000154  A$portIO$1547                      portIO
-C:   00000156  A$portIO$1548                      portIO
-C:   00000159  A$portIO$1549                      portIO
-C:   0000015C  A$portIO$1550                      portIO
-C:   0000015F  A$portIO$1551                      portIO
-C:   00000161  A$portIO$1552                      portIO
-C:   00000163  A$portIO$1553                      portIO
-C:   00000165  A$portIO$1554                      portIO
-C:   00000167  A$portIO$1555                      portIO
-C:   00000169  A$portIO$1556                      portIO
-C:   0000016B  A$portIO$1557                      portIO
-C:   0000016D  A$portIO$1558                      portIO
-C:   0000016F  A$portIO$1559                      portIO
-C:   00000171  A$portIO$1560                      portIO
-C:   00000173  A$portIO$1561                      portIO
-C:   00000175  A$portIO$1562                      portIO
-C:   00000177  A$portIO$1563                      portIO
-C:   00000179  A$portIO$1564                      portIO
-C:   0000017B  A$portIO$1565                      portIO
-C:   0000017D  A$portIO$1566                      portIO
-C:   0000017F  A$portIO$1567                      portIO
-C:   00000181  A$portIO$1568                      portIO
-C:   00000183  A$portIO$1569                      portIO
-C:   00000185  A$portIO$1570                      portIO
-C:   00000187  A$portIO$1571                      portIO
-C:   00000189  A$portIO$1572                      portIO
-C:   0000018B  A$portIO$1573                      portIO
-C:   0000018D  A$portIO$1574                      portIO
-C:   0000018F  A$portIO$1575                      portIO
-C:   00000191  A$portIO$1576                      portIO
-C:   00000193  A$portIO$1577                      portIO
-C:   00000195  A$portIO$1578                      portIO
-C:   00000197  A$portIO$1579                      portIO
-C:   00000199  A$portIO$1580                      portIO
-C:   0000019B  A$portIO$1581                      portIO
-C:   0000019D  A$portIO$1582                      portIO
-C:   0000019F  A$portIO$1583                      portIO
-C:   000001A1  A$portIO$1584                      portIO
-C:   000001A3  A$portIO$1585                      portIO
-C:   000001A5  A$portIO$1586                      portIO
-C:   000001A7  A$portIO$1587                      portIO
-C:   000001A9  A$portIO$1588                      portIO
-C:   000001AB  A$portIO$1589                      portIO
-C:   000001AD  A$portIO$1590                      portIO
+C:   000000F7  C$pong.c$115$1$51                  pong
+C:   000000F9  A$pong$1552                        pong
+C:   000000FB  A$pong$1554                        pong
+C:   000000FC  A$pong$1555                        pong
+C:   000000FF  A$pong$1556                        pong
+C:   00000100  A$pong$1558                        pong
+C:   00000101  A$pong$1559                        pong
+C:   00000102  A$pong$1560                        pong
+C:   00000104  A$pong$1563                        pong
+C:   00000104  C$pong.c$116$1$51                  pong
+C:   00000107  A$pong$1567                        pong
+C:   00000107  C$pong.c$117$1$51                  pong
+C:   00000109  A$pong$1568                        pong
+C:   0000010C  A$pong$1571                        pong
+C:   0000010C  C$pong.c$118$1$51                  pong
+C:   0000010F  A$pong$1574                        pong
+C:   0000010F  C$pong.c$120$1$51                  pong
+C:   00000111  A$pong$1577                        pong
+C:   00000111  C$pong.c$121$1$51                  pong
+C:   00000111  XG$SYSCLK_INIT$0$0                 pong
+C:   00000112  A$pong$1592                        pong
+C:   00000112  C$pong.c$129$1$51                  pong
+C:   00000112  C$pong.c$133$1$53                  pong
+C:   00000112  G$PORT_INIT$0$0                    pong
+C:   00000112  _PORT_INIT                         pong
+C:   00000114  A$pong$1595                        pong
+C:   00000114  C$pong.c$135$1$53                  pong
+C:   00000117  A$pong$1598                        pong
+C:   00000117  C$pong.c$136$1$53                  pong
+C:   0000011A  A$pong$1601                        pong
+C:   0000011A  C$pong.c$137$1$53                  pong
+C:   0000011D  A$pong$1604                        pong
+C:   0000011D  C$pong.c$138$1$53                  pong
+C:   00000120  A$pong$1607                        pong
+C:   00000120  C$pong.c$139$1$53                  pong
+C:   00000123  A$pong$1610                        pong
+C:   00000123  C$pong.c$140$1$53                  pong
+C:   00000126  A$pong$1613                        pong
+C:   00000126  C$pong.c$142$1$53                  pong
+C:   00000128  A$pong$1616                        pong
+C:   00000128  C$pong.c$143$1$53                  pong
+C:   00000128  XG$PORT_INIT$0$0                   pong
+C:   00000129  A$pong$1631                        pong
+C:   00000129  C$pong.c$151$1$53                  pong
+C:   00000129  C$pong.c$155$1$55                  pong
+C:   00000129  G$UART0_INIT$0$0                   pong
+C:   00000129  _UART0_INIT                        pong
+C:   0000012B  A$pong$1634                        pong
+C:   0000012B  C$pong.c$157$1$55                  pong
+C:   0000012E  A$pong$1637                        pong
+C:   0000012E  C$pong.c$158$1$55                  pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 35.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000001AF  A$portIO$1591                      portIO
-C:   000001B1  A$portIO$1592                      portIO
-C:   000001B3  A$portIO$1593                      portIO
-C:   000001B5  A$portIO$1594                      portIO
-C:   000001B7  A$portIO$1595                      portIO
-C:   000001BA  A$portIO$1596                      portIO
-C:   000001BC  A$portIO$1597                      portIO
-C:   000001BE  A$portIO$1598                      portIO
-C:   000001C0  A$portIO$1599                      portIO
-C:   000001C3  A$portIO$1602                      portIO
-C:   000001C3  C$portIO.c$74$1$23                 portIO
-C:   000001C3  XG$main$0$0                        portIO
-C:   000001C4  A$portIO$1618                      portIO
-C:   000001C4  C$portIO.c$82$1$23                 portIO
-C:   000001C4  C$portIO.c$87$1$26                 portIO
-C:   000001C4  G$SYSCLK_INIT$0$0                  portIO
-C:   000001C4  _SYSCLK_INIT                       portIO
-C:   000001C6  A$portIO$1621                      portIO
-C:   000001C6  C$portIO.c$89$1$26                 portIO
-C:   000001C9  A$portIO$1624                      portIO
-C:   000001C9  C$portIO.c$90$1$26                 portIO
-C:   000001CC  A$portIO$1627                      portIO
-C:   000001CC  C$portIO.c$91$1$26                 portIO
-C:   000001CE  A$portIO$1628                      portIO
-C:   000001D0  A$portIO$1630                      portIO
-C:   000001D1  A$portIO$1631                      portIO
-C:   000001D4  A$portIO$1632                      portIO
-C:   000001D5  A$portIO$1634                      portIO
-C:   000001D6  A$portIO$1635                      portIO
-C:   000001D7  A$portIO$1636                      portIO
-C:   000001D9  A$portIO$1640                      portIO
-C:   000001D9  C$portIO.c$92$1$26                 portIO
-C:   000001DB  A$portIO$1641                      portIO
-C:   000001DE  A$portIO$1644                      portIO
-C:   000001DE  C$portIO.c$93$1$26                 portIO
-C:   000001E1  A$portIO$1647                      portIO
-C:   000001E1  C$portIO.c$94$1$26                 portIO
-C:   000001E4  A$portIO$1650                      portIO
-C:   000001E4  C$portIO.c$96$1$26                 portIO
-C:   000001E7  A$portIO$1653                      portIO
-C:   000001E7  C$portIO.c$97$1$26                 portIO
-C:   000001EA  A$portIO$1656                      portIO
-C:   000001EA  C$portIO.c$98$1$26                 portIO
-C:   000001ED  A$portIO$1659                      portIO
-C:   000001ED  C$portIO.c$99$1$26                 portIO
-C:   000001F0  A$portIO$1662                      portIO
-C:   000001F0  C$portIO.c$100$1$26                portIO
-C:   000001F3  A$portIO$1665                      portIO
-C:   000001F3  C$portIO.c$101$1$26                portIO
-C:   000001F6  A$portIO$1668                      portIO
-C:   000001F6  C$portIO.c$102$1$26                portIO
+C:   00000131  A$pong$1640                        pong
+C:   00000131  C$pong.c$159$1$55                  pong
+C:   00000134  A$pong$1643                        pong
+C:   00000134  C$pong.c$160$1$55                  pong
+C:   00000137  A$pong$1646                        pong
+C:   00000137  C$pong.c$161$1$55                  pong
+C:   0000013A  A$pong$1649                        pong
+C:   0000013A  C$pong.c$162$1$55                  pong
+C:   0000013D  A$pong$1652                        pong
+C:   0000013D  C$pong.c$163$1$55                  pong
+C:   0000013F  A$pong$1655                        pong
+C:   0000013F  C$pong.c$165$1$55                  pong
+C:   00000142  A$pong$1658                        pong
+C:   00000142  C$pong.c$166$1$55                  pong
+C:   00000145  A$pong$1661                        pong
+C:   00000145  C$pong.c$167$1$55                  pong
+C:   00000148  A$pong$1664                        pong
+C:   00000148  C$pong.c$168$1$55                  pong
+C:   0000014A  A$pong$1667                        pong
+C:   0000014A  C$pong.c$170$1$55                  pong
+C:   0000014C  A$pong$1670                        pong
+C:   0000014C  C$pong.c$171$1$55                  pong
+C:   0000014C  XG$UART0_INIT$0$0                  pong
+C:   0000014D  A$pong$1691                        pong
+C:   0000014D  C$pong.c$173$1$55                  pong
+C:   0000014D  C$pong.c$180$1$56                  pong
+C:   0000014D  G$updateBall$0$0                   pong
+C:   0000014D  _updateBall                        pong
+C:   00000150  A$pong$1692                        pong
+C:   00000152  A$pong$1693                        pong
+C:   00000153  A$pong$1694                        pong
+C:   00000155  A$pong$1695                        pong
+C:   00000156  A$pong$1698                        pong
+C:   00000156  C$pong.c$181$1$56                  pong
+C:   00000159  A$pong$1699                        pong
+C:   0000015B  A$pong$1700                        pong
+C:   0000015C  A$pong$1701                        pong
+C:   0000015E  A$pong$1702                        pong
+C:   00000160  A$pong$1703                        pong
+C:   00000161  A$pong$1704                        pong
+C:   00000162  A$pong$1707                        pong
+C:   00000162  C$pong.c$183$1$56                  pong
+C:   00000165  A$pong$1708                        pong
+C:   00000167  A$pong$1709                        pong
+C:   00000168  A$pong$1710                        pong
+C:   0000016A  A$pong$1711                        pong
+C:   0000016B  A$pong$1714                        pong
+C:   0000016B  C$pong.c$184$1$56                  pong
+C:   0000016E  A$pong$1715                        pong
+C:   00000170  A$pong$1716                        pong
+C:   00000171  A$pong$1717                        pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 36.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000001F9  A$portIO$1671                      portIO
-C:   000001F9  C$portIO.c$103$1$26                portIO
-C:   000001FC  A$portIO$1674                      portIO
-C:   000001FC  C$portIO.c$104$1$26                portIO
-C:   000001FF  A$portIO$1677                      portIO
-C:   000001FF  C$portIO.c$105$1$26                portIO
-C:   00000201  A$portIO$1678                      portIO
-C:   00000203  A$portIO$1680                      portIO
-C:   00000204  A$portIO$1681                      portIO
-C:   00000207  A$portIO$1682                      portIO
-C:   00000208  A$portIO$1684                      portIO
-C:   00000209  A$portIO$1685                      portIO
-C:   0000020A  A$portIO$1686                      portIO
-C:   0000020C  A$portIO$1689                      portIO
-C:   0000020C  C$portIO.c$106$1$26                portIO
-C:   0000020F  A$portIO$1693                      portIO
-C:   0000020F  C$portIO.c$107$1$26                portIO
-C:   00000211  A$portIO$1694                      portIO
-C:   00000214  A$portIO$1697                      portIO
-C:   00000214  C$portIO.c$108$1$26                portIO
-C:   00000217  A$portIO$1700                      portIO
-C:   00000217  C$portIO.c$110$1$26                portIO
-C:   00000219  A$portIO$1703                      portIO
-C:   00000219  C$portIO.c$111$1$26                portIO
-C:   00000219  XG$SYSCLK_INIT$0$0                 portIO
-C:   0000021A  A$portIO$1718                      portIO
-C:   0000021A  C$portIO.c$119$1$26                portIO
-C:   0000021A  C$portIO.c$123$1$28                portIO
-C:   0000021A  G$PORT_INIT$0$0                    portIO
-C:   0000021A  _PORT_INIT                         portIO
-C:   0000021C  A$portIO$1721                      portIO
-C:   0000021C  C$portIO.c$125$1$28                portIO
-C:   0000021F  A$portIO$1724                      portIO
-C:   0000021F  C$portIO.c$126$1$28                portIO
-C:   00000222  A$portIO$1727                      portIO
-C:   00000222  C$portIO.c$127$1$28                portIO
-C:   00000225  A$portIO$1730                      portIO
-C:   00000225  C$portIO.c$128$1$28                portIO
-C:   00000228  A$portIO$1733                      portIO
-C:   00000228  C$portIO.c$129$1$28                portIO
-C:   0000022B  A$portIO$1736                      portIO
-C:   0000022B  C$portIO.c$133$1$28                portIO
-C:   0000022E  A$portIO$1739                      portIO
-C:   0000022E  C$portIO.c$134$1$28                portIO
-C:   00000231  A$portIO$1742                      portIO
-C:   00000231  C$portIO.c$137$1$28                portIO
-C:   00000233  A$portIO$1743                      portIO
-C:   00000236  A$portIO$1746                      portIO
-C:   00000236  C$portIO.c$140$1$28                portIO
-C:   00000238  A$portIO$1749                      portIO
-C:   00000238  C$portIO.c$141$1$28                portIO
+C:   00000173  A$pong$1718                        pong
+C:   00000175  A$pong$1719                        pong
+C:   00000176  A$pong$1720                        pong
+C:   00000177  A$pong$1723                        pong
+C:   00000177  C$pong.c$187$1$56                  pong
+C:   0000017A  A$pong$1724                        pong
+C:   0000017D  A$pong$1725                        pong
+C:   00000180  A$pong$1726                        pong
+C:   00000183  A$pong$1727                        pong
+C:   00000186  A$pong$1728                        pong
+C:   00000188  A$pong$1729                        pong
+C:   0000018A  A$pong$1730                        pong
+C:   0000018C  A$pong$1731                        pong
+C:   0000018E  A$pong$1732                        pong
+C:   00000191  A$pong$1733                        pong
+C:   00000193  A$pong$1734                        pong
+C:   00000195  A$pong$1735                        pong
+C:   00000197  A$pong$1736                        pong
+C:   00000199  A$pong$1739                        pong
+C:   00000199  C$pong.c$189$1$56                  pong
+C:   0000019B  A$pong$1742                        pong
+C:   0000019B  C$pong.c$190$1$56                  pong
+C:   0000019D  A$pong$1745                        pong
+C:   0000019D  C$pong.c$191$1$56                  pong
+C:   0000019F  A$pong$1748                        pong
+C:   0000019F  C$pong.c$192$1$56                  pong
+C:   000001A1  A$pong$1751                        pong
+C:   000001A1  C$pong.c$194$1$56                  pong
+C:   000001A3  A$pong$1752                        pong
+C:   000001A5  A$pong$1753                        pong
+C:   000001A7  A$pong$1754                        pong
+C:   000001A9  A$pong$1755                        pong
+C:   000001AB  A$pong$1756                        pong
+C:   000001AD  A$pong$1757                        pong
+C:   000001B0  A$pong$1758                        pong
+C:   000001B2  A$pong$1759                        pong
+C:   000001B4  A$pong$1760                        pong
+C:   000001B6  A$pong$1763                        pong
+C:   000001B6  C$pong.c$195$1$56                  pong
+C:   000001B8  A$pong$1764                        pong
+C:   000001BA  A$pong$1765                        pong
+C:   000001BC  A$pong$1766                        pong
+C:   000001BE  A$pong$1767                        pong
+C:   000001C0  A$pong$1768                        pong
+C:   000001C2  A$pong$1769                        pong
+C:   000001C4  A$pong$1770                        pong
+C:   000001C6  A$pong$1771                        pong
+C:   000001C8  A$pong$1772                        pong
+C:   000001CA  A$pong$1773                        pong
+C:   000001CC  A$pong$1774                        pong
+C:   000001CE  A$pong$1775                        pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 37.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000062    0000083A =        2106. bytes (REL,CON,CODE)
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000238  XG$PORT_INIT$0$0                   portIO
-C:   00000239  A$portIO$1764                      portIO
-C:   00000239  C$portIO.c$149$1$28                portIO
-C:   00000239  C$portIO.c$153$1$30                portIO
-C:   00000239  G$UART0_INIT$0$0                   portIO
-C:   00000239  _UART0_INIT                        portIO
-C:   0000023B  A$portIO$1767                      portIO
-C:   0000023B  C$portIO.c$155$1$30                portIO
-C:   0000023E  A$portIO$1770                      portIO
-C:   0000023E  C$portIO.c$156$1$30                portIO
-C:   00000241  A$portIO$1773                      portIO
-C:   00000241  C$portIO.c$157$1$30                portIO
-C:   00000244  A$portIO$1776                      portIO
-C:   00000244  C$portIO.c$158$1$30                portIO
-C:   00000247  A$portIO$1779                      portIO
-C:   00000247  C$portIO.c$159$1$30                portIO
-C:   0000024A  A$portIO$1782                      portIO
-C:   0000024A  C$portIO.c$160$1$30                portIO
-C:   0000024D  A$portIO$1785                      portIO
-C:   0000024D  C$portIO.c$161$1$30                portIO
-C:   0000024F  A$portIO$1788                      portIO
-C:   0000024F  C$portIO.c$163$1$30                portIO
-C:   00000252  A$portIO$1791                      portIO
-C:   00000252  C$portIO.c$164$1$30                portIO
-C:   00000255  A$portIO$1794                      portIO
-C:   00000255  C$portIO.c$165$1$30                portIO
-C:   00000258  A$portIO$1797                      portIO
-C:   00000258  C$portIO.c$166$1$30                portIO
-C:   0000025A  A$portIO$1800                      portIO
-C:   0000025A  C$portIO.c$168$1$30                portIO
-C:   0000025C  A$portIO$1803                      portIO
-C:   0000025C  C$portIO.c$169$1$30                portIO
-C:   0000025C  XG$UART0_INIT$0$0                  portIO
-C:   00000268  _vprintf                           vprintf
-C:   00000281  _printf                            vprintf
-C:   00000358  __print_format                     printf_large
-C:   00000864  _strlen                            _strlen
-C:   0000087C  __gptrget                          _gptrget
-C:   00000898  __sdcc_external_startup            _startup
-
+C:   000001D1  A$pong$1776                        pong
+C:   000001D3  A$pong$1777                        pong
+C:   000001D5  A$pong$1778                        pong
+C:   000001D7  A$pong$1781                        pong
+C:   000001D7  C$pong.c$197$1$56                  pong
+C:   000001D7  XG$updateBall$0$0                  pong
+C:   000001D8  A$pong$1794                        pong
+C:   000001D8  C$pong.c$199$1$56                  pong
+C:   000001D8  G$updatePositions$0$0              pong
+C:   000001D8  _updatePositions                   pong
+C:   000001DA  A$pong$1797                        pong
+C:   000001DA  C$pong.c$200$1$58                  pong
+C:   000001DD  A$pong$1800                        pong
+C:   000001DD  C$pong.c$201$2$59                  pong
+C:   000001DF  A$pong$1803                        pong
+C:   000001DF  C$pong.c$202$2$59                  pong
+C:   000001E1  A$pong$1804                        pong
+C:   000001E3  A$pong$1805                        pong
+C:   000001E5  A$pong$1808                        pong
+C:   000001E5  C$pong.c$203$3$60                  pong
+C:   000001E8  A$pong$1812                        pong
+C:   000001E8  C$pong.c$207$1$58                  pong
+C:   000001EB  A$pong$1815                        pong
+C:   000001EB  C$pong.c$208$2$61                  pong
+C:   000001ED  A$pong$1818                        pong
+C:   000001ED  C$pong.c$209$2$61                  pong
+C:   000001EF  A$pong$1819                        pong
+C:   000001F1  A$pong$1820                        pong
+C:   000001F3  A$pong$1823                        pong
+C:   000001F3  C$pong.c$210$3$62                  pong
+C:   000001F6  A$pong$1827                        pong
+C:   000001F6  C$pong.c$214$1$58                  pong
+C:   000001F9  A$pong$1830                        pong
+C:   000001F9  C$pong.c$215$2$63                  pong
+C:   000001FB  A$pong$1833                        pong
+C:   000001FB  C$pong.c$216$2$63                  pong
+C:   000001FD  A$pong$1834                        pong
+C:   000001FF  A$pong$1835                        pong
+C:   00000201  A$pong$1838                        pong
+C:   00000201  C$pong.c$217$3$64                  pong
+C:   00000204  A$pong$1842                        pong
+C:   00000204  C$pong.c$221$1$58                  pong
+C:   00000207  A$pong$1845                        pong
+C:   00000207  C$pong.c$222$2$65                  pong
+C:   00000209  A$pong$1848                        pong
+C:   00000209  C$pong.c$223$2$65                  pong
+C:   0000020B  A$pong$1849                        pong
+C:   0000020D  A$pong$1850                        pong
+C:   0000020F  A$pong$1853                        pong
+C:   0000020F  C$pong.c$224$3$66                  pong
+C:   00000212  A$pong$1857                        pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 38.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               0000089C    00000068 =         104. bytes (REL,CON,CODE)
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000089C  FportIO$__str_0$0$0                portIO
-C:   000008A5  FportIO$__str_1$0$0                portIO
-C:   000008AA  FportIO$__str_2$0$0                portIO
-C:   000008B9  FportIO$__str_3$0$0                portIO
-
+C:   00000212  C$pong.c$228$1$58                  pong
+C:   00000215  A$pong$1860                        pong
+C:   00000215  C$pong.c$229$1$58                  pong
+C:   00000215  XG$updatePositions$0$0             pong
+C:   00000216  A$pong$1875                        pong
+C:   00000216  C$pong.c$232$1$58                  pong
+C:   00000216  C$pong.c$241$1$67                  pong
+C:   00000216  G$printPlayers$0$0                 pong
+C:   00000216  _printPlayers                      pong
+C:   00000218  A$pong$1876                        pong
+C:   0000021A  A$pong$1877                        pong
+C:   0000021C  A$pong$1878                        pong
+C:   0000021E  A$pong$1879                        pong
+C:   00000220  A$pong$1880                        pong
+C:   00000222  A$pong$1881                        pong
+C:   00000225  A$pong$1882                        pong
+C:   00000227  A$pong$1883                        pong
+C:   00000229  A$pong$1884                        pong
+C:   0000022B  A$pong$1887                        pong
+C:   0000022D  A$pong$1889                        pong
+C:   0000022E  A$pong$1890                        pong
+C:   00000230  A$pong$1891                        pong
+C:   00000231  A$pong$1892                        pong
+C:   00000233  A$pong$1893                        pong
+C:   00000236  A$pong$1897                        pong
+C:   00000236  C$pong.c$244$2$68                  pong
+C:   00000239  A$pong$1898                        pong
+C:   0000023B  A$pong$1902                        pong
+C:   0000023B  C$pong.c$245$3$69                  pong
+C:   0000023D  A$pong$1903                        pong
+C:   0000023F  A$pong$1904                        pong
+C:   00000241  A$pong$1905                        pong
+C:   00000243  A$pong$1906                        pong
+C:   00000245  A$pong$1907                        pong
+C:   00000247  A$pong$1908                        pong
+C:   00000249  A$pong$1909                        pong
+C:   0000024C  A$pong$1910                        pong
+C:   0000024E  A$pong$1911                        pong
+C:   00000250  A$pong$1912                        pong
+C:   00000252  A$pong$1913                        pong
+C:   00000254  A$pong$1917                        pong
+C:   00000254  C$pong.c$247$2$68                  pong
+C:   00000256  A$pong$1918                        pong
+C:   00000258  A$pong$1919                        pong
+C:   0000025A  A$pong$1920                        pong
+C:   0000025C  A$pong$1921                        pong
+C:   0000025E  A$pong$1922                        pong
+C:   00000260  A$pong$1923                        pong
+C:   00000262  A$pong$1924                        pong
+C:   00000265  A$pong$1925                        pong
+C:   00000267  A$pong$1926                        pong
 ASxxxx Linker V03.00 + NoICE + sdld,  page 39.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000269  A$pong$1927                        pong
+C:   0000026B  A$pong$1930                        pong
+C:   0000026B  C$pong.c$248$2$68                  pong
+C:   0000026D  A$pong$1931                        pong
+C:   0000026F  A$pong$1932                        pong
+C:   00000271  A$pong$1933                        pong
+C:   00000273  A$pong$1934                        pong
+C:   00000275  A$pong$1935                        pong
+C:   00000277  A$pong$1936                        pong
+C:   0000027A  A$pong$1937                        pong
+C:   0000027C  A$pong$1938                        pong
+C:   0000027E  A$pong$1939                        pong
+C:   00000280  A$pong$1940                        pong
+C:   00000282  A$pong$1943                        pong
+C:   00000282  C$pong.c$249$2$68                  pong
+C:   00000283  A$pong$1944                        pong
+C:   00000284  A$pong$1945                        pong
+C:   00000286  A$pong$1946                        pong
+C:   00000288  A$pong$1947                        pong
+C:   0000028A  A$pong$1948                        pong
+C:   0000028C  A$pong$1949                        pong
+C:   0000028E  A$pong$1950                        pong
+C:   0000028F  A$pong$1951                        pong
+C:   00000290  A$pong$1952                        pong
+C:   00000291  A$pong$1953                        pong
+C:   00000292  A$pong$1954                        pong
+C:   00000293  A$pong$1955                        pong
+C:   00000295  A$pong$1956                        pong
+C:   00000297  A$pong$1957                        pong
+C:   00000298  A$pong$1958                        pong
+C:   00000299  A$pong$1959                        pong
+C:   0000029A  A$pong$1960                        pong
+C:   0000029B  A$pong$1961                        pong
+C:   0000029D  A$pong$1962                        pong
+C:   0000029F  A$pong$1963                        pong
+C:   000002A2  A$pong$1964                        pong
+C:   000002A4  A$pong$1965                        pong
+C:   000002A6  A$pong$1968                        pong
+C:   000002A6  C$pong.c$250$3$70                  pong
+C:   000002A8  A$pong$1969                        pong
+C:   000002AA  A$pong$1970                        pong
+C:   000002AC  A$pong$1971                        pong
+C:   000002AE  A$pong$1972                        pong
+C:   000002B0  A$pong$1973                        pong
+C:   000002B2  A$pong$1974                        pong
+C:   000002B4  A$pong$1975                        pong
+C:   000002B6  A$pong$1976                        pong
+C:   000002B8  A$pong$1977                        pong
+C:   000002BA  A$pong$1978                        pong
+C:   000002BC  A$pong$1979                        pong
+C:   000002BF  A$pong$1980                        pong
+ASxxxx Linker V03.00 + NoICE + sdld,  page 40.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000002C1  A$pong$1981                        pong
+C:   000002C3  A$pong$1982                        pong
+C:   000002C5  A$pong$1983                        pong
+C:   000002C7  A$pong$1984                        pong
+C:   000002C9  A$pong$1988                        pong
+C:   000002C9  C$pong.c$252$3$71                  pong
+C:   000002CB  A$pong$1989                        pong
+C:   000002CD  A$pong$1990                        pong
+C:   000002CF  A$pong$1991                        pong
+C:   000002D1  A$pong$1992                        pong
+C:   000002D3  A$pong$1993                        pong
+C:   000002D5  A$pong$1994                        pong
+C:   000002D7  A$pong$1995                        pong
+C:   000002DA  A$pong$1996                        pong
+C:   000002DC  A$pong$1997                        pong
+C:   000002DE  A$pong$1998                        pong
+C:   000002E0  A$pong$1999                        pong
+C:   000002E2  A$pong$2003                        pong
+C:   000002E2  C$pong.c$243$1$67                  pong
+C:   000002E3  A$pong$2004                        pong
+C:   000002E6  A$pong$2008                        pong
+C:   000002E6  C$pong.c$257$1$67                  pong
+C:   000002E8  A$pong$2009                        pong
+C:   000002EA  A$pong$2010                        pong
+C:   000002EC  A$pong$2011                        pong
+C:   000002EE  A$pong$2012                        pong
+C:   000002F0  A$pong$2013                        pong
+C:   000002F2  A$pong$2014                        pong
+C:   000002F5  A$pong$2015                        pong
+C:   000002F7  A$pong$2016                        pong
+C:   000002F9  A$pong$2017                        pong
+C:   000002FB  A$pong$2020                        pong
+C:   000002FD  A$pong$2022                        pong
+C:   000002FE  A$pong$2023                        pong
+C:   00000300  A$pong$2024                        pong
+C:   00000301  A$pong$2025                        pong
+C:   00000303  A$pong$2026                        pong
+C:   00000306  A$pong$2030                        pong
+C:   00000306  C$pong.c$260$2$72                  pong
+C:   00000309  A$pong$2031                        pong
+C:   0000030B  A$pong$2035                        pong
+C:   0000030B  C$pong.c$261$3$73                  pong
+C:   0000030D  A$pong$2036                        pong
+C:   0000030F  A$pong$2037                        pong
+C:   00000311  A$pong$2038                        pong
+C:   00000313  A$pong$2039                        pong
+C:   00000315  A$pong$2040                        pong
+C:   00000317  A$pong$2041                        pong
+C:   00000319  A$pong$2042                        pong
+C:   0000031C  A$pong$2043                        pong
+C:   0000031E  A$pong$2044                        pong
+ASxxxx Linker V03.00 + NoICE + sdld,  page 41.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000320  A$pong$2045                        pong
+C:   00000322  A$pong$2046                        pong
+C:   00000324  A$pong$2050                        pong
+C:   00000324  C$pong.c$263$2$72                  pong
+C:   00000326  A$pong$2051                        pong
+C:   00000328  A$pong$2052                        pong
+C:   0000032A  A$pong$2053                        pong
+C:   0000032C  A$pong$2054                        pong
+C:   0000032E  A$pong$2055                        pong
+C:   00000330  A$pong$2056                        pong
+C:   00000332  A$pong$2057                        pong
+C:   00000335  A$pong$2058                        pong
+C:   00000337  A$pong$2059                        pong
+C:   00000339  A$pong$2060                        pong
+C:   0000033B  A$pong$2063                        pong
+C:   0000033B  C$pong.c$264$2$72                  pong
+C:   0000033D  A$pong$2064                        pong
+C:   0000033F  A$pong$2065                        pong
+C:   00000341  A$pong$2066                        pong
+C:   00000343  A$pong$2067                        pong
+C:   00000345  A$pong$2068                        pong
+C:   00000347  A$pong$2069                        pong
+C:   0000034A  A$pong$2070                        pong
+C:   0000034C  A$pong$2071                        pong
+C:   0000034E  A$pong$2072                        pong
+C:   00000350  A$pong$2073                        pong
+C:   00000352  A$pong$2076                        pong
+C:   00000352  C$pong.c$265$2$72                  pong
+C:   00000353  A$pong$2077                        pong
+C:   00000354  A$pong$2078                        pong
+C:   00000356  A$pong$2079                        pong
+C:   00000358  A$pong$2080                        pong
+C:   0000035A  A$pong$2081                        pong
+C:   0000035C  A$pong$2082                        pong
+C:   0000035E  A$pong$2083                        pong
+C:   0000035F  A$pong$2084                        pong
+C:   00000360  A$pong$2085                        pong
+C:   00000361  A$pong$2086                        pong
+C:   00000362  A$pong$2087                        pong
+C:   00000363  A$pong$2088                        pong
+C:   00000365  A$pong$2089                        pong
+C:   00000367  A$pong$2090                        pong
+C:   00000368  A$pong$2091                        pong
+C:   00000369  A$pong$2092                        pong
+C:   0000036A  A$pong$2093                        pong
+C:   0000036B  A$pong$2094                        pong
+C:   0000036D  A$pong$2095                        pong
+C:   0000036F  A$pong$2096                        pong
+C:   00000372  A$pong$2097                        pong
+C:   00000374  A$pong$2098                        pong
+C:   00000376  A$pong$2101                        pong
+ASxxxx Linker V03.00 + NoICE + sdld,  page 42.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000376  C$pong.c$266$3$74                  pong
+C:   00000378  A$pong$2102                        pong
+C:   0000037A  A$pong$2103                        pong
+C:   0000037C  A$pong$2104                        pong
+C:   0000037E  A$pong$2105                        pong
+C:   00000380  A$pong$2106                        pong
+C:   00000382  A$pong$2107                        pong
+C:   00000384  A$pong$2108                        pong
+C:   00000386  A$pong$2109                        pong
+C:   00000388  A$pong$2110                        pong
+C:   0000038A  A$pong$2111                        pong
+C:   0000038C  A$pong$2112                        pong
+C:   0000038F  A$pong$2113                        pong
+C:   00000391  A$pong$2114                        pong
+C:   00000393  A$pong$2115                        pong
+C:   00000395  A$pong$2116                        pong
+C:   00000397  A$pong$2117                        pong
+C:   00000399  A$pong$2121                        pong
+C:   00000399  C$pong.c$268$3$75                  pong
+C:   0000039B  A$pong$2122                        pong
+C:   0000039D  A$pong$2123                        pong
+C:   0000039F  A$pong$2124                        pong
+C:   000003A1  A$pong$2125                        pong
+C:   000003A3  A$pong$2126                        pong
+C:   000003A5  A$pong$2127                        pong
+C:   000003A7  A$pong$2128                        pong
+C:   000003AA  A$pong$2129                        pong
+C:   000003AC  A$pong$2130                        pong
+C:   000003AE  A$pong$2131                        pong
+C:   000003B0  A$pong$2132                        pong
+C:   000003B2  A$pong$2136                        pong
+C:   000003B2  C$pong.c$259$1$67                  pong
+C:   000003B3  A$pong$2137                        pong
+C:   000003B6  A$pong$2141                        pong
+C:   000003B6  C$pong.c$271$1$67                  pong
+C:   000003B6  XG$printPlayers$0$0                pong
+C:   000003B7  A$pong$2156                        pong
+C:   000003B7  C$pong.c$273$1$67                  pong
+C:   000003B7  C$pong.c$276$1$76                  pong
+C:   000003B7  G$printBorder$0$0                  pong
+C:   000003B7  _printBorder                       pong
+C:   000003B9  A$pong$2157                        pong
+C:   000003BB  A$pong$2158                        pong
+C:   000003BD  A$pong$2159                        pong
+C:   000003BF  A$pong$2160                        pong
+C:   000003C1  A$pong$2161                        pong
+C:   000003C3  A$pong$2162                        pong
+C:   000003C6  A$pong$2163                        pong
+C:   000003C8  A$pong$2164                        pong
+C:   000003CA  A$pong$2165                        pong
+C:   000003CC  A$pong$2168                        pong
+ASxxxx Linker V03.00 + NoICE + sdld,  page 43.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000003CC  C$pong.c$277$1$76                  pong
+C:   000003CE  A$pong$2169                        pong
+C:   000003D0  A$pong$2170                        pong
+C:   000003D2  A$pong$2171                        pong
+C:   000003D4  A$pong$2172                        pong
+C:   000003D6  A$pong$2173                        pong
+C:   000003D8  A$pong$2174                        pong
+C:   000003DB  A$pong$2175                        pong
+C:   000003DD  A$pong$2176                        pong
+C:   000003DF  A$pong$2177                        pong
+C:   000003E1  A$pong$2180                        pong
+C:   000003E1  C$pong.c$308$1$76                  pong
+C:   000003E3  A$pong$2181                        pong
+C:   000003E5  A$pong$2182                        pong
+C:   000003E7  A$pong$2183                        pong
+C:   000003E9  A$pong$2184                        pong
+C:   000003EB  A$pong$2185                        pong
+C:   000003ED  A$pong$2186                        pong
+C:   000003F0  A$pong$2187                        pong
+C:   000003F2  A$pong$2188                        pong
+C:   000003F4  A$pong$2189                        pong
+C:   000003F6  A$pong$2192                        pong
+C:   000003F8  A$pong$2194                        pong
+C:   000003F9  A$pong$2195                        pong
+C:   000003FA  A$pong$2196                        pong
+C:   000003FC  A$pong$2197                        pong
+C:   000003FE  A$pong$2200                        pong
+C:   000003FE  C$pong.c$310$2$77                  pong
+C:   00000400  A$pong$2201                        pong
+C:   00000402  A$pong$2202                        pong
+C:   00000404  A$pong$2203                        pong
+C:   00000406  A$pong$2204                        pong
+C:   00000408  A$pong$2205                        pong
+C:   0000040A  A$pong$2206                        pong
+C:   0000040C  A$pong$2207                        pong
+C:   0000040F  A$pong$2208                        pong
+C:   00000411  A$pong$2209                        pong
+C:   00000413  A$pong$2210                        pong
+C:   00000415  A$pong$2213                        pong
+C:   00000415  C$pong.c$311$2$77                  pong
+C:   00000417  A$pong$2214                        pong
+C:   00000419  A$pong$2215                        pong
+C:   0000041B  A$pong$2216                        pong
+C:   0000041D  A$pong$2217                        pong
+C:   0000041F  A$pong$2218                        pong
+C:   00000421  A$pong$2219                        pong
+C:   00000424  A$pong$2220                        pong
+C:   00000426  A$pong$2221                        pong
+C:   00000428  A$pong$2222                        pong
+C:   0000042A  A$pong$2223                        pong
+C:   0000042C  A$pong$2226                        pong
+ASxxxx Linker V03.00 + NoICE + sdld,  page 44.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000042C  C$pong.c$309$1$76                  pong
+C:   0000042D  A$pong$2227                        pong
+C:   0000042F  A$pong$2231                        pong
+C:   0000042F  C$pong.c$313$1$76                  pong
+C:   00000431  A$pong$2232                        pong
+C:   00000433  A$pong$2233                        pong
+C:   00000435  A$pong$2234                        pong
+C:   00000437  A$pong$2235                        pong
+C:   00000439  A$pong$2236                        pong
+C:   0000043B  A$pong$2237                        pong
+C:   0000043E  A$pong$2238                        pong
+C:   00000440  A$pong$2239                        pong
+C:   00000442  A$pong$2240                        pong
+C:   00000444  A$pong$2243                        pong
+C:   00000444  C$pong.c$315$1$76                  pong
+C:   00000447  A$pong$2246                        pong
+C:   00000447  C$pong.c$318$1$76                  pong
+C:   00000449  A$pong$2247                        pong
+C:   0000044B  A$pong$2248                        pong
+C:   0000044D  A$pong$2249                        pong
+C:   0000044F  A$pong$2250                        pong
+C:   00000451  A$pong$2251                        pong
+C:   00000453  A$pong$2252                        pong
+C:   00000456  A$pong$2253                        pong
+C:   00000458  A$pong$2254                        pong
+C:   0000045A  A$pong$2255                        pong
+C:   0000045C  A$pong$2258                        pong
+C:   0000045C  C$pong.c$326$1$76                  pong
+C:   0000045C  XG$printBorder$0$0                 pong
+C:   0000045D  A$pong$2271                        pong
+C:   0000045D  C$pong.c$328$1$76                  pong
+C:   0000045D  C$pong.c$330$1$78                  pong
+C:   0000045D  G$updateScore$0$0                  pong
+C:   0000045D  _updateScore                       pong
+C:   0000045F  A$pong$2272                        pong
+C:   00000461  A$pong$2273                        pong
+C:   00000463  A$pong$2274                        pong
+C:   00000465  A$pong$2275                        pong
+C:   00000467  A$pong$2276                        pong
+C:   00000469  A$pong$2277                        pong
+C:   0000046C  A$pong$2278                        pong
+C:   0000046E  A$pong$2279                        pong
+C:   00000470  A$pong$2280                        pong
+C:   00000472  A$pong$2283                        pong
+C:   00000472  C$pong.c$331$1$78                  pong
+C:   00000474  A$pong$2284                        pong
+C:   00000476  A$pong$2285                        pong
+C:   00000478  A$pong$2286                        pong
+C:   0000047A  A$pong$2287                        pong
+C:   0000047C  A$pong$2288                        pong
+C:   0000047E  A$pong$2289                        pong
+ASxxxx Linker V03.00 + NoICE + sdld,  page 45.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000083    00000ADA =        2778. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000480  A$pong$2290                        pong
+C:   00000482  A$pong$2291                        pong
+C:   00000484  A$pong$2292                        pong
+C:   00000486  A$pong$2293                        pong
+C:   00000489  A$pong$2294                        pong
+C:   0000048B  A$pong$2295                        pong
+C:   0000048D  A$pong$2296                        pong
+C:   0000048F  A$pong$2299                        pong
+C:   0000048F  C$pong.c$334$1$78                  pong
+C:   00000491  A$pong$2300                        pong
+C:   00000493  A$pong$2301                        pong
+C:   00000495  A$pong$2302                        pong
+C:   00000497  A$pong$2303                        pong
+C:   00000499  A$pong$2304                        pong
+C:   0000049B  A$pong$2305                        pong
+C:   0000049E  A$pong$2306                        pong
+C:   000004A0  A$pong$2307                        pong
+C:   000004A2  A$pong$2308                        pong
+C:   000004A4  A$pong$2311                        pong
+C:   000004A4  C$pong.c$335$1$78                  pong
+C:   000004A6  A$pong$2312                        pong
+C:   000004A8  A$pong$2313                        pong
+C:   000004AA  A$pong$2314                        pong
+C:   000004AC  A$pong$2315                        pong
+C:   000004AE  A$pong$2316                        pong
+C:   000004B0  A$pong$2317                        pong
+C:   000004B2  A$pong$2318                        pong
+C:   000004B4  A$pong$2319                        pong
+C:   000004B6  A$pong$2320                        pong
+C:   000004B8  A$pong$2321                        pong
+C:   000004BB  A$pong$2322                        pong
+C:   000004BD  A$pong$2323                        pong
+C:   000004BF  A$pong$2324                        pong
+C:   000004C1  A$pong$2327                        pong
+C:   000004C1  C$pong.c$336$1$78                  pong
+C:   000004C1  XG$updateScore$0$0                 pong
+C:   000004C2  A$pong$2342                        pong
+C:   000004C2  C$pong.c$338$1$78                  pong
+C:   000004C2  C$pong.c$341$1$78                  pong
+C:   000004C2  G$printWinner$0$0                  pong
+C:   000004C2  XG$printWinner$0$0                 pong
+C:   000004C2  _printWinner                       pong
+C:   000004C3  _strcpy                            _strcpy
+C:   00000503  __gptrput                          _gptrput
+C:   00000529  _vprintf                           vprintf
+C:   00000542  _printf                            vprintf
+C:   00000619  __print_format                     printf_large
+C:   00000B25  _strlen                            _strlen
+C:   00000B3D  __gptrget                          _gptrget
+C:   00000B59  __sdcc_external_startup            _startup
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 46.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CONST                               00000B5D    00000075 =         117. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000B5D  Fpong$__str_0$0$0                  pong
+C:   00000B66  Fpong$__str_1$0$0                  pong
+C:   00000B6B  Fpong$__str_2$0$0                  pong
+C:   00000B72  Fpong$__str_3$0$0                  pong
+C:   00000B74  Fpong$__str_4$0$0                  pong
+C:   00000B76  Fpong$__str_5$0$0                  pong
+C:   00000B7B  Fpong$__str_6$0$0                  pong
+C:   00000B7E  Fpong$__str_7$0$0                  pong
+C:   00000B80  Fpong$__str_8$0$0                  pong
+C:   00000B88  Fpong$__str_9$0$0                  pong
+C:   00000B8E  Fpong$__str_10$0$0                 pong
+C:   00000B97  Fpong$__str_11$0$0                 pong
+C:   00000B9C  Fpong$__str_12$0$0                 pong
+C:   00000BA4  Fpong$__str_13$0$0                 pong
+C:   00000BA8  Fpong$__str_14$0$0                 pong
+C:   00000BAE  Fpong$__str_15$0$0                 pong
+C:   00000BB0  Fpong$__str_16$0$0                 pong
+C:   00000BB7  Fpong$__str_17$0$0                 pong
+C:   00000BBF  Fpong$__str_18$0$0                 pong
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 47.
 
 Files Linked                              [ module(s) ]
 
-C:\Users\John\Documents\MPS\lab1\portIO.rel
+C:\Users\John\Documents\MPS\lab1\pong.rel
                                           [  ]
 
 
 Libraries Linked                          [ object file ]
 
+C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _strcpy.rel ]
 C:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtclear.rel ]
 C:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtxinit.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _gptrput.rel ]
 C:\Program Files (x86)\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtxclear.rel ]
 C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
@@ -1594,7 +2088,7 @@ C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
 C:\Program Files (x86)\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ _bp.rel ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 40.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 48.
 
 User Base Address Definitions
 

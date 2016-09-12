@@ -14,6 +14,7 @@
 #include <c8051f120.h>
 #include <stdio.h>
 #include "putget.h"
+#include <string.h>
 
 //------------------------------------------------------------------------------------
 // Global Constants
@@ -29,14 +30,37 @@ void main(void);
 void SYSCLK_INIT(void);
 void PORT_INIT(void);
 void UART0_INIT(void);
+void printPlayers(void);
+void printBorder(void);
+void updateScore(void);
+void updatePositions(char);
+void updateBall(void);
+
+char pixel = '\333';
+
+char screenWidth = 80;
+char screenHeight = 25;
+
+char score1 = 0;
+char score2 = 0;
+
+char player1Pos = 10;
+
+char player2Pos = 10;
+
+char ballX = 40;
+char ballY = 13;
+
+char velX = 0;
+char velY = 0;
 
 //------------------------------------------------------------------------------------
 // MAIN Routine
 //------------------------------------------------------------------------------------
 void main(void)
 {
-    char choice;
-	char octal = '\333';
+    char input;
+    char octal = '\333';
 
 
     WDTCN = 0xDE;                       // Disable the watchdog timer
@@ -48,75 +72,14 @@ void main(void)
 
     SFRPAGE = UART0_PAGE;               // Direct output to UART0
 
-    // Reset screen
-    printf("\033[33;44m");              // Yellow text; blue background
-    printf("\033[2J");                  // Erase screen & move cursor to home position
-    printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
-    
-    // Store location for unprintable notifaction
-    printf("\033[12;0H");               // Position cursor to print unprintables
-    printf("\033[s");                   // Store current location
-
-    // Print end instructions
-    printf("\033[2;25H");               // Position cursor to print instructions
-    printf("Type <ESC> to end the program.\n\n\r");
-    
-    // Print printable character prompt (leave a space for the actual character)
-    printf("\033[6;0H");                // Position cursor to print Keyboard character info
-    printf("The keyboard character is  .");
-
-	printf("%c%c\n\r",octal,octal);
-
-	printf("%c\n\r%c",octal,octal);
-
-
-    printf("\033[12;25r");              // Set scrollable region
+    printBorder();
+    updateScore();
 
     while(1)
     {
-        // Setup cursor for printable character output
-        printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
-        printf("\033[37m");             // White text
-
-        choice = getchar();
-
-        P1 |= 0x40;                     // Turn green LED on (alert user program is on)
-
-        // If they pressed escape, end the program.
-        if (choice == '\033'){
-            return;
-        }
-
-        // If not a printable characters
-        if (!(choice >= '\040' && choice <= '\176')){ 
-            printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
-            printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
-
-            // Print 'not printable' warning, some things to Note:
-            // $%02X prints captail hexadecimal with two digits 
-            // \033[4m underline 'not printable'
-            // \033[0;5;33;44m clear formatting and set to blinking text; yellow text; blue background
-            // \n\r move cursor to start of next line
-            printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
-
-            printf("\007");                 // Sound bell
-
-            // Note: must be done on separate lines (bug: would default to black background)
-            printf("\033[0m");              // Clear formatting
-            printf("\033[33;44m");          // Yellow text; blue background
-
-            // The new saved location is at the start of the next line in the scrollable section (from the \n\r)
-            printf("\033[s");               // Overwrite saved cursor info
-
-            // A space is printed in the printable character location when an unprintable character is pressed because
-            // some unprintable characters have built in graphical depictions which we do not wish to display
-            printf("\033[6;27H ");          // Move cursor and print space in the printable character location
-
-        }
-
-        // IF a printable character was entered, no need to print as it is already echo'd upon typing,
-        // just have to ensure the cursor is in the right location and text is white (done at start of while)
-
+        updateBall();
+    	input = getchar();             // TODO: this hangs, it shouldn't
+		updatePositions(input);
     }
 }
 
@@ -205,4 +168,174 @@ void UART0_INIT(void)
     TI0     = 1;                        // Indicate TX0 ready
 
     SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+}
+
+void updateBall(){
+    char str[20];
+
+    //dont forget to erase last ball
+    char lastX = ballX;
+    char lastY = ballY;
+
+    char tenthsX = '0'+(ballX/10);
+    char onesX = '0'+(ballX%10);
+    
+    char tenthsY = '0'+(ballY/10);
+    char onesY = '0'+(ballY%10);
+
+
+    strcpy(str, "\033[__;__H");
+
+    str[2] = tenthsY;
+    str[3] = onesY;
+    str[5] = tenthsX;
+    str[6] = onesX;
+
+    printf(str);
+    printf("%c%c",pixel,pixel);
+
+}
+
+void updatePositions(char input){
+	if(input == '\167'){ //w
+		player1Pos--;
+		if(player1Pos<1){
+			player1Pos = 1;
+		}
+	}
+
+	if(input == '\163'){ //s
+		player1Pos++;
+		if(player1Pos>20){
+			player1Pos = 20;
+		}
+	}
+
+	if(input == '\157'){ //o
+		player2Pos--;
+		if(player2Pos<1){
+			player2Pos = 1;
+		}
+	}
+
+	if(input == '\154'){ //l
+		player2Pos++;
+		if(player2Pos>20){
+			player2Pos = 20;
+		}
+	}
+
+	printPlayers();
+}
+
+
+void printPlayers(){
+    // Player 1
+    char i = 1;
+
+    // char str[20];
+
+    // char tenths = '0'+(player1Pos/10);
+    // char ones = '0'+(player1Pos%10);
+
+    printf("\033[1;2H");
+
+    for( i = 1; i <= screenHeight; i++){ //5 is player size
+        if(i != 1){
+            printf("\n");
+        }
+        printf("\r");
+        printf("\033[1C");
+		if(i >= player1Pos && i <= player1Pos+5){
+        	printf("%c",pixel);
+		} else{
+			printf(" ");
+		}
+    }
+
+
+    printf("\033[1;78H");
+
+    for( i = 1; i <= screenHeight; i++){ //5 is player size
+        if(i != 1){
+            printf("\n");
+        }
+        printf("\r");
+        printf("\033[77C");
+        if(i >= player2Pos && i <= player2Pos+5){
+            printf("%c",pixel);
+        } else{
+            printf(" ");
+        }
+    }
+}
+
+void printBorder(){
+    char i = 0;
+
+    printf("\033[37;40m");              // White text; black background
+    printf("\033[2J");                  // Erase screen & move cursor to home position
+
+    // printf("\033[1;38H");               // Position cursor to print title
+    // printf("Pong");
+
+    // //Top Border
+    // printf("\033[2;1H");                // Position cursor for border
+    // for(i = 0; i < screenWidth; i++){   // Top border
+    //     printf("%c",pixel);
+    // }
+
+    // //Bottom Border
+    // printf("\033[25;1H");               // Position cursor for border
+    // for(i = 0; i < screenWidth; i++){   // Bottom border
+    //     printf("%c",pixel);
+    // }
+
+    // //Left Border
+    // printf("\033[0;1H");                // Position cursor for border
+    // for(i = 1; i < screenHeight; i++){  // Left border
+    //     printf("%c\n\r",pixel);
+    // }
+
+    // //Right Border
+    // printf("\033[80;1H");               // Position cursor for border
+    // for(i = 1; i < screenHeight; i++){  // Right border
+    //     printf("%c\n",pixel);
+    //     printf("\033[80D");             // Move cursor far right
+    // }
+
+    //Middle Divider
+    printf("\033[1;40H");
+    for(i = 1; i < screenHeight; i++){
+        printf("|\n\r");
+        printf("\033[39C");
+    }
+    printf("|");
+
+    printPlayers();
+
+    //hide cursor
+    printf("\033[?25l");
+
+
+    //try hiding cursor
+    //printf("")
+
+    // updateScore();
+
+}
+
+void updateScore(){
+    // Player 1 score
+    printf("\033[2;35H");
+    printf("%c",score1);
+
+    // Player 2 score
+    printf("\033[2;45H");
+    printf("%c",score2);
+}
+
+void printWinner(){
+    //fireworks and such
+
 }

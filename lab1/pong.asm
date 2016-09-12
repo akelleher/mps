@@ -2,12 +2,14 @@
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.6.0 #9615 (MINGW32)
 ;--------------------------------------------------------
-	.module Hello
+	.module pong
 	.optsdcc -mmcs51 --model-small
 	
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _printWinner
+	.globl _strcpy
 	.globl _printf
 	.globl _P7_7
 	.globl _P7_6
@@ -392,12 +394,28 @@
 	.globl _DPL
 	.globl _SP
 	.globl _P0
+	.globl _velY
+	.globl _velX
+	.globl _ballY
+	.globl _ballX
+	.globl _player2Pos
+	.globl _player1Pos
+	.globl _score2
+	.globl _score1
+	.globl _screenHeight
+	.globl _screenWidth
+	.globl _pixel
 	.globl _putchar
 	.globl _getchar
 	.globl _main
 	.globl _SYSCLK_INIT
 	.globl _PORT_INIT
 	.globl _UART0_INIT
+	.globl _updateBall
+	.globl _updatePositions
+	.globl _printPlayers
+	.globl _printBorder
+	.globl _updateScore
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -1183,9 +1201,46 @@ _P7_7	=	0x00ff
 ; internal ram data
 ;--------------------------------------------------------
 	.area DSEG    (DATA)
+G$pixel$0$0==.
+_pixel::
+	.ds 1
+G$screenWidth$0$0==.
+_screenWidth::
+	.ds 1
+G$screenHeight$0$0==.
+_screenHeight::
+	.ds 1
+G$score1$0$0==.
+_score1::
+	.ds 1
+G$score2$0$0==.
+_score2::
+	.ds 1
+G$player1Pos$0$0==.
+_player1Pos::
+	.ds 1
+G$player2Pos$0$0==.
+_player2Pos::
+	.ds 1
+G$ballX$0$0==.
+_ballX::
+	.ds 1
+G$ballY$0$0==.
+_ballY::
+	.ds 1
+G$velX$0$0==.
+_velX::
+	.ds 1
+G$velY$0$0==.
+_velY::
+	.ds 1
+Lpong.updateBall$str$1$56==.
+_updateBall_str_1_56:
+	.ds 20
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
+	.area	OSEG    (OVR,DATA)
 	.area	OSEG    (OVR,DATA)
 	.area	OSEG    (OVR,DATA)
 	.area	OSEG    (OVR,DATA)
@@ -1255,6 +1310,39 @@ __interrupt_vect:
 	.globl __mcs51_genXINIT
 	.globl __mcs51_genXRAMCLEAR
 	.globl __mcs51_genRAMCLEAR
+	C$pong.c$39$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:39: char pixel = '\333';
+	mov	_pixel,#0xdb
+	C$pong.c$41$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:41: char screenWidth = 80;
+	mov	_screenWidth,#0x50
+	C$pong.c$42$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:42: char screenHeight = 25;
+	mov	_screenHeight,#0x19
+	C$pong.c$44$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:44: char score1 = 0;
+	mov	_score1,#0x00
+	C$pong.c$45$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:45: char score2 = 0;
+	mov	_score2,#0x00
+	C$pong.c$47$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:47: char player1Pos = 10;
+	mov	_player1Pos,#0x0a
+	C$pong.c$49$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:49: char player2Pos = 10;
+	mov	_player2Pos,#0x0a
+	C$pong.c$51$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:51: char ballX = 40;
+	mov	_ballX,#0x28
+	C$pong.c$52$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:52: char ballY = 13;
+	mov	_ballY,#0x0d
+	C$pong.c$54$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:54: char velX = 0;
+	mov	_velX,#0x00
+	C$pong.c$55$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:55: char velY = 0;
+	mov	_velY,#0x00
 	.area GSFINAL (CODE)
 	ljmp	__sdcc_program_startup
 ;--------------------------------------------------------
@@ -1326,10 +1414,7 @@ _getchar:
 00112$:
 	C$putget.h$35$1$17 ==.
 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:35: c = SBUF0;
-	mov	dpl,_SBUF0
-	C$putget.h$37$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\/putget.h:37: putchar(c);    // echo to terminal
-	lcall	_putchar
+	mov	a,_SBUF0
 	C$putget.h$38$1$17 ==.
 ;	C:\Users\John\Documents\MPS\lab1\/putget.h:38: return SBUF0;
 	mov	dpl,_SBUF0
@@ -1339,48 +1424,348 @@ _getchar:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;choice                    Allocated to registers r7 
+;input                     Allocated to registers 
 ;octal                     Allocated to registers 
 ;------------------------------------------------------------
 	G$main$0$0 ==.
-	C$Hello.c$36$1$17 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:36: void main(void)
+	C$pong.c$60$1$17 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:60: void main(void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-	C$Hello.c$42$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:42: WDTCN = 0xDE;                       // Disable the watchdog timer
+	C$pong.c$66$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:66: WDTCN = 0xDE;                       // Disable the watchdog timer
 	mov	_WDTCN,#0xde
-	C$Hello.c$43$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:43: WDTCN = 0xAD;
+	C$pong.c$67$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:67: WDTCN = 0xAD;
 	mov	_WDTCN,#0xad
-	C$Hello.c$45$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:45: PORT_INIT();                        // Initialize the Crossbar and GPIO
+	C$pong.c$69$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:69: PORT_INIT();                        // Initialize the Crossbar and GPIO
 	lcall	_PORT_INIT
-	C$Hello.c$46$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:46: SYSCLK_INIT();                      // Initialize the oscillator
+	C$pong.c$70$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:70: SYSCLK_INIT();                      // Initialize the oscillator
 	lcall	_SYSCLK_INIT
-	C$Hello.c$47$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:47: UART0_INIT();                       // Initialize UART0
+	C$pong.c$71$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:71: UART0_INIT();                       // Initialize UART0
 	lcall	_UART0_INIT
-	C$Hello.c$49$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:49: SFRPAGE = UART0_PAGE;               // Direct output to UART0
+	C$pong.c$73$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:73: SFRPAGE = UART0_PAGE;               // Direct output to UART0
 	mov	_SFRPAGE,#0x00
-	C$Hello.c$52$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:52: printf("\033[33;44m");              // Yellow text; blue background
-	mov	a,#___str_0
+	C$pong.c$75$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:75: printBorder();
+	lcall	_printBorder
+	C$pong.c$76$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:76: updateScore();
+	lcall	_updateScore
+	C$pong.c$78$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:78: while(1)
+00102$:
+	C$pong.c$80$2$49 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:80: updateBall();
+	lcall	_updateBall
+	C$pong.c$81$2$49 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:81: input = getchar();
+	lcall	_getchar
+	C$pong.c$82$2$49 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:82: updatePositions(input);
+	lcall	_updatePositions
+	sjmp	00102$
+	C$pong.c$84$1$48 ==.
+	XG$main$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'SYSCLK_INIT'
+;------------------------------------------------------------
+;i                         Allocated to registers r5 r6 
+;SFRPAGE_SAVE              Allocated to registers r7 
+;------------------------------------------------------------
+	G$SYSCLK_INIT$0$0 ==.
+	C$pong.c$92$1$48 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:92: void SYSCLK_INIT(void)
+;	-----------------------------------------
+;	 function SYSCLK_INIT
+;	-----------------------------------------
+_SYSCLK_INIT:
+	C$pong.c$97$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:97: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+	mov	r7,_SFRPAGE
+	C$pong.c$99$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:99: SFRPAGE = CONFIG_PAGE;
+	mov	_SFRPAGE,#0x0f
+	C$pong.c$100$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:100: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
+	mov	_OSCXCN,#0x67
+	C$pong.c$101$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:101: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
+	mov	r5,#0x00
+	mov	r6,#0x01
+00111$:
+	dec	r5
+	cjne	r5,#0xff,00141$
+	dec	r6
+00141$:
+	mov	a,r5
+	orl	a,r6
+	jnz	00111$
+	C$pong.c$102$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:102: while(!(OSCXCN & 0x80));
+00102$:
+	mov	a,_OSCXCN
+	jnb	acc.7,00102$
+	C$pong.c$103$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:103: CLKSEL  = 0x01;
+	mov	_CLKSEL,#0x01
+	C$pong.c$104$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:104: OSCICN  = 0x00;
+	mov	_OSCICN,#0x00
+	C$pong.c$106$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:106: SFRPAGE = CONFIG_PAGE;
+	mov	_SFRPAGE,#0x0f
+	C$pong.c$107$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:107: PLL0CN  = 0x04;
+	mov	_PLL0CN,#0x04
+	C$pong.c$108$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:108: SFRPAGE = LEGACY_PAGE;
+	mov	_SFRPAGE,#0x00
+	C$pong.c$109$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:109: FLSCL   = 0x10;
+	mov	_FLSCL,#0x10
+	C$pong.c$110$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:110: SFRPAGE = CONFIG_PAGE;
+	mov	_SFRPAGE,#0x0f
+	C$pong.c$111$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:111: PLL0CN |= 0x01;
+	orl	_PLL0CN,#0x01
+	C$pong.c$112$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:112: PLL0DIV = 0x04;
+	mov	_PLL0DIV,#0x04
+	C$pong.c$113$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:113: PLL0FLT = 0x01;
+	mov	_PLL0FLT,#0x01
+	C$pong.c$114$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:114: PLL0MUL = 0x09;
+	mov	_PLL0MUL,#0x09
+	C$pong.c$115$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:115: for(i=0; i < 256; i++);
+	mov	r5,#0x00
+	mov	r6,#0x01
+00114$:
+	dec	r5
+	cjne	r5,#0xff,00144$
+	dec	r6
+00144$:
+	mov	a,r5
+	orl	a,r6
+	jnz	00114$
+	C$pong.c$116$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:116: PLL0CN |= 0x02;
+	orl	_PLL0CN,#0x02
+	C$pong.c$117$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:117: while(!(PLL0CN & 0x10));
+00106$:
+	mov	a,_PLL0CN
+	jnb	acc.4,00106$
+	C$pong.c$118$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:118: CLKSEL  = 0x02;
+	mov	_CLKSEL,#0x02
+	C$pong.c$120$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:120: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+	mov	_SFRPAGE,r7
+	C$pong.c$121$1$51 ==.
+	XG$SYSCLK_INIT$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'PORT_INIT'
+;------------------------------------------------------------
+;SFRPAGE_SAVE              Allocated to registers r7 
+;------------------------------------------------------------
+	G$PORT_INIT$0$0 ==.
+	C$pong.c$129$1$51 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:129: void PORT_INIT(void)
+;	-----------------------------------------
+;	 function PORT_INIT
+;	-----------------------------------------
+_PORT_INIT:
+	C$pong.c$133$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:133: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+	mov	r7,_SFRPAGE
+	C$pong.c$135$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:135: SFRPAGE  = CONFIG_PAGE;
+	mov	_SFRPAGE,#0x0f
+	C$pong.c$136$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:136: XBR0     = 0x04;                    // Enable UART0
+	mov	_XBR0,#0x04
+	C$pong.c$137$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:137: XBR1     = 0x00;
+	mov	_XBR1,#0x00
+	C$pong.c$138$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:138: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
+	mov	_XBR2,#0x40
+	C$pong.c$139$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:139: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
+	orl	_P0MDOUT,#0x01
+	C$pong.c$140$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:140: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
+	orl	_P1MDOUT,#0x40
+	C$pong.c$142$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:142: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
+	mov	_SFRPAGE,r7
+	C$pong.c$143$1$53 ==.
+	XG$PORT_INIT$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'UART0_INIT'
+;------------------------------------------------------------
+;SFRPAGE_SAVE              Allocated to registers r7 
+;------------------------------------------------------------
+	G$UART0_INIT$0$0 ==.
+	C$pong.c$151$1$53 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:151: void UART0_INIT(void)
+;	-----------------------------------------
+;	 function UART0_INIT
+;	-----------------------------------------
+_UART0_INIT:
+	C$pong.c$155$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:155: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+	mov	r7,_SFRPAGE
+	C$pong.c$157$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:157: SFRPAGE = TIMER01_PAGE;
+	mov	_SFRPAGE,#0x00
+	C$pong.c$158$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:158: TMOD   &= ~0xF0;
+	anl	_TMOD,#0x0f
+	C$pong.c$159$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:159: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
+	orl	_TMOD,#0x20
+	C$pong.c$160$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:160: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
+	mov	_TH1,#0xe5
+	C$pong.c$161$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:161: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
+	orl	_CKCON,#0x10
+	C$pong.c$162$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:162: TL1     = TH1;
+	mov	_TL1,_TH1
+	C$pong.c$163$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:163: TR1     = 1;                        // Start Timer1
+	setb	_TR1
+	C$pong.c$165$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:165: SFRPAGE = UART0_PAGE;
+	mov	_SFRPAGE,#0x00
+	C$pong.c$166$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:166: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
+	mov	_SCON0,#0x50
+	C$pong.c$167$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:167: SSTA0   = 0x10;                     // SMOD0 = 1
+	mov	_SSTA0,#0x10
+	C$pong.c$168$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:168: TI0     = 1;                        // Indicate TX0 ready
+	setb	_TI0
+	C$pong.c$170$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:170: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+	mov	_SFRPAGE,r7
+	C$pong.c$171$1$55 ==.
+	XG$UART0_INIT$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'updateBall'
+;------------------------------------------------------------
+;str                       Allocated with name '_updateBall_str_1_56'
+;lastX                     Allocated to registers 
+;lastY                     Allocated to registers 
+;tenthsX                   Allocated to registers r7 
+;onesX                     Allocated to registers r6 
+;tenthsY                   Allocated to registers r5 
+;onesY                     Allocated to registers r4 
+;------------------------------------------------------------
+	G$updateBall$0$0 ==.
+	C$pong.c$173$1$55 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:173: void updateBall(){
+;	-----------------------------------------
+;	 function updateBall
+;	-----------------------------------------
+_updateBall:
+	C$pong.c$180$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:180: char tenthsX = '0'+(ballX/10);
+	mov	b,#0x0a
+	mov	a,_ballX
+	div	ab
+	add	a,#0x30
+	mov	r7,a
+	C$pong.c$181$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:181: char onesX = '0'+(ballX%10);
+	mov	b,#0x0a
+	mov	a,_ballX
+	div	ab
+	mov	r6,b
+	mov	a,#0x30
+	add	a,r6
+	mov	r6,a
+	C$pong.c$183$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:183: char tenthsY = '0'+(ballY/10);
+	mov	b,#0x0a
+	mov	a,_ballY
+	div	ab
+	add	a,#0x30
+	mov	r5,a
+	C$pong.c$184$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:184: char onesY = '0'+(ballY%10);
+	mov	b,#0x0a
+	mov	a,_ballY
+	div	ab
+	mov	r4,b
+	mov	a,#0x30
+	add	a,r4
+	mov	r4,a
+	C$pong.c$187$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:187: strcpy(str, "\033[__;__H");
+	mov	_strcpy_PARM_2,#___str_0
+	mov	(_strcpy_PARM_2 + 1),#(___str_0 >> 8)
+	mov	(_strcpy_PARM_2 + 2),#0x80
+	mov	dptr,#_updateBall_str_1_56
+	mov	b,#0x40
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_strcpy
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+	C$pong.c$189$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:189: str[2] = tenthsY;
+	mov	(_updateBall_str_1_56 + 0x0002),r5
+	C$pong.c$190$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:190: str[3] = onesY;
+	mov	(_updateBall_str_1_56 + 0x0003),r4
+	C$pong.c$191$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:191: str[5] = tenthsX;
+	mov	(_updateBall_str_1_56 + 0x0005),r7
+	C$pong.c$192$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:192: str[6] = onesX;
+	mov	(_updateBall_str_1_56 + 0x0006),r6
+	C$pong.c$194$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:194: printf(str);
+	mov	a,#_updateBall_str_1_56
 	push	acc
-	mov	a,#(___str_0 >> 8)
+	mov	a,#(_updateBall_str_1_56 >> 8)
 	push	acc
-	mov	a,#0x80
+	mov	a,#0x40
 	push	acc
 	lcall	_printf
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$53$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:53: printf("\033[2J");                  // Erase screen & move cursor to home position
+	C$pong.c$195$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:195: printf("%c%c",pixel,pixel);
+	mov	r6,_pixel
+	mov	r7,#0x00
+	push	ar6
+	push	ar7
+	push	ar6
+	push	ar7
 	mov	a,#___str_1
 	push	acc
 	mov	a,#(___str_1 >> 8)
@@ -1388,23 +1773,105 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$54$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:54: printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
-	mov	a,#___str_0
-	push	acc
-	mov	a,#(___str_0 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$57$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:57: printf("\033[12;0H");               // Position cursor to print unprintables
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	C$pong.c$197$1$56 ==.
+	XG$updateBall$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'updatePositions'
+;------------------------------------------------------------
+;input                     Allocated to registers r7 
+;------------------------------------------------------------
+	G$updatePositions$0$0 ==.
+	C$pong.c$199$1$56 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:199: void updatePositions(char input){
+;	-----------------------------------------
+;	 function updatePositions
+;	-----------------------------------------
+_updatePositions:
+	mov	r7,dpl
+	C$pong.c$200$1$58 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:200: if(input == '\167'){ //w
+	cjne	r7,#0x77,00104$
+	C$pong.c$201$2$59 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:201: player1Pos--;
+	dec	_player1Pos
+	C$pong.c$202$2$59 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:202: if(player1Pos<1){
+	mov	a,#0x100 - 0x01
+	add	a,_player1Pos
+	jc	00104$
+	C$pong.c$203$3$60 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:203: player1Pos = 1;
+	mov	_player1Pos,#0x01
+00104$:
+	C$pong.c$207$1$58 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:207: if(input == '\163'){ //s
+	cjne	r7,#0x73,00108$
+	C$pong.c$208$2$61 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:208: player1Pos++;
+	inc	_player1Pos
+	C$pong.c$209$2$61 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:209: if(player1Pos>20){
+	mov	a,_player1Pos
+	add	a,#0xff - 0x14
+	jnc	00108$
+	C$pong.c$210$3$62 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:210: player1Pos = 20;
+	mov	_player1Pos,#0x14
+00108$:
+	C$pong.c$214$1$58 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:214: if(input == '\157'){ //o
+	cjne	r7,#0x6f,00112$
+	C$pong.c$215$2$63 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:215: player2Pos--;
+	dec	_player2Pos
+	C$pong.c$216$2$63 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:216: if(player2Pos<1){
+	mov	a,#0x100 - 0x01
+	add	a,_player2Pos
+	jc	00112$
+	C$pong.c$217$3$64 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:217: player2Pos = 1;
+	mov	_player2Pos,#0x01
+00112$:
+	C$pong.c$221$1$58 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:221: if(input == '\154'){ //l
+	cjne	r7,#0x6c,00116$
+	C$pong.c$222$2$65 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:222: player2Pos++;
+	inc	_player2Pos
+	C$pong.c$223$2$65 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:223: if(player2Pos>20){
+	mov	a,_player2Pos
+	add	a,#0xff - 0x14
+	jnc	00116$
+	C$pong.c$224$3$66 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:224: player2Pos = 20;
+	mov	_player2Pos,#0x14
+00116$:
+	C$pong.c$228$1$58 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:228: printPlayers();
+	lcall	_printPlayers
+	C$pong.c$229$1$58 ==.
+	XG$updatePositions$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'printPlayers'
+;------------------------------------------------------------
+;i                         Allocated to registers r7 
+;------------------------------------------------------------
+	G$printPlayers$0$0 ==.
+	C$pong.c$232$1$58 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:232: void printPlayers(){
+;	-----------------------------------------
+;	 function printPlayers
+;	-----------------------------------------
+_printPlayers:
+	C$pong.c$241$1$67 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:241: printf("\033[1;2H");
 	mov	a,#___str_2
 	push	acc
 	mov	a,#(___str_2 >> 8)
@@ -1415,8 +1882,24 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$58$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:58: printf("\033[s");                   // Store current location
+	C$pong.c$243$1$67 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:243: for( i = 1; i <= screenHeight; i++){ //5 is player size
+	mov	r7,#0x01
+00116$:
+	clr	c
+	mov	a,_screenHeight
+	subb	a,r7
+	jnc	00155$
+	ljmp	00107$
+00155$:
+	C$pong.c$244$2$68 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:244: if(i != 1){
+	cjne	r7,#0x01,00156$
+	sjmp	00102$
+00156$:
+	C$pong.c$245$3$69 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:245: printf("\n");
+	push	ar7
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1427,8 +1910,11 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$61$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:61: printf("\033[2;25H");               // Position cursor to print instructions
+	pop	ar7
+00102$:
+	C$pong.c$247$2$68 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:247: printf("\r");
+	push	ar7
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1439,8 +1925,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$62$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:62: printf("Type <ESC> to end the program.\n\n\r");
+	C$pong.c$248$2$68 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:248: printf("\033[1C");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -1451,8 +1937,39 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$65$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:65: printf("\033[6;0H");                // Position cursor to print Keyboard character info
+	pop	ar7
+	C$pong.c$249$2$68 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:249: if(i >= player1Pos && i <= player1Pos+5){
+	clr	c
+	mov	a,r7
+	subb	a,_player1Pos
+	jc	00104$
+	mov	r5,_player1Pos
+	mov	r6,#0x00
+	mov	a,#0x05
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	ar3,r7
+	mov	r4,#0x00
+	clr	c
+	mov	a,r5
+	subb	a,r3
+	mov	a,r6
+	xrl	a,#0x80
+	mov	b,r4
+	xrl	b,#0x80
+	subb	a,b
+	jc	00104$
+	C$pong.c$250$3$70 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:250: printf("%c",pixel);
+	mov	r5,_pixel
+	mov	r6,#0x00
+	push	ar7
+	push	ar5
+	push	ar6
 	mov	a,#___str_6
 	push	acc
 	mov	a,#(___str_6 >> 8)
@@ -1460,11 +1977,15 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$66$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:66: printf("The keyboard character is  .");
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+	pop	ar7
+	sjmp	00117$
+00104$:
+	C$pong.c$252$3$71 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:252: printf(" ");
+	push	ar7
 	mov	a,#___str_7
 	push	acc
 	mov	a,#(___str_7 >> 8)
@@ -1475,16 +1996,15 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$68$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:68: printf("%c%c\n\r",octal,octal);
-	mov	a,#0xdb
-	push	acc
-	clr	a
-	push	acc
-	mov	a,#0xdb
-	push	acc
-	clr	a
-	push	acc
+	pop	ar7
+00117$:
+	C$pong.c$243$1$67 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:243: for( i = 1; i <= screenHeight; i++){ //5 is player size
+	inc	r7
+	ljmp	00116$
+00107$:
+	C$pong.c$257$1$67 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:257: printf("\033[1;78H");
 	mov	a,#___str_8
 	push	acc
 	mov	a,#(___str_8 >> 8)
@@ -1492,19 +2012,54 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	C$Hello.c$70$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:70: printf("%c\n\r%c",octal,octal);
-	mov	a,#0xdb
+	dec	sp
+	dec	sp
+	dec	sp
+	C$pong.c$259$1$67 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:259: for( i = 1; i <= screenHeight; i++){ //5 is player size
+	mov	r7,#0x01
+00119$:
+	clr	c
+	mov	a,_screenHeight
+	subb	a,r7
+	jnc	00159$
+	ljmp	00121$
+00159$:
+	C$pong.c$260$2$72 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:260: if(i != 1){
+	cjne	r7,#0x01,00160$
+	sjmp	00109$
+00160$:
+	C$pong.c$261$3$73 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:261: printf("\n");
+	push	ar7
+	mov	a,#___str_3
 	push	acc
-	clr	a
+	mov	a,#(___str_3 >> 8)
 	push	acc
-	mov	a,#0xdb
+	mov	a,#0x80
 	push	acc
-	clr	a
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar7
+00109$:
+	C$pong.c$263$2$72 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:263: printf("\r");
+	push	ar7
+	mov	a,#___str_4
 	push	acc
+	mov	a,#(___str_4 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+	C$pong.c$264$2$72 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:264: printf("\033[77C");
 	mov	a,#___str_9
 	push	acc
 	mov	a,#(___str_9 >> 8)
@@ -1512,11 +2067,92 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar7
+	C$pong.c$265$2$72 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:265: if(i >= player2Pos && i <= player2Pos+5){
+	clr	c
+	mov	a,r7
+	subb	a,_player2Pos
+	jc	00111$
+	mov	r5,_player2Pos
+	mov	r6,#0x00
+	mov	a,#0x05
+	add	a,r5
+	mov	r5,a
+	clr	a
+	addc	a,r6
+	mov	r6,a
+	mov	ar3,r7
+	mov	r4,#0x00
+	clr	c
+	mov	a,r5
+	subb	a,r3
+	mov	a,r6
+	xrl	a,#0x80
+	mov	b,r4
+	xrl	b,#0x80
+	subb	a,b
+	jc	00111$
+	C$pong.c$266$3$74 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:266: printf("%c",pixel);
+	mov	r5,_pixel
+	mov	r6,#0x00
+	push	ar7
+	push	ar5
+	push	ar6
+	mov	a,#___str_6
+	push	acc
+	mov	a,#(___str_6 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
 	mov	a,sp
-	add	a,#0xf9
+	add	a,#0xfb
 	mov	sp,a
-	C$Hello.c$73$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:73: printf("\033[12;25r");              // Set scrollable region
+	pop	ar7
+	sjmp	00120$
+00111$:
+	C$pong.c$268$3$75 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:268: printf(" ");
+	push	ar7
+	mov	a,#___str_7
+	push	acc
+	mov	a,#(___str_7 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar7
+00120$:
+	C$pong.c$259$1$67 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:259: for( i = 1; i <= screenHeight; i++){ //5 is player size
+	inc	r7
+	ljmp	00119$
+00121$:
+	C$pong.c$271$1$67 ==.
+	XG$printPlayers$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'printBorder'
+;------------------------------------------------------------
+;i                         Allocated to registers 
+;------------------------------------------------------------
+	G$printBorder$0$0 ==.
+	C$pong.c$273$1$67 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:273: void printBorder(){
+;	-----------------------------------------
+;	 function printBorder
+;	-----------------------------------------
+_printBorder:
+	C$pong.c$276$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:276: printf("\033[37;40m");              // White text; black background
 	mov	a,#___str_10
 	push	acc
 	mov	a,#(___str_10 >> 8)
@@ -1527,11 +2163,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$75$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:75: while(1)
-00107$:
-	C$Hello.c$78$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:78: printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
+	C$pong.c$277$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:277: printf("\033[2J");                  // Erase screen & move cursor to home position
 	mov	a,#___str_11
 	push	acc
 	mov	a,#(___str_11 >> 8)
@@ -1542,8 +2175,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$79$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:79: printf("\033[37m");             // White text
+	C$pong.c$308$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:308: printf("\033[1;40H");
 	mov	a,#___str_12
 	push	acc
 	mov	a,#(___str_12 >> 8)
@@ -1554,31 +2187,16 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$81$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:81: choice = getchar();
-	lcall	_getchar
-	mov	r7,dpl
-	C$Hello.c$83$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:83: P1 |= 0x40;                     // Turn green LED on (alert user program is on)
-	orl	_P1,#0x40
-	C$Hello.c$86$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:86: if (choice == '\033'){
-	cjne	r7,#0x1b,00102$
-	C$Hello.c$87$3$25 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:87: return;
-	ljmp	00109$
-00102$:
-	C$Hello.c$91$2$24 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:91: if (!(choice >= '\040' && choice <= '\176')){ 
-	cjne	r7,#0x20,00122$
-00122$:
-	jc	00103$
-	mov	a,r7
-	add	a,#0xff - 0x7e
-	jnc	00107$
+	C$pong.c$309$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:309: for(i = 1; i < screenHeight; i++){
+	mov	r7,#0x01
 00103$:
-	C$Hello.c$92$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:92: printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
+	clr	c
+	mov	a,r7
+	subb	a,_screenHeight
+	jnc	00101$
+	C$pong.c$310$2$77 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:310: printf("|\n\r");
 	push	ar7
 	mov	a,#___str_13
 	push	acc
@@ -1590,8 +2208,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$93$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:93: printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
+	C$pong.c$311$2$77 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:311: printf("\033[39C");
 	mov	a,#___str_14
 	push	acc
 	mov	a,#(___str_14 >> 8)
@@ -1602,10 +2220,14 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$100$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:100: printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
-	mov	r6,#0x00
-	push	ar6
+	pop	ar7
+	C$pong.c$309$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:309: for(i = 1; i < screenHeight; i++){
+	inc	r7
+	sjmp	00103$
+00101$:
+	C$pong.c$313$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:313: printf("|");
 	mov	a,#___str_15
 	push	acc
 	mov	a,#(___str_15 >> 8)
@@ -1613,11 +2235,14 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	mov	a,sp
-	add	a,#0xfb
-	mov	sp,a
-	C$Hello.c$102$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:102: printf("\007");                 // Sound bell
+	dec	sp
+	dec	sp
+	dec	sp
+	C$pong.c$315$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:315: printPlayers();
+	lcall	_printPlayers
+	C$pong.c$318$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:318: printf("\033[?25l");
 	mov	a,#___str_16
 	push	acc
 	mov	a,#(___str_16 >> 8)
@@ -1628,8 +2253,21 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$105$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:105: printf("\033[0m");              // Clear formatting
+	C$pong.c$326$1$76 ==.
+	XG$printBorder$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'updateScore'
+;------------------------------------------------------------
+	G$updateScore$0$0 ==.
+	C$pong.c$328$1$76 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:328: void updateScore(){
+;	-----------------------------------------
+;	 function updateScore
+;	-----------------------------------------
+_updateScore:
+	C$pong.c$330$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:330: printf("\033[2;35H");
 	mov	a,#___str_17
 	push	acc
 	mov	a,#(___str_17 >> 8)
@@ -1640,32 +2278,24 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	C$Hello.c$106$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:106: printf("\033[33;44m");          // Yellow text; blue background
-	mov	a,#___str_0
+	C$pong.c$331$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:331: printf("%c",score1);
+	mov	r6,_score1
+	mov	r7,#0x00
+	push	ar6
+	push	ar7
+	mov	a,#___str_6
 	push	acc
-	mov	a,#(___str_0 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$109$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:109: printf("\033[s");               // Overwrite saved cursor info
-	mov	a,#___str_3
-	push	acc
-	mov	a,#(___str_3 >> 8)
+	mov	a,#(___str_6 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	C$Hello.c$113$3$26 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:113: printf("\033[6;27H ");          // Move cursor and print space in the printable character location
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+	C$pong.c$334$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:334: printf("\033[2;45H");
 	mov	a,#___str_18
 	push	acc
 	mov	a,#(___str_18 >> 8)
@@ -1676,310 +2306,131 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-	ljmp	00107$
-00109$:
-	C$Hello.c$121$1$23 ==.
-	XG$main$0$0 ==.
+	C$pong.c$335$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:335: printf("%c",score2);
+	mov	r6,_score2
+	mov	r7,#0x00
+	push	ar6
+	push	ar7
+	mov	a,#___str_6
+	push	acc
+	mov	a,#(___str_6 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+	C$pong.c$336$1$78 ==.
+	XG$updateScore$0$0 ==.
 	ret
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'SYSCLK_INIT'
+;Allocation info for local variables in function 'printWinner'
 ;------------------------------------------------------------
-;i                         Allocated to registers r5 r6 
-;SFRPAGE_SAVE              Allocated to registers r7 
-;------------------------------------------------------------
-	G$SYSCLK_INIT$0$0 ==.
-	C$Hello.c$129$1$23 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:129: void SYSCLK_INIT(void)
+	G$printWinner$0$0 ==.
+	C$pong.c$338$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:338: void printWinner(){
 ;	-----------------------------------------
-;	 function SYSCLK_INIT
+;	 function printWinner
 ;	-----------------------------------------
-_SYSCLK_INIT:
-	C$Hello.c$134$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:134: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
-	mov	r7,_SFRPAGE
-	C$Hello.c$136$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:136: SFRPAGE = CONFIG_PAGE;
-	mov	_SFRPAGE,#0x0f
-	C$Hello.c$137$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:137: OSCXCN  = 0x67;                     // Start ext osc with 22.1184MHz crystal
-	mov	_OSCXCN,#0x67
-	C$Hello.c$138$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:138: for(i=0; i < 256; i++);             // Wait for the oscillator to start up
-	mov	r5,#0x00
-	mov	r6,#0x01
-00111$:
-	dec	r5
-	cjne	r5,#0xff,00141$
-	dec	r6
-00141$:
-	mov	a,r5
-	orl	a,r6
-	jnz	00111$
-	C$Hello.c$139$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:139: while(!(OSCXCN & 0x80));
-00102$:
-	mov	a,_OSCXCN
-	jnb	acc.7,00102$
-	C$Hello.c$140$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:140: CLKSEL  = 0x01;
-	mov	_CLKSEL,#0x01
-	C$Hello.c$141$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:141: OSCICN  = 0x00;
-	mov	_OSCICN,#0x00
-	C$Hello.c$143$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:143: SFRPAGE = CONFIG_PAGE;
-	mov	_SFRPAGE,#0x0f
-	C$Hello.c$144$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:144: PLL0CN  = 0x04;
-	mov	_PLL0CN,#0x04
-	C$Hello.c$145$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:145: SFRPAGE = LEGACY_PAGE;
-	mov	_SFRPAGE,#0x00
-	C$Hello.c$146$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:146: FLSCL   = 0x10;
-	mov	_FLSCL,#0x10
-	C$Hello.c$147$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:147: SFRPAGE = CONFIG_PAGE;
-	mov	_SFRPAGE,#0x0f
-	C$Hello.c$148$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:148: PLL0CN |= 0x01;
-	orl	_PLL0CN,#0x01
-	C$Hello.c$149$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:149: PLL0DIV = 0x04;
-	mov	_PLL0DIV,#0x04
-	C$Hello.c$150$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:150: PLL0FLT = 0x01;
-	mov	_PLL0FLT,#0x01
-	C$Hello.c$151$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:151: PLL0MUL = 0x09;
-	mov	_PLL0MUL,#0x09
-	C$Hello.c$152$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:152: for(i=0; i < 256; i++);
-	mov	r5,#0x00
-	mov	r6,#0x01
-00114$:
-	dec	r5
-	cjne	r5,#0xff,00144$
-	dec	r6
-00144$:
-	mov	a,r5
-	orl	a,r6
-	jnz	00114$
-	C$Hello.c$153$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:153: PLL0CN |= 0x02;
-	orl	_PLL0CN,#0x02
-	C$Hello.c$154$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:154: while(!(PLL0CN & 0x10));
-00106$:
-	mov	a,_PLL0CN
-	jnb	acc.4,00106$
-	C$Hello.c$155$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:155: CLKSEL  = 0x02;
-	mov	_CLKSEL,#0x02
-	C$Hello.c$157$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:157: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
-	mov	_SFRPAGE,r7
-	C$Hello.c$158$1$28 ==.
-	XG$SYSCLK_INIT$0$0 ==.
-	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'PORT_INIT'
-;------------------------------------------------------------
-;SFRPAGE_SAVE              Allocated to registers r7 
-;------------------------------------------------------------
-	G$PORT_INIT$0$0 ==.
-	C$Hello.c$166$1$28 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:166: void PORT_INIT(void)
-;	-----------------------------------------
-;	 function PORT_INIT
-;	-----------------------------------------
-_PORT_INIT:
-	C$Hello.c$170$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:170: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
-	mov	r7,_SFRPAGE
-	C$Hello.c$172$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:172: SFRPAGE  = CONFIG_PAGE;
-	mov	_SFRPAGE,#0x0f
-	C$Hello.c$173$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:173: XBR0     = 0x04;                    // Enable UART0
-	mov	_XBR0,#0x04
-	C$Hello.c$174$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:174: XBR1     = 0x00;
-	mov	_XBR1,#0x00
-	C$Hello.c$175$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:175: XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
-	mov	_XBR2,#0x40
-	C$Hello.c$176$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:176: P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
-	orl	_P0MDOUT,#0x01
-	C$Hello.c$177$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:177: P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
-	orl	_P1MDOUT,#0x40
-	C$Hello.c$179$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:179: SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
-	mov	_SFRPAGE,r7
-	C$Hello.c$180$1$30 ==.
-	XG$PORT_INIT$0$0 ==.
-	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'UART0_INIT'
-;------------------------------------------------------------
-;SFRPAGE_SAVE              Allocated to registers r7 
-;------------------------------------------------------------
-	G$UART0_INIT$0$0 ==.
-	C$Hello.c$188$1$30 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:188: void UART0_INIT(void)
-;	-----------------------------------------
-;	 function UART0_INIT
-;	-----------------------------------------
-_UART0_INIT:
-	C$Hello.c$192$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:192: SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
-	mov	r7,_SFRPAGE
-	C$Hello.c$194$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:194: SFRPAGE = TIMER01_PAGE;
-	mov	_SFRPAGE,#0x00
-	C$Hello.c$195$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:195: TMOD   &= ~0xF0;
-	anl	_TMOD,#0x0f
-	C$Hello.c$196$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:196: TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
-	orl	_TMOD,#0x20
-	C$Hello.c$197$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:197: TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
-	mov	_TH1,#0xe5
-	C$Hello.c$198$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:198: CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
-	orl	_CKCON,#0x10
-	C$Hello.c$199$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:199: TL1     = TH1;
-	mov	_TL1,_TH1
-	C$Hello.c$200$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:200: TR1     = 1;                        // Start Timer1
-	setb	_TR1
-	C$Hello.c$202$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:202: SFRPAGE = UART0_PAGE;
-	mov	_SFRPAGE,#0x00
-	C$Hello.c$203$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:203: SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
-	mov	_SCON0,#0x50
-	C$Hello.c$204$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:204: SSTA0   = 0x10;                     // SMOD0 = 1
-	mov	_SSTA0,#0x10
-	C$Hello.c$205$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:205: TI0     = 1;                        // Indicate TX0 ready
-	setb	_TI0
-	C$Hello.c$207$1$32 ==.
-;	C:\Users\John\Documents\MPS\lab1\Hello.c:207: SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
-	mov	_SFRPAGE,r7
-	C$Hello.c$208$1$32 ==.
-	XG$UART0_INIT$0$0 ==.
+_printWinner:
+	C$pong.c$341$1$78 ==.
+;	C:\Users\John\Documents\MPS\lab1\pong.c:341: }
+	C$pong.c$341$1$78 ==.
+	XG$printWinner$0$0 ==.
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-FHello$__str_0$0$0 == .
+Fpong$__str_0$0$0 == .
 ___str_0:
 	.db 0x1b
-	.ascii "[33;44m"
+	.ascii "[__;__H"
 	.db 0x00
-FHello$__str_1$0$0 == .
+Fpong$__str_1$0$0 == .
 ___str_1:
+	.ascii "%c%c"
+	.db 0x00
+Fpong$__str_2$0$0 == .
+___str_2:
+	.db 0x1b
+	.ascii "[1;2H"
+	.db 0x00
+Fpong$__str_3$0$0 == .
+___str_3:
+	.db 0x0a
+	.db 0x00
+Fpong$__str_4$0$0 == .
+___str_4:
+	.db 0x0d
+	.db 0x00
+Fpong$__str_5$0$0 == .
+___str_5:
+	.db 0x1b
+	.ascii "[1C"
+	.db 0x00
+Fpong$__str_6$0$0 == .
+___str_6:
+	.ascii "%c"
+	.db 0x00
+Fpong$__str_7$0$0 == .
+___str_7:
+	.ascii " "
+	.db 0x00
+Fpong$__str_8$0$0 == .
+___str_8:
+	.db 0x1b
+	.ascii "[1;78H"
+	.db 0x00
+Fpong$__str_9$0$0 == .
+___str_9:
+	.db 0x1b
+	.ascii "[77C"
+	.db 0x00
+Fpong$__str_10$0$0 == .
+___str_10:
+	.db 0x1b
+	.ascii "[37;40m"
+	.db 0x00
+Fpong$__str_11$0$0 == .
+___str_11:
 	.db 0x1b
 	.ascii "[2J"
 	.db 0x00
-FHello$__str_2$0$0 == .
-___str_2:
-	.db 0x1b
-	.ascii "[12;0H"
-	.db 0x00
-FHello$__str_3$0$0 == .
-___str_3:
-	.db 0x1b
-	.ascii "[s"
-	.db 0x00
-FHello$__str_4$0$0 == .
-___str_4:
-	.db 0x1b
-	.ascii "[2;25H"
-	.db 0x00
-FHello$__str_5$0$0 == .
-___str_5:
-	.ascii "Type <ESC> to end the program."
-	.db 0x0a
-	.db 0x0a
-	.db 0x0d
-	.db 0x00
-FHello$__str_6$0$0 == .
-___str_6:
-	.db 0x1b
-	.ascii "[6;0H"
-	.db 0x00
-FHello$__str_7$0$0 == .
-___str_7:
-	.ascii "The keyboard character is  ."
-	.db 0x00
-FHello$__str_8$0$0 == .
-___str_8:
-	.ascii "%c%c"
-	.db 0x0a
-	.db 0x0d
-	.db 0x00
-FHello$__str_9$0$0 == .
-___str_9:
-	.ascii "%c"
-	.db 0x0a
-	.db 0x0d
-	.ascii "%c"
-	.db 0x00
-FHello$__str_10$0$0 == .
-___str_10:
-	.db 0x1b
-	.ascii "[12;25r"
-	.db 0x00
-FHello$__str_11$0$0 == .
-___str_11:
-	.db 0x1b
-	.ascii "[6;27H"
-	.db 0x00
-FHello$__str_12$0$0 == .
+Fpong$__str_12$0$0 == .
 ___str_12:
 	.db 0x1b
-	.ascii "[37m"
+	.ascii "[1;40H"
 	.db 0x00
-FHello$__str_13$0$0 == .
+Fpong$__str_13$0$0 == .
 ___str_13:
-	.db 0x1b
-	.ascii "[5;33;44m"
-	.db 0x00
-FHello$__str_14$0$0 == .
-___str_14:
-	.db 0x1b
-	.ascii "[u"
-	.db 0x00
-FHello$__str_15$0$0 == .
-___str_15:
-	.ascii "The keyboard character $%02X is "
-	.db 0x1b
-	.ascii "[4m'not printable'"
-	.db 0x1b
-	.ascii "[0;5;33;"
-	.ascii "44m."
+	.ascii "|"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
-FHello$__str_16$0$0 == .
-___str_16:
-	.db 0x07
+Fpong$__str_14$0$0 == .
+___str_14:
+	.db 0x1b
+	.ascii "[39C"
 	.db 0x00
-FHello$__str_17$0$0 == .
+Fpong$__str_15$0$0 == .
+___str_15:
+	.ascii "|"
+	.db 0x00
+Fpong$__str_16$0$0 == .
+___str_16:
+	.db 0x1b
+	.ascii "[?25l"
+	.db 0x00
+Fpong$__str_17$0$0 == .
 ___str_17:
 	.db 0x1b
-	.ascii "[0m"
+	.ascii "[2;35H"
 	.db 0x00
-FHello$__str_18$0$0 == .
+Fpong$__str_18$0$0 == .
 ___str_18:
 	.db 0x1b
-	.ascii "[6;27H "
+	.ascii "[2;45H"
 	.db 0x00
 	.area XINIT   (CODE)
 	.area CABS    (ABS,CODE)

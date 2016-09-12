@@ -37,6 +37,7 @@ void main(void)
 {
     char choice;
 
+
     WDTCN = 0xDE;                       // Disable the watchdog timer
     WDTCN = 0xAD;
 
@@ -63,6 +64,7 @@ void main(void)
     printf("\033[6;0H");                // Position cursor to print Keyboard character info
     printf("The keyboard character is  .");
 
+
     printf("\033[12;25r");              // Set scrollable region
 
     while(1)
@@ -72,6 +74,7 @@ void main(void)
         printf("\033[37m");             // White text
 
         choice = getchar();
+		putchar(choice);
 
         P1 |= 0x40;                     // Turn green LED on (alert user program is on)
 

@@ -30,21 +30,10 @@ void putchar(char c)
 char getchar(void)
 {
     char c;
-    while(!RI0); //is this equivalent to while(){} or while(){RIO=0;}, it must be empty
+    while(!RI0);
     RI0 =0;
     c = SBUF0;
 // Echoing the get character back to the terminal is not normally part of getchar()
-    //putchar(c);    // echo to terminal
+    putchar(c);    // echo to terminal
     return SBUF0;
-}
-
-
-char getCharNoHang(void){
-    if(RI0){
-		RI0 = 0;
-    	return SBUF0;
-    }
-    else{
-    	return '';
-    }
 }
