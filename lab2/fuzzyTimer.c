@@ -37,11 +37,18 @@ __bit timer0_triggered = 0;
 // Function PROTOTYPES
 //-------------------------------------------------------------------------------------------
 void main(void);
+void TIMER_INIT(void);
 void PORT_INIT(void);
 void SYSCLK_INIT(void);
 void UART0_INIT(void);
 
 void SW2_ISR (void) __interrupt 0;
+void TIMER0_ISR (void) __interrupt 1;
+
+
+
+int timer_count = 0;
+
 //-------------------------------------------------------------------------------------------
 // MAIN Routine
 //-------------------------------------------------------------------------------------------
@@ -53,13 +60,16 @@ void main (void)
 //    unsigned int randnum = 0;
 //    unsigned int ones, tenths = 0;
 	char SFRPAGE_SAVE;
-	int tenths_count = 0;
+
+    char seconds = 0;
+    char tenths_count = 0;
 
     SFRPAGE = CONFIG_PAGE;
 
     PORT_INIT();                // Configure the Crossbar and GPIO.
     SYSCLK_INIT();              // Initialize the oscillator.
     UART0_INIT();               // Initialize UART0.
+    TIMER_INIT();               // Initialize Timer0.
 
     SFRPAGE = LEGACY_PAGE;
     IT0     = 1;                // /INT0 is edge triggered, falling-edge.
@@ -77,16 +87,26 @@ void main (void)
 
 	while (1)                   
     {	
-    	if(SW2press){
-    		printf("Fuzzy time elapsed since last press: %d", tenths_count);
-    		tenths_count = 0;
-    		SW2press = 0;
-    	}
+    	// if(SW2press){
+    	// 	printf("Fuzzy time elapsed since last press: %d\n\r", tenths_count);
+    	// 	timer_count = 0;
+    	// 	SW2press = 0;
+    	// }
 
-    	if(timer0_triggered){
-    		tenths_count++;
-    		timer0_triggered = 0;
-    	}
+        if(timer_count==4){ //I calculated 34 but that was off
+            tenths_count++;
+            if(tenths_count == 10){
+                tenths_count = 0;
+                seconds++;
+            }
+            printf("\r%d:%d",seconds, tenths_count);
+            timer_count = 0;
+        }
+
+
+    	// if(timer0_triggered){
+    	// 	timer0_triggered = 0;
+    	// }
     }
 }
 //-------------------------------------------------------------------------------------------
@@ -102,13 +122,46 @@ void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address
 // Priority Order number in Table 11.4 in the 8051 reference manual.
 {
     SW2press = 1;
-	//printf("/INT0 has been grounded here!\n\n\r");
 }
 
 void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s has elapsed
 {
-	timer0_triggered = 1;
+	//timer0_triggered = 1;
+
+    timer_count++;
+
+    //TF0 = 0;
 }
+
+//-------------------------------------------------------------------------------------------
+// TIMER_Init
+//-------------------------------------------------------------------------------------------
+//
+// Start u Timer 0
+//
+void TIMER_INIT(void){
+    char SFRPAGE_SAVE;
+
+    SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+
+    SFRPAGE = TIMER01_PAGE;
+
+	TMOD &= 0xF0;               // Timer0 clear mode bits
+    TMOD |= 0x01;               // Timer0 16-bit counter/timer
+ 
+    CKCON &= 0xF7;              // Timer0 uses prescaled clock as time base.
+    CKCON |= 0x03;              // SYSCLOCK/8
+	TL0 = 0x00;           	    // Clear low byte of register T0
+    TH0 = 0x00;          		// Clear high byte of register T0
+    TR0 = 1;                    // Start Timer0
+
+
+    ET0 = 1;                    // Enable Timer0 Int
+
+    SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.
+
+}
+
 //-------------------------------------------------------------------------------------------
 // PORT_Init
 //-------------------------------------------------------------------------------------------
@@ -125,6 +178,8 @@ void PORT_INIT(void)
     WDTCN   = 0xDE;             // Disable watchdog timer.
     WDTCN   = 0xAD;
     EA      = 1;                // Enable interrupts as selected.
+    //ET0     = 1;                // Enable timer 0 interrupts
+    //EX0     = 1;                // Enable external interrupts
 
     XBR0    = 0x04;             // Enable UART0.
     XBR1    = 0x04;             // /INT0 routed to port pin.
