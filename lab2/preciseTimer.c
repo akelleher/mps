@@ -27,7 +27,7 @@
 // Global CONSTANTS
 //-------------------------------------------------------------------------------------------
 #define EXTCLK      22118400    // External oscillator frequency in Hz
-#define SYSCLK      49766400    // Output of PLL derived from (EXTCLK * 9/4)
+#define SYSCLK     	36864000     // Output of PLL derived from (EXTCLK * 5/3)
 #define BAUDRATE    115200      // UART baud rate in bps
 //#define BAUDRATE  19200       // UART baud rate in bps
 
@@ -40,8 +40,14 @@ void main(void);
 void PORT_INIT(void);
 void SYSCLK_INIT(void);
 void UART0_INIT(void);
+void TIMER_INIT(void);
+
+int counter = 0;
+int tenths_count = 0;
+int seconds_count = 0;
 
 void SW2_ISR (void) __interrupt 0;
+void TIMER0_ISR (void) __interrupt 1;
 //-------------------------------------------------------------------------------------------
 // MAIN Routine
 //-------------------------------------------------------------------------------------------
@@ -53,13 +59,14 @@ void main (void)
 //    unsigned int randnum = 0;
 //    unsigned int ones, tenths = 0;
 	char SFRPAGE_SAVE;
-	int tenths_count = 0;
+    int lastTenths;
 
     SFRPAGE = CONFIG_PAGE;
 
     PORT_INIT();                // Configure the Crossbar and GPIO.
     SYSCLK_INIT();              // Initialize the oscillator.
     UART0_INIT();               // Initialize UART0.
+    TIMER_INIT();
 
     SFRPAGE = LEGACY_PAGE;
     IT0     = 1;                // /INT0 is edge triggered, falling-edge.
@@ -69,6 +76,9 @@ void main (void)
     printf("\033[2J");          // Erase screen and move cursor to the home position.
     printf("MPS Precise Timer Test\n\n\r");
 
+    //hide cursor
+    printf("\033[?25l");
+
     SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
 
     SFRPAGE = CONFIG_PAGE;
@@ -77,18 +87,49 @@ void main (void)
 
 	while (1)                   
     {	
-    	if(SW2press){
-    		printf("Time elapsed since last press: %d", tenths_count);
-    		tenths_count = 0;
-    		SW2press = 0;
-    	}
+        if(tenths_count >= 10){
+            tenths_count = 0;
+            seconds_count++;
+        }
+        //if(lastTenths!=tenths_count){
 
-    	if(timer0_triggered){
-    		tenths_count++;
-    		timer0_triggered = 0;
-    	}
+            printf("\r%d.%d -- %d",seconds_count, tenths_count, counter);
+      //  }
+		
+     //   lastTenths = tenths_count;
     }
 }
+
+void TIMER_INIT(void){
+    char SFRPAGE_SAVE;
+
+    SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+
+    SFRPAGE = TIMER01_PAGE;
+
+
+    ET0 = 1;                    // Enable Timer0 Int
+
+    TMOD &= 0xF0;               // Timer0 clear mode bits
+    TMOD |= 0x02;               // Timer0 8-bit counter w/ auto reload
+
+    CKCON &= 0xF0;              // Timer0 uses prescaled clock as time base (and clear bits for SCA0 and SCA1)
+    CKCON |= 0x02;              // SYCLCK/48 (PLL's output)
+    
+
+    TL0 = 0x00;                 // Clear low byte of register T0
+    TH0 = 0x00;                 // Clear high byte of register T0 (set auto reload to zero)
+    
+
+
+    TR0 = 1;                    // Start Timer0
+
+	
+    SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.
+
+}
+
+
 //-------------------------------------------------------------------------------------------
 // Interrupt Service Routines
 //-------------------------------------------------------------------------------------------
@@ -107,7 +148,11 @@ void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address
 
 void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s has elapsed
 {
-	timer0_triggered = 1;
+	counter++;
+    if(counter >= 300){ // THIS IS SPARTA
+        tenths_count++;
+        counter=0;
+    }
 }
 //-------------------------------------------------------------------------------------------
 // PORT_Init
@@ -164,10 +209,11 @@ void SYSCLK_INIT(void)
     SFRPAGE = LEGACY_PAGE;
     FLSCL   = 0x10;
     SFRPAGE = CONFIG_PAGE;
+    // PLL = 5/3 * EXT_CLOCK
     PLL0CN |= 0x01;
-    PLL0DIV = 0x04;
-    PLL0FLT = 0x01;
-    PLL0MUL = 0x09;
+    PLL0DIV = 0x03;
+    PLL0FLT = 0x03;
+    PLL0MUL = 0x05;
     for(i=0; i < 256; i++);
     PLL0CN |= 0x02;
     while(!(PLL0CN & 0x10));

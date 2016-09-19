@@ -150,7 +150,7 @@ void TIMER_INIT(void){
     TMOD |= 0x01;               // Timer0 16-bit counter/timer
  
     CKCON &= 0xF7;              // Timer0 uses prescaled clock as time base.
-    CKCON |= 0x03;              // SYSCLOCK/8
+    CKCON |= 0x03;              // External Clock/8
 	TL0 = 0x00;           	    // Clear low byte of register T0
     TH0 = 0x00;          		// Clear high byte of register T0
     TR0 = 1;                    // Start Timer0
