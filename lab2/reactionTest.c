@@ -91,7 +91,7 @@ void main (void)
 	while (1)                   
     {	
         rand_delay = rand()%4000 + 1000;
-        printf("rand_delay: %d \n\r", rand_delay);
+        //printf("rand_delay: %d \n\r", rand_delay);
         ms_count = 0;
         // while(!(P0 & 0x04)){
         //     printf("Release button!\n\r");
@@ -111,7 +111,10 @@ void main (void)
         numTrials++;
         sumTrialTimes += ms_elapsed;
         averageTrialTime = sumTrialTimes/numTrials;
-        printf("Average time over %d trials: %d \n\r", numTrials, ms_elapsed);
+        printf("Average time over %d trials: %d \n\r", numTrials, averageTrialTime);
+		if(getcharnohang()){
+			break;
+		}
     }
 }
 
