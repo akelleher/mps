@@ -1,3 +1,4 @@
+
 //------------------------------------------------------------------------------------
 // Hello.c
 //------------------------------------------------------------------------------------
@@ -32,6 +33,9 @@ void PORT_INIT(void);
 void UART0_INIT(void);
 void TIMER_INIT(void);
 void TIMER0_ISR (void) __interrupt 1;
+// void UART0_IRS (void) __interrupt 4;
+void SW2_ISR (void) __interrupt 0;
+void updatePositionsTwoVar(void);
 void advanceBall(void);
 void printPlayers(void);
 void printBorder(void);
@@ -42,6 +46,8 @@ char goalScored(void);
 void gameOver(void);
 void nextPoint(void);
 void printWinner(void);
+void debugOutput(void);
+void testPrint(char);
 
 char frame = 0; //boolean signifying when to advance the frame
 
@@ -53,9 +59,9 @@ char screenHeight = 25;
 char score1 = 0;
 char score2 = 0;
 
-char player1Pos = 10;
+char player1Pos = 11;
 
-char player2Pos = 10;
+char player2Pos = 11;
 
 char ballX = 40;
 char ballY = 13;
@@ -63,10 +69,15 @@ char ballY = 13;
 signed char velX = 0; // positive is right
 signed char velY = 0; // positive is down
 
-// char player1Input = '\007'; //using bell as null
-// char player2Input = '\007';
+char player1Input = '\007'; //using bell as null
+char player2Input = '\007';
 
 int counter = 0;
+
+
+// char onesPlace;
+// char tensPlace;
+// char twoDigitNum[3];
 
 //------------------------------------------------------------------------------------
 // MAIN Routine
@@ -75,11 +86,21 @@ void main(void)
 {
     char input;
     char octal = '\333';
+    char SFRPAGE_SAVE;
 
     PORT_INIT();                        // Initialize the Crossbar and GPIO
     SYSCLK_INIT();                      // Initialize the oscillator
     UART0_INIT();                       // Initialize UART0
     TIMER_INIT();
+
+    SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+
+    SFRPAGE = LEGACY_PAGE;
+    IT0     = 1;                // /INT0 is edge triggered, falling-edge.
+
+    SFRPAGE = CONFIG_PAGE;
+    EX0     = 1;                // Enable Ext Int 0 only after everything is settled.
+    SFRPAGE = SFRPAGE_SAVE;     //Restore SFR Page
 
     SFRPAGE = UART0_PAGE;               // Direct output to UART0
 
@@ -99,6 +120,7 @@ void main(void)
         //printf("\rcounter: %d... frame: %d", counter, frame);
 
         if(frame == 1){
+            //debugOutput();
             if(goalScored()){
                 if(score1 == 10 || score2 == 10){
                     gameOver();
@@ -107,8 +129,10 @@ void main(void)
                 }
             }
             else{
+                //input = getchar();
                 input = getCharNoHang();
                 updatePositions(input);
+                //updatePositionsTwoVar();
                 updateBall();
                 frame = 0;
             }
@@ -148,12 +172,32 @@ void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s h
     counter++;
     //3000 is 1fps for debugging
     //30 fps for now (100 counter)
-    if(counter >= 100){ // ISR called at 3000HZ / 50 = 60 fps
+    // 15 fps = 200
+    if(counter >= 200){ // ISR called at 3000HZ / 50 = 60 fps
         frame = 1;
         counter = 0;
     }
 }
 
+void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address 0003h.
+// the keyword "interrupt" defines this as an ISR and the number is determined by the 
+// Priority Order number in Table 11.4 in the 8051 reference manual.
+{
+    if(player1Pos > 1){
+        player1Pos--;
+    }
+    //printf("/INT0 has been grounded here!\n\n\r");
+}
+
+// void UART0_ISR (void) __interrupt 4
+// {
+//     if(SBUF0 == 'w' || SBUF0 == 's'){
+//         player1Input = SBUF0;
+//     } else if(SBUF0 == 'o' || SBUF0 == 'l'){
+//         player2Input = SBUF0;
+//     }
+//     RI0 = 0;
+// }
 
 //------------------------------------------------------------------------------------
 // SYSCLK_Init
@@ -256,10 +300,10 @@ void advanceBall(){
     //paddle
     //test within one extra Y coordinate in case of a corner hit
     if(ballX + velX < 3 && ballY >= player1Pos-1 && ballY <= player1Pos + 5){ //player 1 hit
-        
+        //testPrint(2);
         if(ballY == player1Pos-1 && velY > 0){ //top corner and ball moving towards paddle (down)
-            velX = 2;
-            velY = -2;
+            velX = 4;
+            velY = -4;
         }
         else if(ballY == player1Pos){ // top-most block
             velX = 1;
@@ -282,8 +326,8 @@ void advanceBall(){
             velY = 2;
         }
         else if(ballY == player1Pos+5 && velY < 0){ // bottom corner and ball moving towards paddle (up)
-            velX = 2;
-            velY = 2;
+            velX = 4;
+            velY = 4;
         }
         else{ //corner, but ball moving away from paddle (miss)
         }
@@ -295,33 +339,35 @@ void advanceBall(){
     // normally it would be ballX + velX > 77 (paddle is located @ 78), but the ball is two pixels wide and 
     // ballx represents the left side, so we subtract one here
     } else if(ballX + velX > 76 && ballY >= player2Pos-1 && ballY <= player2Pos + 5){ // player 2 hit
+        //testPrint(1);
+
         if(ballY == player2Pos-1 && velY > 0){ //top corner and ball moving towards paddle (down)
-            velX = -2;
-            velY = -2;
+            velX = -4;
+            velY = -4;
         }
-        else if(ballY == player2Pos){ // top-most block\
+        else if(ballY == player2Pos){ // top-most block
             velX = -1;
             velY = -2;
         }
-        else if(ballY == player2Pos+1){ // top block\
+        else if(ballY == player2Pos+1){ // top block
             velX = -1;
             velY = -1;
         }
-        else if(ballY == player2Pos+2){ // middle block\
+        else if(ballY == player2Pos+2){ // middle block
             velX = -2;
             velY = 0;
         }
-        else if(ballY == player2Pos+3){ // bottom block\
+        else if(ballY == player2Pos+3){ // bottom block
             velX = -1;
             velY = 1;
         }
-        else if(ballY == player2Pos+4){ // bottom-most block\
+        else if(ballY == player2Pos+4){ // bottom-most block
             velX = -1;
             velY = 2;
         }
         else if(ballY == player2Pos+5 && velY < 0){ // bottom corner and ball moving towards paddle (up)
-            velX = -2;
-            velY = 2;
+            velX = -4;
+            velY = 4;
         }
         else{ //corner, but ball moving away from paddle (miss)
         }
@@ -337,11 +383,11 @@ void advanceBall(){
     //ceiling and floor (allow for greater than 1 velY)
     if(ballY + velY < 1){ //ceiling collision
         ballY = 1+(1-(ballY+velY)); //update Y position
-        velY *= -velY; //reverse direction
+        velY *= -1; //reverse direction
     } 
     else if(ballY + velY > 25){ //floor collision
         ballY = 25 - ((ballY+velY)-25); // update Y position
-        velY *= -velY; //reverse direction
+        velY *= -1; //reverse direction
     } 
     else{ // no collision
         ballY += velY;
@@ -408,37 +454,117 @@ void updateBall(){
 }
 
 void updatePositions(char input){
-	if(input == 'w'){ //w
-		player1Pos--;
-		if(player1Pos<1){
-			player1Pos = 1;
-		}
-	}
+    char change = 0;
 
-	if(input == 's'){ //s
-		player1Pos++;
-		if(player1Pos>20){
-			player1Pos = 20;
-		}
-	}
+    if(input == 'w'){ //w
+        if(player1Pos>1){
+            player1Pos--;            
+            change = 1;
+        }
+    }
 
-	if(input == 'o'){ //o
-		player2Pos--;
-		if(player2Pos<1){
-			player2Pos = 1;
-		}
-	}
+    if(input == 's'){ //s
+        if(player1Pos<20){
+            player1Pos++;
+            change = 1;
+        }
+    }
 
-	if(input == 'l'){ //l
-		player2Pos++;
-		if(player2Pos>20){
-			player2Pos = 20;
-		}
-	}
+    if(input == 'o'){ //o
+        if(player2Pos>1){
+            player2Pos--;
+            change = 1;
+        }
+    }
 
-	printPlayers();
+    if(input == 'l'){ //l
+        if(player2Pos<20){       
+            player2Pos++;
+            change = 1;
+        }
+    }
+
+    if(change == 1){
+        printPlayers();
+    }
 }
 
+// void updatePositionsTwoVar(){
+//     char change = 0;
+
+//     if(player1Input == 'w'){ //w
+//         if(player1Pos>1){
+//             player1Pos--;            
+//             change = 1;
+//         }
+//     }
+
+//     if(player1Input == 's'){ //s
+//         if(player1Pos<20){
+//             player1Pos++;
+//             change = 1;
+//         }
+//     }
+
+//     if(player2Input == 'o'){ //o
+//         if(player2Pos>1){
+//             player2Pos--;
+//             change = 1;
+//         }
+//     }
+
+//     if(player2Input == 'l'){ //l
+
+//         if(player2Pos<20){       
+//             player2Pos++;
+//             change = 1;
+//         }
+//     }
+
+//     //reset as to not have 'sticky' movement
+//     player1Input = '\007'; //using bell as null
+//     player2Input = '\007';
+
+//     if(change == 1){
+//         printPlayers();
+//     }
+// }
+
+
+// void printPlayersFast(char input){
+//     char buff[10];
+
+//     if(input == 'w'){ //player 1 up
+//         numToDigitChars(player1Pos);
+//         strcpy(buff, "\033[");
+//         strcat(buff,tensPlace);
+//         strcat(buff,onesPlace);
+//         strcat(buff, ";2H");
+//         printf(buff);   //move to top
+//         printf()        //print pixel
+
+//         numToDigitChars(player1Pos+4);
+//         strcpy(buff, "\033[");
+//         strcat(buff,tensPlace);
+//         strcat(buff,onesPlace);
+//         strcat(buff, ";2H");
+//         printf(buff);   //move to bot
+//         printf()        //print space
+
+//     }
+
+//     if(input == 's'){ //player 1 down
+
+//     }
+
+//     if(input == 'o'){ //player 2 up
+
+//     }
+
+//     if(input == 'l'){ //player 2 down
+
+//     }
+// }
 
 void printPlayers(){
     // Player 1
@@ -452,31 +578,33 @@ void printPlayers(){
     printf("\033[1;2H");
 
     for( i = 1; i <= screenHeight; i++){ //5 is player size
-        if(i != 1){
-            printf("\n");
-        }
         printf("\r");
         printf("\033[1C");
-		if(i >= player1Pos && i <= player1Pos+5){
+		if(i >= player1Pos && i < player1Pos+5){
         	printf("%c",pixel);
 		} else{
 			printf(" ");
 		}
+
+        if(i!=screenHeight){
+            printf("\n");
+        }
     }
 
 
     printf("\033[1;78H");
 
     for( i = 1; i <= screenHeight; i++){ //5 is player size
-        if(i != 1){
-            printf("\n");
-        }
         printf("\r");
         printf("\033[77C");
-        if(i >= player2Pos && i <= player2Pos+5){
+        if(i >= player2Pos && i < player2Pos+5){
             printf("%c",pixel);
         } else{
             printf(" ");
+        }
+
+        if(i!=screenHeight){
+            printf("\n");
         }
     }
 }
@@ -552,6 +680,12 @@ void gameOver(){
 
     printWinner();
 
+
+    printf("\033[20;26H");
+    printf("Press any key to play again.");
+
+    getchar(); //hangs on user input
+
     score1 = 0;
     score2 = 0;
     nextPoint();
@@ -568,19 +702,13 @@ void printWinner(){
         printf("Player 2 is the winner!!");
     }
 
-    printf("\033[20;26H");
-    printf("Press any key to play again.");
-
-    getchar(); //hangs on user input
-
-    nextPoint();
 }
 
 char goalScored(){
     if(ballX <= 2){ // Player 2 score
         score2++;
         return 1;
-    } else if(ballX >= 78){ // Player 1 score
+    } else if(ballX >= 77){ // Player 1 score
         score1++;
         return 1;
     } else{
@@ -595,12 +723,25 @@ void nextPoint(){
     printBorder();
     updateScore();
 
+    player1Pos = 11;
+    player2Pos = 11;
+
+    printPlayers();
+
     //loser serves (gets first hit)
     if(score1>score2){
+        ballX = 41;
+        ballY = 13;
         velX = 1;
+        velY = 0;
     } else{ // player 1 serves first
+        ballX = 40;
+        ballY = 13;
         velX = -1;
+        velY = 0;
     }
+
+    //TODO why isn't this printing?
 
     //center cursor for start prompt
     printf("\033[12;27H");
@@ -621,4 +762,21 @@ void nextPoint(){
 
     //start Timer0
     TR0 = 1;
+}
+
+
+void debugOutput(){
+    printf("\033[s"); //save curosr
+    printf("\033[1;1H"); //move cursor
+    printf("\rBallX: %d VelX: %d    ",ballX,velX);
+    printf("\n\rBallY: %d VelY: %d    ",ballY,velY);
+    printf("\n\rPlayer1Pos: %d Player2Pos: %d    ",player1Pos, player2Pos);
+    printf("\033[u"); //restore cursor
+}
+
+void testPrint(char num){
+    printf("\033[s"); //save curosr
+    printf("\033[25;4H"); //move cursor
+    printf("Test %d  ",num);
+    printf("\033[u"); //restore cursor
 }
