@@ -37,3 +37,16 @@ char getchar(void)
     putchar(c);    // echo to terminal
     return SBUF0;
 }
+
+char getcharnohang(void)
+{
+    char c;
+    if(RI0){
+    RI0 =0;
+    c = SBUF0;
+// Echoing the get character back to the terminal is not normally part of getchar()
+    //putchar(c);    // echo to terminal
+    return SBUF0;
+	}
+	return NULL;
+}
