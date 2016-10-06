@@ -1,4 +1,4 @@
-// IntrptEx.c
+// fuzzyTimer.c
 //
 // 8051 Interrupt Example Program
 // Alexey Gutin

@@ -1,4 +1,4 @@
-// IntrptEx.c
+// reactionTest.c
 //
 // 8051 Interrupt Example Program
 // Alexey Gutin

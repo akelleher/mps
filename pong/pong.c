@@ -1,14 +1,8 @@
 
 //------------------------------------------------------------------------------------
-// Hello.c
+// Pong.c
 //------------------------------------------------------------------------------------
-//8051 Test program to demonstrate serial port I/O.  This program writes a message on
-//the console using the printf() function, and reads characters using the getchar()
-//function.  An ANSI escape sequence is used to clear the screen if a '2' is typed. 
-//A '1' repeats the message and the program responds to other input characters with
-//an appropriate message.
-//
-//Any valid keystroke turns on the green LED on the board; invalid entries turn it off
+
 //------------------------------------------------------------------------------------
 // Includes
 //------------------------------------------------------------------------------------
@@ -37,7 +31,7 @@ void TIMER0_ISR (void) __interrupt 1;
 void SW2_ISR (void) __interrupt 0;
 void updatePositionsTwoVar(void);
 void advanceBall(void);
-void printPlayers(void);
+void printPlayers(char);
 void printBorder(void);
 void updateScore(void);
 void updatePositions(char);
@@ -109,15 +103,6 @@ void main(void)
 
     while(1)
     {
-        // input = getCharNoHang();             // TODO: this hangs, it shouldn't
-        // if(input == 'w' || input == 's'){
-        //     player1Input = input;
-        // }
-        // if(input == 'o' || input == 'l'){
-        //     player2Input = input;
-        // }
-
-        //printf("\rcounter: %d... frame: %d", counter, frame);
 
         if(frame == 1){
             //debugOutput();
@@ -183,21 +168,13 @@ void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address
 // the keyword "interrupt" defines this as an ISR and the number is determined by the 
 // Priority Order number in Table 11.4 in the 8051 reference manual.
 {
-    if(player1Pos > 1){
-        player1Pos--;
-    }
+    //previously used for testing controls other than keyboard
+    // if(player1Pos > 1){
+    //     player1Pos--;
+    // }
     //printf("/INT0 has been grounded here!\n\n\r");
 }
 
-// void UART0_ISR (void) __interrupt 4
-// {
-//     if(SBUF0 == 'w' || SBUF0 == 's'){
-//         player1Input = SBUF0;
-//     } else if(SBUF0 == 'o' || SBUF0 == 'l'){
-//         player2Input = SBUF0;
-//     }
-//     RI0 = 0;
-// }
 
 //------------------------------------------------------------------------------------
 // SYSCLK_Init
@@ -473,100 +450,23 @@ void updatePositions(char input){
     if(input == 'o'){ //o
         if(player2Pos>1){
             player2Pos--;
-            change = 1;
+            change = 2;
         }
     }
 
     if(input == 'l'){ //l
         if(player2Pos<20){       
             player2Pos++;
-            change = 1;
+            change = 2;
         }
     }
 
-    if(change == 1){
-        printPlayers();
+    if(change != 0){
+        printPlayers(change);
     }
 }
 
-// void updatePositionsTwoVar(){
-//     char change = 0;
-
-//     if(player1Input == 'w'){ //w
-//         if(player1Pos>1){
-//             player1Pos--;            
-//             change = 1;
-//         }
-//     }
-
-//     if(player1Input == 's'){ //s
-//         if(player1Pos<20){
-//             player1Pos++;
-//             change = 1;
-//         }
-//     }
-
-//     if(player2Input == 'o'){ //o
-//         if(player2Pos>1){
-//             player2Pos--;
-//             change = 1;
-//         }
-//     }
-
-//     if(player2Input == 'l'){ //l
-
-//         if(player2Pos<20){       
-//             player2Pos++;
-//             change = 1;
-//         }
-//     }
-
-//     //reset as to not have 'sticky' movement
-//     player1Input = '\007'; //using bell as null
-//     player2Input = '\007';
-
-//     if(change == 1){
-//         printPlayers();
-//     }
-// }
-
-
-// void printPlayersFast(char input){
-//     char buff[10];
-
-//     if(input == 'w'){ //player 1 up
-//         numToDigitChars(player1Pos);
-//         strcpy(buff, "\033[");
-//         strcat(buff,tensPlace);
-//         strcat(buff,onesPlace);
-//         strcat(buff, ";2H");
-//         printf(buff);   //move to top
-//         printf()        //print pixel
-
-//         numToDigitChars(player1Pos+4);
-//         strcpy(buff, "\033[");
-//         strcat(buff,tensPlace);
-//         strcat(buff,onesPlace);
-//         strcat(buff, ";2H");
-//         printf(buff);   //move to bot
-//         printf()        //print space
-
-//     }
-
-//     if(input == 's'){ //player 1 down
-
-//     }
-
-//     if(input == 'o'){ //player 2 up
-
-//     }
-
-//     if(input == 'l'){ //player 2 down
-
-//     }
-// }
-
-void printPlayers(){
+void printPlayers(char player){
     // Player 1
     char i = 1;
 
@@ -575,36 +475,37 @@ void printPlayers(){
     // char tenths = '0'+(player1Pos/10);
     // char ones = '0'+(player1Pos%10);
 
-    printf("\033[1;2H");
+    if(player == 1){
+        printf("\033[1;2H");
+        for( i = 1; i <= screenHeight; i++){ //5 is player size
+            printf("\r");
+            printf("\033[1C");
+    		if(i >= player1Pos && i < player1Pos+5){
+            	printf("%c",pixel);
+    		} else{
+    			printf(" ");
+    		}
 
-    for( i = 1; i <= screenHeight; i++){ //5 is player size
-        printf("\r");
-        printf("\033[1C");
-		if(i >= player1Pos && i < player1Pos+5){
-        	printf("%c",pixel);
-		} else{
-			printf(" ");
-		}
-
-        if(i!=screenHeight){
-            printf("\n");
+            if(i!=screenHeight){
+                printf("\n");
+            }
         }
     }
 
+    if(player == 2){
+        printf("\033[1;78H");
+        for( i = 1; i <= screenHeight; i++){ //5 is player size
+            printf("\r");
+            printf("\033[77C");
+            if(i >= player2Pos && i < player2Pos+5){
+                printf("%c",pixel);
+            } else{
+                printf(" ");
+            }
 
-    printf("\033[1;78H");
-
-    for( i = 1; i <= screenHeight; i++){ //5 is player size
-        printf("\r");
-        printf("\033[77C");
-        if(i >= player2Pos && i < player2Pos+5){
-            printf("%c",pixel);
-        } else{
-            printf(" ");
-        }
-
-        if(i!=screenHeight){
-            printf("\n");
+            if(i!=screenHeight){
+                printf("\n");
+            }
         }
     }
 }
@@ -615,34 +516,6 @@ void printBorder(){
     printf("\033[37;40m");              // White text; black background
     printf("\033[2J");                  // Erase screen & move cursor to home position
 
-    // printf("\033[1;38H");               // Position cursor to print title
-    // printf("Pong");
-
-    // //Top Border
-    // printf("\033[2;1H");                // Position cursor for border
-    // for(i = 0; i < screenWidth; i++){   // Top border
-    //     printf("%c",pixel);
-    // }
-
-    // //Bottom Border
-    // printf("\033[25;1H");               // Position cursor for border
-    // for(i = 0; i < screenWidth; i++){   // Bottom border
-    //     printf("%c",pixel);
-    // }
-
-    // //Left Border
-    // printf("\033[0;1H");                // Position cursor for border
-    // for(i = 1; i < screenHeight; i++){  // Left border
-    //     printf("%c\n\r",pixel);
-    // }
-
-    // //Right Border
-    // printf("\033[80;1H");               // Position cursor for border
-    // for(i = 1; i < screenHeight; i++){  // Right border
-    //     printf("%c\n",pixel);
-    //     printf("\033[80D");             // Move cursor far right
-    // }
-
     //Middle Divider
     printf("\033[1;40H");
     for(i = 1; i < screenHeight; i++){
@@ -651,7 +524,8 @@ void printBorder(){
     }
     printf("|");
 
-    printPlayers();
+    printPlayers(1);
+    printPlayers(2);
 
     //hide cursor
     printf("\033[?25l");
@@ -726,7 +600,8 @@ void nextPoint(){
     player1Pos = 11;
     player2Pos = 11;
 
-    printPlayers();
+    printPlayers(1);
+    printPlayers(2);
 
     //loser serves (gets first hit)
     if(score1>score2){

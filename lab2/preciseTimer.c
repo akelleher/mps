@@ -1,4 +1,4 @@
-// IntrptEx.c
+// preciseTimer.c
 //
 // 8051 Interrupt Example Program
 // Alexey Gutin
