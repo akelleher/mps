@@ -204,8 +204,9 @@ void UART_INIT(void)
     SFRPAGE = TIMER01_PAGE;
     TMOD   &= ~0xF0;
     TMOD   |=  0x20;                    // Timer1, Mode 2, 8-bit reload
-    TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
-    CKCON  |= 0x10;                     // Timer1 uses SYSCLK as time base
+    //TH1     = -(SYSCLK/BAUDRATE/16);    // Set Timer1 reload baudrate value T1 Hi Byte
+    TH1 =  0x27;						// autoreload necessary for 115200 buad rate (see p.307 manual)
+	CKCON  |= 0x10;                     // Timer1 uses SYSCLK (50Mhz) as time base
     TL1     = TH1;
     TR1     = 1;                        // Start Timer1
 
