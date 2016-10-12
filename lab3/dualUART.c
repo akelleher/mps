@@ -60,7 +60,7 @@ void main(void)
 
 	
 	while(1){
-		choice = getchar();
+		choice = getchar1();
 	}
 
 
