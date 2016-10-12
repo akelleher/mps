@@ -53,18 +53,18 @@ void main(void)
     SFRPAGE = UART0_PAGE;               // Direct output to UART0
 	//SFRPAGE = UART1_PAGE;				// Direct output to UART1
 
-	
-	while(1){
-		choice = getchar1();
-		printf("\r\nchoice: %c",choice);
-		printf("\r\nUART1_PAGE: %c", UART1_PAGE);
-	}
-
-
-    // Reset screen
+	// Reset screen
     printf("\033[33;44m");              // Yellow text; blue background
     printf("\033[2J");                  // Erase screen & move cursor to home position
     printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
+
+	
+	while(1){
+		choice = getchar();
+	}
+
+
+
     
     // Store location for unprintable notifaction
     printf("\033[12;0H");               // Position cursor to print unprintables
@@ -211,11 +211,13 @@ void UART_INIT(void)
 
     SFRPAGE = UART0_PAGE;
     SCON0   = 0x50;                     // Mode 1, 8-bit UART, enable RX
-    SSTA0   = 0x10;                     // SMOD0 = 1
+    //SSTA0   = 0x10;                     // SMOD0 = 1
     TI0     = 1;                        // Indicate TX0 ready
+	
+	//WITHOUT SSTA0: 57600 is the baudrate
 
-	SFRPAGE = 1;
-	SCON1 	|= 0x90;					// 8-bit UART, enable RX
+	SFRPAGE = UART1_PAGE;
+	SCON1 	= 0x10;						// 8-bit UART, enable RX
 	//no SSTA1
 	TI1 	= 1;						// Indicate TX1 ready
 
