@@ -95,7 +95,7 @@ char getchar1(void)
 	return SBUF1;
 }
 
-/*
+
 char getcharnohang(void)
 {
     char c;
@@ -107,4 +107,18 @@ char getcharnohang(void)
     return SBUF0;
 	}
 	return NULL;
-}*/
+}
+
+char getcharnohang1(void)
+{
+    char c;
+    if(RI1){
+        RI1 =0;
+        c = SBUF1;
+        // Echoing the get character back to the terminal is not normally part of getchar()
+        putchar(c);    // echo to terminal
+        putchar1(c);
+        return SBUF1;
+    }
+    return NULL;
+}
