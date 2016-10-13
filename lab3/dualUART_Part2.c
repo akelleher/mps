@@ -227,7 +227,7 @@ void UART_INIT(void)
 
     //all pages -- enable interrupts
     EA = 1;
-    //ES0 = 1; //enable UART0 interrupt
+    ES0 = 1; //enable UART0 interrupt
     EIE2 |= 0x40 ;//ES1 = 1; //enable UART1 interrupt
 
     SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
@@ -241,8 +241,8 @@ void UART0_ISR (void) __interrupt 4{
     SFRPAGE = UART0_PAGE;
     
     ISRcount0++;
-    TI1 = 0;
-    RI1 = 0;
+    //TI1 = 0;
+    //RI1 = 0;
 
     SFRPAGE = SFRPAGE_SAVE;
 }
