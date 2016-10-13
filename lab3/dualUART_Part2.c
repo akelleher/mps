@@ -51,6 +51,7 @@ void main(void)
 {
     char choice1;
     char choice2;
+	int i;
 
     WDTCN = 0xDE;                       // Disable the watchdog timer
     WDTCN = 0xAD;
@@ -83,12 +84,17 @@ void main(void)
     printf1("\033[1;33;44m");           // Bright Yellow text; blue background
     printf1("\033[2J");                 // Erase screen & move cursor to home position
 
+
+
 	while(1){
-        choice1 = getcharnohang();
-		choice2 = getcharnohang1();
+        //choice1 = getcharnohang();
+		//choice2 = getcharnohang1();
 
+		ES0 = 0; //disable UART0 interrupt
+		for( i = 0; i < 10; i++);
+		ES0 = 1; //enable UART0 interrupt
 
-        if(choice1 == '\033' || choice2 == '\033'){
+        if(0){ //choice1 == '\033' || choice2 == '\033'){
             //clear screens
             printf("\033[1;33;44m");    // Bright Yellow text; blue background
             printf("\033[2J");          // Erase screen & move cursor to home position
@@ -243,10 +249,11 @@ void UART0_ISR (void) __interrupt 4{
 
     
     if(RI0){
+        RI0 = 0;
     	data = SBUF0;
+		SBUF0 = data;
     	SFRPAGE = UART1_PAGE;
     	SBUF1 = data;
-    	RI0 = 0;
     }
     //ISRcount0++;
     //TI1 = 0;
@@ -263,10 +270,11 @@ void UART1_ISR (void) __interrupt 20{
     SFRPAGE = UART1_PAGE;
 
     if(RI1){
+        RI1 = 0;
     	data = SBUF1;
+		SBUF1 = data;
     	SFRPAGE = UART0_PAGE;
     	SBUF0 = data;
-    	RI1 = 0;
     }
 
     //ISRcount1++;
