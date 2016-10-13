@@ -42,90 +42,73 @@ void UART_INIT(void);
 //------------------------------------------------------------------------------------
 void main(void)
 {
-    char choice;
+    char choice1;
+    char choice2;
 
     WDTCN = 0xDE;                       // Disable the watchdog timer
     WDTCN = 0xAD;
 
     PORT_INIT();                        // Initialize the Crossbar and GPIO
     SYSCLK_INIT();                      // Initialize the oscillator
-    UART_INIT();                       // Initialize UART0
+    UART_INIT();                        // Initialize UART0
 
-    SFRPAGE = UART0_PAGE;               // Direct output to UART0
-	//SFRPAGE = UART1_PAGE;				// Direct output to UART1
+	//Reset screens
+    printf("\033[1;33;44m");            // Bright Yellow text; blue background
+    printf("\033[2J");                  // Erase screen & move cursor to home position
+    //printf("\033[1;33;44m");              // Yellow text; blue background
+    
+    // putchar1('\033');
+    // putchar1('[');
+    // putchar1('1');
+    // putchar1(';');
+    // putchar1('3');
+    // putchar1('3');
+    // putchar1(';');
+    // putchar1('4');
+    // putchar1('4');
+    // putchar1('m');
 
-	// Reset screen
-    // printf("\033[33;44m");              // Yellow text; blue background
-    // printf("\033[2J");                  // Erase screen & move cursor to home position
-    // printf("\033[33;44m");              // Yellow text; blue background (twice for escape bug)
+    // putchar1('\033');
+    // putchar1('[');
+    // putchar1('2');
+    // putchar1('J');
+
+    printf1("\033[1;33;44m");           // Bright Yellow text; blue background
+    printf1("\033[2J");                 // Erase screen & move cursor to home position
 
 	while(1){
-		choice = getchar1();
+        choice1 = getcharnohang();
+		choice2 = getcharnohang1();
+
+        if(choice1 == \033 || choice2 == \033){
+            //clear screens
+            printf("\033[1;33;44m");    // Bright Yellow text; blue background
+            printf("\033[2J");          // Erase screen & move cursor to home position
+            printf1("\033[1;33;44m");   // Bright Yellow text; blue background
+            printf1("\033[2J");         // Erase screen & move cursor to home position
+
+            //print message
+            printf("\033[12;12HEscape key pressed, execution halted, press any key to resume");
+            printf1("\033[12;12HEscape key pressed, execution halted, press any key to resume");
+
+
+            //wait for any input
+            choice1 = '\0';
+            choice2 = '\0';
+            while(choice1 == '\0' && choice2 == '\0'){
+                choice1 = getcharnohang();
+                choice2 = getcharnohang1();
+            }
+
+            //clear screens, continue execution
+            printf("\033[1;33;44m");    // Bright Yellow text; blue background
+            printf("\033[2J");          // Erase screen & move cursor to home position
+            printf1("\033[1;33;44m");   // Bright Yellow text; blue background
+            printf1("\033[2J");         // Erase screen & move cursor to home position
+
+        }
 	}
 
-
-
-    
-    // Store location for unprintable notifaction
-    printf("\033[12;0H");               // Position cursor to print unprintables
-    printf("\033[s");                   // Store current location
-
-    // Print end instructions
-    printf("\033[2;25H");               // Position cursor to print instructions
-    printf("Type <ESC> to end the program.\n\n\r");
-    
-    // Print printable character prompt (leave a space for the actual character)
-    printf("\033[6;0H");                // Position cursor to print Keyboard character info
-    printf("The keyboard character is  .");
-
-    printf("\033[12;25r");              // Set scrollable region
-
-    while(1)
-    {
-        // Setup cursor for printable character output
-        printf("\033[6;27H");           // Position cursor where keyboard character is to be displayed
-        printf("\033[37m");             // White text
-
-        choice = getchar();
-
-        P1 |= 0x40;                     // Turn green LED on (alert user program is on)
-
-        // If they pressed escape, end the program.
-        if (choice == '\033'){
-            return;
-        }
-
-        // If not a printable characters
-        if (!(choice >= '\040' && choice <= '\176')){ 
-            printf("\033[5;33;44m");        // Blinking text; yellow text; blue background
-            printf("\033[u");               // Position cursor to print Keyboard character info (using saved location)
-
-            // Print 'not printable' warning, some things to Note:
-            // $%02X prints captail hexadecimal with two digits 
-            // \033[4m underline 'not printable'
-            // \033[0;5;33;44m clear formatting and set to blinking text; yellow text; blue background
-            // \n\r move cursor to start of next line
-            printf("The keyboard character $%02X is \033[4m'not printable'\033[0;5;33;44m.\n\r", choice);
-
-            printf("\007");                 // Sound bell
-
-            // Note: must be done on separate lines (bug: would default to black background)
-            printf("\033[0m");              // Clear formatting
-            printf("\033[33;44m");          // Yellow text; blue background
-
-            // The new saved location is at the start of the next line in the scrollable section (from the \n\r)
-            printf("\033[s");               // Overwrite saved cursor info
-
-            // A space is printed in the printable character location when an unprintable character is pressed because
-            // some unprintable characters have built in graphical depictions which we do not wish to display
-            printf("\033[6;27H ");          // Move cursor and print space in the printable character location
-
-        }
-
-        // IF a printable character was entered, no need to print as it is already echo'd upon typing,
-        // just have to ensure the cursor is in the right location and text is white (done at start of while)
-
-    }
 }
 
 //------------------------------------------------------------------------------------

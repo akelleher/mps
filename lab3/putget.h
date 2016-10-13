@@ -98,27 +98,53 @@ char getchar1(void)
 
 char getcharnohang(void)
 {
+
     char c;
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;
+    SFRPAGE = UART0_PAGE;
+
     if(RI0){
-    RI0 =0;
-    c = SBUF0;
-// Echoing the get character back to the terminal is not normally part of getchar()
-    //putchar(c);    // echo to terminal
-    return SBUF0;
+        RI0 =0;
+        c = SBUF0;
+        // Echoing the get character back to the terminal is not normally part of getchar()
+        putchar(c);    // echo to terminal
+        putchar1(c);
+        SFRPAGE = SFRPAGE_SAVE;
+        return c;
 	}
-	return NULL;
+    SFRPAGE = SFRPAGE_SAVE;
+	return '\0';
 }
 
 char getcharnohang1(void)
 {
     char c;
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;
+    SFRPAGE = UART1_PAGE;
+
     if(RI1){
         RI1 =0;
         c = SBUF1;
         // Echoing the get character back to the terminal is not normally part of getchar()
         putchar(c);    // echo to terminal
         putchar1(c);
-        return SBUF1;
+        SFRPAGE = SFRPAGE_SAVE;
+        return c;
     }
-    return NULL;
+    SFRPAGE = SFRPAGE_SAVE;
+    return '\0';
+}
+
+
+void printf1(char * str){
+    char i = 0;
+    // for( i = 0; i< len; i++){
+    //     putchar1(str[i]);
+    // }
+    while(str[i] != '\0'){
+        putchar1(str[i]);
+        i++;
+    }
 }
