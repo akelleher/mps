@@ -37,6 +37,13 @@ void SYSCLK_INIT(void);
 void PORT_INIT(void);
 void UART_INIT(void);
 
+void UART0_ISR (void) __interrupt 4;
+void UART1_ISR (void) __interrupt 20;
+
+
+char ISRcount0 = 0;
+char ISRcount1 = 0;
+
 //------------------------------------------------------------------------------------
 // MAIN Routine
 //------------------------------------------------------------------------------------
@@ -80,6 +87,7 @@ void main(void)
         choice1 = getcharnohang();
 		choice2 = getcharnohang1();
 
+
         if(choice1 == \033 || choice2 == \033){
             //clear screens
             printf("\033[1;33;44m");    // Bright Yellow text; blue background
@@ -91,7 +99,7 @@ void main(void)
             printf("\033[12;12HEscape key pressed, execution halted, press any key to resume");
             printf1("\033[12;12HEscape key pressed, execution halted, press any key to resume");
 
-
+            printf("\n\rISR count0: %d, ISR count1: %d  ",ISRcount0, ISRcount1);
             //wait for any input
             choice1 = '\0';
             choice2 = '\0';
@@ -216,5 +224,38 @@ void UART_INIT(void)
 	//no SSTA1
 	TI1 	= 1;						// Indicate TX1 ready
 
+
+    //all pages -- enable interrupts
+    EA = 1;
+    //ES0 = 1; //enable UART0 interrupt
+    EIE2 |= 0x40 ;//ES1 = 1; //enable UART1 interrupt
+
     SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+}
+
+
+
+void UART0_ISR (void) __interrupt 4{
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;
+    SFRPAGE = UART0_PAGE;
+    
+    ISRcount0++;
+    TI1 = 0;
+    RI1 = 0;
+
+    SFRPAGE = SFRPAGE_SAVE;
+}
+
+
+void UART1_ISR (void) __interrupt 20{
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;
+    SFRPAGE = UART1_PAGE;
+
+    ISRcount1++;
+    //TI1 = 0;
+    //RI1 = 0;
+
+    SFRPAGE = SFRPAGE_SAVE;
 }
