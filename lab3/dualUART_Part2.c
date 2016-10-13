@@ -88,7 +88,7 @@ void main(void)
 		choice2 = getcharnohang1();
 
 
-        if(choice1 == \033 || choice2 == \033){
+        if(choice1 == '\033' || choice2 == '\033'){
             //clear screens
             printf("\033[1;33;44m");    // Bright Yellow text; blue background
             printf("\033[2J");          // Erase screen & move cursor to home position
@@ -237,10 +237,18 @@ void UART_INIT(void)
 
 void UART0_ISR (void) __interrupt 4{
     char SFRPAGE_SAVE;
+    char data;
     SFRPAGE_SAVE = SFRPAGE;
     SFRPAGE = UART0_PAGE;
+
     
-    ISRcount0++;
+    if(RI0){
+    	data = SBUF0;
+    	SFRPAGE = UART1_PAGE;
+    	SBUF1 = data;
+    	RI0 = 0;
+    }
+    //ISRcount0++;
     //TI1 = 0;
     //RI1 = 0;
 
@@ -250,10 +258,18 @@ void UART0_ISR (void) __interrupt 4{
 
 void UART1_ISR (void) __interrupt 20{
     char SFRPAGE_SAVE;
+	char data;
     SFRPAGE_SAVE = SFRPAGE;
     SFRPAGE = UART1_PAGE;
 
-    ISRcount1++;
+    if(RI1){
+    	data = SBUF1;
+    	SFRPAGE = UART0_PAGE;
+    	SBUF0 = data;
+    	RI1 = 0;
+    }
+
+    //ISRcount1++;
     //TI1 = 0;
     //RI1 = 0;
 
