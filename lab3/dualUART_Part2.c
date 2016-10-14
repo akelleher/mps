@@ -43,6 +43,8 @@ void UART1_ISR (void) __interrupt 20;
 
 char ISRcount0 = 0;
 char ISRcount1 = 0;
+char escapeFlag = 0;
+char needToPrintEscapeMessage = 1;
 
 //------------------------------------------------------------------------------------
 // MAIN Routine
@@ -94,7 +96,7 @@ void main(void)
 		for( i = 0; i < 10; i++);
 		ES0 = 1; //enable UART0 interrupt
 
-        if(0){ //choice1 == '\033' || choice2 == '\033'){
+        if(escapeFlag && needToPrintEscapeMessage){ //choice1 == '\033' || choice2 == '\033'){
             //clear screens
             printf("\033[1;33;44m");    // Bright Yellow text; blue background
             printf("\033[2J");          // Erase screen & move cursor to home position
@@ -109,17 +111,17 @@ void main(void)
             //wait for any input
             choice1 = '\0';
             choice2 = '\0';
-            while(choice1 == '\0' && choice2 == '\0'){
-                choice1 = getcharnohang();
-                choice2 = getcharnohang1();
-            }
+            // while(choice1 == '\0' && choice2 == '\0'){
+            //     choice1 = getcharnohang();
+            //     choice2 = getcharnohang1();
+            // }
 
             //clear screens, continue execution
             printf("\033[1;33;44m");    // Bright Yellow text; blue background
             printf("\033[2J");          // Erase screen & move cursor to home position
             printf1("\033[1;33;44m");   // Bright Yellow text; blue background
             printf1("\033[2J");         // Erase screen & move cursor to home position
-
+            escapeFlag = 0;
         }
 	}
 
@@ -251,9 +253,14 @@ void UART0_ISR (void) __interrupt 4{
     if(RI0){
         RI0 = 0;
     	data = SBUF0;
-		SBUF0 = data;
-    	SFRPAGE = UART1_PAGE;
-    	SBUF1 = data;
+        if(data == '\033'){
+            escapeFlag = 1;
+        } else {
+            needToPrintEscapeMessage = 1;
+    		SBUF0 = data;
+        	SFRPAGE = UART1_PAGE;
+        	SBUF1 = data;
+        }
     }
     //ISRcount0++;
     //TI1 = 0;
@@ -272,9 +279,14 @@ void UART1_ISR (void) __interrupt 20{
     if(RI1){
         RI1 = 0;
     	data = SBUF1;
-		SBUF1 = data;
-    	SFRPAGE = UART0_PAGE;
-    	SBUF0 = data;
+        if(data == '\033'){
+            escapeFlag = 1;
+        } else {
+            needToPrintEscapeMessage = 1;
+    		SBUF1 = data;
+        	SFRPAGE = UART0_PAGE;
+        	SBUF0 = data;
+        }
     }
 
     //ISRcount1++;
