@@ -44,15 +44,16 @@ void UART1_ISR (void) __interrupt 20;
 char ISRcount0 = 0;
 char ISRcount1 = 0;
 char escapeFlag = 0;
-char needToPrintEscapeMessage = 1;
+//char needToPrintEscapeMessage = 1;
+char clearFlag = 0;
 
 //------------------------------------------------------------------------------------
 // MAIN Routine
 //------------------------------------------------------------------------------------
 void main(void)
 {
-    char choice1;
-    char choice2;
+    //char choice1;
+    //char choice2;
 	int i;
 
     WDTCN = 0xDE;                       // Disable the watchdog timer
@@ -92,11 +93,12 @@ void main(void)
         //choice1 = getcharnohang();
 		//choice2 = getcharnohang1();
 
+        //might want to use a timer here instead, but it functions alright
 		ES0 = 0; //disable UART0 interrupt
 		for( i = 0; i < 10; i++);
 		ES0 = 1; //enable UART0 interrupt
 
-        if(escapeFlag && needToPrintEscapeMessage){ //choice1 == '\033' || choice2 == '\033'){
+        if(escapeFlag){ //choice1 == '\033' || choice2 == '\033'){
             //clear screens
             printf("\033[1;33;44m");    // Bright Yellow text; blue background
             printf("\033[2J");          // Erase screen & move cursor to home position
@@ -107,21 +109,8 @@ void main(void)
             printf("\033[12;12HEscape key pressed, execution halted, press any key to resume");
             printf1("\033[12;12HEscape key pressed, execution halted, press any key to resume");
 
-            printf("\n\rISR count0: %d, ISR count1: %d  ",ISRcount0, ISRcount1);
-            //wait for any input
-            choice1 = '\0';
-            choice2 = '\0';
-            // while(choice1 == '\0' && choice2 == '\0'){
-            //     choice1 = getcharnohang();
-            //     choice2 = getcharnohang1();
-            // }
-
-            //clear screens, continue execution
-            printf("\033[1;33;44m");    // Bright Yellow text; blue background
-            printf("\033[2J");          // Erase screen & move cursor to home position
-            printf1("\033[1;33;44m");   // Bright Yellow text; blue background
-            printf1("\033[2J");         // Erase screen & move cursor to home position
             escapeFlag = 0;
+            clearFlag = 1;
         }
 	}
 
@@ -256,10 +245,19 @@ void UART0_ISR (void) __interrupt 4{
         if(data == '\033'){
             escapeFlag = 1;
         } else {
-            needToPrintEscapeMessage = 1;
-    		SBUF0 = data;
-        	SFRPAGE = UART1_PAGE;
-        	SBUF1 = data;
+            //needToPrintEscapeMessage = 1;
+            if(clearFlag){
+                printf("\033[1;33;44m");    // Bright Yellow text; blue background
+                printf("\033[2J");          // Erase screen & move cursor to home position
+                printf1("\033[1;33;44m");   // Bright Yellow text; blue background
+                printf1("\033[2J");         // Erase screen & move cursor to home position
+                clearFlag = 0;
+            }
+            else{
+        		SBUF0 = data;
+            	SFRPAGE = UART1_PAGE;
+            	SBUF1 = data;
+            }
         }
     }
     //ISRcount0++;
@@ -282,10 +280,19 @@ void UART1_ISR (void) __interrupt 20{
         if(data == '\033'){
             escapeFlag = 1;
         } else {
-            needToPrintEscapeMessage = 1;
-    		SBUF1 = data;
-        	SFRPAGE = UART0_PAGE;
-        	SBUF0 = data;
+            //needToPrintEscapeMessage = 1;
+            if(clearFlag){
+                printf("\033[1;33;44m");    // Bright Yellow text; blue background
+                printf("\033[2J");          // Erase screen & move cursor to home position
+                printf1("\033[1;33;44m");   // Bright Yellow text; blue background
+                printf1("\033[2J");         // Erase screen & move cursor to home position
+                clearFlag = 0;
+            }
+            else{
+        		SBUF1 = data;
+            	SFRPAGE = UART0_PAGE;
+            	SBUF0 = data;
+            }
         }
     }
 
