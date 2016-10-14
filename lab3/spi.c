@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------------
-// dualUART_Part2.c
+// spi.c
 //------------------------------------------------------------------------------------
 //
 // 8051 Dual Serial Connection
@@ -7,9 +7,7 @@
 // October 11, 2016
 //
 // This program uses both UART0 and UART1 to simultaneously
-// communicate with two serial connections. More specifically,
-// UART0 and UART1 ISRs are used to echo characters inputted 
-// on one connection to both connections.
+// communicate with two serial connections.
 //
 // UART0 & UART1 is used to communicate to the user through ProCOMM or SecureCRT
 //
@@ -38,6 +36,7 @@ void main(void);
 void SYSCLK_INIT(void);
 void PORT_INIT(void);
 void UART_INIT(void);
+void SPI_INIT(void);
 
 void UART0_ISR (void) __interrupt 4;
 void UART1_ISR (void) __interrupt 20;
@@ -64,6 +63,7 @@ void main(void)
     PORT_INIT();                        // Initialize the Crossbar and GPIO
     SYSCLK_INIT();                      // Initialize the oscillator
     UART_INIT();                        // Initialize UART0
+    SPI_INIT();                         // Initialize SPI0
 
 	//Reset screens
     printf("\033[1;33;44m");            // Bright Yellow text; blue background
@@ -168,10 +168,12 @@ void PORT_INIT(void)
     SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
 
     SFRPAGE  = CONFIG_PAGE;
-    XBR0     = 0x04;                    // Enable UART0
+    XBR0     = 0x06;                    // Enable UART0 and SPI0
     XBR1     = 0x00;
     XBR2     = 0x44;                    // Enable Crossbar and weak pull-up & Enable UART1
-    P0MDOUT  = 0x05;                    // Set TX0 on P0.0 pin and TX1 on P0.2 pin to push-pull
+    
+    //UART1 now on P0.6(TX1) and P0.7(RX1) but i dont think we need for this part so i didn't update
+    P0MDOUT  = 0x5D;                    // Set TX0 on P0.0 pin, SCK, MOSI, NSS (P0.2, 3 and 5) TX1 on P0.5 pin to push-pull
 	//P0MDOUT &= 0xF5;					// Set RX0 on P0.1 pin and RX1 on P0.3 pin to open-drain;
 	P0     	 = ~0x05;					// Set RX0 on P0.1 pin and RX1 on P0.3 pin to high impedance mode
     
@@ -179,7 +181,28 @@ void PORT_INIT(void)
 }
 
 //------------------------------------------------------------------------------------
-// UART0_Init
+// SPI_Init
+//------------------------------------------------------------------------------------
+//
+// Configure the SPI
+//
+void SPI_INIT(void)
+{
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;
+    SFRPAGE = SPI0_PAGE;
+
+    SPI0CFG = 0x40; // Master mode
+    //SPIEN = 1;      // Enable SPI0
+    SPI0CN = 0x01;  // Enable SPI0
+    SPI0CKR = 0x13; // fSCK = SYSCLCK/(2*(SPI0CKR+1)) = 552960
+
+
+    SFRPAGE = SFRPAGE_SAVE;
+}
+
+//------------------------------------------------------------------------------------
+// UART_Init
 //------------------------------------------------------------------------------------
 //
 // Configure the UART0 using Timer1, for <baudrate> and 8-N-1

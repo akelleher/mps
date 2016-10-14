@@ -1,10 +1,15 @@
 //------------------------------------------------------------------------------------
 // putget.h
 //------------------------------------------------------------------------------------
+// Modified by John Cusick
+//
+// This file hosts several helper functions for communcating with
+// UART0 and UART1.
+//
 // Title:               Microcontroller Development: putchar() & getchar() functions.
 // Author:              Dan Burke
 // Date Created:        03.25.2006
-// Date Last Modified:  03.25.2006
+// Date Last Modified:  10.14.2016
 // 
 // Description:         http://chaokhun.kmitl.ac.th/~kswichit/easy1/easy1_3.html
 // 
@@ -148,3 +153,4 @@ void printf1(char * str){
         i++;
     }
 }
+
