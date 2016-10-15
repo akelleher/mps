@@ -77,7 +77,7 @@ char getchar(void)
 	putchar1(c);
     
 	SFRPAGE = SFRPAGE_SAVE;
-	return SBUF0;
+	return c;
 }
 
 //------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ char getchar1(void)
     putchar1(c);    // echo to terminal
     putchar(c);
 	SFRPAGE = SFRPAGE_SAVE;
-	return SBUF1;
+	return c;
 }
 
 
@@ -154,3 +154,57 @@ void printf1(char * str){
     }
 }
 
+
+char getcharNoEcho(){
+    char c;
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;
+
+    SFRPAGE = UART0_PAGE;
+
+    while(!RI0);
+    RI0 =0;
+    c = SBUF0;
+// Echoing the get character back to the terminal is not normally part of getchar()
+    //putchar(c);    // echo to terminal
+    //putchar1(c);
+    
+    SFRPAGE = SFRPAGE_SAVE;
+    return c;
+}
+
+
+
+//------------------------------------------------------------------------------------
+// putchar()
+//------------------------------------------------------------------------------------
+void putcharOrg(char c)
+{
+    while(!TI0); 
+    TI0=0;
+    SBUF0 = c;
+}
+
+//------------------------------------------------------------------------------------
+// getchar()
+//------------------------------------------------------------------------------------
+char getcharOrg(void)
+{
+    char c;
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;
+
+    SFRPAGE = UART0_PAGE;
+    
+    //printf("waiting... RI0 = %c",RI0);
+    while(!RI0);
+    //printf("DONE WAITING, RI0 = %c",RI0);
+    RI0 =0;
+    c = SBUF0;
+
+// Echoing the get character back to the terminal is not normally part of getchar()
+    //putchar(c);    // echo to terminal
+    
+    SFRPAGE = SFRPAGE_SAVE;
+    return c;
+}

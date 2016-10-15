@@ -27,7 +27,7 @@
 #define EXTCLK      22118400            // External oscillator frequency in Hz
 //#define SYSCLK      49766400            // Output of PLL derived from (EXTCLK * 9/4)
 #define SYSCLK      22118400
-#define BAUDRATE    115200              // UART baud rate in bps
+#define BAUDRATE    9600              // UART baud rate in bps
 
 //------------------------------------------------------------------------------------
 // Function Prototypes
@@ -38,8 +38,8 @@ void PORT_INIT(void);
 void UART_INIT(void);
 void SPI_INIT(void);
 
-void UART0_ISR (void) __interrupt 4;
-void UART1_ISR (void) __interrupt 20;
+void transmitSPI0(char);
+char receiveSPI0();
 
 
 char ISRcount0 = 0;
@@ -53,9 +53,11 @@ char clearFlag = 0;
 //------------------------------------------------------------------------------------
 void main(void)
 {
-    //char choice1;
-    //char choice2;
+    char c;
+    char transmitChar = '\0';
+    char receiveChar;
 	int i;
+    int numCharsTransmited = 0;
 
     WDTCN = 0xDE;                       // Disable the watchdog timer
     WDTCN = 0xAD;
@@ -65,55 +67,62 @@ void main(void)
     UART_INIT();                        // Initialize UART0
     SPI_INIT();                         // Initialize SPI0
 
+
 	//Reset screens
     printf("\033[1;33;44m");            // Bright Yellow text; blue background
     printf("\033[2J");                  // Erase screen & move cursor to home position
-    //printf("\033[1;33;44m");              // Yellow text; blue background
-    
-    // putchar1('\033');
-    // putchar1('[');
-    // putchar1('1');
-    // putchar1(';');
-    // putchar1('3');
-    // putchar1('3');
-    // putchar1(';');
-    // putchar1('4');
-    // putchar1('4');
-    // putchar1('m');
-
-    // putchar1('\033');
-    // putchar1('[');
-    // putchar1('2');
-    // putchar1('J');
-
-    printf1("\033[1;33;44m");           // Bright Yellow text; blue background
-    printf1("\033[2J");                 // Erase screen & move cursor to home position
 
 
+    printf("Enter character to transmit:\n\r");
 
+    printf("\033[13;1H");
+    printf("Received character:\n\r");
+    printf("\033[s"); //save location
+
+    //reset to transmit section
+    printf("\033[2;1H");
 	while(1){
-        //choice1 = getcharnohang();
-		//choice2 = getcharnohang1();
+        //printf1("\r\nwhile_start1\r\n");
+        //transmitChar = getcharOrg();
+        //printf1("\r\ndone getchar: %c",transmitChar);
 
-        //might want to use a timer here instead, but it functions alright
-		ES0 = 0; //disable UART0 interrupt
-		for( i = 0; i < 10; i++);
-		ES0 = 1; //enable UART0 interrupt
+        //set scroll sections <ESC>[{SRT};{END}r
+        //done in the while loops because one cannot move 12 rows out of scroll region 
+        
 
-        if(escapeFlag){ //choice1 == '\033' || choice2 == '\033'){
-            //clear screens
-            printf("\033[1;33;44m");    // Bright Yellow text; blue background
-            printf("\033[2J");          // Erase screen & move cursor to home position
-            printf1("\033[1;33;44m");   // Bright Yellow text; blue background
-            printf1("\033[2J");         // Erase screen & move cursor to home position
+        transmitChar = getchar();
 
-            //print message
-            printf("\033[12;12HEscape key pressed, execution halted, press any key to resume");
-            printf1("\033[12;12HEscape key pressed, execution halted, press any key to resume");
+        //reset scroll regions
+        //has to happen aftr get char, so need check to scroll down
+        printf("\033[2;12r");
+        printf("\033[14;24r");
 
-            escapeFlag = 0;
-            clearFlag = 1;
+        //ALMOST THERE, top section doen't scroll
+
+        //move cursor to receive section (saved)
+        printf("\033[u");
+
+        //printf("Transmitting..");
+        transmitSPI0(transmitChar);
+
+        //printf("Receiving...");
+        receiveChar = receiveSPI0();
+        printf("%c",receiveChar);
+        if(receiveChar == '\r'){
+            printf("\n");
         }
+
+        //save new location
+        printf("\033[s");
+        
+        //scroll all (otherwise moving 12 rows doesnt go between regions)
+        printf("\033[r");
+
+        printf("\033[u"); //changing scroll moves cursor
+
+        //reset to transmit section (move up 12 rows)
+        printf("\033[12A");
+
 	}
 
 }
@@ -173,9 +182,9 @@ void PORT_INIT(void)
     XBR2     = 0x44;                    // Enable Crossbar and weak pull-up & Enable UART1
     
     //UART1 now on P0.6(TX1) and P0.7(RX1) but i dont think we need for this part so i didn't update
-    P0MDOUT  = 0x5D;                    // Set TX0 on P0.0 pin, SCK, MOSI, NSS (P0.2, 3 and 5) TX1 on P0.5 pin to push-pull
-	//P0MDOUT &= 0xF5;					// Set RX0 on P0.1 pin and RX1 on P0.3 pin to open-drain;
-	P0     	 = ~0x05;					// Set RX0 on P0.1 pin and RX1 on P0.3 pin to high impedance mode
+    P0MDOUT  = 0x75;                    // Set TX0 on P0.0 pin, SCK, MOSI, NSS (P0.2, 3 and 5) TX1 on P0.6 pin to push-pull
+	//P0MDOUT &= 0xF5;					// Set RX0 on P0.1 pin and RX1 on P0.7 pin to open-drain;
+	P0     	 |= 0x82;					// Set RX0 on P0.1 pin and RX1 on P0.7 pin to high impedance mode
     
     SFRPAGE  = SFRPAGE_SAVE;            // Restore SFR page
 }
@@ -194,7 +203,7 @@ void SPI_INIT(void)
 
     SPI0CFG = 0x40; // Master mode
     //SPIEN = 1;      // Enable SPI0
-    SPI0CN = 0x01;  // Enable SPI0
+    SPI0CN = 0x81;  // Enable SPI0 ()
     SPI0CKR = 0x13; // fSCK = SYSCLCK/(2*(SPI0CKR+1)) = 552960
 
 
@@ -249,81 +258,46 @@ void UART_INIT(void)
 
     //all pages -- enable interrupts
     EA = 1;
-    ES0 = 1; //enable UART0 interrupt
-    EIE2 |= 0x40 ;//ES1 = 1; //enable UART1 interrupt
+    //ES0 = 1; //enable UART0 interrupt
+    //EIE2 |= 0x40 ;//ES1 = 1; //enable UART1 interrupt
 
     SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
 }
 
 
-
-void UART0_ISR (void) __interrupt 4{
+void transmitSPI0(char c){
     char SFRPAGE_SAVE;
-    char data;
     SFRPAGE_SAVE = SFRPAGE;
-    SFRPAGE = UART0_PAGE;
 
-    
-    if(RI0){
-        RI0 = 0;
-    	data = SBUF0;
-        if(data == '\033'){
-            escapeFlag = 1;
-        } else {
-            //needToPrintEscapeMessage = 1;
-            if(clearFlag){
-                printf("\033[1;33;44m");    // Bright Yellow text; blue background
-                printf("\033[2J");          // Erase screen & move cursor to home position
-                printf1("\033[1;33;44m");   // Bright Yellow text; blue background
-                printf1("\033[2J");         // Erase screen & move cursor to home position
-                clearFlag = 0;
-            }
-            else{
-        		SBUF0 = data;
-            	SFRPAGE = UART1_PAGE;
-            	SBUF1 = data;
-            }
-        }
-    }
-    //ISRcount0++;
-    //TI1 = 0;
-    //RI1 = 0;
+    SFRPAGE = SPI0_PAGE;
+
+    //1. Enable slave select
+
+    while(!SPIF);   //2. Check to see if SPI is busy by polling the SPIF flag
+    SPIF = 0;
+    SPI0DAT = c;    //3. Write data to SPI0DAT
 
     SFRPAGE = SFRPAGE_SAVE;
 }
 
-
-void UART1_ISR (void) __interrupt 20{
+char receiveSPI0(){
+    char c;
     char SFRPAGE_SAVE;
-	char data;
     SFRPAGE_SAVE = SFRPAGE;
-    SFRPAGE = UART1_PAGE;
 
-    if(RI1){
-        RI1 = 0;
-    	data = SBUF1;
-        if(data == '\033'){
-            escapeFlag = 1;
-        } else {
-            //needToPrintEscapeMessage = 1;
-            if(clearFlag){
-                printf("\033[1;33;44m");    // Bright Yellow text; blue background
-                printf("\033[2J");          // Erase screen & move cursor to home position
-                printf1("\033[1;33;44m");   // Bright Yellow text; blue background
-                printf1("\033[2J");         // Erase screen & move cursor to home position
-                clearFlag = 0;
-            }
-            else{
-        		SBUF1 = data;
-            	SFRPAGE = UART0_PAGE;
-            	SBUF0 = data;
-            }
-        }
-    }
+    SFRPAGE = SPI0_PAGE;
 
-    //ISRcount1++;
-    //TI1 = 0;
-    //RI1 = 0;
+    //1.1 Release slave select and 
 
+    //1.2 wait 1 – 2ms to give the slave time to write data to the register
+
+    //2. Write a dummy bit to SPI0DAT
+    SPI0DAT = 0xFF;
+
+    while(!SPIF);   //3. Check to see if SPI is busy by polling the SPIF flag
+    SPIF = 0;       //4.1 Clear the SPIF flag and 
+    c = SPI0DAT;    //4.2 read the data from SPI0DAT
+    
     SFRPAGE = SFRPAGE_SAVE;
+    return c;
 }
