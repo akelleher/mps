@@ -20,7 +20,7 @@
 #include <c8051f120.h>
 
 //------------------------------------------------------------------------------------
-// putchar()
+// putchar() - print to UART0
 //------------------------------------------------------------------------------------
 void putchar(char c)
 {
@@ -41,7 +41,7 @@ void putchar(char c)
 
 
 //------------------------------------------------------------------------------------
-// putchar1()
+// putchar1() - print to UART1
 //------------------------------------------------------------------------------------
 void putchar1(char c)
 {
@@ -59,7 +59,7 @@ void putchar1(char c)
 
 
 //------------------------------------------------------------------------------------
-// getchar()
+// getchar() - get from UART0
 //------------------------------------------------------------------------------------
 char getchar(void)
 {
@@ -72,7 +72,8 @@ char getchar(void)
     while(!RI0);
     RI0 =0;
     c = SBUF0;
-// Echoing the get character back to the terminal is not normally part of getchar()
+
+    //echo to both UARTs    
     putchar(c);    // echo to terminal
 	putchar1(c);
     
@@ -81,7 +82,7 @@ char getchar(void)
 }
 
 //------------------------------------------------------------------------------------
-// getchar1()
+// getchar1() - get from UART1
 //------------------------------------------------------------------------------------
 char getchar1(void)
 {
@@ -93,7 +94,7 @@ char getchar1(void)
     while(!RI1);
     RI1 =0;
     c = SBUF1;
-// Echoing the get character back to the terminal is not normally part of getchar()
+    //echo to both UARTs
     putchar1(c);    // echo to terminal
     putchar(c);
 	SFRPAGE = SFRPAGE_SAVE;
@@ -101,6 +102,9 @@ char getchar1(void)
 }
 
 
+//------------------------------------------------------------------------------------
+// getcharnohang() - do not suspend execution (UART0)
+//------------------------------------------------------------------------------------
 char getcharnohang(void)
 {
 
@@ -122,6 +126,9 @@ char getcharnohang(void)
 	return '\0';
 }
 
+//------------------------------------------------------------------------------------
+// getcharnohang1() - do not suspend execution (UART1)
+//------------------------------------------------------------------------------------
 char getcharnohang1(void)
 {
     char c;
@@ -143,6 +150,7 @@ char getcharnohang1(void)
 }
 
 
+//printf version for UART1
 void printf1(char * str){
     char i = 0;
     // for( i = 0; i< len; i++){
@@ -154,7 +162,7 @@ void printf1(char * str){
     }
 }
 
-
+//do not echo (UART1)
 char getcharNoEcho(){
     char c;
     char SFRPAGE_SAVE;
@@ -165,7 +173,7 @@ char getcharNoEcho(){
     while(!RI0);
     RI0 =0;
     c = SBUF0;
-// Echoing the get character back to the terminal is not normally part of getchar()
+    // Echoing the get character back to the terminal is not normally part of getchar()
     //putchar(c);    // echo to terminal
     //putchar1(c);
     
@@ -176,7 +184,7 @@ char getcharNoEcho(){
 
 
 //------------------------------------------------------------------------------------
-// putchar()
+// putchar() -- original files provided by mps
 //------------------------------------------------------------------------------------
 void putcharOrg(char c)
 {
@@ -186,7 +194,7 @@ void putcharOrg(char c)
 }
 
 //------------------------------------------------------------------------------------
-// getchar()
+// getchar() -- original files provided by mps
 //------------------------------------------------------------------------------------
 char getcharOrg(void)
 {

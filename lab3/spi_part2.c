@@ -109,7 +109,7 @@ void main(void)
         
         //while(1){
 
-            transmitChar = getchar();
+        transmitChar = getchar();
         //}
 
         //reset scroll regions
