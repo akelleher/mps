@@ -96,10 +96,8 @@ void main (void)
 
     while (1)                   
     {   
-
-		//samples every 23us
-        DAC_out++;
-        DAC0_write(DAC_out);
+        ADC = AD_Conversion();
+        DAC0_write(ADC);
 
     }
 }
