@@ -276,7 +276,14 @@ void SPI_INIT(void)
     SPI0CFG = 0x40; // Master mode
     //SPIEN = 1;      // Enable SPI0
     SPI0CN = 0x89;  // Enable SPI0 ()
-    SPI0CKR = 0x13; // fSCK = SYSCLCK/(2*(SPI0CKR+1)) = 552960
+    //Working frequency:
+    //SPI0CKR = 0x13; // fSCK = SYSCLCK/(2*(SPI0CKR+1)) = 552960
+    
+    //max: fSCK = 5,529,600Hz
+    SPI0CKR = 0x01;
+
+    //unreliable: fSCK = 11,059,200Hz
+    //SPI0CKR = 0x00;
 
     NSSMD0 = 0;  //staring 0 so edge trigger on oscilliscope
 
