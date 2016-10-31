@@ -102,6 +102,10 @@ void main (void)
         xkminus2 = xkminus1;
         xkminus1 = xk;
         xk = get_AD_Conversion();
+
+        volt = 2.4*(xk/4096.0);
+        printf_fast_f("Cur: 0%x\t%1.6f\r\n",xk,volt);
+
         xk -= 2560;     //offset is 1.5V: 1.5/2.4*2^12 = 2560
 
         SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
@@ -112,18 +116,18 @@ void main (void)
         MAC0BH = xk >> 8;
         MAC0BL = xk; //start multiply + accumulate
 
-        MAC0BH = xkminus2 >> 8;
-        MAC0BL = xkminus2; //start multiply + accumulate
+        // MAC0BH = xkminus2 >> 8;
+        // MAC0BL = xkminus2; //start multiply + accumulate
 
-        MAC0AH = 0 // 0x87; //.24038462 (or very close)
-        MAC0AL = 0 // 0xC4;
-        MAC0BH = xkminus1 >> 8;
-        MAC0BL = xkminus1;
+        // MAC0AH = 0; // 0x87; //.24038462 (or very close)
+        // MAC0AL = 0; // 0xC4;
+        // MAC0BH = xkminus1 >> 8;
+        // MAC0BL = xkminus1;
 
         dummy = 1+2;
         dummy = 3+4;
 
-        yk = MAC0ACC3<<8 + MAC0ACC2;
+        yk = MAC0ACC3 << 4 + MAC0ACC2;
         yk += 2560; //add offset back in
         SFRPAGE = SFRPAGE_SAVE;
 
