@@ -86,6 +86,8 @@ void main (void)
     EX0     = 1;                // Enable Ext Int 0 only after everything is settled.
     SFRPAGE = SFRPAGE_SAVE;     //Restore SFR Page
 
+    printf("Hello World!\n\r");
+
     while (1)                   
     {   
 
