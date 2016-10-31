@@ -41,7 +41,7 @@ void SYSCLK_INIT(void);
 void UART0_INIT(void);
 void ADC_INIT(void);
 void start_AD_Conversion(void);
-void get_AD_Conversion(void);
+unsigned int get_AD_Conversion(void);
 void DAC0_write(unsigned int);
 void DAC_INIT(void);
 void MAC_INIT(void);
@@ -67,7 +67,7 @@ void main (void)
     unsigned int xkminus2 = 0;
     unsigned int yk = 0;
     unsigned int ykminus1 = 0;
-
+    int dummy;
 
     double volt;
 
@@ -102,8 +102,30 @@ void main (void)
         xkminus2 = xkminus1;
         xkminus1 = xk;
         xk = get_AD_Conversion();
-        xk -= 1.5;
+        xk -= 2560;     //offset is 1.5V: 1.5/2.4*2^12 = 2560
 
+        SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+        SFRPAGE = MAC0_PAGE;
+
+        MAC0AH = 0x80;// MAC0AH = 0x28; //MAC0A = 0.3125
+        MAC0AL = 0;
+        MAC0BH = xk >> 8;
+        MAC0BL = xk; //start multiply + accumulate
+
+        MAC0BH = xkminus2 >> 8;
+        MAC0BL = xkminus2; //start multiply + accumulate
+
+        MAC0AH = 0 // 0x87; //.24038462 (or very close)
+        MAC0AL = 0 // 0xC4;
+        MAC0BH = xkminus1 >> 8;
+        MAC0BL = xkminus1;
+
+        dummy = 1+2;
+        dummy = 3+4;
+
+        yk = MAC0ACC3<<8 + MAC0ACC2;
+        yk += 2560; //add offset back in
+        SFRPAGE = SFRPAGE_SAVE;
 
 
         DAC0_write(yk);
@@ -255,14 +277,22 @@ void start_AD_Conversion(void){
     AMX0CF = 0;
     ADC0CN &= ~0x20;    // Clear conversion bit
     ADC0CN |= 0x10;     // Start conversion
+    SFRPAGE = SFRPAGE_SAVE;
 }
 
 unsigned int get_AD_Conversion(void){
+
+	unsigned int adcReturn;
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+    SFRPAGE = ADC0_PAGE;
+
     while((ADC0CN | 0xEF) == 0xFF){     // Wait for conversion to complete
         //wait
     }
 
     adcReturn = (ADC0H << 8) + ADC0L;
+    SFRPAGE = SFRPAGE_SAVE;
 
     return adcReturn;    // Return the result
 }
@@ -276,11 +306,15 @@ void DAC0_write(unsigned int writeValue){
     DAC0H = writeValue >> 8; 
 
 
-
-
     SFRPAGE = SFRPAGE_SAVE;
 }
 
 void MAC_INIT(void){
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+    SFRPAGE = MAC0_PAGE;
+
     MAC0CF = 0x02;
+
+    SFRPAGE = SFRPAGE_SAVE;
 }
