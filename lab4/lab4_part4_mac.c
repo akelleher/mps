@@ -1,22 +1,6 @@
-// IntrptEx.c
-//
-// 8051 Interrupt Example Program
-// Alexey Gutin
-// March 2, 2007
-//
-// This program uses an interrupt to call the ISR handler
-// function, SWR_ISR(), when the /INT0 line is grounded.
-// Each time the signal makes a low transition, an interrupt will be
-// generated.  If the line is held down, the SWR_ISR()
-// function will only be executed once, and not be called
-// again unless the line is released, and grounded again.
-//
-// /INT0 is configured to be on P0.2
-// UART0 is used to communicate to the user through ProCOMM or SecureCRT
-//
-// This code was written and tested using the SiLabs IDE V4.90
-// and SDCC V3.5.0.
-//
+// lab4_part4_mac.c
+// Alex Kelleher & Jack Cusick
+// Implements IIR notch filter efficiently using MAC0
 //-------------------------------------------------------------------------------------------
 // Includes
 //-------------------------------------------------------------------------------------------
@@ -137,7 +121,7 @@ void main (void)
 
 
         //6. Load MAC0A with 0.31250000 hexadecimal equivalent or scaled integer value (16-bit)
-        MAC0AH = 0x28;
+        MAC0AH = 0x28; //MAC0A = 0.3125
         MAC0AL = 0x00;
 
 
@@ -145,29 +129,20 @@ void main (void)
         MAC0BH = xk >> 8;
         MAC0BL = xk; //start multiply + accumulate
 
-        //wait for conversion
-        // dummy = 1+2;
-        // dummy = 3+4;
 
         //8. Load MAC0BH & MAC0BL with the 12 bits of second previous sample (k-2)
         MAC0BH = xkminus2 >> 8;
         MAC0BL = xkminus2; //start multiply + accumulate
 
-        // wait for conversion
-        // dummy = 1+2;
-        // dummy = 3+4;
 
         //9. Load MAC0A with 0.24038462 hexadecimal equivalent or scaled integer value (16-bit)
-        MAC0AH = 0x1e;// MAC0AH = 0x28; //MAC0A = 0.3125
+        MAC0AH = 0x1e;
         MAC0AL = 0xc4;
 
         //10. Load MAC0BH & MAC0BL with the 12 bits of first previous sample (k-1)
         MAC0BH = xkminus1 >> 8;
         MAC0BL = xkminus1; //start multiply + accumulate
 
-        //wait for conversion
-        // dummy = 1+2;
-        // dummy = 3+4;
         
         //11. Load MAC0A with 0.29687500 hexadecimal equivalent or scaled integer value (16-bit)
         MAC0AH = 0x26;
@@ -177,18 +152,11 @@ void main (void)
         MAC0BH = ykminus1 >> 8;
         MAC0BL = ykminus1; //start multiply + accumulate
 
-        //wait for conversion
-        // dummy = 1+2;
-        // dummy = 3+4;
-
         //13. Do left or right bit shifts to align 12-bit answer on byte boundary
 
         //14. Wait for conversion
         SFRPAGE = MAC0_PAGE;
         //SFRPAGE = MAC0_PAGE;
-
-
-
 
         //15. Get the signed 16-bit results from MAC0ACC3 & MAC0ACC2 or 2 & 1 in integer mode
         lowyk = MAC0ACC2;
@@ -196,12 +164,6 @@ void main (void)
         yk = (highyk << 8 | lowyk) + 2048;
 
         //16. Add back in the 1.5V offset & scale (may be also done using the MAC if you are clever)
-        // yk += 2560; //add offset back in
-
-        //volt2 = 2.4*(xk/4096.0);
-        //printf_fast_f("\tGain of -1 = %1.6f\r\n");
-
-        //printf("xk: %d\txk-2: %d,\tyk: %u\r\n",xk, xkminus2, yk);
 
         //17. Output final result to DAC0
         DAC0_write(yk);
@@ -216,10 +178,6 @@ void main (void)
 //-------------------------------------------------------------------------------------------
 // Interrupt Service Routines
 //-------------------------------------------------------------------------------------------
-// NOTE: this is an example of what NOT to do in an interrupt handler. No I/O should be done
-// in ISRs since I/O is very slow and the handler must execute very quickly.
-//
-// This routine stops Timer0 when the user presses SW2.
 //
 void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address 0003h.
 // the keyword "interrupt" defines this as an ISR and the number is determined by the 
@@ -342,7 +300,7 @@ void DAC_INIT(void){
     SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
     SFRPAGE = DAC0_PAGE;
 
-	DAC0CN = 0x80;
+	DAC0CN = 0x80;             //DAC enabled with right-justified input
 
 	SFRPAGE=SFRPAGE_SAVE;
 }
