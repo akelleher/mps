@@ -1,21 +1,8 @@
-// IntrptEx.c
+// lab4_part4_simple.c
 //
-// 8051 Interrupt Example Program
-// Alexey Gutin
-// March 2, 2007
-//
-// This program uses an interrupt to call the ISR handler
-// function, SWR_ISR(), when the /INT0 line is grounded.
-// Each time the signal makes a low transition, an interrupt will be
-// generated.  If the line is held down, the SWR_ISR()
-// function will only be executed once, and not be called
-// again unless the line is released, and grounded again.
-//
-// /INT0 is configured to be on P0.2
-// UART0 is used to communicate to the user through ProCOMM or SecureCRT
-//
-// This code was written and tested using the SiLabs IDE V4.90
-// and SDCC V3.5.0.
+// Jack Cusick
+// This code uses simple arithmetic to implement an IIR digital filter. It does not perform 
+// well.
 //
 //-------------------------------------------------------------------------------------------
 // Includes
@@ -92,12 +79,14 @@ void main (void)
     {   
 
 		//notch should be 15-20khz
-        //shift values
+        //shift current values back in time
         ADC[2] = ADC[1];
         ADC[1] = ADC[0];
-        ADC[0] = AD_Conversion();
+        ADC[0] = AD_Conversion(); //fetch new value
 
         DAC[1] = DAC[0];
+
+        //Implement filter
         DAC[0] = (ADC[0] + (10/13.0)*ADC[1] + ADC[2] + (19/20.0)*DAC[1])*10/32.0;
         
         DAC0_write((unsigned int)DAC[0]);
@@ -107,10 +96,6 @@ void main (void)
 //-------------------------------------------------------------------------------------------
 // Interrupt Service Routines
 //-------------------------------------------------------------------------------------------
-// NOTE: this is an example of what NOT to do in an interrupt handler. No I/O should be done
-// in ISRs since I/O is very slow and the handler must execute very quickly.
-//
-// This routine stops Timer0 when the user presses SW2.
 //
 void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address 0003h.
 // the keyword "interrupt" defines this as an ISR and the number is determined by the 
