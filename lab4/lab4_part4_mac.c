@@ -63,15 +63,19 @@ void main (void)
     unsigned int ADC_read;
     unsigned int DAC_out = 0;
 
-    unsigned int xk = 0;
-    unsigned int xkminus1 = 0;
-    unsigned int xkminus2 = 0;
+    int xk = 0;
+    int xk_test = 3000;
+    int xkminus1 = 0;
+    int xkminus2 = 0;
     unsigned int yk = 0;
     unsigned int ykminus1 = 0;
     int dummy;
 
     double volt;
     double volt2;
+
+    int highyk;
+    int lowyk;
 
 
     SFRPAGE = CONFIG_PAGE;
@@ -102,6 +106,9 @@ void main (void)
     while (1)                   
     {   
 
+        SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+        SFRPAGE = MAC0_PAGE;
+
         //1. Start a new conversion
 
         //2. Update previous values
@@ -115,79 +122,86 @@ void main (void)
         MAC0CF |= 0x02;  // Fraction mode
 
         //4. Get the new sample
-        xk = AD_Conversion();
+        xk = AD_Conversion() - 2048;
 
-        volt = 2.4*(xk/4096.0);
+
+        //volt = 2.4*(xk/4096.0);
         //printf_fast_f("Cur: 0%x\t%1.6f",xk,volt);
 
 
         //5. Subtract the 1.5V offset
-        xk -= 2560;     //offset is 1.5V: 1.5/2.4*2^12 = 2560
+        //xk -= 2560;     //offset is 1.5V: 1.5/2.4*2^12 = 2560
 
         //printf("\tAfter offset: %x\r\n",xk);
 
-        SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
-        SFRPAGE = MAC0_PAGE;
+
 
         //6. Load MAC0A with 0.31250000 hexadecimal equivalent or scaled integer value (16-bit)
-        MAC0AH = 0x3e;
-        MAC0AL = 0xa0;
+        MAC0AH = 0x28;
+        MAC0AL = 0x00;
+
 
         //7. Load MAC0BH & MAC0BL with the 12 bits of current sample (k)
         MAC0BH = xk >> 8;
         MAC0BL = xk; //start multiply + accumulate
 
         //wait for conversion
-        dummy = 1+2;
-        dummy = 3+4;
+        // dummy = 1+2;
+        // dummy = 3+4;
 
         //8. Load MAC0BH & MAC0BL with the 12 bits of second previous sample (k-2)
         MAC0BH = xkminus2 >> 8;
         MAC0BL = xkminus2; //start multiply + accumulate
 
-        //wait for conversion
-        dummy = 1+2;
-        dummy = 3+4;
+        // wait for conversion
+        // dummy = 1+2;
+        // dummy = 3+4;
 
         //9. Load MAC0A with 0.24038462 hexadecimal equivalent or scaled integer value (16-bit)
-        MAC0AH = 0x3e;// MAC0AH = 0x28; //MAC0A = 0.3125
-        MAC0AL = 0x76;
+        MAC0AH = 0x1e;// MAC0AH = 0x28; //MAC0A = 0.3125
+        MAC0AL = 0xc4;
 
         //10. Load MAC0BH & MAC0BL with the 12 bits of first previous sample (k-1)
         MAC0BH = xkminus1 >> 8;
         MAC0BL = xkminus1; //start multiply + accumulate
 
         //wait for conversion
-        dummy = 1+2;
-        dummy = 3+4;
+        // dummy = 1+2;
+        // dummy = 3+4;
         
         //11. Load MAC0A with 0.29687500 hexadecimal equivalent or scaled integer value (16-bit)
-        MAC0AH = 0x3e;
-        MAC0AL = 0x98;
+        MAC0AH = 0x26;
+        MAC0AL = 0x00;
 
         //12. Load MAC0BH & MAC0BL with the 12 bits of previous output (k-1)
         MAC0BH = ykminus1 >> 8;
         MAC0BL = ykminus1; //start multiply + accumulate
 
         //wait for conversion
-        dummy = 1+2;
-        dummy = 3+4;
+        // dummy = 1+2;
+        // dummy = 3+4;
 
         //13. Do left or right bit shifts to align 12-bit answer on byte boundary
 
         //14. Wait for conversion
-        dummy = 1+2;
-        dummy = 3+4;
+        SFRPAGE = MAC0_PAGE;
+        //SFRPAGE = MAC0_PAGE;
+
+
+
 
         //15. Get the signed 16-bit results from MAC0ACC3 & MAC0ACC2 or 2 & 1 in integer mode
-        yk = MAC0ACC3 << 8;
-        yk += MAC0ACC2;
+        lowyk = MAC0ACC2;
+        highyk = MAC0ACC3;
+        yk = (highyk << 8 | lowyk) + 2048;
 
         //16. Add back in the 1.5V offset & scale (may be also done using the MAC if you are clever)
-        yk += 2560; //add offset back in
+        // yk += 2560; //add offset back in
 
         //volt2 = 2.4*(xk/4096.0);
         //printf_fast_f("\tGain of -1 = %1.6f\r\n");
+
+        //printf("xk: %d\txk-2: %d,\tyk: %u\r\n",xk, xkminus2, yk);
 
         //17. Output final result to DAC0
         DAC0_write(yk);
@@ -197,7 +211,7 @@ void main (void)
         //18. Repeat sequence
     }
 
-    printf("dummy is: %d",dummy);
+    //printf("dummy is: %d",dummy);
 }
 //-------------------------------------------------------------------------------------------
 // Interrupt Service Routines
@@ -380,10 +394,10 @@ void MAC_INIT(void){
     SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
     SFRPAGE = MAC0_PAGE;
 
-    MAC0CF = 0x02;  // Fraction mode
+    MAC0CF = 0x0A;  // Fraction mode
 
     //3. Clear MAC acc and set MAC mode
-    MAC0CF |= 0x08; //clear
+    //MAC0CF |= 0x08; //clear
 
 
     SFRPAGE = SFRPAGE_SAVE;
@@ -391,7 +405,7 @@ void MAC_INIT(void){
 
 
 unsigned int AD_Conversion(void){
-    int adcReturn = 0;
+    unsigned int adcReturn = 0;
     char SFRPAGE_SAVE;
     SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
     SFRPAGE = ADC0_PAGE;
@@ -405,6 +419,8 @@ unsigned int AD_Conversion(void){
     }
 
     adcReturn = (ADC0H << 8) + ADC0L;
+
+    SFRPAGE = SFRPAGE_SAVE;
 
     return adcReturn;    // Return the result
 }
