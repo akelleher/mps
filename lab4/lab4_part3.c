@@ -1,21 +1,8 @@
-// IntrptEx.c
+// lab4_part3.c
 //
-// 8051 Interrupt Example Program
-// Alexey Gutin
-// March 2, 2007
-//
-// This program uses an interrupt to call the ISR handler
-// function, SWR_ISR(), when the /INT0 line is grounded.
-// Each time the signal makes a low transition, an interrupt will be
-// generated.  If the line is held down, the SWR_ISR()
-// function will only be executed once, and not be called
-// again unless the line is released, and grounded again.
-//
-// /INT0 is configured to be on P0.2
-// UART0 is used to communicate to the user through ProCOMM or SecureCRT
-//
-// This code was written and tested using the SiLabs IDE V4.90
-// and SDCC V3.5.0.
+// Alex Kelleher
+// This code increments a counter and outputs the result to DAC0. The counter overflows
+// occasionally, creating a sawtooth wave.
 //
 //-------------------------------------------------------------------------------------------
 // Includes
@@ -98,7 +85,7 @@ void main (void)
     {   
 
 		//samples every 23us
-        DAC_out++;
+        DAC_out++; //increment counter and write it to DAC0
         DAC0_write(DAC_out);
 
     }
@@ -106,10 +93,7 @@ void main (void)
 //-------------------------------------------------------------------------------------------
 // Interrupt Service Routines
 //-------------------------------------------------------------------------------------------
-// NOTE: this is an example of what NOT to do in an interrupt handler. No I/O should be done
-// in ISRs since I/O is very slow and the handler must execute very quickly.
-//
-// This routine stops Timer0 when the user presses SW2.
+
 //
 void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address 0003h.
 // the keyword "interrupt" defines this as an ISR and the number is determined by the 
@@ -232,7 +216,7 @@ void DAC_INIT(void){
     SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
     SFRPAGE = DAC0_PAGE;
 
-	DAC0CN = 0x80;
+	DAC0CN = 0x80;              // enable DAC0 with right-aligned input
 
 	SFRPAGE=SFRPAGE_SAVE;
 }
