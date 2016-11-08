@@ -51,7 +51,9 @@ unsigned char _sdcc_external_startup(void)
 //------------------------------------------------------------------------------------
 void main(void)
 {
-    volatile __xdata __at 0x2002 unsigned char p;
+	int i = 0;
+    volatile __xdata unsigned char *ext_ram;
+	ext_ram = (__xdata unsigned char *)(0x1FF0);
 
     SYSCLK_INIT();          // Initialize the oscillator
     PORT_INIT();            // Initialize the Crossbar and GPIO
@@ -61,12 +63,18 @@ void main(void)
 
     printf("\033[2J");     // Erase ANSI terminal & move cursor to home position
     printf("Memory test\n\n\r");
-    p = 'a';
+    
+
     while(1)
     {
-        printf("Enter a character to write to memory address 0x2002:", p);
-        p=getchar();
-        printf("\r\nCharacter stored in memory: %c\r\n", p);	
+        for(i = 0; i < 2100; i++){
+			ext_ram[i] = 'b';
+		}
+		printf("\r\nPrinted values");
+
+		for(i = 0; i < 22; i++){
+			printf("\r\nChar at %x: %c", i*100+8176, ext_ram[i*100]);
+		}	
     }
 }
 
