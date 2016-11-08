@@ -52,8 +52,12 @@ unsigned char _sdcc_external_startup(void)
 void main(void)
 {
 	int i = 0;
+    int j = 0;
     volatile __xdata unsigned char *ext_ram;
-	ext_ram = (__xdata unsigned char *)(0x1FF0);
+	unsigned static int __xdata count[512];	
+    unsigned int count_index = 0;
+
+	ext_ram = (__xdata unsigned char *)(0x2000);
 
     SYSCLK_INIT();          // Initialize the oscillator
     PORT_INIT();            // Initialize the Crossbar and GPIO
@@ -67,14 +71,40 @@ void main(void)
 
     while(1)
     {
-        for(i = 0; i < 2100; i++){
-			ext_ram[i] = 'b';
+        for(i = 0; i < 4096; i++){ //Puts us 51 bytes past end of memory
+			ext_ram[i] = 0x55;
 		}
-		printf("\r\nPrinted values");
 
-		for(i = 0; i < 22; i++){
-			printf("\r\nChar at %x: %c", i*100+8176, ext_ram[i*100]);
-		}	
+        getchar();
+		
+        for(i = 0; i < 4096; i++){
+            if(ext_ram[i] != 0x55){
+                count[count_index] = i;
+                count_index++;
+            }
+            if(count_index >=511){
+                count_index = 0;
+                printf("Error address:\n\r");
+                for(j = 0; j < 512; j++){
+                    printf("%x    ",count[j]);
+                }
+            }
+		}
+        if(count_index > 0){
+            printf("Error address:\n\r");
+            for(j = 0; j < count_index; j++){
+                printf("%x    ",count[j]);
+            }
+            count_index = 0;
+        } else{
+            printf("No errors\n\r");
+        }
+
+		// printf("\r\nPrinted values");
+
+		// for(i = 0; i < 44; i++){
+		// 	printf("\r\nChar at %x: %c", i*100+8176, ext_ram[i*100]);
+		// }	
     }
 }
 
