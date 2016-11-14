@@ -35,6 +35,7 @@ void randYesNo(void);
 void randTrueFalse(void);
 void randDayOfWeek(void);
 void randNumber(void);
+int getNumber(void);
 
 //------------------------------------------------------------------------------------
 // MAIN Routine
@@ -182,18 +183,18 @@ void randTrueFalse(void){
     return;
 }
 void randDayOfWeek(void){
-    daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    const char *daysOfWeek[7] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     printf("%s\r\n", daysOfWeek[rand()%7]);
     return;
 }
 void randNumber(void){
-    char lower;
-    char upper;
+    int lower;
+    int upper;
     int value;
     printf("Enter lower bound\r\n");
-    lower = getchar();
+    lower = getNumber();
     printf("Enter upper bound\r\n");
-    upper = getchar();
+    upper = getNumber();
 
     if (upper < lower){
         value = rand()%(upper-lower)+lower;
@@ -205,4 +206,24 @@ void randNumber(void){
         return;
     }
     
+}
+
+
+int getNumber(void){
+    int input_value = 0;
+    char char_in;
+    int value_of_char;
+    printf("Enter number 0-9. Enter key will submit/r/n");
+    while(1){
+        char_in = getchar();
+        if(char_in == 13){   //If we get a carriage return, return the value
+            return input_value;
+        } else if( (char_in < 48) || (char_in > 57)){   //If char is not a digit, ignore
+            printf("Not a digit - ignoring character\r\n");
+        } else {
+            value_of_char = char_in - 48;   //If we get a valid char - get the numeric value
+            input_value *=10;
+            input_value += value_of_char;   //add it to the pile
+        }
+    }
 }
