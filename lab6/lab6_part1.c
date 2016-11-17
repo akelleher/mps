@@ -55,8 +55,8 @@ void main(void)
 
     printf("\033[2J");                  // Erase screen & move cursor to home position
     while(1){
-        printf("Magic 8 Ball. Make a choice.\n\r\t1: Yes/No\n\r\t2: True/False\n\r\t3: Day of the week\n\r\t4: Random Number\n\r");
-        choice = getchar();
+        printf("Magic 8 Ball. Make a choice.\r\n\t1: Yes/No\r\n\t2: True/False\r\n\t3: Day of the week\r\n\t4: Random Number\r\n");
+        choice = getchar() - 48;
         switch(choice){
             case 1: //  Yes/no
                 randYesNo();
@@ -71,7 +71,7 @@ void main(void)
                 randNumber();
                 break;
             default:
-                printf("Not a valid choice - try again\n\r");
+                printf("Not a valid choice - try again\r\n");
                 break;
         
         }
@@ -168,42 +168,44 @@ void UART0_INIT(void)
 
 void randYesNo(void){
     if(rand()%2){   //Odd numbers are yes, even are no
-        printf("Yes\n\r");
+        printf("\r\nYes\r\n");
     } else {
-        printf("No\n\r");
+        printf("\r\nNo\r\n");
     }
     return;
 }
 void randTrueFalse(void){
     if(rand()%2){ //Odd numbers are true, even are false
-        printf("True\n\r");
+        printf("\r\nTrue\r\n");
     } else {
-        printf("False\n\r");
+        printf("\r\nFalse\r\n");
     }
     return;
 }
 void randDayOfWeek(void){
     const char *daysOfWeek[7] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-    printf("%s\r\n", daysOfWeek[rand()%7]);
+    printf("\r\n%s\r\n", daysOfWeek[rand()%7]);
     return;
 }
 void randNumber(void){
     int lower;
     int upper;
     int value;
-    printf("Enter lower bound\r\n");
+    printf("\r\nEnter lower bound\r\n");
     lower = getNumber();
-    printf("Enter upper bound\r\n");
+    printf("\r\nEnter upper bound\r\n");
     upper = getNumber();
 
-    if (upper < lower){
+    if (upper > lower){
         value = rand()%(upper-lower)+lower;
-        printf("%d", value);
-    }
-
-    if (upper = lower){
-        printf("%d\r\n", upper); //trivial case
+        printf("\r\n%d\r\n", value);
         return;
+    } else if (upper == lower){
+        printf("\r\n%d\r\n", upper)	; //trivial case
+        return;
+    } else {
+    	printf("Upper bound is lower than higher bound. Try again\r\n");
+    	return;
     }
     
 }
@@ -213,13 +215,13 @@ int getNumber(void){
     int input_value = 0;
     char char_in;
     int value_of_char;
-    printf("Enter number 0-9. Enter key will submit/r/n");
+    printf("Enter digits 0-9. Enter key will submit\r\n");
     while(1){
         char_in = getchar();
         if(char_in == 13){   //If we get a carriage return, return the value
             return input_value;
         } else if( (char_in < 48) || (char_in > 57)){   //If char is not a digit, ignore
-            printf("Not a digit - ignoring character\r\n");
+            printf("\r\nNot a digit - ignoring character\r\n");
         } else {
             value_of_char = char_in - 48;   //If we get a valid char - get the numeric value
             input_value *=10;
