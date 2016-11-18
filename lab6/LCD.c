@@ -122,6 +122,7 @@ void lcd_puts(char string[])
 	i=0;
 	while(string[i])
 	{
+		printf("Printing string[%d]: %c\r\n",i,string[i]);
 		lcd_dat(string[i]);
 		i++;
 	}

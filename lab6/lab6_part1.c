@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "putget.h"
+#include <LCD.c>
 
 //------------------------------------------------------------------------------------
 // Global Constants
@@ -35,6 +36,10 @@ void randYesNo(void);
 void randTrueFalse(void);
 void randDayOfWeek(void);
 void randNumber(void);
+int getNumber(void);
+void printfAndLCD(char *);
+void printLCD(char *);
+char* itoa(int, char* , int );
 
 //------------------------------------------------------------------------------------
 // MAIN Routine
@@ -53,9 +58,20 @@ void main(void)
     SFRPAGE = UART0_PAGE;               // Direct output to UART0
 
     printf("\033[2J");                  // Erase screen & move cursor to home position
+    lcd_init();         // initialize the LCD screen
+    lcd_cmd(0x3F);      // set display to 2 lines 5x8
+                        // (0x30=1 line 5x8, 0x34=1 line 5x10)
+    lcd_cmd(0x0C);      // turn on display and cursor
+    lcd_cmd(0x01);      // clear display
+    
+    lcd_clear();
+    lcd_home();
+
+    printf("Hello World!");
+
     while(1){
-        printf("Magic 8 Ball. Make a choice.\n\r\t1: Yes/No\n\r\t2: True/False\n\r\t3: Day of the week\n\r\t4: Random Number\n\r");
-        choice = getchar();
+        printf("Magic 8 Ball. Make a choice.\r\n\t1: Yes/No\r\n\t2: True/False\r\n\t3: Day of the week\r\n\t4: Random Number\r\n");
+        choice = getchar() - 48;
         switch(choice){
             case 1: //  Yes/no
                 randYesNo();
@@ -70,7 +86,7 @@ void main(void)
                 randNumber();
                 break;
             default:
-                printf("Not a valid choice - try again\n\r");
+                printf("Not a valid choice - try again\r\n");
                 break;
         
         }
@@ -167,42 +183,141 @@ void UART0_INIT(void)
 
 void randYesNo(void){
     if(rand()%2){   //Odd numbers are yes, even are no
-        printf("Yes\n\r");
+        printf("\r\nYes\r\n");
+        printLCD("Yes");
     } else {
-        printf("No\n\r");
+        printf("\r\nNo\r\n");
+        printLCD("No");
     }
     return;
 }
 void randTrueFalse(void){
     if(rand()%2){ //Odd numbers are true, even are false
-        printf("True\n\r");
+        printf("\r\nTrue\r\n");
+        printLCD("True");
     } else {
-        printf("False\n\r");
+        printf("\r\nFalse\r\n");
+        printLCD("False");
     }
     return;
 }
 void randDayOfWeek(void){
-    daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    printf("%s\r\n", daysOfWeek[rand()%7]);
+    const char *daysOfWeek[7] = {"Monday\0", "Tuesday\0", "Wednesday\0", "Thursday\0", "Friday\0", "Saturday\0", "Sunday\0"};
+    int index = rand()%7;
+    printf("\r\n%s\r\n", daysOfWeek[index]);
+    printLCD(daysOfWeek[index]);
     return;
 }
 void randNumber(void){
-    char lower;
-    char upper;
+    int lower;
+    int upper;
     int value;
-    printf("Enter lower bound\r\n");
-    lower = getchar();
-    printf("Enter upper bound\r\n");
-    upper = getchar();
+    char numString[20];
 
-    if (upper < lower){
+    printf("\r\nEnter lower bound\r\n");
+    lower = getNumber();
+    printf("\r\nEnter upper bound\r\n");
+    upper = getNumber();
+
+    if (upper > lower){
         value = rand()%(upper-lower)+lower;
-        printf("%d", value);
-    }
-
-    if (upper = lower){
-        printf("%d\r\n", upper); //trivial case
+        printf("\r\n%d\r\n", value);
+        itoa(value, numString, 10);
+        printLCD(numString);
         return;
+    } else if (upper == lower){
+        printf("\r\n%d\r\n", upper)	; //trivial case
+        itoa(upper, numString, 10);
+        printLCD(numString);
+        return;
+    } else {
+    	printf("Upper bound is lower than higher bound. Try again\r\n");
+    	return;
     }
     
+}
+
+
+int getNumber(void){
+    int input_value = 0;
+    char char_in;
+    int value_of_char;
+    printf("Enter digits 0-9. Enter key will submit\r\n");
+    while(1){
+        char_in = getchar();
+        if(char_in == 13){   //If we get a carriage return, return the value
+            return input_value;
+        } else if( (char_in < 48) || (char_in > 57)){   //If char is not a digit, ignore
+            printf("\r\nNot a digit - ignoring character\r\n");
+        } else {
+            value_of_char = char_in - 48;   //If we get a valid char - get the numeric value
+            input_value *=10;
+            input_value += value_of_char;   //add it to the pile
+        }
+    }
+}
+
+
+//TODO
+void printfAndLCD(char *str){
+    return;
+}
+
+
+void printLCD(char * str){
+    unsigned int i, j;
+    char spaceCount = 0;
+    char counter = 0;
+
+    for(i=0; i<200; i++)// long pause for display 
+        for(j=0; j<50000; j++);
+
+    lcd_clear();
+
+    for(i=0; i<200; i++)// long pause for display 
+        for(j=0; j<50000; j++);
+
+    //lcd_clear(); 
+    // lcd_home();
+
+    lcd_puts(str);
+
+    for(i=0; i<200; i++)// long pause for display 
+        for(j=0; j<50000; j++);
+
+    // while (str[counter] != '\0'){
+    //     lcd_dat(str[counter]);
+    //     for(i=0; i<15; i++) // brief pause for display
+    //         for(j=0; j<50000; j++);
+    //     counter++;
+    // }
+
+    // for(spaceCount = counter; spaceCount < 16; spaceCount++){
+    //     lcd_dat(' ');
+    //     for(i=0; i<15; i++) // brief pause for display
+    //         for(j=0; j<50000; j++);
+    // }
+}
+
+char* itoa(int value, char* result, int base) {
+    char* ptr = result, *ptr1 = result, tmp_char;
+    int tmp_value;
+    // check that the base if valid
+    if (base < 2 || base > 36) { *result = '\0'; return result; }
+
+    do {
+        tmp_value = value;
+        value /= base;
+        *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz" [35 + (tmp_value - value * base)];
+    } while ( value );
+
+    // Apply negative sign
+    if (tmp_value < 0) *ptr++ = '-';
+    *ptr-- = '\0';
+    while(ptr1 < ptr) {
+        tmp_char = *ptr;
+        *ptr--= *ptr1;
+        *ptr1++ = tmp_char;
+    }
+    return result;
 }
