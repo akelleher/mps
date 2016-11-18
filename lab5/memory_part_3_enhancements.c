@@ -63,19 +63,19 @@ unsigned char _sdcc_external_startup(void)
 void main(void)
 {
     // counters
-	int i = 0;
+    int i = 0;
     int j = 0;
 
     // variable for referencing internal and external RAM
     volatile __xdata unsigned char *ext_ram;
 
     // variable for storing read/write errors (stored internally)
-	unsigned static int __xdata count[512];	
+    unsigned static int __xdata count[512]; 
 
     unsigned int count_index = 0;
 
     // initialize to first address of external Am9128 RAM
-	ext_ram = (__xdata unsigned char *)(0x2000);
+    ext_ram = (__xdata unsigned char *)(0x2000);
 
     SYSCLK_INIT();          // Initialize the oscillator
     PORT_INIT();            // Initialize the Crossbar and GPIO
@@ -91,16 +91,19 @@ void main(void)
     {
         //write over both RAM chips (write one past both chips to ensure reading from non chip address doesnt work)
         for(i = 0; i <= 4096; i++){ 
-			ext_ram[i] = 0x55;
-		}
+            ext_ram[i] = 0x58;
+        }
+
 
         //wait for user input (allows time for user to experiment with wires and intentional errors)
         getchar();
-		
+
+
+        printf("Reading from 0x2000...\n\r");
         //read data from RAM
-        for(i = 0; i <= 4096; i++){
+        for(i = 0 - 2; i <= 10; i++){
             //if the data doens't match, add that address to the error list
-            if(ext_ram[i] != 0x55){
+            if(ext_ram[i] != 0x58){
                 count[count_index] = i;
                 count_index++;
             }
@@ -112,7 +115,72 @@ void main(void)
                     printf("%x    ",count[j]);
                 }
             }
-		}
+            printf("0x%X Read: 0x%X\r\n",0x2000+i, ext_ram[i]);
+        }
+
+        getchar();
+
+        printf("Reading from 0x9000...\n\r");
+        //read data from RAM
+        for(i = 0x7000 - 2; i <= 0x7000+10; i++){
+            //if the data doens't match, add that address to the error list
+            if(ext_ram[i] != 0x58){
+                count[count_index] = i;
+                count_index++;
+            }
+            //if the error list is full, dump it to stdout and start writing at index zero
+            if(count_index >=511){
+                count_index = 0;
+                printf("Error address:\n\r");
+                for(j = 0; j < 512; j++){
+                    printf("%x    ",count[j]);
+                }
+            }
+            printf("0x%X Read: 0x%X\r\n",0x2000+i, ext_ram[i]);
+        }
+
+        getchar();
+
+        printf("Reading from 0xA000...\n\r");
+        //read data from RAM
+        for(i = 0x8000 - 2; i <= 0x8000+10; i++){
+            //if the data doens't match, add that address to the error list
+            if(ext_ram[i] != 0x58){
+                count[count_index] = i;
+                count_index++;
+            }
+            //if the error list is full, dump it to stdout and start writing at index zero
+            if(count_index >=511){
+                count_index = 0;
+                printf("Error address:\n\r");
+                for(j = 0; j < 512; j++){
+                    printf("%x    ",count[j]);
+                }
+            }
+            printf("0x%X Read: 0x%X\r\n",0x2000+i, ext_ram[i]);
+        }
+
+        getchar();
+
+        printf("Reading from 0xA800...\n\r");
+        //read data from RAM
+        for(i = 0x8800 - 2; i <= 0x8800+10; i++){
+            //if the data doens't match, add that address to the error list
+            if(ext_ram[i] != 0x58){
+                count[count_index] = i;
+                count_index++;
+            }
+            //if the error list is full, dump it to stdout and start writing at index zero
+            if(count_index >=511){
+                count_index = 0;
+                printf("Error address:\n\r");
+                for(j = 0; j < 512; j++){
+                    printf("%x    ",count[j]);
+                }
+            }
+            printf("0x%X Read: 0x%X\r\n",0x2000+i, ext_ram[i]);
+        }
+
         //at the end of reading, print out any left over errors
         if(count_index > 0){
             printf("Error address:\n\r");
@@ -144,7 +212,7 @@ void SYSCLK_INIT(void)
     for(i=0; i < 3000; i++);    // Wait for the oscillator to start up
     while(!(OSCXCN & 0x80));
     CLKSEL = 0x01;              // Switch to the external crystal oscillator
-    OSCICN = 0x00	;              // Disable the internal oscillator
+    OSCICN = 0x00   ;              // Disable the internal oscillator
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page
 }

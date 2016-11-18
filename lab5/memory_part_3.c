@@ -1,13 +1,24 @@
 //------------------------------------------------------------------------------------
-// memory.c
+// memory_part_3.c
 //------------------------------------------------------------------------------------
-// This software writes a character to a specific address in external memory
-//  	NOTES:
-//	(1) /WR    = P4.7 (CNTRL signal)
-//	(2) /RD    = P4.6 (CNTRL signal)
-//	(3) D0-D7  = P7.0-P7.7 (DATA bus)
-//	(4) A0-A7  = P6.0-P6.7 (ADR bus lo byte)
-//	(5) A8-A15 = P5.0-P5.7 (ADR bus hi byte)
+// Title:               Microcontroller Lab 5 Task 3
+// Author:              Alex Kelleher
+// Date Created:        11.07.2016
+// Date Last Modified:  11.11.2016
+// 
+// Description: This software writes a character to a specific address in external memory
+//              Used for 4 bit data
+//
+// Target:              C8051F120
+// Tool Chain:          KEIL C51
+//
+// 
+// NOTES:
+// (1) /WR    = P4.7 (CNTRL signal)
+// (2) /RD    = P4.6 (CNTRL signal)
+// (3) D0-D7  = P7.0-P7.7 (DATA bus)
+// (4) A0-A7  = P6.0-P6.7 (ADR bus lo byte)
+// (5) A8-A15 = P5.0-P5.7 (ADR bus hi byte)
 //------------------------------------------------------------------------------------
 // Includes
 //------------------------------------------------------------------------------------
@@ -35,7 +46,7 @@ unsigned char _sdcc_external_startup(void);
 // _sdcc_external_startup
 //------------------------------------------------------------------------------------
 //
-//This is special function called by the system BEFORE main() is executed
+// This is special function called by the system BEFORE main() is executed
 //
 // Disable watchdog timer before normal initialization - needed for memory
 //
@@ -46,18 +57,41 @@ unsigned char _sdcc_external_startup(void)
 
     return 0;       // init everything else normally
 }
+
+//------------------------------------------------------------------------------------
+// parity
+//------------------------------------------------------------------------------------
+//
+// This function returns the even parity of the passed in number
+// num is assumed to be a 3 bit number (0x0 - 0x7)
+unsigned char parity(unsigned char num){
+    char returnVal = 0;
+    // XOR the two least significant bits
+    returnVal = (num & 0x01)^((num>>1) & 0x01);
+    // XOR most significant bit
+    returnVal ^= ((num>>2) & 0x01);
+    return returnVal;
+}
+
 //------------------------------------------------------------------------------------
 // MAIN Routine
 //------------------------------------------------------------------------------------
 void main(void)
 {
+    // counters
 	int i = 0;
     int j = 0;
-    volatile __xdata unsigned char *ext_ram;
-	unsigned static int __xdata count[512];	
-    unsigned int count_index = 0;
-    unsigned char value_to_save = 0x05;
 
+    // variable for referencing internal and external RAM
+    volatile __xdata unsigned char *ext_ram;
+
+    // variable for storing read/write errors (stored internally)
+	unsigned static char __xdata count[512];	
+
+    unsigned int count_index = 0;
+    unsigned char value_to_save = 0x01;
+
+    // initialize to external Am91L14 RAM
 	ext_ram = (__xdata unsigned char *)(0x4000);
 
     SYSCLK_INIT();          // Initialize the oscillator
@@ -68,15 +102,37 @@ void main(void)
 
     printf("\033[2J");     // Erase ANSI terminal & move cursor to home position
     printf("Memory test\n\n\r");
-    
 
     while(1)
     {
-        for(i = 0; i < 1024; i++){ 
+
+        printf("num: %u\r\n",value_to_save);
+        printf("parity: %u\r\n", parity(value_to_save));
+
+        //parity bit is most significant bit, least significant 3 bits are the value
+        value_to_save = parity(value_to_save)<<3 | value_to_save;
+
+        printf("value to save: %u", value_to_save);
+
+        //wait for user input (allows time for user to experiment with wires and intentional errors)
+        getchar();
+
+        //write data to all address slots of the Am91L14 and 6 slots past (to ensure those do not work)
+        for(i = 0; i < 0x405; i++){  //10 address bits, 1024 slots of 0x400 (read 5 past to show it works)
 			ext_ram[i] = value_to_save;
-			
-			printf("Address %d: %x  %x\r\n", i, value_to_save, ext_ram[i]);	
 		}
+
+        //wait for user input
+        getchar();
+
+        //read 
+        for(i = 0; i < 0x405; i++){ //9 address pins, 512 memory locations
+            printf("Address 0x%x, wrote: 0x%x\tread: 0x%x", i+0x4000, value_to_save, ext_ram[i] & 0x0F); //16384 is 0x4000 in decimal 
+            if(parity(ext_ram[i] & 0x07) != ((ext_ram[i] & 0x0F) >> 3)){ //if parity bit doesn't equal even parity of data bits -> parity error
+                printf("\tPARITY ERROR!");
+            }
+            printf("\r\n");
+        }
     }
 }
 
@@ -167,4 +223,3 @@ void UART0_INIT(void)
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page
 }
-
