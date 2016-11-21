@@ -32,6 +32,8 @@ void SYSCLK_INIT(void);
 void PORT_INIT(void);
 void UART0_INIT(void);
 
+void keypad_init(void);
+
 void randYesNo(void);
 void randTrueFalse(void);
 void randDayOfWeek(void);
@@ -40,6 +42,7 @@ int getNumber(void);
 void printfAndLCD(char *);
 void printLCD(char *);
 char* itoa(int, char* , int );
+void KeypadVector(void) __interrupt 0;
 
 //------------------------------------------------------------------------------------
 // MAIN Routine
@@ -54,6 +57,7 @@ void main(void)
     PORT_INIT();                        // Initialize the Crossbar and GPIO
     SYSCLK_INIT();                      // Initialize the oscillator
     UART0_INIT();                       // Initialize UART0
+    
 
     SFRPAGE = UART0_PAGE;               // Direct output to UART0
 
@@ -67,7 +71,8 @@ void main(void)
     lcd_clear();
     lcd_home();
 
-    printf("Hello World!");
+    printf("Hello World!\r\n");
+    keypad_init();
 
     while(1){
         printf("Magic 8 Ball. Make a choice.\r\n\t1: Yes/No\r\n\t2: True/False\r\n\t3: Day of the week\r\n\t4: Random Number\r\n");
@@ -320,4 +325,30 @@ char* itoa(int value, char* result, int base) {
         *ptr1++ = tmp_char;
     }
     return result;
+}
+
+void keypad_init(void){
+    char SFRPAGE_SAVE;
+
+    SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+
+    printf("Wrote zeros\r\n");
+    
+    SFRPAGE = 0x0F; //P3MDOUT page (P3 is all pages)
+
+
+    P3MDOUT=0xF0; // hi nibble to push-pull, lo nibble to open-drain
+    P3=0x0F; // write 0's to Port 3 hi nibble, lo nibble set for input
+    
+    SFRPAGE = 0x00; //tcon page (IE is all pages)
+
+    TCON=TCON & 0xFC; // Clear INT0 flag and set for level triggered
+    IE=IE|0x81; // Enable all interrupts & enable INT0
+
+    SFRPAGE = SFRPAGE_SAVE;             // Restore SFR page
+}
+
+
+void KeypadVector(void) __interrupt 0{
+    printf("INTERRUPT INTERRUPT INTERRUPT!\r\n");
 }

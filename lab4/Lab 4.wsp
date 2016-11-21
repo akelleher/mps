@@ -1940,13 +1940,13 @@ Assembler=C:\Program Files (x86)\SDCC\bin\sdas8051.exe
 [WorkState_v1_1.AssFlag]
 AssFlag=-plosgff
 [WorkState_v1_1.AssFormat]
-AssFormat=<Executable Name> <Flags> <Input File(s)>  
+AssFormat=<Executable Name> <Flags> <Input File(s)> 
 [WorkState_v1_1.Compiler]
 Compiler=C:\Program Files (x86)\SDCC\bin\sdcc.exe
 [WorkState_v1_1.CompFlag]
 CompFlag=-c --debug --use-stdout -V --nogcse
 [WorkState_v1_1.CompFormat]
-CompFormat=<Executable Name> <Flags> <Input File(s)>  
+CompFormat=<Executable Name> <Flags> <Input File(s)> 
 [WorkState_v1_1.RunOptimizer]
 RunOptimizer=0
 [WorkState_v1_1.Linker]
@@ -1954,11 +1954,11 @@ Linker=C:\Program Files (x86)\SDCC\bin\sdcc.exe
 [WorkState_v1_1.LinkFlag]
 LinkFlag=--debug --use-stdout -V
 [WorkState_v1_1.LinkFormat]
-LinkFormat=<Executable Name> <Flags> -o<Output File> <Input File(s)>  
+LinkFormat=<Executable Name> <Flags> -o<Output File> <Input File(s)> 
 [WorkState_v1_1.PreprocFlag]
 PreprocFlag=
 [WorkState_v1_1.PreprocFormat]
-PreprocFormat=  
+PreprocFormat= 
 [WorkState_v1_1.DisList]
 DisList=1
 [WorkState_v1_1.DisOP]

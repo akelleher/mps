@@ -9,6 +9,8 @@
 // before reading the status of P6.7
 
 #include <LCD.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 //----------------------------- LCD related Functions --------------------------------
 //#pragma OPTIMIZE (7)
