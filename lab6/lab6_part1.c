@@ -29,7 +29,7 @@
 //------------------------------------------------------------------------------------
 
 
-char keypadInterrupt;
+char keypadInterrupt='?';
 
 void main(void);
 void SYSCLK_INIT(void);
@@ -47,6 +47,7 @@ void printfAndLCD(char *);
 void printLCD(char *);
 char* itoa(int, char* , int );
 void KeypadVector(void) __interrupt 0;
+void keypadCleanup(char);
 
 //------------------------------------------------------------------------------------
 // MAIN Routine
@@ -103,7 +104,7 @@ void main(void)
     // }
     while(1){
         printf("Magic 8 Ball. Make a choice.\r\n\t1: Yes/No\r\n\t2: True/False\r\n\t3: Day of the week\r\n\t4: Random Number\r\n");
-        while(keypadInterrupt == 0){
+        while(keypadInterrupt == '?'){
             //wait for keyinterrupt
         }
         printf("keypadInterrupt: %c\r\n",keypadInterrupt);
@@ -125,7 +126,7 @@ void main(void)
                 break;
         
         }
-        keypadInterrupt = 0;
+        keypadInterrupt = '?';
 
     }
 
@@ -383,27 +384,37 @@ void keypad_init(void){
 
 void KeypadVector(void) __interrupt 0{
     int i = 0;
-    char asciichar;
+    char asciichar = '?';
     char portvalue;
     char keyvalue;
 
     printf("INTERRUPT INTERRUPT INTERRUPT!\r\n");
+    
+
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
 
     keyvalue = P3 & 0x0F; //save keyvalue up here before changing P3
+
+    printf("keyvalue: %c\r\n",keyvalue);
+
     P3=0x8F; // check if row one (top) was active
     for(i = 0; i<300; i++); // wait for the output and input pins to stabilize
     portvalue = P3 & 0x0F; // read the value of the lower 4 bits
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
+        printf("if 1\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '1'; // return the value of the matching key
         else if (keyvalue == 0x0B)
         asciichar = '2';
         else if (keyvalue == 0x0D)
         asciichar = '3';
-        else
+        else if (keyvalue == 0x0E)
         asciichar = 'A';
+
+        keypadCleanup(asciichar);
+        return;
     }
 
     P3=0x4F; // check if row one (top) was active
@@ -412,14 +423,18 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
+        printf("if 2\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '4'; // return the value of the matching key
         else if (keyvalue == 0x0B)
         asciichar = '5';
         else if (keyvalue == 0x0D)
         asciichar = '6';
-        else
+        else if (keyvalue == 0x0E)
         asciichar = 'B';
+
+        keypadCleanup(asciichar);
+        return;
     }
 
 
@@ -429,14 +444,18 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
+        printf("if 3\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '7'; // return the value of the matching key
         else if (keyvalue == 0x0B)
         asciichar = '8';
         else if (keyvalue == 0x0D)
         asciichar = '9';
-        else
+        else if (keyvalue == 0x0E)
         asciichar = 'C';
+
+        keypadCleanup(asciichar);
+        return;
     }
 
 
@@ -446,19 +465,28 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
+        printf("if 4\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '*'; // return the value of the matching key
         else if (keyvalue == 0x0B)
         asciichar = '0';
         else if (keyvalue == 0x0D)
         asciichar = '#';
-        else
+        else if (keyvalue == 0x0E)
         asciichar = 'D';
+
+        keypadCleanup(asciichar);
+        return;
     }
 
 
 
 
+}
+
+void keypadCleanup(char asciichar){
+    int i = 0;
+    
     //reset P3
     P3=0x0F;
     for(i = 0; i<10000; i++);// wait for output and input pins to stabilize
@@ -470,5 +498,5 @@ void KeypadVector(void) __interrupt 0{
     IE = IE|0x81; // enable INT0 interrupt
 
 
-    keypadInterrupt = asciichar;
+    keypadInterrupt = asciichar;   
 }
