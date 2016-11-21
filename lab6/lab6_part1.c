@@ -389,14 +389,13 @@ void KeypadVector(void) __interrupt 0{
 
     printf("INTERRUPT INTERRUPT INTERRUPT!\r\n");
 
-
+    keyvalue = P3 & 0x0F; //save keyvalue up here before changing P3
     P3=0x8F; // check if row one (top) was active
     for(i = 0; i<300; i++); // wait for the output and input pins to stabilize
     portvalue = P3 & 0x0F; // read the value of the lower 4 bits
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        keyvalue = P3 & 0xF0;
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '1'; // return the value of the matching key
         else if (keyvalue == 0x0B)
@@ -413,7 +412,6 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        keyvalue = P3;
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '4'; // return the value of the matching key
         else if (keyvalue == 0x0B)
@@ -431,7 +429,6 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        keyvalue = P3;
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '7'; // return the value of the matching key
         else if (keyvalue == 0x0B)
@@ -449,7 +446,6 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        keyvalue = P3;
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '*'; // return the value of the matching key
         else if (keyvalue == 0x0B)
