@@ -27,6 +27,10 @@
 //------------------------------------------------------------------------------------
 // Function Prototypes
 //------------------------------------------------------------------------------------
+
+
+char keypadInterrupt;
+
 void main(void);
 void SYSCLK_INIT(void);
 void PORT_INIT(void);
@@ -74,20 +78,46 @@ void main(void)
     printf("Hello World!\r\n");
     keypad_init();
 
+    // while(1){
+    //     printf("Magic 8 Ball. Make a choice.\r\n\t1: Yes/No\r\n\t2: True/False\r\n\t3: Day of the week\r\n\t4: Random Number\r\n");
+    //     choice = getchar() - 48;
+    //     switch(choice){
+    //         case 1: //  Yes/no
+    //             randYesNo();
+    //             break;
+    //         case 2: //  True/false
+    //             randTrueFalse();
+    //             break;
+    //         case 3: //  Day of the week
+    //             randDayOfWeek();
+    //             break;
+    //         case 4: //  Radndom number
+    //             randNumber();
+    //             break;
+    //         default:
+    //             printf("Not a valid choice - try again\r\n");
+    //             break;
+        
+    //     }
+
+    // }
     while(1){
         printf("Magic 8 Ball. Make a choice.\r\n\t1: Yes/No\r\n\t2: True/False\r\n\t3: Day of the week\r\n\t4: Random Number\r\n");
-        choice = getchar() - 48;
-        switch(choice){
-            case 1: //  Yes/no
+        while(keypadInterrupt == 0){
+            //wait for keyinterrupt
+        }
+        printf("keypadInterrupt: %c\r\n",keypadInterrupt);
+        switch(keypadInterrupt){
+            case '1': //  Yes/no
                 randYesNo();
                 break;
-            case 2: //  True/false
+            case '2': //  True/false
                 randTrueFalse();
                 break;
-            case 3: //  Day of the week
+            case '3': //  Day of the week
                 randDayOfWeek();
                 break;
-            case 4: //  Radndom number
+            case '4': //  Radndom number
                 randNumber();
                 break;
             default:
@@ -95,8 +125,10 @@ void main(void)
                 break;
         
         }
+        keypadInterrupt = 0;
 
     }
+
 }
 
 //------------------------------------------------------------------------------------
@@ -150,7 +182,7 @@ void PORT_INIT(void)
 
     SFRPAGE  = CONFIG_PAGE;
     XBR0     = 0x04;                    // Enable UART0
-    XBR1     = 0x00;
+    XBR1     = 0x04;
     XBR2     = 0x40;                    // Enable Crossbar and weak pull-up
     P0MDOUT |= 0x01;                    // Set TX0 on P0.0 pin to push-pull
     P1MDOUT |= 0x40;                    // Set green LED output P1.6 to push-pull
@@ -333,7 +365,7 @@ void keypad_init(void){
     SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
 
     printf("Wrote zeros\r\n");
-    
+
     SFRPAGE = 0x0F; //P3MDOUT page (P3 is all pages)
 
 
@@ -350,5 +382,97 @@ void keypad_init(void){
 
 
 void KeypadVector(void) __interrupt 0{
+    int i = 0;
+    char asciichar;
+    char portvalue;
+    char keyvalue;
+
     printf("INTERRUPT INTERRUPT INTERRUPT!\r\n");
+
+
+    P3=0x8F; // check if row one (top) was active
+    for(i = 0; i<300; i++); // wait for the output and input pins to stabilize
+    portvalue = P3 & 0x0F; // read the value of the lower 4 bits
+    if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
+    // since the 1 on bit 7 will allow the 4 inputs to be hi
+    {
+        keyvalue = P3 & 0xF0;
+        if (keyvalue == 0x07) // look at the value of the low 4 bits
+        asciichar = '1'; // return the value of the matching key
+        else if (keyvalue == 0x0B)
+        asciichar = '2';
+        else if (keyvalue == 0x0D)
+        asciichar = '3';
+        else
+        asciichar = 'A';
+    }
+
+    P3=0x4F; // check if row one (top) was active
+    for(i = 0; i<300; i++); // wait for the output and input pins to stabilize
+    portvalue = P3 & 0x0F; // read the value of the lower 4 bits
+    if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
+    // since the 1 on bit 7 will allow the 4 inputs to be hi
+    {
+        keyvalue = P3;
+        if (keyvalue == 0x07) // look at the value of the low 4 bits
+        asciichar = '4'; // return the value of the matching key
+        else if (keyvalue == 0x0B)
+        asciichar = '5';
+        else if (keyvalue == 0x0D)
+        asciichar = '6';
+        else
+        asciichar = 'B';
+    }
+
+
+    P3=0x2F; // check if row one (top) was active
+    for(i = 0; i<300; i++); // wait for the output and input pins to stabilize
+    portvalue = P3 & 0x0F; // read the value of the lower 4 bits
+    if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
+    // since the 1 on bit 7 will allow the 4 inputs to be hi
+    {
+        keyvalue = P3;
+        if (keyvalue == 0x07) // look at the value of the low 4 bits
+        asciichar = '7'; // return the value of the matching key
+        else if (keyvalue == 0x0B)
+        asciichar = '8';
+        else if (keyvalue == 0x0D)
+        asciichar = '9';
+        else
+        asciichar = 'C';
+    }
+
+
+    P3=0x1F; // check if row one (top) was active
+    for(i = 0; i<300; i++); // wait for the output and input pins to stabilize
+    portvalue = P3 & 0x0F; // read the value of the lower 4 bits
+    if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
+    // since the 1 on bit 7 will allow the 4 inputs to be hi
+    {
+        keyvalue = P3;
+        if (keyvalue == 0x07) // look at the value of the low 4 bits
+        asciichar = '*'; // return the value of the matching key
+        else if (keyvalue == 0x0B)
+        asciichar = '0';
+        else if (keyvalue == 0x0D)
+        asciichar = '#';
+        else
+        asciichar = 'D';
+    }
+
+
+
+
+    //reset P3
+    P3=0x0F;
+    for(i = 0; i<10000; i++);// wait for output and input pins to stabilize
+    
+
+    while (P3 != 0x0F); // wait while the key is still pressed
+    for(i = 0; i<10000; i++);// wait for output and input pins to stabilize
+    // after key is released
+    IE = IE|0x81; // enable INT0 interrupt
+
+
+    keypadInterrupt = asciichar;
 }
