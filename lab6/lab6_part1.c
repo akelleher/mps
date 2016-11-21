@@ -107,7 +107,7 @@ void main(void)
         while(keypadInterrupt == '?'){
             //wait for keyinterrupt
         }
-        printf("keypadInterrupt: %c\r\n",keypadInterrupt);
+        // printf("keypadInterrupt: %c\r\n",keypadInterrupt);
         switch(keypadInterrupt){
             case '1': //  Yes/no
                 randYesNo();
@@ -280,10 +280,17 @@ int getNumber(void){
     int input_value = 0;
     char char_in;
     int value_of_char;
-    printf("Enter digits 0-9. Enter key will submit\r\n");
+    printf("Enter digits 0-9. # key will submit\r\n");
     while(1){
-        char_in = getchar();
-        if(char_in == 13){   //If we get a carriage return, return the value
+
+        keypadInterrupt = '?';
+        while(keypadInterrupt == '?'){
+            //wait for keyinterrupt
+        }
+        char_in = keypadInterrupt;
+
+        if(char_in == '#'){   //If we get a carriage return, return the value
+            keypadInterrupt = '?';
             return input_value;
         } else if( (char_in < 48) || (char_in > 57)){   //If char is not a digit, ignore
             printf("\r\nNot a digit - ignoring character\r\n");
@@ -388,14 +395,24 @@ void KeypadVector(void) __interrupt 0{
     char portvalue;
     char keyvalue;
 
-    printf("INTERRUPT INTERRUPT INTERRUPT!\r\n");
+    //printf("INTERRUPT INTERRUPT INTERRUPT!\r\n");
     
 
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
+
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
+
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
     for(i = 0; i<10000; i++);  //wait for outputs to stabilize
 
     keyvalue = P3 & 0x0F; //save keyvalue up here before changing P3
 
-    printf("keyvalue: %c\r\n",keyvalue);
+    // printf("keyvalue: 0x0%X\r\n",keyvalue);
 
     P3=0x8F; // check if row one (top) was active
     for(i = 0; i<300; i++); // wait for the output and input pins to stabilize
@@ -403,7 +420,7 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        printf("if 1\r\n");
+        // printf("if one\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '1'; // return the value of the matching key
         else if (keyvalue == 0x0B)
@@ -423,7 +440,7 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        printf("if 2\r\n");
+        printf("if two\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '4'; // return the value of the matching key
         else if (keyvalue == 0x0B)
@@ -444,7 +461,7 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        printf("if 3\r\n");
+        // printf("if three\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '7'; // return the value of the matching key
         else if (keyvalue == 0x0B)
@@ -465,7 +482,7 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        printf("if 4\r\n");
+        // printf("if four\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '*'; // return the value of the matching key
         else if (keyvalue == 0x0B)
@@ -486,7 +503,7 @@ void KeypadVector(void) __interrupt 0{
 
 void keypadCleanup(char asciichar){
     int i = 0;
-    
+
     //reset P3
     P3=0x0F;
     for(i = 0; i<10000; i++);// wait for output and input pins to stabilize
@@ -494,6 +511,8 @@ void keypadCleanup(char asciichar){
 
     while (P3 != 0x0F); // wait while the key is still pressed
     for(i = 0; i<10000; i++);// wait for output and input pins to stabilize
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
+    for(i = 0; i<10000; i++);  //wait for outputs to stabilize
     // after key is released
     IE = IE|0x81; // enable INT0 interrupt
 
