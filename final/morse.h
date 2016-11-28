@@ -7,7 +7,7 @@ int beatCounter = 1000; //Beat duration
 
 void MORSE_INIT() ;
 char* charToMorse(char c);
-void stringToMorse(char * str, char * buff);
+char stringToMorse(char * str, char * buff);
 void outputMessage(char* str, char * buff);
 void outputDit();
 void outputDah();
