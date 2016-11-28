@@ -44,11 +44,9 @@ void UART0_INIT(void);
 void TIMER_INIT(void);
 
 
-// xdata (stored internally)
-static char __xdata buffer[512];
-
-// variable for referencing internal and external RAM
-volatile __xdata char *buff;    
+// xdata has 8096 bytes total, stored internally
+static char __xdata buff[2048];
+static char __xdata buff2[2048];
 
 
 int counter = 0;
@@ -69,9 +67,10 @@ void main (void)
 //    unsigned int ones, tenths = 0;
 
 
+    char * str = "Hello World";
+    char err;
 
 	char SFRPAGE_SAVE;
-    int lastTenths;
 
     SFRPAGE = CONFIG_PAGE;
 
@@ -89,7 +88,6 @@ void main (void)
     buff = (__xdata char *)(0x0000);
 
 
-
 //  SFRPAGE = UART0_PAGE;       // Direct the output to UART0
                                 // printf() must set its own SFRPAGE to UART0_PAGE
     printf("\033[2J");          // Erase screen and move cursor to the home position.
@@ -103,6 +101,17 @@ void main (void)
     SFRPAGE = CONFIG_PAGE;
     EX0     = 1;                // Enable Ext Int 0 only after everything is settled.
 	SFRPAGE = SFRPAGE_SAVE; 	//Restore SFR Page
+
+    err = stringToMorse(str, buff);
+    if(err == 0){
+        printf("String to morse success:\r\n");
+        printf("%s\r\n",str);
+        printf("%s\r\n",buff);
+    }
+    else{
+        printf("String to morse failed.\r\n");
+    }
+
 
 	while (1)                   
     {	
