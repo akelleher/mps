@@ -440,7 +440,7 @@ void KeypadVector(void) __interrupt 0{
     if (portvalue == 0x0F) // if this row was selected then the value will be 0x0F
     // since the 1 on bit 7 will allow the 4 inputs to be hi
     {
-        printf("if two\r\n");
+        // printf("if two\r\n");
         if (keyvalue == 0x07) // look at the value of the low 4 bits
         asciichar = '4'; // return the value of the matching key
         else if (keyvalue == 0x0B)
