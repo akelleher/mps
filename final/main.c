@@ -23,6 +23,7 @@
 #include <c8051f120.h>          // SFR declarations.
 #include <stdio.h>              // Necessary for printf.
 #include "putget.h"             // Necessary for printf
+#include "morse.h"
 //-------------------------------------------------------------------------------------------
 // Global CONSTANTS
 //-------------------------------------------------------------------------------------------
@@ -49,14 +50,10 @@ static char __xdata buffer[512];
 // variable for referencing internal and external RAM
 volatile __xdata char *buff;    
 
-// initialize to buff to xdata
-buff = (__xdata char *)(0x0000);
 
 int counter = 0;
 int tenths_count = 0;
 int seconds_count = 0;
-
-char * morse[] = {"",""}
 
 void SW2_ISR (void) __interrupt 0;
 void TIMER0_ISR (void) __interrupt 1;
@@ -82,9 +79,16 @@ void main (void)
     SYSCLK_INIT();              // Initialize the oscillator.
     UART0_INIT();               // Initialize UART0.
     TIMER_INIT();
+    MORSE_INIT();
 
     SFRPAGE = LEGACY_PAGE;
     IT0     = 1;                // /INT0 is edge triggered, falling-edge.
+
+
+    // initialize to buff to xdata
+    buff = (__xdata char *)(0x0000);
+
+
 
 //  SFRPAGE = UART0_PAGE;       // Direct the output to UART0
                                 // printf() must set its own SFRPAGE to UART0_PAGE
@@ -264,19 +268,4 @@ void UART0_INIT(void)
     TI0     = 1;                // Indicate TX0 ready.
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.
-}
-
-char * stringToMorse(char * str){
-    int counter = 0;
-    int morseIndex = 0;
-    char * tmp;
-    while(true){
-        tmp = charToMorse(str[i]);
-
-    }
-    return NULL;
-}
-
-char* charToMorse(char c){
-    return NULL;
 }
