@@ -84,10 +84,6 @@ void main (void)
     IT0     = 1;                // /INT0 is edge triggered, falling-edge.
 
 
-    // initialize to buff to xdata
-    buff = (__xdata char *)(0x0000);
-
-
 //  SFRPAGE = UART0_PAGE;       // Direct the output to UART0
                                 // printf() must set its own SFRPAGE to UART0_PAGE
     printf("\033[2J");          // Erase screen and move cursor to the home position.

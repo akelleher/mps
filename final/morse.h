@@ -1,5 +1,11 @@
-const char * morse[36]; 
-static char __xdata buff2[2048];
+#include <stdio.h>              // Necessary for printf.
+#include <c8051f120.h>          // SFR declarations.
+
+static const char * __xdata morse[36];
+
+// Needed so that charToMorse()doesn't return pointer to local char
+// that is then removed from the stack upon frame exit (causing memory error)
+static const char * __xdata slash = "/";
 
 void MORSE_INIT() {
 	morse[0]    = ".-";         // A
@@ -38,6 +44,8 @@ void MORSE_INIT() {
 	morse[33]   = "--...";      // 7
 	morse[34]   = "---..";      // 8
 	morse[35]   = "----.";      // 9
+
+	slash = "/";
 }
 
 char* charToMorse(char c){
@@ -54,7 +62,7 @@ char* charToMorse(char c){
     	return morse[c-'a'];
     }
     else if(c == ' '){
-    	return '/'; //return a slash for a space (one beat)
+    	return slash; //return a slash for a space (one beat)
     }
     else { // not a proper character
     	return NULL;
@@ -67,9 +75,12 @@ char stringToMorse(char * str, char * buff){
     int buffIndex = 0;
     int j = 0;
     char * tmp;
+	printf("in string to morse\r\n");
     while(str[i] != '\0'){ //end string character
         tmp = charToMorse(str[i]);
+    	printf("converted %c to %s\r\n", str[i], tmp);
         if(tmp == NULL){
+    		printf("return 1\r\n");
         	return 1;
         }
         //append to buffer
@@ -86,5 +97,7 @@ char stringToMorse(char * str, char * buff){
 
         i++;
     }
+    printf("return 0\r\n");
     return 0;
 }
+
