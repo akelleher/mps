@@ -1,4 +1,5 @@
 const char * morse[36]; 
+static char __xdata buff2[2048];
 
 void MORSE_INIT() {
 	morse[0]    = ".-";         // A
@@ -60,14 +61,30 @@ char* charToMorse(char c){
     }
 }
 
-void stringToMorse(char * str, char * buff){
+//returns error code 
+char stringToMorse(char * str, char * buff){
     int i = 0;
-    int morseIndex = 0;
+    int buffIndex = 0;
+    int j = 0;
     char * tmp;
-    while(1){
+    while(str[i] != '\0'){ //end string character
         tmp = charToMorse(str[i]);
-        break;
+        if(tmp == NULL){
+        	return 1;
+        }
+        //append to buffer
+        while(tmp[j] != '\0'){
+        	buff[buffIndex] = tmp[j];
+        	buffIndex++;
+        	j++;
+        }
+        //add a space (if not last char)
+        if(str[i+1] != '\0'){
+	        buff[buffIndex] = ' ';
+	        buffIndex++;
+    	}
 
         i++;
     }
+    return 0;
 }
