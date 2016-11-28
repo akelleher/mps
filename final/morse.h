@@ -1,4 +1,18 @@
+#include <c8051f120.h>
+#include <stdio.h>              // Necessary for NULL.
+
+
 const char * morse[36]; 
+int beatCounter = 1000; //Beat duration
+
+void MORSE_INIT() ;
+char* charToMorse(char c);
+void stringToMorse(char * str, char * buff);
+void outputMessage(char* str, char * buff);
+void outputDit();
+void outputDah();
+void waitBeats(int beats);
+void outputPulse(int length);
 
 void MORSE_INIT() {
 	morse[0]    = ".-";         // A
@@ -70,4 +84,49 @@ void stringToMorse(char * str, char * buff){
 
         i++;
     }
+}
+
+
+void outputMessage(char* str, char * buff){
+	int i = 0;
+	stringToMorse(str, buff);
+	while(buff[i] != '\0'){
+		if(buff[i] == ' '){ //wait 3 beats
+			waitBeats(3);
+		} 
+		else if (buff[i] == '/'){
+			waitBeats(1);
+		}
+		else if (buff[i] == '.'){
+			outputDit();
+		}
+		else if (buff[i] == '-'){
+			outputDah();
+		}
+
+		i++;
+	}
+
+}
+
+void outputDit(){
+	outputPulse(beatCounter/6); //Dit is 1/6 of beat
+}
+
+void outputDah(){
+	outputPulse(beatCounter/2);	//Dah is 1/2 of beat
+}
+
+//Wait whole number of beats
+void waitBeats(int beats){
+	int i;
+	for(i = 0; i < beats*beatCounter; i++);
+}
+
+//Output pulse of length cycles to P1.1
+void outputPulse(int length){
+	int i;
+	P1 &= 0x02;
+	for (i = 0; i < length; i++);
+	P1 |= ~0x02;
 }
