@@ -1,5 +1,7 @@
 #include <stdio.h>              // Necessary for printf and NULL.
 #include <c8051f120.h>          // SFR declarations.
+#include <stdlib.h>
+#include <string.h>
 
 static const char * __xdata morse[36];
 
@@ -95,15 +97,15 @@ char stringToMorse(char * str, char * buff){
         	return 1;
         }
         //append to buffer
-        while(tmp[j] != '\0'){
-        	buff[buffIndex] = tmp[j];
-        	buffIndex++;
-        	j++;
+        if(i == 0){
+        	strcpy(buff, tmp);
+        }else{
+        	strcat(buff, tmp);
         }
+        printf("current buffer: %s\r\n");
         //add a space (if not last char)
         if(str[i+1] != '\0'){
-	        buff[buffIndex] = ' ';
-	        buffIndex++;
+        	strcat(buff, " ");
     	}
 
         i++;
