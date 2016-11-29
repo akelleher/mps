@@ -9,16 +9,20 @@ static const char * __xdata morse[36];
 // that is then removed from the stack upon frame exit (causing memory error)
 static const char * __xdata slash = "/";
 
-int beatCounter = 1000; //Beat duration
+int beatCounter = 1; //tenth second counter
+
+int tenthsCounter = 0;
 
 void MORSE_INIT() ;
 char* charToMorse(char c);
 char stringToMorse(char * str, char * buff);
-void outputMessage(char* str, char * buff);
+char outputMessage(char* str, char * buff);
 void outputDit();
 void outputDah();
 void waitBeats(int beats);
 void outputPulse(int length);
+
+
 
 void MORSE_INIT() {
 	morse[0]    = ".-";         // A
@@ -88,10 +92,10 @@ char stringToMorse(char * str, char * buff){
     int buffIndex = 0;
     int j = 0;
     char * tmp;
-	printf("in string to morse\r\n");
+	// printf("in string to morse\r\n");
     while(str[i] != '\0'){ //end string character
         tmp = charToMorse(str[i]);
-    	printf("converted %c to %s\r\n", str[i], tmp);
+    	// printf("converted %c to %s\r\n", str[i], tmp);
         if(tmp == NULL){
     		printf("return 1\r\n");
         	return 1;
@@ -102,7 +106,7 @@ char stringToMorse(char * str, char * buff){
         }else{
         	strcat(buff, tmp);
         }
-        printf("current buffer: %s\r\n");
+        // printf("current buffer: %s\r\n", buff);
         //add a space (if not last char)
         if(str[i+1] != '\0'){
         	strcat(buff, " ");
@@ -110,51 +114,99 @@ char stringToMorse(char * str, char * buff){
 
         i++;
     }
-    printf("return 0\r\n");
+    // printf("return 0\r\n");
     return 0;
 }
 
 
-void outputMessage(char* str, char * buff){
+char outputMessage(char* str, char * buff){
 	int i = 0;
-	stringToMorse(str, buff);
+	char err;
+	err = stringToMorse(str, buff);
+	if(err){
+		printf("ERROR IN OUTPUT MESSAGE\r\n");
+		return err;
+	}
+	
+	printf("String to morse success:\r\n");
+	printf("%s\r\n",str);
+	printf("%s\r\n",buff);
+
+	// printf("Entering while...\r\n");
 	while(buff[i] != '\0'){
+		// printf("CHAR: [%c]\r\n",buff[i]);
 		if(buff[i] == ' '){ //wait 3 beats
+			// printf("SPACE\r\n");
 			waitBeats(3);
 		} 
 		else if (buff[i] == '/'){
+			// printf("SLASH\r\n");
 			waitBeats(1);
 		}
 		else if (buff[i] == '.'){
+			// printf("dit\r\n");
 			outputDit();
+
+			if(buff[i+1] == '.' || buff[i+1] == '-'){				
+				waitBeats(1);
+			}
 		}
 		else if (buff[i] == '-'){
+			// printf("dah\r\n");
 			outputDah();
+			if(buff[i+1] == '.' || buff[i+1] == '-'){				
+				waitBeats(1);
+			}
 		}
 
 		i++;
 	}
-
+	return 0;
 }
 
 void outputDit(){
-	outputPulse(beatCounter/6); //Dit is 1/6 of beat
+	// printf("in output dit\r\n");
+	outputPulse(1); //Dit is 1/6 of beat
 }
 
 void outputDah(){
-	outputPulse(beatCounter/2);	//Dah is 1/2 of beat
+	outputPulse(3);	//Dah is 1/2 of beat
 }
 
 //Wait whole number of beats
 void waitBeats(int beats){
-	int i;
-	for(i = 0; i < beats*beatCounter; i++);
+	int timestamp;
+	//INSERT DELAY
+	timestamp = tenthsCounter;
+	while(tenthsCounter-timestamp < beatCounter*beats);
 }
 
 //Output pulse of length cycles to P1.1
-void outputPulse(int length){
-	int i;
-	P1 &= 0x02;
-	for (i = 0; i < length; i++);
-	P1 |= ~0x02;
+void outputPulse(int beats){
+	int timestamp;
+	char SFRPAGE_SAVE;
+
+	// printf("in output pulse\r\n");	
+
+    SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
+
+    // printf("Saved sfrpage");
+
+    SFRPAGE = CONFIG_PAGE;  //NEED TO CHANGE PAGE FOR P1
+
+    // CANNOT PRINT HERE
+    // printf("changed sfrpage");
+
+	P1 |= 0x01; //on
+	// printf("ON");
+
+	//INSERT DELAY
+	timestamp = tenthsCounter;
+	while(tenthsCounter-timestamp < beatCounter*beats);
+
+	P1 &= ~0x01; //off
+	// printf("OFF");
+
+	SFRPAGE = SFRPAGE_SAVE; //PAGE NOT CHANGING BACK TO ALLOW PRINTS
+	// printf("exiting output pulse\r\n");
 }

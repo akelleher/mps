@@ -11,7 +11,10 @@
 //
 // Target:              C8051F120
 // Tool Chain:          KEIL C51
-
+#include <stdio.h>              // Necessary for printf and NULL.
+#include <c8051f120.h>          // SFR declarations.
+#include <stdlib.h>
+#include <string.h>
 //------------------------------------------------------------------------------------
 // putchar()
 //------------------------------------------------------------------------------------
@@ -34,4 +37,22 @@ char getchar(void)
 // Echoing the get character back to the terminal is not normally part of getchar()
     putchar(c);    // echo to terminal
     return SBUF0;
+}
+
+void getString(char * buff, char len){
+	char tmp = ' ';
+	char * tmpPtr;
+	char counter = 0;
+	while(1){ //ENTER
+		if(counter == len - 1){
+			break;
+		}
+		tmp = getchar();
+		if(tmp == 13){ // ENTER
+			break;
+		}
+		buff[counter] = tmp;
+		counter++;
+	}
+	buff[counter] = '\0';
 }

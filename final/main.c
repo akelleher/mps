@@ -66,8 +66,7 @@ void main (void)
 //    unsigned int randnum = 0;
 //    unsigned int ones, tenths = 0;
 
-
-    char * str = "Hello World";
+    char str[30];
     char err;
 
 	char SFRPAGE_SAVE;
@@ -98,29 +97,18 @@ void main (void)
     EX0     = 1;                // Enable Ext Int 0 only after everything is settled.
 	SFRPAGE = SFRPAGE_SAVE; 	//Restore SFR Page
 
-    err = stringToMorse(str, buff);
-    if(err == 0){
-        printf("String to morse success:\r\n");
-        printf("%s\r\n",str);
-        printf("%s\r\n",buff);
-    }
-    else{
-        printf("String to morse failed.\r\n");
-    }
+
 
 
 	while (1)                   
     {	
-        if(tenths_count >= 10){
-            tenths_count = 0;
-            seconds_count++;
-        }
-        //if(lastTenths!=tenths_count){
+        getString(str, 30);
+        printf("Got string: %s\r\n",str);
 
-            printf("\r%d.%d -- %d",seconds_count, tenths_count, counter);
-      //  }
-		
-     //   lastTenths = tenths_count;
+        err = outputMessage(str, buff);
+        if(err){
+            printf("String to morse failed.\r\n");
+        }
     }
 }
 
@@ -175,6 +163,7 @@ void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s h
 	counter++;
     if(counter >= 300){
         tenths_count++;
+        tenthsCounter++;
         counter=0;
     }
 }
@@ -204,6 +193,9 @@ void PORT_INIT(void)
             // P0.1 (RX0) is configure as Open-Drain input.
             // P0.2 (SW2 through jumper wire) is configured as Open_Drain for input.
     P0      = 0x06;             // Additionally, set P0.0=0, P0.1=1, and P0.2=1.
+
+    P1MDOUT |= 0x01;             // P1.0 LED output
+    P1 &= 0xFE;                  // P1.0 off
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.
 }
