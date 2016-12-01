@@ -48,13 +48,15 @@ void TIMER_INIT(void);
 static char __xdata buff[2048];
 static char __xdata buff2[2048];
 
-
+unsigned int msCounter = 0;
 int counter = 0;
 int tenths_count = 0;
 int seconds_count = 0;
 
 void SW2_ISR (void) __interrupt 0;
 void TIMER0_ISR (void) __interrupt 1;
+
+void delay(unsigned int);
 //-------------------------------------------------------------------------------------------
 // MAIN Routine
 //-------------------------------------------------------------------------------------------
@@ -68,8 +70,11 @@ void main (void)
 
     char str[30];
     char err;
+    char mode;
 
 	char SFRPAGE_SAVE;
+    char state = 1;
+    char prevState = 1;
 
     SFRPAGE = CONFIG_PAGE;
 
@@ -102,12 +107,35 @@ void main (void)
 
 	while (1)                   
     {	
-        getString(str, 30);
-        printf("Got string: %s\r\n",str);
+        printf("Select mode (1: ASCII to Morse, 2: Morse to ASCII): ");
+        mode = getchar();
+        printf("\r\n");
 
-        err = outputMessage(str, buff);
-        if(err){
-            printf("String to morse failed.\r\n");
+        if(mode == '1'){
+            getString(str, 30);
+            printf("Got string: %s\r\n",str);
+
+            err = outputMessage(str, buff);
+            if(err){
+                printf("String to morse failed.\r\n");
+            }
+        }
+        else if(mode == '2'){
+            printf("go ahead!\r\n");
+            while(1){
+                state = (P1 & 0x02) > 1;
+                if(state != prevState){ // state change
+                    //debounce
+                    delay(10);
+                    prevState = state;
+                    if(state == 1){
+                        printf("LOW TO HI\r\n");
+                    }
+                    else if(state == 0){
+                        printf("HI TO LOW\r\n");  
+                    }
+                }
+            }
         }
     }
 }
@@ -158,9 +186,17 @@ void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address
 	//printf("/INT0 has been grounded here!\n\n\r");
 }
 
+void delay(unsigned int delay){
+    unsigned int stopCounter = msCounter+delay;
+    while (stopCounter != msCounter); // != instead of > because of overflow every 65s
+}
+
 void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s has elapsed
 {
 	counter++;
+    if(counter%3 == 0){
+        msCounter++;
+    }
     if(counter >= 300){
         tenths_count++;
         tenthsCounter++;
