@@ -46,7 +46,7 @@ void TIMER_INIT(void);
 
 // xdata has 8096 bytes total, stored internally
 static char __xdata buff[2048];
-static char __xdata buff2[2048];
+static unsigned int __xdata buff2[1024];
 
 unsigned int msCounter = 0;
 int counter = 0;
@@ -71,10 +71,14 @@ void main (void)
     char str[30];
     char err;
     char mode;
+    char i = 0;
 
 	char SFRPAGE_SAVE;
     char state = 1;
     char prevState = 1;
+    unsigned int timeStamp;
+
+    int edgeCounter = -1;
 
     SFRPAGE = CONFIG_PAGE;
 
@@ -122,19 +126,39 @@ void main (void)
         }
         else if(mode == '2'){
             printf("go ahead!\r\n");
+
             while(1){
-                state = (P1 & 0x02) > 1;
+                state = (P1 & 0x02) >> 1;
                 if(state != prevState){ // state change
+                    timeStamp = msCounter;
+                    msCounter = 0;
                     //debounce
-                    delay(10);
-                    prevState = state;
+                    delay(1);
                     if(state == 1){
-                        printf("LOW TO HI\r\n");
+                        //printf("LOW TO HI\r\n");
                     }
                     else if(state == 0){
-                        printf("HI TO LOW\r\n");  
+                        //printf("HI TO LOW\r\n");
+                        if(edgeCounter == -1){ //first interaction
+                            edgeCounter++;
+                            prevState = state;
+                            // printf("FIRST EDGE\r\n");
+                            continue;
+                        }  
+                    }
+                    buff2[edgeCounter] = timeStamp;
+                    // printf("buff2[%d] = %ums\r\n",edgeCounter,timeStamp);
+                    edgeCounter++;
+                    prevState = state;
+
+                    if(edgeCounter == 10){
+                        break;
                     }
                 }
+            }
+
+            for(i = 0; i < 10; i++){
+                printf("buff2[%d] = %ums\r\n",i,buff2[i]);
             }
         }
     }
@@ -194,8 +218,9 @@ void delay(unsigned int delay){
 void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s has elapsed
 {
 	counter++;
-    if(counter%3 == 0){
+    if(counter%30 == 0){
         msCounter++;
+        // printf("%u\r\n",msCounter);
     }
     if(counter >= 300){
         tenths_count++;
