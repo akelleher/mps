@@ -1,13 +1,11 @@
 //------------------------------------------------------------------------------------
-// lab5_part1.c
+// lab6.c
 //------------------------------------------------------------------------------------
 //8051 Test program to demonstrate serial port I/O.  This program writes a message on
 //the console using the printf() function, and reads characters using the getchar()
 //function.  An ANSI escape sequence is used to clear the screen if a '2' is typed. 
 //A '1' repeats the message and the program responds to other input characters with
 //an appropriate message.
-//
-//Any valid keystroke turns on the green LED on the board; invalid entries turn it off
 //------------------------------------------------------------------------------------
 // Includes
 //------------------------------------------------------------------------------------
@@ -43,7 +41,6 @@ void randTrueFalse(void);
 void randDayOfWeek(void);
 void randNumber(void);
 int getNumber(void);
-void printfAndLCD(char *);
 void printLCD(char *);
 char* itoa(int, char* , int );
 void KeypadVector(void) __interrupt 0;
@@ -79,29 +76,6 @@ void main(void)
     printf("Hello World!\r\n");
     keypad_init();
 
-    // while(1){
-    //     printf("Magic 8 Ball. Make a choice.\r\n\t1: Yes/No\r\n\t2: True/False\r\n\t3: Day of the week\r\n\t4: Random Number\r\n");
-    //     choice = getchar() - 48;
-    //     switch(choice){
-    //         case 1: //  Yes/no
-    //             randYesNo();
-    //             break;
-    //         case 2: //  True/false
-    //             randTrueFalse();
-    //             break;
-    //         case 3: //  Day of the week
-    //             randDayOfWeek();
-    //             break;
-    //         case 4: //  Radndom number
-    //             randNumber();
-    //             break;
-    //         default:
-    //             printf("Not a valid choice - try again\r\n");
-    //             break;
-        
-    //     }
-
-    // }
     while(1){
         printf("Magic 8 Ball. Make a choice.\r\n\t1: Yes/No\r\n\t2: True/False\r\n\t3: Day of the week\r\n\t4: Random Number\r\n");
         while(keypadInterrupt == '?'){
@@ -246,6 +220,8 @@ void randDayOfWeek(void){
     printLCD(daysOfWeek[index]);
     return;
 }
+
+//print randum number between lower and upper
 void randNumber(void){
     int lower;
     int upper;
@@ -275,7 +251,7 @@ void randNumber(void){
     
 }
 
-
+// Input a number from keypad
 int getNumber(void){
     int input_value = 0;
     char char_in;
@@ -302,13 +278,6 @@ int getNumber(void){
     }
 }
 
-
-//TODO
-void printfAndLCD(char *str){
-    return;
-}
-
-
 void printLCD(char * str){
     unsigned int i, j;
     char spaceCount = 0;
@@ -322,28 +291,14 @@ void printLCD(char * str){
     for(i=0; i<200; i++)// long pause for display 
         for(j=0; j<50000; j++);
 
-    //lcd_clear(); 
-    // lcd_home();
-
     lcd_puts(str);
 
     for(i=0; i<200; i++)// long pause for display 
         for(j=0; j<50000; j++);
-
-    // while (str[counter] != '\0'){
-    //     lcd_dat(str[counter]);
-    //     for(i=0; i<15; i++) // brief pause for display
-    //         for(j=0; j<50000; j++);
-    //     counter++;
-    // }
-
-    // for(spaceCount = counter; spaceCount < 16; spaceCount++){
-    //     lcd_dat(' ');
-    //     for(i=0; i<15; i++) // brief pause for display
-    //         for(j=0; j<50000; j++);
-    // }
 }
 
+
+//int to string conversion, source: http://www.strudel.org.uk/itoa/
 char* itoa(int value, char* result, int base) {
     char* ptr = result, *ptr1 = result, tmp_char;
     int tmp_value;
@@ -353,6 +308,7 @@ char* itoa(int value, char* result, int base) {
     do {
         tmp_value = value;
         value /= base;
+        //select the correct char fom a constant string
         *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz" [35 + (tmp_value - value * base)];
     } while ( value );
 
@@ -370,7 +326,7 @@ char* itoa(int value, char* result, int base) {
 void keypad_init(void){
     char SFRPAGE_SAVE;
 
-    SFRPAGE_SAVE = SFRPAGE;             // Save Current SFR page
+    SFRPAGE_SAVE = SFRPAGE;  // Save Current SFR page
 
     printf("Wrote zeros\r\n");
 
@@ -394,9 +350,6 @@ void KeypadVector(void) __interrupt 0{
     char asciichar = '?';
     char portvalue;
     char keyvalue;
-
-    //printf("INTERRUPT INTERRUPT INTERRUPT!\r\n");
-    
 
     for(i = 0; i<10000; i++);  //wait for outputs to stabilize
     for(i = 0; i<10000; i++);  //wait for outputs to stabilize
@@ -495,10 +448,6 @@ void KeypadVector(void) __interrupt 0{
         keypadCleanup(asciichar);
         return;
     }
-
-
-
-
 }
 
 void keypadCleanup(char asciichar){
