@@ -21,7 +21,7 @@ void outputDit();
 void outputDah();
 void waitBeats(int beats);
 void outputPulse(int length);
-
+char parseLetter(char * buff3);
 
 
 void MORSE_INIT() {
@@ -84,6 +84,33 @@ char* charToMorse(char c){
     else { // not a proper character
     	return NULL;
     }
+}
+
+char parseLetter(char * buff3){
+	char i = 0;
+	char j = 0;
+	char successFlag = 1;
+	for(i = 0; i < 36; i++){
+		successFlag = 1;
+
+		while(buff3[j]!='\0'){
+			if(buff3[j] != morse[i][j]){
+				successFlag = 0;
+				break;
+			}
+			j++;
+		}
+
+		if(successFlag){
+			if(i < 26){ //letter
+				return 'A' + i;
+			} else{ //number
+				return '0' + (i-26);
+			}
+		}
+	}
+
+	return '\0';
 }
 
 //returns error code 
@@ -197,14 +224,16 @@ void outputPulse(int beats){
     // CANNOT PRINT HERE
     // printf("changed sfrpage");
 
-	P1 |= 0x01; //on
+    P1 |= 0x01; //laser on
+    P1 |= 0x08; //buzzer on
 	// printf("ON");
 
 	//INSERT DELAY
 	timestamp = tenthsCounter;
 	while(tenthsCounter-timestamp < beatCounter*beats);
 
-	P1 &= ~0x01; //off
+    P1 &= 0xFE; //laser off
+    P1 &= 0xF7; //buzzer off
 	// printf("OFF");
 
 	SFRPAGE = SFRPAGE_SAVE; //PAGE NOT CHANGING BACK TO ALLOW PRINTS

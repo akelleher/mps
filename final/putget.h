@@ -41,7 +41,6 @@ char getchar(void)
 
 void getString(char * buff, char len){
 	char tmp = ' ';
-	char * tmpPtr;
 	char counter = 0;
 	while(1){ //ENTER
 		if(counter == len - 1){

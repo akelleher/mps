@@ -42,21 +42,24 @@ void PORT_INIT(void);
 void SYSCLK_INIT(void);
 void UART0_INIT(void);
 void TIMER_INIT(void);
+void delayCs(unsigned int);
+void delayMs(unsigned int);
 
 
 // xdata has 8096 bytes total, stored internally
 static char __xdata buff[2048];
 static unsigned int __xdata buff2[1024];
+static char __xdata buff3[8];
 
 unsigned int msCounter = 0;
+unsigned int csCounter = 0;
 int counter = 0;
 int tenths_count = 0;
 int seconds_count = 0;
+char bitCounter = 0;
 
 void SW2_ISR (void) __interrupt 0;
 void TIMER0_ISR (void) __interrupt 1;
-
-void delay(unsigned int);
 //-------------------------------------------------------------------------------------------
 // MAIN Routine
 //-------------------------------------------------------------------------------------------
@@ -72,11 +75,15 @@ void main (void)
     char err;
     char mode;
     char i = 0;
+    char letter;
+
 
 	char SFRPAGE_SAVE;
     char state = 1;
     char prevState = 1;
     unsigned int timeStamp;
+
+    unsigned int unitTime = 100; // in centiseconds
 
     int edgeCounter = -1;
 
@@ -111,7 +118,7 @@ void main (void)
 
 	while (1)                   
     {	
-        printf("Select mode (1: ASCII to Morse, 2: Morse to ASCII): ");
+        printf("Select mode (1: ASCII to Morse, 2: Morse to ASCII, 3: button to laser): ");
         mode = getchar();
         printf("\r\n");
 
@@ -128,37 +135,78 @@ void main (void)
             printf("go ahead!\r\n");
 
             while(1){
+
+                //STATE IS DOING WEIRD THINGS
+                //MAYBE NEED LONGER DEBOUNCE???
+
                 state = (P1 & 0x02) >> 1;
                 if(state != prevState){ // state change
-                    timeStamp = msCounter;
-                    msCounter = 0;
+                    // printf("FIRST STATE CHANGE, state");
+                    timeStamp = csCounter;
+                    csCounter = 0;
                     //debounce
-                    delay(1);
-                    if(state == 1){
-                        //printf("LOW TO HI\r\n");
+                    delayCs(1);
+                    if(state == 1){  //NOT PRESSED
+                        // printf("NOT PRESSED\r\n");
+                        if(timeStamp < 2*unitTime){ //bit space
+                        } else if(timeStamp > 2*unitTime && timeStamp < 5*unitTime){ //letter space
+                            buff3[bitCounter] = '\0';
+                            letter = parseLetter(buff3);
+                            if(letter == '\0'){
+                                printf("? ");
+                            }
+                            printf("%c ",letter);
+                            bitCounter = 0;
+                        } else{ //word space
+                            printf("    ");
+                            parseLetter(buff3);
+                            bitCounter = 0;
+                        }
                     }
-                    else if(state == 0){
-                        //printf("HI TO LOW\r\n");
+                    else if(state == 0){ //PRESSED
+                        // printf("PRESSED\r\n");
                         if(edgeCounter == -1){ //first interaction
+                            // printf("FIRST INT\r\n");
                             edgeCounter++;
                             prevState = state;
                             // printf("FIRST EDGE\r\n");
                             continue;
-                        }  
+                        }
+
+                        //printf("HI TO LOW\r\n");
+                        if(timeStamp < 2*unitTime){ //dit
+                            printf(".");
+                            buff3[bitCounter] = '.';
+                        } else{ //dah
+                            printf("-");
+                            buff3[bitCounter] = '-';
+                        }
+                        bitCounter++;
+                        // if(bitCounter == 5){ //just entered 5th letter..
+
+                        // }
                     }
                     buff2[edgeCounter] = timeStamp;
                     // printf("buff2[%d] = %ums\r\n",edgeCounter,timeStamp);
                     edgeCounter++;
                     prevState = state;
-
-                    if(edgeCounter == 10){
-                        break;
-                    }
                 }
             }
 
             for(i = 0; i < 10; i++){
-                printf("buff2[%d] = %ums\r\n",i,buff2[i]);
+                printf("buff2[%d] = %u0ms\r\n",i,buff2[i]);
+            }
+        }
+        else if(mode == '3'){
+            while(1){
+                state = (P1 & 0x02) >> 1;
+                if(state == 1){
+                    P1 &= 0xFE; //laser off
+                    P1 &= 0xF7; //buzzer off
+                } else if(state == 0){
+                    P1 |= 0x01; //laser on
+                    P1 |= 0x08; //buzzer on
+                }
             }
         }
     }
@@ -210,16 +258,25 @@ void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address
 	//printf("/INT0 has been grounded here!\n\n\r");
 }
 
-void delay(unsigned int delay){
+void delayMs(unsigned int delay){
     unsigned int stopCounter = msCounter+delay;
     while (stopCounter != msCounter); // != instead of > because of overflow every 65s
+}
+
+void delayCs(unsigned int delay){
+    unsigned int stopCounter = csCounter+delay;
+    while (stopCounter != csCounter); // != instead of > because of overflow every 65s
 }
 
 void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s has elapsed
 {
 	counter++;
+    // if(counter%3 == 0){
+    //     msCounter++;
+    // }
     if(counter%30 == 0){
-        msCounter++;
+        csCounter++;
+        // msCounter++;
         // printf("%u\r\n",msCounter);
     }
     if(counter >= 300){
@@ -255,8 +312,8 @@ void PORT_INIT(void)
             // P0.2 (SW2 through jumper wire) is configured as Open_Drain for input.
     P0      = 0x06;             // Additionally, set P0.0=0, P0.1=1, and P0.2=1.
 
-    P1MDOUT |= 0x01;             // P1.0 LED output
-    P1 &= 0xFE;                  // P1.0 off
+    P1MDOUT |= 0x09;             // P1.0 LED output
+    P1 &= 0xF6;                  // P1.0 off
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.
 }
