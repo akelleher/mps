@@ -52,7 +52,6 @@ static unsigned int __xdata buff2[1024];
 static char __xdata buff3[8];
 
 unsigned int msCounter = 0;
-unsigned int csCounter = 0;
 int counter = 0;
 int tenths_count = 0;
 int seconds_count = 0;
@@ -83,7 +82,6 @@ void main (void)
     char prevState = 1;
     unsigned int timeStamp;
 
-    unsigned int unitTime = 100; // in centiseconds
 
     int edgeCounter = -1;
 
@@ -281,7 +279,6 @@ void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s h
     }
     if(counter >= 300){
         tenths_count++;
-        tenthsCounter++;
         counter=0;
     }
 }

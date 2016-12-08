@@ -9,9 +9,10 @@ static const char * __xdata morse[36];
 // that is then removed from the stack upon frame exit (causing memory error)
 static const char * __xdata slash = "/";
 
-int beatCounter = 1; //tenth second counter
+unsigned int unitTime = 100; // in centiseconds
 
-int tenthsCounter = 0;
+unsigned int csCounter = 0;
+
 
 void MORSE_INIT() ;
 char* charToMorse(char c);
@@ -204,8 +205,8 @@ void outputDah(){
 void waitBeats(int beats){
 	int timestamp;
 	//INSERT DELAY
-	timestamp = tenthsCounter;
-	while(tenthsCounter-timestamp < beatCounter*beats);
+	timestamp = csCounter;
+	while(csCounter-timestamp < unitTime*beats);
 }
 
 //Output pulse of length cycles to P1.1
@@ -229,8 +230,8 @@ void outputPulse(int beats){
 	// printf("ON");
 
 	//INSERT DELAY
-	timestamp = tenthsCounter;
-	while(tenthsCounter-timestamp < beatCounter*beats);
+	timestamp = csCounter;
+	while(csCounter-timestamp < unitTime*beats);
 
     P1 &= 0xFE; //laser off
     P1 &= 0xF7; //buzzer off
