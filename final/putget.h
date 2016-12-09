@@ -55,3 +55,26 @@ void getString(char * buff, char len){
 	}
 	buff[counter] = '\0';
 }
+
+//------------------------------------------------------------------------------------
+// getcharnohang() - do not suspend execution (UART0)
+//------------------------------------------------------------------------------------
+char getcharnohang(void)
+{
+
+    char c;
+    char SFRPAGE_SAVE;
+    SFRPAGE_SAVE = SFRPAGE;
+    SFRPAGE = UART0_PAGE;
+
+    if(RI0){
+        RI0 =0;
+        c = SBUF0;
+        // Echoing the get character back to the terminal is not normally part of getchar()
+        putchar(c);    // echo to terminal
+        SFRPAGE = SFRPAGE_SAVE;
+        return c;
+	}
+    SFRPAGE = SFRPAGE_SAVE;
+	return '\0';
+}

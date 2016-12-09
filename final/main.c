@@ -196,6 +196,7 @@ void main (void)
             }
         }
         else if(mode == '3'){
+			printf("Press any key to exit\n");
             while(1){
                 state = (P1 & 0x02) >> 1;
                 if(state == 1){
@@ -205,6 +206,9 @@ void main (void)
                     P1 |= 0x01; //laser on
                     P1 |= 0x08; //buzzer on
                 }
+				if(getcharnohang()){
+					break;
+				}
             }
         }
     }
