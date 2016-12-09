@@ -52,6 +52,7 @@ static unsigned int __xdata buff2[1024];
 static char __xdata buff3[8];
 
 unsigned int msCounter = 0;
+char inputPin;
 int counter = 0;
 int tenths_count = 0;
 int seconds_count = 0;
@@ -131,13 +132,14 @@ void main (void)
         }
         else if(mode == '2'){
             printf("go ahead!\r\n");
-
+            inputPin = 0x10; //light sensor P0.4
+            //inputPin = 0x02; //switch 
             while(1){
 
                 //STATE IS DOING WEIRD THINGS
                 //MAYBE NEED LONGER DEBOUNCE???
 
-                state = (P1 & 0x02) >> 1;
+                state = (P1 & inputPin) >> 1;
                 if(state != prevState){ // state change
                     // printf("FIRST STATE CHANGE, state");
                     timeStamp = csCounter;
@@ -309,8 +311,8 @@ void PORT_INIT(void)
             // P0.2 (SW2 through jumper wire) is configured as Open_Drain for input.
     P0      = 0x06;             // Additionally, set P0.0=0, P0.1=1, and P0.2=1.
 
-    P1MDOUT |= 0x09;             // P1.0 LED output
-    P1 &= 0xF6;                  // P1.0 off
+    P1MDOUT |= 0x09;             // P1.0 LED output, P1.3 buzzer output, P1.4 sensor input
+    P1 &= 0xF6;                  // P1.0 and P1.3 off
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.
 }
