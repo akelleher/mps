@@ -151,16 +151,12 @@ void main (void)
                         } else if(timeStamp > 2*unitTime && timeStamp < 5*unitTime && !justPrintedSpace){ //letter space
                             buff3[bitCounter] = '\0';
                             letter = parseLetter(buff3);
-                            if(letter == '\0'){
-                                printf("? ");
-                            }
-                            printf("%c ",letter);
                             bitCounter = 0;
                             justPrintedSpace = 1;
                         } else{ //word space
 							if(!justPrintedSpace){
                                 printf("    ");
-                                parseLetter(buff3);
+                                letter = parseLetter(buff3);
                                 bitCounter = 0;
                                 justPrintedSpace = 1;
 							}
@@ -197,12 +193,13 @@ void main (void)
                     prevState = state;
                 }
 
-                if(csCounter > 7*unitTime && justPrintedSpace == 0 && state == 0){ //Too long for a character - must be a word
+                if(csCounter > 7*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
                     buff3[bitCounter] = '\0';
-                    parseLetter(buff3);
+                    letter = parseLetter(buff3);
                     bitCounter = 0;
                     justPrintedSpace = 1;
-					printf("timeout\r\n");
+
+					//printf("timeout\r\n");
                 }
 
 
