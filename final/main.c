@@ -117,7 +117,7 @@ void main (void)
 
 	while (1)                   
     {	
-        printf("Select mode (1: ASCII to Morse, 2: Morse to ASCII, 3: button to laser): ");
+        printf("Select mode \r\n\t1: ASCII to Morse\r\n\t2: Morse to ASCII \r\n\t3: button to laser\r\n\t4: Chatroom \r\n");
         mode = getchar();
         printf("\r\n");
 
@@ -224,6 +224,93 @@ void main (void)
 					break;
 				}
             }
+        }
+        else if(mode == '4'){   //Chatroom
+            while(1){
+
+                printf("Enter message:\n\r");
+                getString(str, 30);
+                printf("Sending: %s\r\n",str);
+
+                err = outputMessage(str, buff);
+                if(err){
+                    printf("String to morse failed.\r\n");
+                }
+            
+
+                while(1){
+                    state = (P1 & 0x02) >> 1;
+                    if(state != prevState){ // state change
+                        // printf("FIRST STATE CHANGE, state");
+                        timeStamp = csCounter;
+                        csCounter = 0;
+                        //debounce
+                        delayCs(1);
+                        if(state == 0){  //NOT PRESSED
+                             //printf("NOT PRESSED\r\n");
+                            if(timeStamp < 2*unitTime){ //bit space
+                            } else if(timeStamp > 2*unitTime && timeStamp < 5*unitTime && !justPrintedSpace){ //letter space
+                                buff3[bitCounter] = '\0';
+                                letter = parseLetter(buff3);
+                                bitCounter = 0;
+                                justPrintedSpace = 1;
+                            } else{ //word space
+                                if(!justPrintedSpace){
+                                    printf("    ");
+                                    letter = parseLetter(buff3);
+                                    bitCounter = 0;
+                                    justPrintedSpace = 1;
+                                }
+                            }
+                        }
+                        else if(state == 1){ //PRESSED
+                             //printf("PRESSED\r\n");
+                            if(edgeCounter == -1){ //first interaction
+                                // printf("FIRST INT\r\n");
+                                edgeCounter++;
+                                prevState = state;
+                                // printf("FIRST EDGE\r\n");
+                                continue;
+                            }
+
+                            //printf("HI TO LOW\r\n");
+                            if(timeStamp < 2*unitTime){ //dit
+                                //printf(".");
+                                buff3[bitCounter] = '.';
+                                justPrintedSpace = 0;
+                            } else{ //dah
+                                //printf("-");
+                                buff3[bitCounter] = '-';
+                                justPrintedSpace = 0;
+                            }
+                            bitCounter++;
+                            // if(bitCounter == 5){ //just entered 5th letter..
+
+                            // }
+                        }
+                        buff2[edgeCounter] = timeStamp;
+                        // printf("buff2[%d] = %ums\r\n",edgeCounter,timeStamp);
+                        edgeCounter++;
+                        prevState = state;
+                    }
+
+                    if(csCounter > 10*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
+                        buff3[bitCounter] = '\0';
+                        letter = parseLetter(buff3);
+                        bitCounter = 0;
+                        justPrintedSpace = 1;
+                        break;
+
+                    }
+                }
+            }
+
+
+
+
+
+
+
         }
     }
 }
