@@ -91,11 +91,16 @@ char parseLetter(char * buff3){
 	char i = 0;
 	char j = 0;
 	char successFlag = 1;
+
+	printf("Parsing: %s\n\r", buff3);
 	for(i = 0; i < 36; i++){
 		successFlag = 1;
+		j = 0;
 
 		while(buff3[j]!='\0'){
-			if(buff3[j] != morse[i][j]){
+			printf("Try: %s  ", morse[i]);
+			if(buff3[j] != morse[i][j] || morse[i][j] == '\0'){
+				printf("Break on %s 	", morse[i]);
 				successFlag = 0;
 				break;
 			}
@@ -104,13 +109,15 @@ char parseLetter(char * buff3){
 
 		if(successFlag){
 			if(i < 26){ //letter
+				printf("Return value: %s\r\n",'A' + i );
 				return 'A' + i;
 			} else{ //number
+				printf("Return value: %s\r\n", '0' + (i-26));
 				return '0' + (i-26);
 			}
 		}
 	}
-
+	printf("No return value\r\n");
 	return '\0';
 }
 

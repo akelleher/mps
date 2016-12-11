@@ -82,6 +82,7 @@ void main (void)
     char prevState = 1;
     unsigned int timeStamp;
 
+    char justPrintedSpace = 1;
 
     int edgeCounter = -1;
 
@@ -144,8 +145,8 @@ void main (void)
                     csCounter = 0;
                     //debounce
                     delayCs(1);
-                    if(state == 1){  //NOT PRESSED
-                        // printf("NOT PRESSED\r\n");
+                    if(state == 0){  //NOT PRESSED
+                         //printf("NOT PRESSED\r\n");
                         if(timeStamp < 2*unitTime){ //bit space
                         } else if(timeStamp > 2*unitTime && timeStamp < 5*unitTime){ //letter space
                             buff3[bitCounter] = '\0';
@@ -155,14 +156,16 @@ void main (void)
                             }
                             printf("%c ",letter);
                             bitCounter = 0;
+                            justPrintedSpace = 1;
                         } else{ //word space
                             printf("    ");
                             parseLetter(buff3);
                             bitCounter = 0;
+                            justPrintedSpace = 1;
                         }
                     }
-                    else if(state == 0){ //PRESSED
-                        // printf("PRESSED\r\n");
+                    else if(state == 1){ //PRESSED
+                         //printf("PRESSED\r\n");
                         if(edgeCounter == -1){ //first interaction
                             // printf("FIRST INT\r\n");
                             edgeCounter++;
@@ -175,9 +178,11 @@ void main (void)
                         if(timeStamp < 2*unitTime){ //dit
                             printf(".");
                             buff3[bitCounter] = '.';
+                            justPrintedSpace = 0;
                         } else{ //dah
                             printf("-");
                             buff3[bitCounter] = '-';
+                            justPrintedSpace = 0;
                         }
                         bitCounter++;
                         // if(bitCounter == 5){ //just entered 5th letter..
@@ -189,6 +194,14 @@ void main (void)
                     edgeCounter++;
                     prevState = state;
                 }
+
+                if(csCounter > 7*unitTime && justPrintedSpace == 0){ //Too long for a character - must be a word
+                    parseLetter(buff3);
+                    bitCounter = 0;
+                    justPrintedSpace = 1;
+                }
+
+
             }
 
             for(i = 0; i < 10; i++){
