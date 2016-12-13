@@ -250,6 +250,7 @@ void main (void)
                         justPrintedSpace = 1;
                     }
                     if(csCounter >= 10*unitTime && state){ // Done receiving
+                        edgeCounter = -1;
                         break;
                     }
                 }
