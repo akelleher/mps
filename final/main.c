@@ -254,7 +254,6 @@ void main (void)
                         bitCounter = 0;
                     }
                     if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state && edgeCounter != -1){ //Too long for a character - must be a word
-                        buff3[bitCounter] = '\0';
                         printf(" ");
                         justPrintedSpace = 1;
                     }
