@@ -339,7 +339,7 @@ void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s h
     // if(counter%3 == 0){
     //     msCounter++;
     // }
-    if(counter%3 == 0){
+    if(counter%30 == 0){
         csCounter++;
         counter = 0;
         // msCounter++;
