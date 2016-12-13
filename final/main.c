@@ -195,12 +195,16 @@ void main (void)
             }
         }
         else if(mode == '4'){   //Chatroom
+            // inputPin = 0x04; //push button P1.2
+            inputPin = 0x02; //light sensor P1.1 
             while(1){
-
                 edgeCounter = -1;
                 printf("Enter message:\n\r");
                 getString(str, 30);
                 printf("Sending: %s\r\n",str);
+
+                //set prevState to what the first state will be
+                prevState = inputPin;
 
                 err = outputMessage(str, buff);
                 if(err){
@@ -209,16 +213,20 @@ void main (void)
             
 
                 while(1){
-                    // inputPin = 0x04; //push button P1.2
-                    inputPin = 0x02; //light sensor P1.1 
 
                     state = P1 & inputPin;
+
+
+                    // printf("b4 if state: %d\r\n",state);
+                    // printf("b4 if prevState: %d\r\n",state);
+
                     if(state != prevState){ // state change
                         timeStamp = csCounter;
                         csCounter = 0;
                         //debounce
                         delayCs(1);
                          if(state){ //falling edge
+                            // printf("SIGNAL\r\n");
                             if(edgeCounter == -1){ //first interaction
                                 edgeCounter++;
                                 prevState = state;
@@ -240,17 +248,17 @@ void main (void)
                         edgeCounter++;
                         prevState = state;
                     }
-                    if(csCounter >= 3*unitTime && state){   //  Letter space
+                    if(csCounter >= 3*unitTime && state && edgeCounter != -1){   //  Letter space
                         buff3[bitCounter] = '\0';
                         letter = parseLetter(buff3);
                         bitCounter = 0;
                     }
-                    if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state){ //Too long for a character - must be a word
+                    if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state && edgeCounter != -1){ //Too long for a character - must be a word
                         buff3[bitCounter] = '\0';
                         printf(" ");
                         justPrintedSpace = 1;
                     }
-                    if(csCounter >= 10*unitTime && state){ // Done receiving
+                    if(csCounter >= 10*unitTime && state && edgeCounter != -1){ // Done receiving
                         break;
                     }
                 }
