@@ -49,7 +49,7 @@ char __xdata morse7[] = "--...";      // 7
 char __xdata morse8[] = "---..";      // 8
 char __xdata morse9[] = "----.";      // 9
 
-unsigned int __xdata unitTime = 20; // in centiseconds
+unsigned int __xdata unitTime = 5; // in centiseconds
 
 unsigned int csCounter = 0;
 
