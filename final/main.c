@@ -357,7 +357,7 @@ void PORT_INIT(void)
             // P0.2 (SW2 through jumper wire) is configured as Open_Drain for input.
     P0      = 0x06;             // Additionally, set P0.0=0, P0.1=1, and P0.2=1.
 
-    P1MDOUT |= 0x09;             // P1.0 LED output, P1.3 buzzer output, P1.4 sensor input
+    P1MDOUT |= 0x09;             // P1.0 LED output, P1.3 buzzer output, P1.1 sensor input, P1.4 push button
     P1 &= 0xF6;                  // P1.0 and P1.3 off
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.
