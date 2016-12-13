@@ -249,6 +249,9 @@ void main (void)
                         printf(" ");
                         justPrintedSpace = 1;
                     }
+                    if(csCounter >= 10*unitTime && state){ // Done receiving
+                        break;
+                    }
                 }
             }
         }
