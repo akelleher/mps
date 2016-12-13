@@ -259,7 +259,7 @@ void main (void)
                         justPrintedSpace = 1;
                     }
                     if(csCounter >= 10*unitTime && state && edgeCounter != -1){ // Done receiving
-                        printf("\r\n")
+                        printf("\r\n");
                         break;
                     }
                 }
