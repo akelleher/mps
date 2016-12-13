@@ -227,11 +227,11 @@ void main (void)
                                 }
 
                                 if(timeStamp < 2*unitTime){ //  dit
-                                    printf(".");
+                                    // printf(".");
                                     buff3[bitCounter] = '.';
                                     justPrintedSpace = 0;
                                 } else{                     //  dah
-                                    printf("-");
+                                    // printf("-");
                                     buff3[bitCounter] = '-';
                                     justPrintedSpace = 0;
                                 }
