@@ -208,49 +208,48 @@ void main (void)
                 }
             
 
-                inputPin = 0x02; //switch P1.1 
                 while(1){
-                    state = (P1 & inputPin) >> 1;
-                    if(state != prevState){ // state change
-                        timeStamp = csCounter;
-                        csCounter = 0;
-                        //debounce
-                        delayCs(1);
-                         if(state == 1){ //falling edge
-                            if(edgeCounter == -1){ //first interaction
-                                edgeCounter++;
-                                prevState = state;
-                                continue;
-                            }
+                    inputPin = 0x02; //switch P1.1 
+                    while(1){
+                        state = (P1 & inputPin) >> 1;
+                        if(state != prevState){ // state change
+                            timeStamp = csCounter;
+                            csCounter = 0;
+                            //debounce
+                            delayCs(1);
+                             if(state == 1){ //falling edge
+                                if(edgeCounter == -1){ //first interaction
+                                    edgeCounter++;
+                                    prevState = state;
+                                    continue;
+                                }
 
-                            if(timeStamp < 2*unitTime){ //  dit
-                                //printf(".");
-                                buff3[bitCounter] = '.';
-                                justPrintedSpace = 0;
-                            } else{                     //  dah
-                                //printf("-");
-                                buff3[bitCounter] = '-';
-                                justPrintedSpace = 0;
+                                if(timeStamp < 2*unitTime){ //  dit
+                                    printf(".");
+                                    buff3[bitCounter] = '.';
+                                    justPrintedSpace = 0;
+                                } else{                     //  dah
+                                    printf("-");
+                                    buff3[bitCounter] = '-';
+                                    justPrintedSpace = 0;
+                                }
+                                bitCounter++;
                             }
-                            bitCounter++;
+                            buff2[edgeCounter] = timeStamp;
+                            edgeCounter++;
+                            prevState = state;
                         }
-                        buff2[edgeCounter] = timeStamp;
-                        edgeCounter++;
-                        prevState = state;
-                    }
-
-                    if(csCounter >= 3*unitTime && state ==1){   //  Letter space
-                        buff3[bitCounter] = '\0';
-                        letter = parseLetter(buff3);
-                        bitCounter = 0;
-                    }
-                    if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
-                        buff3[bitCounter] = '\0';
-                        printf(" ");
-                        justPrintedSpace = 1;
-                    }
-                    if(csCounter >= 10*unitTime){
-                        break;
+                        
+                        if(csCounter >= 3*unitTime && state ==1){   //  Letter space
+                            buff3[bitCounter] = '\0';
+                            letter = parseLetter(buff3);
+                            bitCounter = 0;
+                        }
+                        if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
+                            buff3[bitCounter] = '\0';
+                            printf(" ");
+                            justPrintedSpace = 1;
+                        }
                     }
                 }
             }
@@ -358,7 +357,7 @@ void PORT_INIT(void)
             // P0.2 (SW2 through jumper wire) is configured as Open_Drain for input.
     P0      = 0x06;             // Additionally, set P0.0=0, P0.1=1, and P0.2=1.
 
-    P1MDOUT |= 0x09;             // P1.0 LED output, P1.3 buzzer output, P1.1 sensor input, P1.4 push button
+    P1MDOUT |= 0x09;             // P1.0 LED output, P1.3 buzzer output, P1.4 sensor input
     P1 &= 0xF6;                  // P1.0 and P1.3 off
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.

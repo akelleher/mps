@@ -176,20 +176,19 @@ char stringToMorse(char * str, char * buff){
         	tmpSize++;
         	j++;
         }
-
-        // printf("\t\ttmp si: %d buff ind: %d\r\n",tmpSize,buffIndex);
+        printf("\t\ttmp si: %d buff ind: %d\r\n",tmpSize,buffIndex);
 
         // buff[buffIndex] = '\0';
 
-        // printf("\tchar %c to morse %s\r\n",str[i],tmp);
 
+        printf("\tchar %c to morse %s\r\n",str[i],tmp);
     	// printf("converted %c to %s\r\n", str[i], tmp);
         if(tmp == NULL){
     		printf("return 1\r\n");
         	return 1;
         }
 
-        // printf("\tbuff before %s\r\n",buff);
+        printf("\tbuff before %s\r\n",buff);
 
         // //append to buffer
         // if(i == 0){
@@ -207,7 +206,7 @@ char stringToMorse(char * str, char * buff){
 
         buffIndex += tmpSize;
 
-        // printf("\tbuff after %s\r\n",buff);
+        printf("\tbuff after %s\r\n",buff);
 
         //add a space (if not last char)
         if(str[i+1] != '\0'){
@@ -223,7 +222,7 @@ char stringToMorse(char * str, char * buff){
         getchar();
     }
     buff[buffIndex] = '\0';
-    // printf("final buffer: %s\r\n",buff);
+    printf("final buffer: %s\r\n",buff);
     // printf("return 0\r\n");
     return 0;
 }
