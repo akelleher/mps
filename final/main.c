@@ -47,15 +47,13 @@ void delayMs(unsigned int);
 
 
 // xdata has 8096 bytes total, stored internally
-static char __xdata buff[2048];
+static char __xdata buff[1024];
 static unsigned int __xdata buff2[1024];
 static char __xdata buff3[8];
 
+char counter;
 unsigned int msCounter = 0;
 char inputPin;
-int counter = 0;
-int tenths_count = 0;
-int seconds_count = 0;
 char bitCounter = 0;
 
 void SW2_ISR (void) __interrupt 0;
@@ -363,10 +361,10 @@ void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address
 	//printf("/INT0 has been grounded here!\n\n\r");
 }
 
-void delayMs(unsigned int delay){
-    unsigned int stopCounter = msCounter+delay;
-    while (stopCounter != msCounter); // != instead of > because of overflow every 65s
-}
+// void delayMs(unsigned int delay){
+//     unsigned int stopCounter = msCounter+delay;
+//     while (stopCounter != msCounter); // != instead of > because of overflow every 65s
+// }
 
 void delayCs(unsigned int delay){
     unsigned int stopCounter = csCounter+delay;
@@ -381,13 +379,14 @@ void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s h
     // }
     if(counter%30 == 0){
         csCounter++;
+        counter = 0;
         // msCounter++;
         // printf("%u\r\n",msCounter);
     }
-    if(counter >= 300){
-        tenths_count++;
-        counter=0;
-    }
+    // if(counter >= 300){
+    //     tenths_count++;
+    //     counter=0;
+    // }
 }
 
 //-------------------------------------------------------------------------------------------

@@ -9,7 +9,47 @@ static const char * __xdata morse[36];
 // that is then removed from the stack upon frame exit (causing memory error)
 static const char * __xdata slash = "/";
 
-unsigned int unitTime = 20; // in centiseconds
+static const char * __xdata space = " ";
+
+
+char __xdata morseA[] = ".-";         // A
+char __xdata morseB[] = "-...";       // B
+char __xdata morseC[] = "-.-.";       // C
+char __xdata morseD[] = "-..";        // D
+char __xdata morseE[] = ".";          // E
+char __xdata morseF[] = "..-.";       // F
+char __xdata morseG[] = "--.";        // G
+char __xdata morseH[] = "....";       // H
+char __xdata morseI[] = "..";         // I
+char __xdata morseJ[] = ".---";       // J
+char __xdata morseK[] = "-.-";        // K
+char __xdata morseL[] = ".-..";       // L
+char __xdata morseM[] = "--";         // M
+char __xdata morseN[] = "-.";         // N
+char __xdata morseO[] = "---";        // O
+char __xdata morseP[] = ".--.";       // P
+char __xdata morseQ[] = "--.-";       // Q
+char __xdata morseR[] = ".-.";        // R
+char __xdata morseS[] = "...";        // S
+char __xdata morseT[] = "-";          // T
+char __xdata morseU[] = "..-";        // U
+char __xdata morseV[] = "...-";       // V
+char __xdata morseW[] = ".--";        // W
+char __xdata morseX[] = "-..-";       // X
+char __xdata morseY[] = "-.--";       // Y
+char __xdata morseZ[] = "--..";       // Z
+char __xdata morse0[] = "-----";      // 0
+char __xdata morse1[] = ".----";      // 1
+char __xdata morse2[] = "..---";      // 2
+char __xdata morse3[] = "...--";      // 3
+char __xdata morse4[] = "....-";      // 4
+char __xdata morse5[] = ".....";      // 5
+char __xdata morse6[] = "-....";      // 6
+char __xdata morse7[] = "--...";      // 7
+char __xdata morse8[] = "---..";      // 8
+char __xdata morse9[] = "----.";      // 9
+
+unsigned int __xdata unitTime = 20; // in centiseconds
 
 unsigned int csCounter = 0;
 
@@ -26,44 +66,43 @@ char parseLetter(char * buff3);
 
 
 void MORSE_INIT() {
-	morse[0]    = ".-";         // A
-	morse[1]    = "-...";       // B
-	morse[2]    = "-.-.";       // C
-	morse[3]    = "-..";        // D
-	morse[4]    = ".";          // E
-	morse[5]    = "..-.";       // F
-	morse[6]    = "--.";        // G
-	morse[7]    = "....";       // H
-	morse[8]    = "..";         // I
-	morse[9]    = ".---";       // J
-	morse[10]   = "-.-";        // K
-	morse[11]   = ".-..";       // L
-	morse[12]   = "--";         // M
-	morse[13]   = "-.";         // N
-	morse[14]   = "---";        // O
-	morse[15]   = ".--.";       // P
-	morse[16]   = "--.-";       // Q
-	morse[17]   = ".-.";        // R
-	morse[18]   = "...";        // S
-	morse[19]   = "-";          // T
-	morse[20]   = "..-";        // U
-	morse[21]   = "...-";       // V
-	morse[22]   = ".--";        // W
-	morse[23]   = "-..-";       // X
-	morse[24]   = "-.--";       // Y
-	morse[25]   = "--..";       // Z
-	morse[26]   = "-----";      // 0
-	morse[27]   = ".----";      // 1
-	morse[28]   = "..---";      // 2
-	morse[29]   = "...--";      // 3
-	morse[30]   = "....-";      // 4
-	morse[31]   = ".....";      // 5
-	morse[32]   = "-....";      // 6
-	morse[33]   = "--...";      // 7
-	morse[34]   = "---..";      // 8
-	morse[35]   = "----.";      // 9
+	morse[0]    = morseA;
+	morse[1]    = morseB;
+	morse[2]    = morseC;
+	morse[3]    = morseD;
+	morse[4]    = morseE;
+	morse[5]    = morseF;
+	morse[6]    = morseG;
+	morse[7]    = morseH;
+	morse[8]    = morseI;
+	morse[9]    = morseJ;
+	morse[10]   = morseK;
+	morse[11]   = morseL;
+	morse[12]   = morseM;
+	morse[13]   = morseN;
+	morse[14]   = morseO;
+	morse[15]   = morseP;
+	morse[16]   = morseQ;
+	morse[17]   = morseR;
+	morse[18]   = morseS;
+	morse[19]   = morseT;
+	morse[20]   = morseU;
+	morse[21]   = morseV;
+	morse[22]   = morseW;
+	morse[23]   = morseX;
+	morse[24]   = morseY;
+	morse[25]   = morseZ;
+	morse[26]   = morse0;
+	morse[27]   = morse1;
+	morse[28]   = morse2;
+	morse[29]   = morse3;
+	morse[30]   = morse4;
+	morse[31]   = morse5;
+	morse[32]   = morse6;
+	morse[33]   = morse7;
+	morse[34]   = morse8;
+	morse[35]   = morse9;
 
-	slash = "/";
 }
 
 char* charToMorse(char c){
@@ -119,28 +158,71 @@ char stringToMorse(char * str, char * buff){
     int buffIndex = 0;
     int j = 0;
     char * tmp;
+    // char count = 0;
+
+    // for(count = 0; count < 2048; count++){
+    // 	buff[count] = ' ';
+    // }
+
+
+    char tmpSize = 0;
+
 	// printf("in string to morse\r\n");
     while(str[i] != '\0'){ //end string character
         tmp = charToMorse(str[i]);
+        tmpSize = 0;
+
+        while(tmp[j] != '\0'){
+        	tmpSize++;
+        	j++;
+        }
+        printf("\t\ttmp si: %d buff ind: %d\r\n",tmpSize,buffIndex);
+
+        // buff[buffIndex] = '\0';
+
+
+        printf("\tchar %c to morse %s\r\n",str[i],tmp);
     	// printf("converted %c to %s\r\n", str[i], tmp);
         if(tmp == NULL){
     		printf("return 1\r\n");
         	return 1;
         }
-        //append to buffer
-        if(i == 0){
-        	strcpy(buff, tmp);
-        }else{
-        	strcat(buff, tmp);
+
+        printf("\tbuff before %s\r\n",buff);
+
+        // //append to buffer
+        // if(i == 0){
+        // 	//strcpy(buff, tmp);
+        // 	//strncpy(buff, , sizeof(buf) - 1);
+        // 	strncpy(buff, tmp, 2047);
+        //    	// buff[sizeof(buff) - 1] = '\0';
+        // }else{
+        // 	strncat(buff, tmp, 2047);
+        // }
+
+        for(j = 0; j < tmpSize; j++){
+        	buff[buffIndex + j] = tmp[j];
         }
-        // printf("current buffer: %s\r\n", buff);
+
+        buffIndex += tmpSize;
+
+        printf("\tbuff after %s\r\n",buff);
+
         //add a space (if not last char)
         if(str[i+1] != '\0'){
-        	strcat(buff, " ");
+        	// strcat(buff, space);
+        	// buff[buffIndex + j] = tmp[j];
+        	buff[buffIndex] = ' ';
+        	buffIndex += 1;
     	}
 
         i++;
+        j=0;
+
+        getchar();
     }
+    buff[buffIndex] = '\0';
+    printf("final buffer: %s\r\n",buff);
     // printf("return 0\r\n");
     return 0;
 }
