@@ -131,13 +131,14 @@ char parseLetter(char * buff3){
 	char j = 0;
 	char successFlag = 1;
 
-	//printf("Parsing: %s\n\r", buff3);
+	// printf("Parsing: %s\n\r", buff3);
 	for(i = 0; i < 36; i++){
 		successFlag = 1;
 		j = 0;
 		//printf("Try: %s  ", morse[i]);
 
 		if(!strcmp(buff3, morse[i])){
+			// printf("FOUND A MATCH");
 			if(i < 26){ //letter
 				printf("%c",'A' + i );
 				return 'A' + i;
