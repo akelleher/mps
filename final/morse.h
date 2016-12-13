@@ -246,7 +246,7 @@ char outputMessage(char* str, char * buff){
 		// printf("CHAR: [%c]\r\n",buff[i]);
 		if(buff[i] == ' '){ //wait 3 beats
 			// printf("SPACE\r\n");
-			waitBeats(3);
+			waitBeats(7);
 		} 
 		else if (buff[i] == '/'){
 			// printf("SLASH\r\n");
