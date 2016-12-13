@@ -135,71 +135,44 @@ void main (void)
             inputPin = 0x02; //switch P1.1 
             while(1){
 
-                //STATE IS DOING WEIRD THINGS
-                //MAYBE NEED LONGER DEBOUNCE???
 
                 state = (P1 & inputPin) >> 1;
                 if(state != prevState){ // state change
-                    // printf("FIRST STATE CHANGE, state");
                     timeStamp = csCounter;
                     csCounter = 0;
                     //debounce
                     delayCs(1);
-                    if(state == 0){  //NOT PRESSED
-                         //printf("NOT PRESSED\r\n");
-                        if(timeStamp < 2*unitTime){ //bit space
-                        } else if(timeStamp > 2*unitTime && timeStamp < 5*unitTime && !justPrintedSpace){ //letter space
-                            buff3[bitCounter] = '\0';
-                            letter = parseLetter(buff3);
-                            bitCounter = 0;
-                            justPrintedSpace = 1;
-                        } else{ //word space
-							if(!justPrintedSpace){
-                                printf("    ");
-                                letter = parseLetter(buff3);
-                                bitCounter = 0;
-                                justPrintedSpace = 1;
-							}
-                        }
-                    }
-                    else if(state == 1){ //PRESSED
-                         //printf("PRESSED\r\n");
+                     if(state == 1){ //falling edge
                         if(edgeCounter == -1){ //first interaction
-                            // printf("FIRST INT\r\n");
                             edgeCounter++;
                             prevState = state;
-                            // printf("FIRST EDGE\r\n");
                             continue;
                         }
 
-                        //printf("HI TO LOW\r\n");
-                        if(timeStamp < 2*unitTime){ //dit
+                        if(timeStamp < 2*unitTime){ //  dit
                             printf(".");
                             buff3[bitCounter] = '.';
                             justPrintedSpace = 0;
-                        } else{ //dah
+                        } else{                     //  dah
                             printf("-");
                             buff3[bitCounter] = '-';
                             justPrintedSpace = 0;
                         }
                         bitCounter++;
-                        // if(bitCounter == 5){ //just entered 5th letter..
-
-                        // }
                     }
                     buff2[edgeCounter] = timeStamp;
-                    // printf("buff2[%d] = %ums\r\n",edgeCounter,timeStamp);
                     edgeCounter++;
                     prevState = state;
                 }
-
-                if(csCounter > 7*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
+                if(csCounter >= 3*unitTime && state ==1){   //  Letter space
                     buff3[bitCounter] = '\0';
                     letter = parseLetter(buff3);
                     bitCounter = 0;
+                }
+                if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
+                    buff3[bitCounter] = '\0';
+                    printf(" ");
                     justPrintedSpace = 1;
-
-					//printf("timeout\r\n");
                 }
 
 
@@ -249,11 +222,10 @@ void main (void)
                         if(state == 0){  //NOT PRESSED
                              //printf("NOT PRESSED\r\n");
                             if(timeStamp < 2*unitTime){ //bit space
-                            } else if(timeStamp > 2*unitTime && timeStamp < 5*unitTime && !justPrintedSpace){ //letter space
+                            } else if(timeStamp > 2*unitTime && timeStamp < 5*unitTime){ //letter space
                                 buff3[bitCounter] = '\0';
                                 letter = parseLetter(buff3);
                                 bitCounter = 0;
-                                justPrintedSpace = 1;
                             } else{ //word space
                                 if(!justPrintedSpace){
                                     printf("    ");
@@ -294,7 +266,7 @@ void main (void)
                         prevState = state;
                     }
 
-                    if(csCounter > 10*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
+                    if(csCounter > 10*unitTime && justPrintedSpace == 0 && state == 0){ //Too long for a character - must be a word
                         buff3[bitCounter] = '\0';
                         letter = parseLetter(buff3);
                         bitCounter = 0;
