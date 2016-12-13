@@ -131,8 +131,8 @@ void main (void)
         }
         else if(mode == '2'){
             printf("go ahead!\r\n");
-            inputPin = 0x10; //light sensor P0.4
-            //inputPin = 0x02; //switch 
+            // inputPin = 0x10; //light sensor P1.4 -- not working
+            inputPin = 0x02; //switch P1.1 
             while(1){
 
                 //STATE IS DOING WEIRD THINGS
