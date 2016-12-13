@@ -131,18 +131,18 @@ void main (void)
         }
         else if(mode == '2'){
             printf("go ahead!\r\n");
-            // inputPin = 0x10; //light sensor P1.4 -- not working
-            inputPin = 0x02; //switch P1.1 
+            inputPin = 0x04; //push button P1.2
+            //inputPin = 0x02; //light sensor P1.1 
             while(1){
 
 
-                state = (P1 & inputPin) >> 1;
+                state = P1 & inputPin;
                 if(state != prevState){ // state change
                     timeStamp = csCounter;
                     csCounter = 0;
                     //debounce
                     delayCs(1);
-                     if(state == 1){ //falling edge
+                     if(state){ //falling edge
                         if(edgeCounter == -1){ //first interaction
                             edgeCounter++;
                             prevState = state;
@@ -164,29 +164,28 @@ void main (void)
                     edgeCounter++;
                     prevState = state;
                 }
-                if(csCounter >= 3*unitTime && state ==1){   //  Letter space
+                if(csCounter >= 3*unitTime && state){   //  Letter space
                     buff3[bitCounter] = '\0';
                     letter = parseLetter(buff3);
                     bitCounter = 0;
                 }
-                if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
+                if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state){ //Too long for a character - must be a word
                     buff3[bitCounter] = '\0';
                     printf(" ");
                     justPrintedSpace = 1;
                 }
-
-
             }
 
         }
         else if(mode == '3'){
 			printf("Press any key to exit\n");
+            inputPin = 0x04; //push button P1.2 
             while(1){
-                state = (P1 & 0x02) >> 1;
-                if(state == 1){
+                state = P1 & inputPin;
+                if(state){
                     P1 &= 0xFE; //laser off
                     P1 &= 0xF7; //buzzer off
-                } else if(state == 0){
+                } else if(!state){
                     P1 |= 0x01; //laser on
                     P1 |= 0x08; //buzzer on
                 }
@@ -209,15 +208,18 @@ void main (void)
             
 
                 while(1){
-                    inputPin = 0x02; //switch P1.1 
+                    // inputPin = 0x04; //push button P1.2
+                    inputPin = 0x02; //light sensor P1.1 
                     while(1){
-                        state = (P1 & inputPin) >> 1;
+
+
+                        state = P1 & inputPin;
                         if(state != prevState){ // state change
                             timeStamp = csCounter;
                             csCounter = 0;
                             //debounce
                             delayCs(1);
-                             if(state == 1){ //falling edge
+                             if(state){ //falling edge
                                 if(edgeCounter == -1){ //first interaction
                                     edgeCounter++;
                                     prevState = state;
@@ -225,11 +227,11 @@ void main (void)
                                 }
 
                                 if(timeStamp < 2*unitTime){ //  dit
-                                    // printf(".");
+                                    printf(".");
                                     buff3[bitCounter] = '.';
                                     justPrintedSpace = 0;
                                 } else{                     //  dah
-                                    // printf("-");
+                                    printf("-");
                                     buff3[bitCounter] = '-';
                                     justPrintedSpace = 0;
                                 }
@@ -239,13 +241,12 @@ void main (void)
                             edgeCounter++;
                             prevState = state;
                         }
-                        
-                        if(csCounter >= 3*unitTime && state ==1){   //  Letter space
+                        if(csCounter >= 3*unitTime && state){   //  Letter space
                             buff3[bitCounter] = '\0';
                             letter = parseLetter(buff3);
                             bitCounter = 0;
                         }
-                        if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state == 1){ //Too long for a character - must be a word
+                        if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state){ //Too long for a character - must be a word
                             buff3[bitCounter] = '\0';
                             printf(" ");
                             justPrintedSpace = 1;
@@ -357,7 +358,7 @@ void PORT_INIT(void)
             // P0.2 (SW2 through jumper wire) is configured as Open_Drain for input.
     P0      = 0x06;             // Additionally, set P0.0=0, P0.1=1, and P0.2=1.
 
-    P1MDOUT |= 0x09;             // P1.0 LED output, P1.3 buzzer output, P1.4 sensor input
+    P1MDOUT |= 0x09;             // P1.0 LED output, P1.1 sensor input, P1.2 push button, P1.3 buzzer output
     P1 &= 0xF6;                  // P1.0 and P1.3 off
 
     SFRPAGE = SFRPAGE_SAVE;     // Restore SFR page.
