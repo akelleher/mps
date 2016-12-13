@@ -56,6 +56,8 @@ unsigned int msCounter = 0;
 char inputPin;
 char bitCounter = 0;
 
+char inputChar;
+
 void SW2_ISR (void) __interrupt 0;
 void TIMER0_ISR (void) __interrupt 1;
 //-------------------------------------------------------------------------------------------
@@ -70,6 +72,7 @@ void main (void)
 //    unsigned int ones, tenths = 0;
 
     char str[30];
+    char __xdata ditLength[10];
     char err;
     char mode;
     char i = 0;
@@ -200,20 +203,53 @@ void main (void)
             }
         }
         else if(mode == '4'){   //Chatroom
+            printf("Enter dit length in ms:\n\r");
+            getString(ditLength, 10);
+            unitTime = 0;
+            i = 0;
+            while (ditLength[i] != '\0'){
+                unitTime *=10;
+                unitTime += ditLength[i] - '0';
+                i++;
+            }
+            unitTime/=10; //to cs
+            printf("unit time: %d\r\n",unitTime);
+
+            printf("Enter input device: 0 for ANSII, 1 for push button\r\n");
+            inputChar = getchar();
+
             // inputPin = 0x04; //push button P1.2
             inputPin = 0x02; //light sensor P1.1 
             while(1){
                 edgeCounter = -1;
-                printf("Enter message:\n\r");
-                getString(str, 30);
-                printf("Sending: %s\r\n",str);
 
-                //set prevState to what the first state will be
-                prevState = inputPin;
+                if(inputChar == '0'){
+                    printf("Enter message:\n\r");
+                    getString(str, 30);
+                    printf("Sending: %s\r\n",str);
 
-                err = outputMessage(str, buff);
-                if(err){
-                    printf("String to morse failed.\r\n");
+                    //set prevState to what the first state will be
+                    prevState = inputPin;
+
+
+                    err = outputMessage(str, buff);
+                    if(err){
+                        printf("String to morse failed.\r\n");
+                    }
+                } else if(inputChar == '1'){
+                    while(1){
+                        state = P1 & 0x04;
+                        if(state){
+                            P1 &= 0xFE; //laser off
+                            P1 &= 0xF7; //buzzer off
+                        } else if(!state){
+                            P1 |= 0x01; //laser on
+                            P1 |= 0x08; //buzzer on
+                        }
+                        if(getcharnohang()){
+                            break;
+                        }
+                    }
                 }
             
 
