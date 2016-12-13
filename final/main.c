@@ -75,6 +75,11 @@ void main (void)
     char i = 0;
     char letter;
 
+    char flagLetter = 1;
+    char flagWord = 1; 
+    char flagReceive = 1;
+
+
 
 	char SFRPAGE_SAVE;
     char state = 1;
@@ -225,7 +230,7 @@ void main (void)
                         csCounter = 0;
                         //debounce
                         delayCs(1);
-                         if(state){ //falling edge
+                        if(state){ //falling edge
                             // printf("SIGNAL\r\n");
                             if(edgeCounter == -1){ //first interaction
                                 edgeCounter++;
@@ -243,18 +248,23 @@ void main (void)
                                 justPrintedSpace = 0;
                             }
                             bitCounter++;
+                            flagLetter = 1;
+                            flagWord = 1;
                         }
                         buff2[edgeCounter] = timeStamp;
                         edgeCounter++;
                         prevState = state;
                     }
-                    if(csCounter >= 3*unitTime && state && edgeCounter != -1){   //  Letter space
-                        buff3[bitCounter] = '\0';
+                    if(csCounter >= 3*unitTime && state && edgeCounter != -1 && flagLetter){   //  Letter space
+                        buff3[bitCounter] = '\0';                        
+                        printf("buff3: %s\r\n",buff3);
                         letter = parseLetter(buff3);
-                        bitCounter = 0;
+                        bitCounter = 0;   
+                        flagLetter = 0;
                     }
-                    if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state && edgeCounter != -1){ //Too long for a character - must be a word
+                    if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state && edgeCounter != -1 && flagWord){ //Too long for a character - must be a word
                         printf(" ");
+                        flagWord = 0; 
                         justPrintedSpace = 1;
                     }
                     if(csCounter >= 10*unitTime && state && edgeCounter != -1){ // Done receiving
