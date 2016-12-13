@@ -178,7 +178,7 @@ void main (void)
 
         }
         else if(mode == '3'){
-			printf("Press any key to exit\n");
+			printf("Press any key to exit\r\n");
             inputPin = 0x04; //push button P1.2 
             while(1){
                 state = P1 & inputPin;
@@ -197,6 +197,7 @@ void main (void)
         else if(mode == '4'){   //Chatroom
             while(1){
 
+                edgeCounter = -1;
                 printf("Enter message:\n\r");
                 getString(str, 30);
                 printf("Sending: %s\r\n",str);
@@ -250,7 +251,6 @@ void main (void)
                         justPrintedSpace = 1;
                     }
                     if(csCounter >= 10*unitTime && state){ // Done receiving
-                        edgeCounter = -1;
                         break;
                     }
                 }
