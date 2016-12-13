@@ -229,7 +229,7 @@ void main (void)
                         timeStamp = csCounter;
                         csCounter = 0;
                         //debounce
-                        delayCs(1);
+                        // delayCs(1);
                         if(state){ //falling edge
                             // printf("SIGNAL\r\n");
                             if(edgeCounter == -1){ //first interaction
