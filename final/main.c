@@ -257,7 +257,7 @@ void main (void)
                     }
                     if(csCounter >= 3*unitTime && state && edgeCounter != -1 && flagLetter){   //  Letter space
                         buff3[bitCounter] = '\0';                        
-                        printf("buff3: %s\r\n",buff3);
+                        // printf("buff3: %s\r\n",buff3);
                         letter = parseLetter(buff3);
                         bitCounter = 0;   
                         flagLetter = 0;
