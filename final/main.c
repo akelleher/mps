@@ -210,47 +210,44 @@ void main (void)
                 while(1){
                     // inputPin = 0x04; //push button P1.2
                     inputPin = 0x02; //light sensor P1.1 
-                    while(1){
 
-
-                        state = P1 & inputPin;
-                        if(state != prevState){ // state change
-                            timeStamp = csCounter;
-                            csCounter = 0;
-                            //debounce
-                            delayCs(1);
-                             if(state){ //falling edge
-                                if(edgeCounter == -1){ //first interaction
-                                    edgeCounter++;
-                                    prevState = state;
-                                    continue;
-                                }
-
-                                if(timeStamp < 2*unitTime){ //  dit
-                                    // printf(".");
-                                    buff3[bitCounter] = '.';
-                                    justPrintedSpace = 0;
-                                } else{                     //  dah
-                                    // printf("-");
-                                    buff3[bitCounter] = '-';
-                                    justPrintedSpace = 0;
-                                }
-                                bitCounter++;
+                    state = P1 & inputPin;
+                    if(state != prevState){ // state change
+                        timeStamp = csCounter;
+                        csCounter = 0;
+                        //debounce
+                        delayCs(1);
+                         if(state){ //falling edge
+                            if(edgeCounter == -1){ //first interaction
+                                edgeCounter++;
+                                prevState = state;
+                                continue;
                             }
-                            buff2[edgeCounter] = timeStamp;
-                            edgeCounter++;
-                            prevState = state;
+
+                            if(timeStamp < 2*unitTime){ //  dit
+                                // printf(".");
+                                buff3[bitCounter] = '.';
+                                justPrintedSpace = 0;
+                            } else{                     //  dah
+                                // printf("-");
+                                buff3[bitCounter] = '-';
+                                justPrintedSpace = 0;
+                            }
+                            bitCounter++;
                         }
-                        if(csCounter >= 3*unitTime && state){   //  Letter space
-                            buff3[bitCounter] = '\0';
-                            letter = parseLetter(buff3);
-                            bitCounter = 0;
-                        }
-                        if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state){ //Too long for a character - must be a word
-                            buff3[bitCounter] = '\0';
-                            printf(" ");
-                            justPrintedSpace = 1;
-                        }
+                        buff2[edgeCounter] = timeStamp;
+                        edgeCounter++;
+                        prevState = state;
+                    }
+                    if(csCounter >= 3*unitTime && state){   //  Letter space
+                        buff3[bitCounter] = '\0';
+                        letter = parseLetter(buff3);
+                        bitCounter = 0;
+                    }
+                    if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state){ //Too long for a character - must be a word
+                        buff3[bitCounter] = '\0';
+                        printf(" ");
+                        justPrintedSpace = 1;
                     }
                 }
             }
