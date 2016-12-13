@@ -219,7 +219,7 @@ char stringToMorse(char * str, char * buff){
         i++;
         j=0;
 
-        getchar();
+        // getchar();
     }
     buff[buffIndex] = '\0';
     // printf("final buffer: %s\r\n",buff);
