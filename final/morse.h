@@ -65,7 +65,7 @@ void outputPulse(int length);
 char parseLetter(char * buff3);
 
 
-void MORSE_INIT() {
+void MORSE_INIT() {	//Done this way due to funky xdata issue
 	morse[0]    = morseA;
 	morse[1]    = morseB;
 	morse[2]    = morseC;
@@ -105,7 +105,7 @@ void MORSE_INIT() {
 
 }
 
-char* charToMorse(char c){
+char* charToMorse(char c){	//	Convert single ascii charachter to morse representation
     if(c >= '0' && c <= '9'){
     	//digits start at index 26
     	return morse[(c-'0')+26];
@@ -126,18 +126,16 @@ char* charToMorse(char c){
     }
 }
 
-char parseLetter(char * buff3){
+char parseLetter(char * buff3){	//	parse morse representation into ascii letter
 	char i = 0;
 	char j = 0;
 	char successFlag = 1;
 
-	// printf("Parsing: %s\n\r", buff3);
-	for(i = 0; i < 36; i++){
+	for(i = 0; i < 36; i++){	//	Iterate through each Morse letter, compare to buff3
 		successFlag = 1;
 		j = 0;
-		//printf("Try: %s  ", morse[i]);
 
-		if(!strcmp(buff3, morse[i])){
+		if(!strcmp(buff3, morse[i])){	//	Found matching character
 			// printf("FOUND A MATCH");
 			if(i < 26){ //letter
 				printf("%c",'A' + i );
@@ -154,52 +152,27 @@ char parseLetter(char * buff3){
 }
 
 //returns error code 
-char stringToMorse(char * str, char * buff){
+char stringToMorse(char * str, char * buff){	//	Uses charToMorse to convert string of ASCII to string of morse
     int i = 0;
     int buffIndex = 0;
     int j = 0;
     char * tmp;
-    // char count = 0;
-
-    // for(count = 0; count < 2048; count++){
-    // 	buff[count] = ' ';
-    // }
-
 
     char tmpSize = 0;
 
-	// printf("in string to morse\r\n");
     while(str[i] != '\0'){ //end string character
         tmp = charToMorse(str[i]);
         tmpSize = 0;
 
-        while(tmp[j] != '\0'){
+        while(tmp[j] != '\0'){	// make sure we have valid char
         	tmpSize++;
         	j++;
         }
-        // printf("\t\ttmp si: %d buff ind: %d\r\n",tmpSize,buffIndex);
-
-        // buff[buffIndex] = '\0';
-
-
-        // printf("\tchar %c to morse %s\r\n",str[i],tmp);
-    	// printf("converted %c to %s\r\n", str[i], tmp);
         if(tmp == NULL){
     		printf("return 1\r\n");
         	return 1;
         }
 
-        // printf("\tbuff before %s\r\n",buff);
-
-        // //append to buffer
-        // if(i == 0){
-        // 	//strcpy(buff, tmp);
-        // 	//strncpy(buff, , sizeof(buf) - 1);
-        // 	strncpy(buff, tmp, 2047);
-        //    	// buff[sizeof(buff) - 1] = '\0';
-        // }else{
-        // 	strncat(buff, tmp, 2047);
-        // }
 
         for(j = 0; j < tmpSize; j++){
         	buff[buffIndex + j] = tmp[j];
@@ -207,29 +180,21 @@ char stringToMorse(char * str, char * buff){
 
         buffIndex += tmpSize;
 
-        // printf("\tbuff after %s\r\n",buff);
-
         //add a space (if not last char)
         if(str[i+1] != '\0'){
-        	// strcat(buff, space);
-        	// buff[buffIndex + j] = tmp[j];
         	buff[buffIndex] = ' ';
         	buffIndex += 1;
     	}
 
         i++;
         j=0;
-
-        // getchar();
     }
     buff[buffIndex] = '\0';
-    // printf("final buffer: %s\r\n",buff);
-    // printf("return 0\r\n");
     return 0;
 }
 
 
-char outputMessage(char* str, char * buff){
+char outputMessage(char* str, char * buff){	//Convvert ascii to morse, display, and output
 	int i = 0;
 	char err;
 	err = stringToMorse(str, buff);
@@ -242,19 +207,14 @@ char outputMessage(char* str, char * buff){
 	printf("%s\r\n",str);
 	printf("%s\r\n",buff);
 
-	// printf("Entering while...\r\n");
 	while(buff[i] != '\0'){
-		// printf("CHAR: [%c]\r\n",buff[i]);
 		if(buff[i] == ' '){ //wait 3 beats
-			// printf("SPACE\r\n");
 			waitBeats(3);
 		} 
 		else if (buff[i] == '/'){
-			// printf("SLASH\r\n");
 			waitBeats(1);
 		}
 		else if (buff[i] == '.'){
-			// printf("dit\r\n");
 			outputDit();
 
 			if(buff[i+1] == '.' || buff[i+1] == '-'){				
@@ -262,7 +222,6 @@ char outputMessage(char* str, char * buff){
 			}
 		}
 		else if (buff[i] == '-'){
-			// printf("dah\r\n");
 			outputDah();
 			if(buff[i+1] == '.' || buff[i+1] == '-'){				
 				waitBeats(1);
@@ -275,7 +234,6 @@ char outputMessage(char* str, char * buff){
 }
 
 void outputDit(){
-	// printf("in output dit\r\n");
 	outputPulse(1); //Dit is 1/6 of beat
 }
 
@@ -286,7 +244,6 @@ void outputDah(){
 //Wait whole number of beats
 void waitBeats(int beats){
 	int timestamp;
-	//INSERT DELAY
 	timestamp = csCounter;
 	while(csCounter-timestamp < unitTime*beats);
 }
@@ -296,22 +253,12 @@ void outputPulse(int beats){
 	int timestamp;
 	char SFRPAGE_SAVE;
 
-	// printf("in output pulse\r\n");	
-
     SFRPAGE_SAVE = SFRPAGE;     // Save Current SFR page.
-
-    // printf("Saved sfrpage");
-
     SFRPAGE = CONFIG_PAGE;  //NEED TO CHANGE PAGE FOR P1
-
-    // CANNOT PRINT HERE
-    // printf("changed sfrpage");
 
     P1 |= 0x01; //laser on
     P1 |= 0x08; //buzzer on
-	// printf("ON");
 
-	//INSERT DELAY
 	timestamp = csCounter;
 	while(csCounter-timestamp < unitTime*beats);
 
@@ -319,6 +266,5 @@ void outputPulse(int beats){
     P1 &= 0xF7; //buzzer off
 	// printf("OFF");
 
-	SFRPAGE = SFRPAGE_SAVE; //PAGE NOT CHANGING BACK TO ALLOW PRINTS
-	// printf("exiting output pulse\r\n");
+	SFRPAGE = SFRPAGE_SAVE; 
 }

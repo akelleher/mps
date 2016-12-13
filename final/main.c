@@ -1,21 +1,10 @@
-// preciseTimer.c
+// main.c
 //
-// 8051 Interrupt Example Program
-// Alexey Gutin
-// March 2, 2007
+// Alex Kelleher and Jack Cusick
+// Nov-Dec 2016
+// MPS Final Project 
+// Morse Code Detection
 //
-// This program uses an interrupt to call the ISR handler
-// function, SWR_ISR(), when the /INT0 line is grounded.
-// Each time the signal makes a low transition, an interrupt will be
-// generated.  If the line is held down, the SWR_ISR()
-// function will only be executed once, and not be called
-// again unless the line is released, and grounded again.
-//
-// /INT0 is configured to be on P0.2
-// UART0 is used to communicate to the user through ProCOMM or SecureCRT
-//
-// This code was written and tested using the SiLabs IDE V4.90
-// and SDCC V3.5.0.
 //
 //-------------------------------------------------------------------------------------------
 // Includes
@@ -32,7 +21,6 @@
 #define BAUDRATE    115200      // UART baud rate in bps
 //#define BAUDRATE  19200       // UART baud rate in bps
 
-__bit SW2press = 0;
 __bit timer0_triggered = 0;
 //-------------------------------------------------------------------------------------------
 // Function PROTOTYPES
@@ -47,9 +35,8 @@ void delayMs(unsigned int);
 
 
 // xdata has 8096 bytes total, stored internally
-static char __xdata buff[1024];
-static unsigned int __xdata buff2[1024];
-static char __xdata buff3[8];
+static char __xdata buff[1024]; // morse dits and dahs for output
+static char __xdata buff3[8];   // dits and dahs from button/sensor - never more than 1 character
 
 char counter;
 unsigned int msCounter = 0;
@@ -58,7 +45,6 @@ char bitCounter = 0;
 
 char inputChar;
 
-void SW2_ISR (void) __interrupt 0;
 void TIMER0_ISR (void) __interrupt 1;
 //-------------------------------------------------------------------------------------------
 // MAIN Routine
@@ -66,10 +52,6 @@ void TIMER0_ISR (void) __interrupt 1;
 void main (void)
 {
     __bit restart = 0;
-//    char character;
-//    unsigned int delay1, delay2 = 0;
-//    unsigned int randnum = 0;
-//    unsigned int ones, tenths = 0;
 
     char str[30];
     char __xdata ditLength[10];
@@ -80,18 +62,15 @@ void main (void)
 
     char flagLetter = 1;
     char flagWord = 1; 
-    char flagReceive = 1;
-
-
 
 	char SFRPAGE_SAVE;
     char state = 1;
     char prevState = 1;
     unsigned int timeStamp;
 
-    char justPrintedSpace = 1;
+    char justPrintedSpace = 1;  //  If we have just printed a space, don't print more
 
-    int edgeCounter = -1;
+    int edgeCounter = -1;       //Number of edges we have seen
 
     SFRPAGE = CONFIG_PAGE;
 
@@ -99,7 +78,7 @@ void main (void)
     SYSCLK_INIT();              // Initialize the oscillator.
     UART0_INIT();               // Initialize UART0.
     TIMER_INIT();
-    MORSE_INIT();
+    MORSE_INIT();               // Set up Morse array
 
     SFRPAGE = LEGACY_PAGE;
     IT0     = 1;                // /INT0 is edge triggered, falling-edge.
@@ -128,7 +107,7 @@ void main (void)
         mode = getchar();
         printf("\r\n");
 
-        if(mode == '1'){
+        if(mode == '1'){    //Convert string to morse
             getString(str, 30);
             printf("Got string: %s\r\n",str);
 
@@ -137,7 +116,7 @@ void main (void)
                 printf("String to morse failed.\r\n");
             }
         }
-        else if(mode == '2'){
+        else if(mode == '2'){   //Convert pushbutton input to Morse code
             printf("go ahead!\r\n");
             inputPin = 0x04; //push button P1.2
             //inputPin = 0x02; //light sensor P1.1 
@@ -145,7 +124,7 @@ void main (void)
 
 
                 state = P1 & inputPin;
-                if(state != prevState){ // state change
+                if(state != prevState){ // detect state change
                     timeStamp = csCounter;
                     csCounter = 0;
                     //debounce
@@ -153,7 +132,7 @@ void main (void)
                      if(state){ //falling edge
                         if(edgeCounter == -1){ //first interaction
                             edgeCounter++;
-                            prevState = state;
+                            prevState = state; //set up edge detect
                             continue;
                         }
 
@@ -168,7 +147,6 @@ void main (void)
                         }
                         bitCounter++;
                     }
-                    buff2[edgeCounter] = timeStamp;
                     edgeCounter++;
                     prevState = state;
                 }
@@ -177,7 +155,7 @@ void main (void)
                     letter = parseLetter(buff3);
                     bitCounter = 0;
                 }
-                if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state){ //Too long for a character - must be a word
+                if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state){ //Too long for a character space - must be a word space
                     buff3[bitCounter] = '\0';
                     printf(" ");
                     justPrintedSpace = 1;
@@ -185,7 +163,7 @@ void main (void)
             }
 
         }
-        else if(mode == '3'){
+        else if(mode == '3'){ //Button turns on laser and buzzer when on
 			printf("Press any key to exit\r\n");
             inputPin = 0x04; //push button P1.2 
             while(1){
@@ -197,13 +175,13 @@ void main (void)
                     P1 |= 0x01; //laser on
                     P1 |= 0x08; //buzzer on
                 }
-				if(getcharnohang()){
+				if(getcharnohang()){    // break on any character input
 					break;
 				}
             }
         }
-        else if(mode == '4'){   //Chatroom
-            printf("Enter dit length in ms:\n\r");
+        else if(mode == '4'){   //  Transmit and receive
+            printf("Enter dit length in ms:\n\r");  //Set unitTime based on user input
             getString(ditLength, 10);
             unitTime = 0;
             i = 0;
@@ -215,7 +193,7 @@ void main (void)
             unitTime/=10; //to cs
             printf("unit time: %d\r\n",unitTime);
 
-            printf("Enter input device: 0 for ANSII, 1 for push button\r\n");
+            printf("Enter input device: 0 for ANSII, 1 for push button\r\n");   //Select input device
             inputChar = getchar();
 
             // inputPin = 0x04; //push button P1.2
@@ -223,7 +201,7 @@ void main (void)
             while(1){
                 edgeCounter = -1;
 
-                if(inputChar == '0'){
+                if(inputChar == '0'){   //Input message
                     printf("Enter message:\n\r");
                     getString(str, 30);
                     printf("Sending: %s\r\n",str);
@@ -236,7 +214,7 @@ void main (void)
                     if(err){
                         printf("String to morse failed.\r\n");
                     }
-                } else if(inputChar == '1'){
+                } else if(inputChar == '1'){    //If using button, toggle laser + buzzer
                     while(1){
                         state = P1 & 0x04;
                         if(state){
@@ -253,21 +231,16 @@ void main (void)
                 }
             
 
-                while(1){
+                while(1){   //Receive here
 
                     state = P1 & inputPin;
-
-
-                    // printf("b4 if state: %d\r\n",state);
-                    // printf("b4 if prevState: %d\r\n",state);
 
                     if(state != prevState){ // state change
                         timeStamp = csCounter;
                         csCounter = 0;
-                        //debounce
+                        //  No debounce for laser
                         // delayCs(1);
                         if(state){ //falling edge
-                            // printf("SIGNAL\r\n");
                             if(edgeCounter == -1){ //first interaction
                                 edgeCounter++;
                                 prevState = state;
@@ -287,7 +260,6 @@ void main (void)
                             flagLetter = 1;
                             flagWord = 1;
                         }
-                        buff2[edgeCounter] = timeStamp;
                         edgeCounter++;
                         prevState = state;
                     }
@@ -298,12 +270,12 @@ void main (void)
                         bitCounter = 0;   
                         flagLetter = 0;
                     }
-                    if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state && edgeCounter != -1 && flagWord){ //Too long for a character - must be a word
+                    if(csCounter >= 5*unitTime && justPrintedSpace == 0 && state && edgeCounter != -1 && flagWord){ //Too long for a character spce - must be a word space
                         printf(" ");
                         flagWord = 0; 
                         justPrintedSpace = 1;
                     }
-                    if(csCounter >= 10*unitTime && state && edgeCounter != -1){ // Done receiving
+                    if(csCounter >= 10*unitTime && state && edgeCounter != -1){ // Too long - done receiving
                         printf("\r\n");
                         break;
                     }
@@ -343,48 +315,18 @@ void TIMER_INIT(void){
 }
 
 
-//-------------------------------------------------------------------------------------------
-// Interrupt Service Routines
-//-------------------------------------------------------------------------------------------
-// NOTE: this is an example of what NOT to do in an interrupt handler. No I/O should be done
-// in ISRs since I/O is very slow and the handler must execute very quickly.
-//
-// This routine stops Timer0 when the user presses SW2.
-//
-void SW2_ISR (void) __interrupt 0   // Interrupt 0 corresponds to vector address 0003h.
-// the keyword "interrupt" defines this as an ISR and the number is determined by the 
-// Priority Order number in Table 11.4 in the 8051 reference manual.
-{
-    SW2press = 1;
-	//printf("/INT0 has been grounded here!\n\n\r");
-}
-
-// void delayMs(unsigned int delay){
-//     unsigned int stopCounter = msCounter+delay;
-//     while (stopCounter != msCounter); // != instead of > because of overflow every 65s
-// }
-
 void delayCs(unsigned int delay){
     unsigned int stopCounter = csCounter+delay;
     while (stopCounter != csCounter); // != instead of > because of overflow every 65s
 }
 
-void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow - 0.1s has elapsed
+void TIMER0_ISR (void) __interrupt 1 // Corresponds to timer 0 overflow 
 {
 	counter++;
-    // if(counter%3 == 0){
-    //     msCounter++;
-    // }
-    if(counter%30 == 0){
+    if(counter%30 == 0){ //every 30 counts, 10 ms have elapsed
         csCounter++;
         counter = 0;
-        // msCounter++;
-        // printf("%u\r\n",msCounter);
     }
-    // if(counter >= 300){
-    //     tenths_count++;
-    //     counter=0;
-    // }
 }
 
 //-------------------------------------------------------------------------------------------
